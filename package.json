@@ -1,0 +1,14 @@
+{
+  "name": "@labdata-tcc/source",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {},
+  "private": true,
+  "dependencies": {
+    "@nx-go/nx-go": "3.1.0"
+  },
+  "devDependencies": {
+    "@nx/workspace": "19.1.2",
+    "nx": "19.1.2"
+  }
+}
