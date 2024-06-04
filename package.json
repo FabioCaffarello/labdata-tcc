@@ -2,13 +2,18 @@
   "name": "@labdata-tcc/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "prepare": "husky"
+  },
   "private": true,
   "dependencies": {
     "@nx-go/nx-go": "3.1.0"
   },
   "devDependencies": {
     "@nx/workspace": "19.1.2",
-    "nx": "19.1.2"
+    "husky": "^9.0.11",
+    "nx": "19.1.2",
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2"
   }
 }
