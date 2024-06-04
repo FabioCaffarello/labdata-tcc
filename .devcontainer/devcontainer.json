@@ -32,7 +32,11 @@
                 "ms-vscode.makefile-tools",
                 "nrwl.angular-console",
                 "shd101wyy.markdown-preview-enhanced"
-            ]
+            ],
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "zsh",
+                "workbench.colorTheme": "Default Dark+"
+            }
         }
     }
 }
