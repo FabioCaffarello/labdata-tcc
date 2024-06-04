@@ -1,1 +1,1 @@
-npx nx lint
+make lint
