@@ -1,6 +1,11 @@
 go 1.22
 
 use (
+	./libs/golang/clients/resources/go-minio
+	./libs/golang/clients/resources/go-mongo
+	./libs/golang/clients/resources/go-rabbitmq
 	./libs/golang/shared/id/go-md5
+	./libs/golang/shared/service-utils/resource-mapping
+	./libs/golang/shared/service-utils/service-discovery
 	./libs/golang/shared/type-tools
 )
