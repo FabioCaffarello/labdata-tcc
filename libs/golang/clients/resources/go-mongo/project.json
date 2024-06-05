@@ -15,12 +15,6 @@
         "cwd": "{projectRoot}"
       }
     },
-    "check": {
-      "executor": "@nx-go/nx-go:test",
-      "dependsOn": [
-        "start"
-      ]
-    },
     "test": {
       "executor": "nx:run-commands",
       "dependsOn": [

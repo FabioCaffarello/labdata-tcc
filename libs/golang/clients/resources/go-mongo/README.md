@@ -121,5 +121,3 @@ To run the tests for the `go-mongo` package, use the following command:
 ```sh
 npx nx test libs-golang-clients-resources-go-mongo
 ```
-
-This README provides an overview of the `go-mongo` library, along with usage examples for creating a MongoDB client, pinging the server, and disconnecting from the MongoDB instance. Additionally, it includes a section on how to run the tests for the package.

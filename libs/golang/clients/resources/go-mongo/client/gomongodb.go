@@ -27,18 +27,19 @@ type Config struct {
 // It returns the Client and an error if any occurred during connection.
 //
 // Example:
-//   config := Config{
-//       User:     "testuser",
-//       Password: "testpassword",
-//       Host:     "localhost",
-//       Port:     "27017",
-//       DBName:   "testdb",
-//   }
-//   client, err := NewClient(config)
-//   if err != nil {
-//       log.Fatal(err)
-//   }
-//   defer client.Disconnect(context.Background())
+//
+//	config := Config{
+//	    User:     "testuser",
+//	    Password: "testpassword",
+//	    Host:     "localhost",
+//	    Port:     "27017",
+//	    DBName:   "testdb",
+//	}
+//	client, err := NewClient(config)
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
+//	defer client.Disconnect(context.Background())
 func NewClient(config Config) (*Client, error) {
 	uri := fmt.Sprintf("mongodb://%s:%s@%s:%s/%s",
 		config.User, config.Password, config.Host, config.Port, config.DBName)
