@@ -1,4 +1,0 @@
-- [Architecture](index.md)
-<!-- - [Services](reference/services/) -->
-- [Libraries](reference/libs/)
-- [Dependency Graph](dependency-graph/index.html?select=all#/projects/all?groupByFolder=true)
