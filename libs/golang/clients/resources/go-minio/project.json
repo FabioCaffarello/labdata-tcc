@@ -21,11 +21,7 @@
         "start"
       ],
       "options": {
-        "commands": [
-          {
-            "command": "go test ./..."
-          }
-        ],
+        "command": "go test ./... && docker-compose down -v",
         "cwd": "{projectRoot}"
       }
     },

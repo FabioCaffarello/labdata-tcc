@@ -20,7 +20,7 @@ package main
 
 import (
     "log"
-    "github.com/yourusername/gominio"
+	"libs/golang/clients/resources/go-minio/client"
 )
 
 func main() {
@@ -45,7 +45,7 @@ package main
 
 import (
     "log"
-    "github.com/yourusername/gominio"
+	"libs/golang/clients/resources/go-minio/client"
 )
 
 func main() {
@@ -78,7 +78,7 @@ package main
 
 import (
     "log"
-    "github.com/yourusername/gominio"
+	"libs/golang/clients/resources/go-minio/client"
 )
 
 func main() {
@@ -112,7 +112,7 @@ package main
 
 import (
     "log"
-    "github.com/yourusername/gominio"
+	"libs/golang/clients/resources/go-minio/client"
 )
 
 func main() {
@@ -143,7 +143,7 @@ package main
 
 import (
     "log"
-    "github.com/yourusername/gominio"
+	"libs/golang/clients/resources/go-minio/client"
 )
 
 func main() {
@@ -175,7 +175,7 @@ package main
 
 import (
     "log"
-    "github.com/yourusername/gominio"
+	"libs/golang/clients/resources/go-minio/client"
 )
 
 func main() {

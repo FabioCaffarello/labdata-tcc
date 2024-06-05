@@ -12,18 +12,18 @@ import (
 	"github.com/stretchr/testify/suite"
 )
 
-type MinioSuite struct {
+type GoMinioSuite struct {
 	suite.Suite
 	client *Client
 	ctx    context.Context
 	bucket string
 }
 
-func TestMinioSuite(t *testing.T) {
-	suite.Run(t, new(MinioSuite))
+func TestGoMinioSuite(t *testing.T) {
+	suite.Run(t, new(GoMinioSuite))
 }
 
-func (suite *MinioSuite) SetupSuite() {
+func (suite *GoMinioSuite) SetupSuite() {
 	suite.ctx = context.Background()
 	config := Config{
 		Endpoint:  "localhost:9000",
@@ -52,7 +52,7 @@ func (suite *MinioSuite) SetupSuite() {
 	}
 }
 
-func (suite *MinioSuite) TearDownSuite() {
+func (suite *GoMinioSuite) TearDownSuite() {
 	err := suite.client.RemoveAllObjectsFromBucket(suite.bucket)
 	assert.NoError(suite.T(), err)
 
@@ -60,7 +60,7 @@ func (suite *MinioSuite) TearDownSuite() {
 	assert.NoError(suite.T(), err)
 }
 
-func (suite *MinioSuite) TestUploadAndDownloadFile() {
+func (suite *GoMinioSuite) TestUploadAndDownloadFile() {
 	content := []byte("test content")
 	fileName := "testfile.txt"
 
@@ -76,7 +76,7 @@ func (suite *MinioSuite) TestUploadAndDownloadFile() {
 	assert.Equal(suite.T(), content, downloadedContent)
 }
 
-func (suite *MinioSuite) TestUploadFileWithChunks() {
+func (suite *GoMinioSuite) TestUploadFileWithChunks() {
 	content := bytes.Repeat([]byte("a"), 150*1024*1024) // 150MB content
 	fileName := "largefile.txt"
 	partSize := int64(50 * 1024 * 1024) // 50MB
@@ -87,7 +87,7 @@ func (suite *MinioSuite) TestUploadFileWithChunks() {
 	assert.NotEmpty(suite.T(), uploadedPath)
 }
 
-func (suite *MinioSuite) TestRemoveObject() {
+func (suite *GoMinioSuite) TestRemoveObject() {
 	content := []byte("test content")
 	fileName := "testfile.txt"
 
@@ -105,7 +105,7 @@ func (suite *MinioSuite) TestRemoveObject() {
 	assert.Error(suite.T(), err)
 }
 
-func (suite *MinioSuite) TestRemoveAllObjectsFromBucket() {
+func (suite *GoMinioSuite) TestRemoveAllObjectsFromBucket() {
 	content := []byte("test content")
 	fileName := "testfile.txt"
 
