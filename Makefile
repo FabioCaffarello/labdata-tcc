@@ -1,4 +1,4 @@
-
+WORKSPACE=labdata-tcc
 
 build-docs:
 	npx nx graph --file=docs/dependency-graph/index.html
