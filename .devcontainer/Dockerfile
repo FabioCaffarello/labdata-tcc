@@ -4,3 +4,5 @@ FROM mcr.microsoft.com/vscode/devcontainers/base:0-${VARIANT}
 EXPOSE 8000
 EXPOSE 9000
 EXPOSE 27017
+EXPOSE 5672
+EXPOSE 15672
