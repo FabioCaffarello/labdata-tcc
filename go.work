@@ -1,1 +1,6 @@
 go 1.22
+
+use (
+	./libs/golang/shared/id/go-md5
+	./libs/golang/shared/type-tools
+)
