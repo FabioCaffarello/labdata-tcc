@@ -1,6 +1,8 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
-# golang doc
+# docs
+docs/dependency-graph
+site
 **/docs/godoc.md
 
 # compiled output
