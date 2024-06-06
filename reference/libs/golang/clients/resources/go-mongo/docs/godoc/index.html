@@ -5,23 +5,25 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="assets/images/favicon.png" rel="icon"/>
+<link href="../../" rel="prev"/>
+<link href="../../../go-rabbitmq/" rel="next"/>
+<link href="../../../../../../../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.0, mkdocs-material-9.5.25" name="generator"/>
-<title>Labdata TCC</title>
-<link href="assets/stylesheets/main.6543a935.min.css" rel="stylesheet"/>
+<title>Godoc - Labdata TCC</title>
+<link href="../../../../../../../../assets/stylesheets/main.6543a935.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
-<link href="assets/_mkdocstrings.css" rel="stylesheet"/>
-<link href="css/github-permalink-style.css" rel="stylesheet"/>
-<script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../../../../../../../assets/_mkdocstrings.css" rel="stylesheet"/>
+<link href="../../../../../../../../css/github-permalink-style.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../../../../../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 </head>
 <body dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#getting-started">
+<a class="md-skip" href="#gomongodb">
           Skip to content
         </a>
 </div>
@@ -29,7 +31,7 @@
 </div>
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
 <nav aria-label="Header" class="md-header__inner md-grid">
-<a aria-label="Labdata TCC" class="md-header__button md-logo" data-md-component="logo" href="." title="Labdata TCC">
+<a aria-label="Labdata TCC" class="md-header__button md-logo" data-md-component="logo" href="../../../../../../../.." title="Labdata TCC">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
 </a>
 <label class="md-header__button md-icon" for="__drawer">
@@ -45,7 +47,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Getting Started
+              Godoc
             
           </span>
 </div>
@@ -96,8 +98,8 @@
 <nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
 <div class="md-grid">
 <ul class="md-tabs__list">
-<li class="md-tabs__item">
-<a class="md-tabs__link" href="reference/libs/golang/clients/resources/go-minio/">
+<li class="md-tabs__item md-tabs__item--active">
+<a class="md-tabs__link" href="../../../go-minio/">
           
   
     
@@ -107,7 +109,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="dependency-graph/index.html?select=all#/projects/all?groupByFolder=true">
+<a class="md-tabs__link" href="../../../../../../../../dependency-graph/index.html?select=all#/projects/all?groupByFolder=true">
         
   
     
@@ -128,7 +130,7 @@
 <div class="md-sidebar__inner">
 <nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
 <label class="md-nav__title" for="__drawer">
-<a aria-label="Labdata TCC" class="md-nav__button md-logo" data-md-component="logo" href="." title="Labdata TCC">
+<a aria-label="Labdata TCC" class="md-nav__button md-logo" data-md-component="logo" href="../../../../../../../.." title="Labdata TCC">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
 </a>
     Labdata TCC
@@ -144,57 +146,57 @@
 </a>
 </div>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_1" type="checkbox"/>
-<label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
 <span class="md-ellipsis">
     Libraries
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="false" aria-labelledby="__nav_1_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="true" aria-labelledby="__nav_1_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_1">
 <span class="md-nav__icon md-icon"></span>
             Libraries
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_1_1" type="checkbox"/>
-<label class="md-nav__link" for="__nav_1_1" id="__nav_1_1_label" tabindex="0">
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_1_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_1_1" id="__nav_1_1_label" tabindex="">
 <span class="md-ellipsis">
     Golang
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="false" aria-labelledby="__nav_1_1_label" class="md-nav" data-md-level="2">
+<nav aria-expanded="true" aria-labelledby="__nav_1_1_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_1_1">
 <span class="md-nav__icon md-icon"></span>
             Golang
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_1_1_1" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_1_1_1" type="checkbox"/>
 <label class="md-nav__link" for="__nav_1_1_1" id="__nav_1_1_1_label" tabindex="0">
 <span class="md-ellipsis">
     Clients
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="false" aria-labelledby="__nav_1_1_1_label" class="md-nav" data-md-level="3">
+<nav aria-expanded="true" aria-labelledby="__nav_1_1_1_label" class="md-nav" data-md-level="3">
 <label class="md-nav__title" for="__nav_1_1_1">
 <span class="md-nav__icon md-icon"></span>
             Clients
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_1_1_1_1" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_1_1_1_1" type="checkbox"/>
 <label class="md-nav__link" for="__nav_1_1_1_1" id="__nav_1_1_1_1_label" tabindex="0">
 <span class="md-ellipsis">
     Resources
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="false" aria-labelledby="__nav_1_1_1_1_label" class="md-nav" data-md-level="4">
+<nav aria-expanded="true" aria-labelledby="__nav_1_1_1_1_label" class="md-nav" data-md-level="4">
 <label class="md-nav__title" for="__nav_1_1_1_1">
 <span class="md-nav__icon md-icon"></span>
             Resources
@@ -203,7 +205,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_1_1_1_1_1" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="reference/libs/golang/clients/resources/go-minio/">
+<a class="md-nav__link" href="../../../go-minio/">
 <span class="md-ellipsis">
     Go minio
   </span>
@@ -233,7 +235,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="reference/libs/golang/clients/resources/go-minio/docs/godoc/">
+<a class="md-nav__link" href="../../../go-minio/docs/godoc/">
 <span class="md-ellipsis">
     Godoc
   </span>
@@ -245,10 +247,10 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_1_1_1_1_2" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_1_1_1_1_2" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="reference/libs/golang/clients/resources/go-mongo/">
+<a class="md-nav__link" href="../../">
 <span class="md-ellipsis">
     Go mongo
   </span>
@@ -257,32 +259,86 @@
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_1_1_1_1_2_label" class="md-nav" data-md-level="5">
+<nav aria-expanded="true" aria-labelledby="__nav_1_1_1_1_2_label" class="md-nav" data-md-level="5">
 <label class="md-nav__title" for="__nav_1_1_1_1_2">
 <span class="md-nav__icon md-icon"></span>
             Go mongo
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_1_1_1_1_2_2" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_1_1_1_1_2_2" type="checkbox"/>
 <label class="md-nav__link" for="__nav_1_1_1_1_2_2" id="__nav_1_1_1_1_2_2_label" tabindex="0">
 <span class="md-ellipsis">
     Docs
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="false" aria-labelledby="__nav_1_1_1_1_2_2_label" class="md-nav" data-md-level="6">
+<nav aria-expanded="true" aria-labelledby="__nav_1_1_1_1_2_2_label" class="md-nav" data-md-level="6">
 <label class="md-nav__title" for="__nav_1_1_1_1_2_2">
 <span class="md-nav__icon md-icon"></span>
             Docs
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="reference/libs/golang/clients/resources/go-mongo/docs/godoc/">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
 <span class="md-ellipsis">
     Godoc
   </span>
 </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#index">
+<span class="md-ellipsis">
+      Index
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#type-client">
+<span class="md-ellipsis">
+      type Client
+    </span>
+</a>
+<nav aria-label="type Client" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#func-newclient">
+<span class="md-ellipsis">
+      func NewClient
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#func-client-disconnect">
+<span class="md-ellipsis">
+      func (*Client) Disconnect
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#type-config">
+<span class="md-ellipsis">
+      type Config
+    </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -293,7 +349,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_1_1_1_1_3" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="reference/libs/golang/clients/resources/go-rabbitmq/">
+<a class="md-nav__link" href="../../../go-rabbitmq/">
 <span class="md-ellipsis">
     Go rabbitmq
   </span>
@@ -323,7 +379,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="reference/libs/golang/clients/resources/go-rabbitmq/docs/godoc/">
+<a class="md-nav__link" href="../../../go-rabbitmq/docs/godoc/">
 <span class="md-ellipsis">
     Godoc
   </span>
@@ -372,7 +428,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_1_1_2_1_1" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="reference/libs/golang/shared/id/go-md5/">
+<a class="md-nav__link" href="../../../../../shared/id/go-md5/">
 <span class="md-ellipsis">
     Go md5
   </span>
@@ -402,7 +458,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="reference/libs/golang/shared/id/go-md5/docs/godoc/">
+<a class="md-nav__link" href="../../../../../shared/id/go-md5/docs/godoc/">
 <span class="md-ellipsis">
     Godoc
   </span>
@@ -420,7 +476,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_1_1_2_2" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="reference/libs/golang/shared/type-tools/">
+<a class="md-nav__link" href="../../../../../shared/type-tools/">
 <span class="md-ellipsis">
     Type tools
   </span>
@@ -450,7 +506,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="reference/libs/golang/shared/type-tools/docs/godoc/">
+<a class="md-nav__link" href="../../../../../shared/type-tools/docs/godoc/">
 <span class="md-ellipsis">
     Godoc
   </span>
@@ -472,7 +528,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="dependency-graph/index.html?select=all#/projects/all?groupByFolder=true">
+<a class="md-nav__link" href="../../../../../../../../dependency-graph/index.html?select=all#/projects/all?groupByFolder=true">
 <span class="md-ellipsis">
     Dependency Graph
   </span>
@@ -493,57 +549,43 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#introduction">
+<a class="md-nav__link" href="#index">
 <span class="md-ellipsis">
-      Introduction
+      Index
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#prerequisites">
+<a class="md-nav__link" href="#type-client">
 <span class="md-ellipsis">
-      Prerequisites
+      type Client
     </span>
 </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#installation">
-<span class="md-ellipsis">
-      Installation
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#running-the-project">
-<span class="md-ellipsis">
-      Running the Project
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#contributing">
-<span class="md-ellipsis">
-      Contributing
-    </span>
-</a>
-<nav aria-label="Contributing" class="md-nav">
+<nav aria-label="type Client" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#license">
+<a class="md-nav__link" href="#func-newclient">
 <span class="md-ellipsis">
-      License
+      func NewClient
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#contact">
+<a class="md-nav__link" href="#func-client-disconnect">
 <span class="md-ellipsis">
-      Contact
+      func (*Client) Disconnect
     </span>
 </a>
 </li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#type-config">
+<span class="md-ellipsis">
+      type Config
+    </span>
+</a>
 </li>
 </ul>
 </nav>
@@ -552,113 +594,60 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link"></a></h1>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link"></a></h2>
-<p>Welcome to the LabData TCC project! This project is part of my final work for the master's program in Data Engineering at FIA Business School. The aim of this project is to ... <!-- TODO: briefly describe the main goal of the project -->. This repository is a monorepo, containing multiple packages and services that work together to achieve the project's goals.</p>
-<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link"></a></h2>
-<p>Depending on how you choose to run the project, the requirements may vary. Please ensure you have met the following requirements based on your preferred method:</p>
-<ol>
-<li>
-<p><strong>Running Locally</strong></p>
-</li>
-<li>
-<p>You have installed:</p>
-<ul>
-<li><a href="https://www.python.org/downloads/">Python 3.10</a></li>
-<li><a href="https://pypi.org/project/poetry/1.8.3/">Poetry</a>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="nv">poetry</span><span class="o">==</span><span class="m">1</span>.8.3
-</code></pre></div></li>
-<li><a href="https://golang.google.cn/">Golang 1.22.x</a></li>
-<li><a href="https://pkg.go.dev/github.com/google/wire">Wire</a>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>go<span class="w"> </span>install<span class="w"> </span>github.com/google/wire/cmd/wire@latest<span class="w"> </span>
-</code></pre></div></li>
-<li><a href="https://github.com/princjef/gomarkdoc">gomarkdoc</a>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>go<span class="w"> </span>install<span class="w"> </span>github.com/princjef/gomarkdoc/cmd/gomarkdoc@latest
-</code></pre></div></li>
-<li><a href="https://nodejs.org/en/download/">Node.js 22.x</a></li>
-<li><a href="https://www.docker.com/">docker 26.1.1</a></li>
-</ul>
-</li>
-<li>
-<p><strong>Running in a Devcontainer Locally</strong></p>
-</li>
-<li>
-<p>You have installed:</p>
-<ul>
-<li>Docker</li>
-<li>Visual Studio Code with the Remote - Containers extension</li>
-</ul>
-</li>
-<li>
-<p><strong>Running in GitHub Codespaces</strong></p>
-</li>
-<li>
-<p>You have a GitHub account with access to GitHub Codespaces.</p>
-</li>
-</ol>
-<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link"></a></h2>
-<ol>
-<li><strong>Clone the Repository</strong></li>
-</ol>
-<p>First, clone the repository to your local machine using git:</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/FabioCaffarello/labdata-tcc.git
-<a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="nb">cd</span><span class="w"> </span>labdata-tcc
+<!-- Code generated by gomarkdoc. DO NOT EDIT -->
+<h1 id="gomongodb">gomongodb<a class="headerlink" href="#gomongodb" title="Permanent link"></a></h1>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="s">"libs/golang/clients/resources/go-mongo/client"</span>
 </code></pre></div>
-<h2 id="running-the-project">Running the Project<a class="headerlink" href="#running-the-project" title="Permanent link"></a></h2>
-<ol>
-<li>
-<p><strong>Running Locally</strong></p>
-</li>
-<li>
-<p><strong>Set Up the Environment</strong></p>
-<p>Ensure you have all the required dependencies:</p>
+<h2 id="index">Index<a class="headerlink" href="#index" title="Permanent link"></a></h2>
 <ul>
-<li>
-<p>NodeJS:
-    <div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a>npm<span class="w"> </span>install
-</code></pre></div></p>
-</li>
-<li>
-<p>Python:
-    <div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a>poetry<span class="w"> </span>install
-</code></pre></div></p>
-</li>
+<li><a href="#Client">type Client</a></li>
+<li><a href="#NewClient">func NewClient(config Config) (*Client, error)</a></li>
+<li><a href="#Client.Disconnect">func (c *Client) Disconnect(ctx context.Context) error</a></li>
+<li><a href="#Config">type Config</a></li>
 </ul>
-</li>
-<li>
-<p><strong>Running in a Devcontainer Locally</strong></p>
-</li>
-</ol>
-<p>Ensure you have Docker and Visual Studio Code installed with the Remote - Containers extension. Open the repository in Visual Studio Code and click on "Reopen in Container" when prompted. The environment will be set up automatically.</p>
-<ol>
-<li><strong>Running in GitHub Codespaces</strong></li>
-</ol>
-<p>You can also run the project in GitHub Codespaces directly. Navigate to the repository on GitHub, click the "Code" button, and select "Open with Codespaces" to create a new codespace. The environment will be set up automatically.</p>
-<!-- ## Usage
-
-To start using the project, run the following command:
-
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>python<span class="w"> </span>main.py
+<p><a name="Client"></a></p>
+<h2 id="type-client">type Client<a class="headerlink" href="#type-client" title="Permanent link"></a></h2>
+<p>Client is a wrapper around the mongo.Client.</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="kd">type</span><span class="w"> </span><span class="nx">Client</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="w">    </span><span class="o">*</span><span class="nx">mongo</span><span class="p">.</span><span class="nx">Client</span>
+<a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="p">}</span>
 </code></pre></div>
-
-Or if you are using Docker:
-
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>docker-compose<span class="w"> </span>up
+<p><a name="NewClient"></a></p>
+<h3 id="func-newclient">func NewClient<a class="headerlink" href="#func-newclient" title="Permanent link"></a></h3>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="kd">func</span><span class="w"> </span><span class="nx">NewClient</span><span class="p">(</span><span class="nx">config</span><span class="w"> </span><span class="nx">Config</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="nx">Client</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span>
 </code></pre></div>
-
-You can access the application at `http://localhost:8000`.
-
-#### Features
-
-- **Feature 1**: Brief description of feature 1.
-- **Feature 2**: Brief description of feature 2.
-- **Feature 3**: Brief description of feature 3. -->
-<h2 id="contributing">Contributing<a class="headerlink" href="#contributing" title="Permanent link"></a></h2>
-<p>Contributions are welcome! Please read the <a href="https://github.com/FabioCaffarello/labdata-tcc/blob/main/docs/CONTRIBUTING.md">CONTRIBUTING.md</a> file for details on the process for submitting pull requests.</p>
-<h4 id="license">License<a class="headerlink" href="#license" title="Permanent link"></a></h4>
-<p>This project is licensed under the MIT License - see the <a href="https://github.com/FabioCaffarello/labdata-tcc/blob/main/LICENSE">LICENSE</a> file for details.</p>
-<h4 id="contact">Contact<a class="headerlink" href="#contact" title="Permanent link"></a></h4>
-<p>If you have any questions or need further assistance, feel free to contact me at <a href="https://www.linkedin.com/in/fabio-caffarello/">linkedin</a> or open an issue on GitHub.</p>
+<p>NewClient creates a new MongoDB client with the given configuration. It returns the Client and an error if any occurred during connection.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a>config := Config{
+<a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a>    User:     "testuser",
+<a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a>    Password: "testpassword",
+<a href="#__codelineno-3-4" id="__codelineno-3-4" name="__codelineno-3-4"></a>    Host:     "localhost",
+<a href="#__codelineno-3-5" id="__codelineno-3-5" name="__codelineno-3-5"></a>    Port:     "27017",
+<a href="#__codelineno-3-6" id="__codelineno-3-6" name="__codelineno-3-6"></a>    DBName:   "testdb",
+<a href="#__codelineno-3-7" id="__codelineno-3-7" name="__codelineno-3-7"></a>}
+<a href="#__codelineno-3-8" id="__codelineno-3-8" name="__codelineno-3-8"></a>client, err := NewClient(config)
+<a href="#__codelineno-3-9" id="__codelineno-3-9" name="__codelineno-3-9"></a>if err != nil {
+<a href="#__codelineno-3-10" id="__codelineno-3-10" name="__codelineno-3-10"></a>    log.Fatal(err)
+<a href="#__codelineno-3-11" id="__codelineno-3-11" name="__codelineno-3-11"></a>}
+<a href="#__codelineno-3-12" id="__codelineno-3-12" name="__codelineno-3-12"></a>defer client.Disconnect(context.Background())
+</code></pre></div>
+<p><a name="Client.Disconnect"></a></p>
+<h3 id="func-client-disconnect">func (*Client) Disconnect<a class="headerlink" href="#func-client-disconnect" title="Permanent link"></a></h3>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">c</span><span class="w"> </span><span class="o">*</span><span class="nx">Client</span><span class="p">)</span><span class="w"> </span><span class="nx">Disconnect</span><span class="p">(</span><span class="nx">ctx</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span>
+</code></pre></div>
+<p>Disconnect closes the connection to the MongoDB instance. It returns an error if any occurred during disconnection.</p>
+<p><a name="Config"></a></p>
+<h2 id="type-config">type Config<a class="headerlink" href="#type-config" title="Permanent link"></a></h2>
+<p>Config holds the configuration for connecting to a MongoDB instance.</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="kd">type</span><span class="w"> </span><span class="nx">Config</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-5-2" id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="w">    </span><span class="nx">User</span><span class="w">     </span><span class="kt">string</span><span class="w"> </span><span class="c1">// Username for authentication</span>
+<a href="#__codelineno-5-3" id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="w">    </span><span class="nx">Password</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="c1">// Password for authentication</span>
+<a href="#__codelineno-5-4" id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="w">    </span><span class="nx">Host</span><span class="w">     </span><span class="kt">string</span><span class="w"> </span><span class="c1">// Host of the MongoDB instance</span>
+<a href="#__codelineno-5-5" id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="w">    </span><span class="nx">Port</span><span class="w">     </span><span class="kt">string</span><span class="w"> </span><span class="c1">// Port of the MongoDB instance</span>
+<a href="#__codelineno-5-6" id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="w">    </span><span class="nx">DBName</span><span class="w">   </span><span class="kt">string</span><span class="w"> </span><span class="c1">// Name of the database to connect to</span>
+<a href="#__codelineno-5-7" id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="p">}</span>
+</code></pre></div>
+<p>Generated by <a href="https://github.com/princjef/gomarkdoc">gomarkdoc</a></p>
 </article>
 </div>
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
@@ -682,8 +671,8 @@ You can access the application at `http://localhost:8000`.
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"base": ".", "features": ["content.code.annotate", "announce.dismiss", "navigation.tracking", "navigation.sections", "navigation.instant", "navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "toc.follow"], "search": "assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
-<script src="assets/javascripts/bundle.081f42fc.min.js"></script>
+<script id="__config" type="application/json">{"base": "../../../../../../../..", "features": ["content.code.annotate", "announce.dismiss", "navigation.tracking", "navigation.sections", "navigation.instant", "navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "toc.follow"], "search": "../../../../../../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+<script src="../../../../../../../../assets/javascripts/bundle.081f42fc.min.js"></script>
 <script>document$.subscribe(() => {
             window.update_swagger_ui_iframe_height = function (id) {
                 var iFrameID = document.getElementById(id);
