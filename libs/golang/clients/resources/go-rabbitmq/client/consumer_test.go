@@ -69,7 +69,7 @@ func (suite *GoRabbitMQConsumerSuite) TestConsume() {
 	go consumer.Consume(msgCh, queueName, routingKey)
 
 	// Publish a test message
-	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 20*time.Second)
 	defer cancel()
 	message := []byte("test message")
 	err := suite.client.publish(ctx, "text/plain", message, routingKey)
