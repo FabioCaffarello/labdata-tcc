@@ -57,9 +57,6 @@ jobs:
       - name: Build Requirements for doc deploy
         run: make build-docs
 
-      - name: Disable Git Hooks
-        run: mv .git/hooks .git/hooks.bak
-
       - name: Configure Git for Deployment
         run: |
           git config --global user.name "github-actions[bot]"
@@ -67,9 +64,9 @@ jobs:
           git remote set-url origin https://${{ secrets.CI_BOT_TOKEN }}@github.com/${{ github.repository }}.git
 
       - name: Doc deployment
+        env:
+          HUSKY: 0
         run: |
           git checkout -b gh-pages
           poetry run mkdocs gh-deploy --force --remote-name origin --remote-branch gh-pages
 
-      - name: Restore Git Hooks
-        run: mv .git/hooks.bak .git/hooks
