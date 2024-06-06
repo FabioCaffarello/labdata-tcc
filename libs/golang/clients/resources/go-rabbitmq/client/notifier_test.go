@@ -49,7 +49,8 @@ func (suite *GoRabbitMQNotifierSuite) TestNewRabbitMQNotifier() {
 }
 
 func (suite *GoRabbitMQNotifierSuite) TestNotify() {
+	routingKey := "test_routing_key_notifier"
 	notifier := NewRabbitMQNotifier(suite.client)
-	err := notifier.Notify([]byte("test message"), "test_routing_key")
+	err := notifier.Notify([]byte("test message"), routingKey)
 	assert.NoError(suite.T(), err)
 }

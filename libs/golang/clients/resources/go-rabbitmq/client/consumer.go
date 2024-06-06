@@ -1,24 +1,27 @@
 package gorabbitmq
 
 import (
+	"context"
 	"log"
+	"sync"
 
 	amqp "github.com/rabbitmq/amqp091-go"
 )
 
 // RabbitMQConsumer represents a RabbitMQ consumer.
 type RabbitMQConsumer struct {
-	rmqClient    *Client
-	autoAck      bool
-	args         amqp.Table
-	consumerName string
+	rmqClient    *Client         // RabbitMQ client instance
+	autoAck      bool            // Automatic acknowledgment flag
+	args         amqp.Table      // Additional arguments for the queue declaration
+	consumerName string          // Name of the consumer
+	wg           *sync.WaitGroup // WaitGroup to manage goroutines
 }
 
 // ConsumerConfig holds the configuration for the RabbitMQ consumer.
 type ConsumerConfig struct {
-	ConsumerName string
-	AutoAck      bool
-	Args         amqp.Table
+	ConsumerName string     // Name of the consumer
+	AutoAck      bool       // Automatic acknowledgment flag
+	Args         amqp.Table // Additional arguments for the queue declaration
 }
 
 // NewRabbitMQConsumer creates a new RabbitMQ consumer with the given configuration.
@@ -35,37 +38,66 @@ func NewRabbitMQConsumer(rmqClient *Client, config ConsumerConfig) *RabbitMQCons
 		autoAck:      config.AutoAck,
 		args:         config.Args,
 		consumerName: config.ConsumerName,
+		wg:           &sync.WaitGroup{},
 	}
 }
 
 // Consume starts consuming messages from the specified queue and sends them to the provided channel.
 //
 // Parameters:
+//   - ctx: The context to use for the consumer.
 //   - msgCh: A channel to send the consumed messages to.
 //   - queueName: The name of the queue to consume messages from.
 //   - routingKey: The routing key to use for binding the queue.
 //
 // This method will panic if the queue declaration, binding, or consumption fails.
-func (c *RabbitMQConsumer) Consume(msgCh chan amqp.Delivery, queueName string, routingKey string) {
-	if err := c.rmqClient.declareQueue(queueName, c.args); err != nil {
-		panic(err)
+func (c *RabbitMQConsumer) Consume(ctx context.Context, msgCh chan amqp.Delivery, queueName string, routingKey string) {
+	if c.rmqClient == nil || c.rmqClient.Channel == nil {
+		panic("rmqClient or Channel is nil")
 	}
 
-	if err := c.rmqClient.bindQueue(queueName, routingKey); err != nil {
-		panic(err)
-	}
-
-	deliveriesCh, err := c.rmqClient.consume(c.consumerName, queueName, c.autoAck)
+	q, err := c.rmqClient.declareQueue(queueName, c.args)
 	if err != nil {
 		panic(err)
 	}
+	log.Printf("Declared queue: %s", q.Name)
 
+	if err := c.rmqClient.bindQueue(q.Name, routingKey); err != nil {
+		panic(err)
+	}
+	log.Printf("Bound queue: %s with routing key: %s", q.Name, routingKey)
+
+	deliveryCh := make(chan amqp.Delivery)
+	go c.rmqClient.consume(deliveryCh, c.consumerName, q.Name, c.autoAck)
+	log.Println("Started internal consume routine")
+
+	c.wg.Add(1)
 	go func() {
-		for message := range deliveriesCh {
-			log.Println("Incoming new message")
-			msgCh <- message
+		defer c.wg.Done()
+		for {
+			select {
+			case message, ok := <-deliveryCh:
+				if !ok {
+					log.Println("Deliveries channel closed")
+					close(msgCh)
+					return
+				}
+				log.Println("Incoming new message")
+				if !c.autoAck {
+					message.Ack(false)
+				}
+				log.Printf("Received message %s from queue: %s", string(message.Body), queueName)
+				msgCh <- message
+			case <-ctx.Done():
+				log.Println("Context done, stopping consumer")
+				close(msgCh)
+				return
+			}
 		}
-		log.Println("RabbitMQ channel closed")
-		close(msgCh)
 	}()
+}
+
+// Wait waits for all goroutines to finish.
+func (c *RabbitMQConsumer) Wait() {
+	c.wg.Wait()
 }
