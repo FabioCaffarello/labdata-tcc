@@ -130,3 +130,34 @@ func main() {
 	fmt.Println("Minio client initialized successfully")
 }
 ```
+
+## Example Implementation: RabbitMQ Wrapper
+
+Here is an example of how to implement the `Resource` interface for a RabbitMQ wrapper.
+
+```go
+package main
+
+import (
+	"fmt"
+	"log"
+	"libs/golang/wrappers/resources/rabbitmq-wrapper/rabbitmqwrapper"
+	resourceWrapper "libs/golang/wrappers/core/resource-contract"
+)
+
+func main() {
+	var resource resourceWrapper.Resource = rabbitmqwrapper.NewRabbitMQWrapper()
+
+	err := resource.Init()
+	if err != nil {
+		log.Fatalf("Failed to initialize RabbitMQWrapper: %v", err)
+	}
+
+	client := resource.GetClient()
+	if client == nil {
+		log.Fatalf("RabbitMQ client is not initialized")
+	}
+
+	fmt.Println("RabbitMQ client initialized successfully")
+}
+```
