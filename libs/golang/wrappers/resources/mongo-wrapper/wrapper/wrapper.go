@@ -11,6 +11,13 @@ type MongoDBWrapper struct {
 	factory ClientFactory
 }
 
+// NewMongoDBWrapper creates a new MongoDBWrapper with the default client factory.
+func NewMongoDBWrapper() *MongoDBWrapper {
+	return &MongoDBWrapper{
+		factory: &DefaultClientFactory{},
+	}
+}
+
 // Init initializes the MongoDB client using environment variables for configuration.
 // It returns an error if the client could not be created.
 func (m *MongoDBWrapper) Init() error {
@@ -29,14 +36,7 @@ func (m *MongoDBWrapper) Init() error {
 	return nil
 }
 
-// NewMongoDBWrapper creates a new MongoDBWrapper with the default client factory.
-func NewMongoDBWrapper() *MongoDBWrapper {
-	return &MongoDBWrapper{
-		factory: &DefaultClientFactory{},
-	}
-}
-
 // GetClient returns the MongoDB client.
-func (m *MongoDBWrapper) GetClient() *gomongodb.Client {
+func (m *MongoDBWrapper) GetClient() interface{} {
 	return m.client
 }
