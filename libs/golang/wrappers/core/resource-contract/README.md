@@ -99,3 +99,34 @@ func main() {
 	fmt.Println("MongoDB client initialized successfully")
 }
 ```
+
+## Example Implementation: Minio Wrapper
+
+Here is an example of how to implement the `Resource` interface for a Minio wrapper.
+
+```go
+package main
+
+import (
+	"fmt"
+	"log"
+	"miniowrapper"
+	"wrappersresourcecontract"
+)
+
+func main() {
+	var resource wrappersresourcecontract.Resource = miniowrapper.NewMinioWrapper()
+
+	err := resource.Init()
+	if err != nil {
+		log.Fatalf("Failed to initialize MinioWrapper: %v", err)
+	}
+
+	client := resource.GetClient()
+	if client == nil {
+		log.Fatalf("Minio client is not initialized")
+	}
+
+	fmt.Println("Minio client initialized successfully")
+}
+```
