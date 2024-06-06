@@ -66,4 +66,4 @@ jobs:
       - name: Doc deployment
         run: |
           git checkout -b gh-pages
-          poetry run mkdocs gh-deploy --force --remote-name origin --remote-branch gh-pages
+          poetry run mkdocs gh-deploy --force --remote-name origin --remote-branch gh-pages --no-verify
