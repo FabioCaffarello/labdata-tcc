@@ -1,7 +1,6 @@
 package resourcemapping
 
 import (
-	"context"
 	"fmt"
 	resourceImpl "libs/golang/wrappers/core/resource-contract"
 	"sync"
@@ -19,7 +18,7 @@ var (
 )
 
 // NewResourceMapping creates a singleton instance of Resources
-func NewResourceMapping(ctx context.Context) *Resources {
+func NewResourceMapping() *Resources {
 	once.Do(func() {
 		instance = &Resources{
 			resources: make(map[string]resourceImpl.Resource),

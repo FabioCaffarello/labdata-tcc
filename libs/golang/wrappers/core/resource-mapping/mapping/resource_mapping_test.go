@@ -1,7 +1,6 @@
 package resourcemapping
 
 import (
-	"context"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -17,8 +16,7 @@ func TestResourceMappingSuite(t *testing.T) {
 }
 
 func (suite *ResourceMappingSuite) TestNewResourceMapping() {
-	ctx := context.Background()
-	resources := NewResourceMapping(ctx)
+	resources := NewResourceMapping()
 
 	if resources == nil {
 		assert.Fail(suite.T(), "expected non-nil Resources instance, got nil")
@@ -26,8 +24,7 @@ func (suite *ResourceMappingSuite) TestNewResourceMapping() {
 }
 
 func (suite *ResourceMappingSuite) TestRegisterResource() {
-	ctx := context.Background()
-	resources := NewResourceMapping(ctx)
+	resources := NewResourceMapping()
 	mockResource := &MockResource{client: "mockClient"}
 
 	resources.RegisterResource("mock", mockResource)
@@ -43,8 +40,7 @@ func (suite *ResourceMappingSuite) TestRegisterResource() {
 }
 
 func (suite *ResourceMappingSuite) TestGetResourceNotFound() {
-	ctx := context.Background()
-	resources := NewResourceMapping(ctx)
+	resources := NewResourceMapping()
 
 	_, err := resources.GetResource("nonexistent")
 	if err == nil {
