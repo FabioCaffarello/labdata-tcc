@@ -1,3 +1,5 @@
+Here's the updated README file with improved docstrings and consistent formatting:
+
 # go-rabbitmq
 
 `go-rabbitmq` is a Go library that provides a RabbitMQ client wrapper with utilities for connecting to and interacting with a RabbitMQ server. This library facilitates creating a connection to a RabbitMQ instance, declaring exchanges and queues, binding queues, publishing messages, and consuming messages.
@@ -20,7 +22,7 @@ package main
 import (
 	"fmt"
 	"log"
-	"libs/golang/clients/resources/go-rabbitmq/client"
+	"libs/golang/clients/resources/go-rabbitmq"
 )
 
 func main() {
@@ -52,8 +54,9 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log"
-	"libs/golang/clients/resources/go-rabbitmq/client"
+	"libs/golang/clients/resources/go-rabbitmq"
 )
 
 func main() {
@@ -91,8 +94,9 @@ func main() {
 package main
 
 import (
+	"fmt"
 	"log"
-	"libs/golang/clients/resources/go-rabbitmq/client"
+	"libs/golang/clients/resources/go-rabbitmq"
 )
 
 func main() {
@@ -125,13 +129,16 @@ func main() {
 ```
 
 ### Consuming Messages
-```go
 
+```go
 package main
 
 import (
+	"context"
 	"log"
-	"libs/golang/clients/resources/go-rabbitmq/client"
+	"time"
+	"libs/golang/clients/resources/go-rabbitmq"
+	"github.com/rabbitmq/amqp091-go"
 )
 
 func main() {
@@ -145,7 +152,7 @@ func main() {
 		ExchangeType: "direct",
 	}
 
-	consumerConfig = ConsumerConfig{
+	consumerConfig := gorabbitmq.ConsumerConfig{
 		ConsumerName: "consumer_name",
 		AutoAck:      false,
 		Args:         nil,
@@ -162,17 +169,17 @@ func main() {
 
 	defer client.Close()
 
-	consumer := NewRabbitMQConsumer(client, consumerConfig)
-	go consumer.Consume(msgCh, queueName, routingKey)
-
+	consumer := gorabbitmq.NewRabbitMQConsumer(client, consumerConfig)
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
+	go consumer.Consume(ctx, msgCh, queueName, routingKey)
+
 	select {
 	case msg := <-msgCh:
-		assert.Equal(suite.T(), message, msg.Body)
+		log.Printf("Received message: %s", string(msg.Body))
 	case <-ctx.Done():
-		suite.T().Error("Did not receive message in time")
+		log.Println("Did not receive message in time")
 	}
 }
 ```

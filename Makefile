@@ -20,10 +20,19 @@ deploy-doc: build-docs
 lint:
 	npx nx run-many --target=lint --all
 
-check: guard-project
+check: guard-project cleanup
 	npx nx test $(project)
 
-check-all:
+check-all: cleanup
 	npx nx run-many --target=test --all
 
-PHONY: build-docs serve-doc deploy-doc lint check check-all
+cleanup:
+	@npx nx reset;
+	@containers=$$(docker ps -q -a); \
+	if [ -n "$$containers" ]; then \
+		docker rm -f $$containers; \
+	else \
+		echo "No containers to remove"; \
+	fi
+
+PHONY: build-docs serve-doc deploy-doc lint check check-all cleanup
