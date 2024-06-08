@@ -186,3 +186,97 @@ func (suite *RegularTypeToolSuite) TestConvertFromEntityToMapStringWithNestedStr
 	assert.Equal(suite.T(), "value1", testData["field4"].(map[string]interface{})["field1"])
 	assert.Equal(suite.T(), 123, testData["field4"].(map[string]interface{})["field2"])
 }
+
+func (suite *RegularTypeToolSuite) TestConvertFromMapStringToEntityWithMissingFields() {
+	type TestEntity struct {
+		Field1 string `bson:"field1"`
+		Field2 int    `bson:"field2"`
+	}
+
+	testData := map[string]interface{}{
+		"field1": "value1",
+	}
+
+	_, err := ConvertFromMapStringToEntity(reflect.TypeOf(TestEntity{}), testData)
+
+	assert.Error(suite.T(), err)
+	assert.Equal(suite.T(), "field field2 is missing in the data", err.Error())
+}
+
+func (suite *RegularTypeToolSuite) TestConvertFromMapStringToEntityWithInvalidFieldTypes() {
+	type TestEntity struct {
+		Field1 string `bson:"field1"`
+		Field2 int    `bson:"field2"`
+	}
+
+	testData := map[string]interface{}{
+		"field1": "value1",
+		"field2": "notAnInt",
+	}
+
+	_, err := ConvertFromMapStringToEntity(reflect.TypeOf(TestEntity{}), testData)
+
+	assert.Error(suite.T(), err)
+	assert.Equal(suite.T(), "field field2 has invalid type", err.Error())
+}
+
+func (suite *RegularTypeToolSuite) TestConvertFromMapStringToEntityWithPointerToStruct() {
+	type TestEntity struct {
+		Field1 string `bson:"field1"`
+		Field2 int    `bson:"field2"`
+	}
+
+	testData := map[string]interface{}{
+		"field1": "value1",
+		"field2": 123,
+	}
+
+	entity, err := ConvertFromMapStringToEntity(reflect.TypeOf(&TestEntity{}).Elem(), testData)
+
+	assert.NoError(suite.T(), err)
+	assert.IsType(suite.T(), TestEntity{}, entity)
+
+	testEntity := entity.(TestEntity)
+	assert.Equal(suite.T(), "value1", testEntity.Field1)
+	assert.Equal(suite.T(), 123, testEntity.Field2)
+}
+
+func (suite *RegularTypeToolSuite) TestConvertFromArrayMapStringToEntitiesWithInvalidFieldTypes() {
+	type TestEntity struct {
+		Field1 string `bson:"field1"`
+		Field2 int    `bson:"field2"`
+	}
+
+	testDataArray := []map[string]interface{}{
+		{
+			"field1": "value1",
+			"field2": "notAnInt",
+		},
+		{
+			"field1": "value2",
+			"field2": 456,
+		},
+	}
+
+	_, err := ConvertFromArrayMapStringToEntities(reflect.TypeOf(TestEntity{}), testDataArray)
+
+	assert.Error(suite.T(), err)
+}
+
+func (suite *RegularTypeToolSuite) TestConvertFromEntityToMapStringWithUnexportedFields() {
+	type TestEntity struct {
+		Field1 string `bson:"field1"`
+		field2 int    // unexported field
+	}
+
+	testEntity := TestEntity{
+		Field1: "value1",
+	}
+
+	testData, err := ConvertFromEntityToMapString(testEntity)
+
+	assert.NoError(suite.T(), err)
+	assert.Equal(suite.T(), "value1", testData["field1"])
+	_, exists := testData["field2"]
+	assert.False(suite.T(), exists)
+}
