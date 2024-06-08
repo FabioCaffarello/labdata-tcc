@@ -1,11 +1,11 @@
 {
-  "name": "libs-golang-ddd-entities-shared-type-tools-regular-types",
-  "$schema": "../../../../../../../node_modules/nx/schemas/project-schema.json",
+  "name": "libs-golang-ddd-shared-type-tools-regular-types-converter",
+  "$schema": "../../../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "sourceRoot": "libs/golang/ddd/entities/shared/type-tools/regular-types",
+  "sourceRoot": "libs/golang/ddd/shared/type-tools/regular-types-converter",
   "tags": [
     "lang:golang",
-    "scope:entity"
+    "scope:ddd-shared"
   ],
   "targets": {
     "test": {

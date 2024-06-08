@@ -1,6 +1,6 @@
-# regular-types
+# regular-types-converter
 
-`regular-types` is a Go library that provides utilities for converting built-in types to various entity types. This library is designed to be flexible and easy to use, allowing you to convert data into entity types without directly importing those types.
+`regular-types-converter` is a Go library that provides utilities for converting built-in types to various entity types. This library is designed to be flexible and easy to use, allowing you to convert data into entity types without directly importing those types.
 
 ## Features
 
@@ -21,8 +21,8 @@ import (
 	"fmt"
 	"reflect"
 
-	"libs/golang/ddd/entities/config-vault/entity"
-	"libs/golang/ddd/entities/shared/type-tools/regular-types/conversion"
+	"libs/golang/ddd/domain/entities/config-vault/entity"
+	"libs/golang/ddd/shared/type-tools/regular-types-converter/conversion"
 )
 
 func main() {
@@ -51,8 +51,8 @@ import (
 	"fmt"
 	"reflect"
 
-	"libs/golang/ddd/entities/config-vault/entity"
-	"libs/golang/ddd/entities/shared/type-tools/regular-types/conversion"
+	"libs/golang/ddd/domain/entities/config-vault/entity"
+	"libs/golang/ddd/shared/type-tools/regular-types-converter/conversion"
 )
 
 func main() {
@@ -88,7 +88,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/yourusername/yourrepository/regular-types"
+	"libs/golang/ddd/shared/type-tools/regular-types-converter/conversion"
 )
 
 type JobDependencies struct {
@@ -114,8 +114,8 @@ func main() {
 
 ## Testing
 
-To run the tests for the `regular-types` package, use the following command:
+To run the tests for the `regular-types-converter` package, use the following command:
 
 ```sh
-npx nx test libs-golang-ddd-entities-shared/type-tools-regular-types
+npx nx test libs-golang-ddd-shared-type-tools-regular-types-converter
 ```
