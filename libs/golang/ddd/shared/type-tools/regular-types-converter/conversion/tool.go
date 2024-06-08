@@ -54,56 +54,55 @@ func ConvertFromArrayMapStringToEntities(entityType reflect.Type, dataArray []ma
 }
 
 func ConvertFromEntityToMapString(entity interface{}) (map[string]interface{}, error) {
-    entityValue := reflect.ValueOf(entity)
-    if entityValue.Kind() == reflect.Ptr {
-        entityValue = entityValue.Elem()
-    }
-    fmt.Printf("Entity Value: %+v\n", entityValue) // Debugging line
-    if entityValue.Kind() != reflect.Struct {
-        return nil, fmt.Errorf("entity must be a struct")
-    }
+	entityValue := reflect.ValueOf(entity)
+	if entityValue.Kind() == reflect.Ptr {
+		entityValue = entityValue.Elem()
+	}
+	fmt.Printf("Entity Value: %+v\n", entityValue) // Debugging line
+	if entityValue.Kind() != reflect.Struct {
+		return nil, fmt.Errorf("entity must be a struct")
+	}
 
-    entityType := entityValue.Type()
-    data := make(map[string]interface{})
+	entityType := entityValue.Type()
+	data := make(map[string]interface{})
 
-    for i := 0; i < entityType.NumField(); i++ {
-        field := entityType.Field(i)
-        if !field.IsExported() {
-            continue // Skip unexported fields
-        }
-        fieldName := field.Tag.Get("bson")
-        if fieldName == "" {
-            fieldName = field.Name // Fallback to the field name if bson tag is not present
-        }
-        fieldValue := entityValue.Field(i)
+	for i := 0; i < entityType.NumField(); i++ {
+		field := entityType.Field(i)
+		if !field.IsExported() {
+			continue // Skip unexported fields
+		}
+		fieldName := field.Tag.Get("bson")
+		if fieldName == "" {
+			fieldName = field.Name // Fallback to the field name if bson tag is not present
+		}
+		fieldValue := entityValue.Field(i)
 
-        switch fieldValue.Kind() {
-        case reflect.Struct:
-            nestedData, err := ConvertFromEntityToMapString(fieldValue.Interface())
-            if err != nil {
-                return nil, err
-            }
-            data[fieldName] = nestedData
-        case reflect.Slice:
-            sliceData := make([]interface{}, fieldValue.Len())
-            for j := 0; j < fieldValue.Len(); j++ {
-                item := fieldValue.Index(j)
-                if item.Kind() == reflect.Struct {
-                    nestedData, err := ConvertFromEntityToMapString(item.Interface())
-                    if err != nil {
-                        return nil, err
-                    }
-                    sliceData[j] = nestedData
-                } else {
-                    sliceData[j] = item.Interface()
-                }
-            }
-            data[fieldName] = sliceData
-        default:
-            data[fieldName] = fieldValue.Interface()
-        }
-    }
+		switch fieldValue.Kind() {
+		case reflect.Struct:
+			nestedData, err := ConvertFromEntityToMapString(fieldValue.Interface())
+			if err != nil {
+				return nil, err
+			}
+			data[fieldName] = nestedData
+		case reflect.Slice:
+			sliceData := make([]interface{}, fieldValue.Len())
+			for j := 0; j < fieldValue.Len(); j++ {
+				item := fieldValue.Index(j)
+				if item.Kind() == reflect.Struct {
+					nestedData, err := ConvertFromEntityToMapString(item.Interface())
+					if err != nil {
+						return nil, err
+					}
+					sliceData[j] = nestedData
+				} else {
+					sliceData[j] = item.Interface()
+				}
+			}
+			data[fieldName] = sliceData
+		default:
+			data[fieldName] = fieldValue.Interface()
+		}
+	}
 
-    return data, nil
+	return data, nil
 }
-
