@@ -44,7 +44,7 @@ func (suite *RegularTypeToolSuite) TestConvertFromMapStringToEntityWithNestedStr
 	}
 
 	type TestEntityNested struct {
-		Field3 string    `bson:"field3"`
+		Field3 string     `bson:"field3"`
 		Field4 TestEntity `bson:"field4"`
 	}
 
@@ -98,7 +98,6 @@ func (suite *RegularTypeToolSuite) TestConvertFromArrayMapStringToEntities() {
 	assert.Equal(suite.T(), 456, testEntity2.Field2)
 }
 
-
 func (suite *RegularTypeToolSuite) TestConvertFromArrayMapStringToEntitiesWithNestedStructureTypes() {
 	type TestEntity struct {
 		Field1 string `bson:"field1"`
@@ -106,7 +105,7 @@ func (suite *RegularTypeToolSuite) TestConvertFromArrayMapStringToEntitiesWithNe
 	}
 
 	type TestEntityNested struct {
-		Field3 string    `bson:"field3"`
+		Field3 string     `bson:"field3"`
 		Field4 TestEntity `bson:"field4"`
 	}
 
@@ -168,7 +167,7 @@ func (suite *RegularTypeToolSuite) TestConvertFromEntityToMapStringWithNestedStr
 	}
 
 	type TestEntityNested struct {
-		Field3 string    `bson:"field3"`
+		Field3 string     `bson:"field3"`
 		Field4 TestEntity `bson:"field4"`
 	}
 

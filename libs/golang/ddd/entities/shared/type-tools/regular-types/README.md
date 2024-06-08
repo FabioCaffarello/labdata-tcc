@@ -6,6 +6,7 @@
 
 - Convert `map[string]interface{}` to any struct type.
 - Convert an array of `map[string]interface{}` to an array of the specified entity type.
+- convert an entity type to a `map[string]interface{}`
 - Decouples conversion logic from entity types.
 - Makes code more modular and maintainable.
 
@@ -76,6 +77,38 @@ func main() {
         entityType := e.(entity.JobDependencies)
         fmt.Println("JobDependencies:", entityType)
     }
+}
+```
+
+### Convert Entity to `map[string]interface{}`
+
+```go
+package main
+
+import (
+	"fmt"
+
+	"github.com/yourusername/yourrepository/regular-types"
+)
+
+type JobDependencies struct {
+	Service string `bson:"service"`
+	Source  string `bson:"source"`
+}
+
+func main() {
+    jobDependencies := JobDependencies{
+        Service: "example-service",
+        Source:  "example-source",
+    }
+
+    data, err := regulartypetool.ConvertFromEntityToMapString(jobDependencies)
+    if err != nil {
+        fmt.Println("Error:", err)
+        return
+    }
+
+    fmt.Println("Data:", data)
 }
 ```
 
