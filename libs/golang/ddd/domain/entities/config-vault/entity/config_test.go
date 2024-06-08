@@ -7,6 +7,7 @@ import (
 	md5id "libs/golang/shared/id/go-md5"
 	uuid "libs/golang/shared/id/go-uuid"
 
+	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
 )
 
@@ -17,8 +18,6 @@ type ConfigVaultConfigSuite struct {
 func TestConfigVaultConfigSuite(t *testing.T) {
 	suite.Run(t, new(ConfigVaultConfigSuite))
 }
-
-// Test cases
 
 func (suite *ConfigVaultConfigSuite) TestNewConfig() {
 	configProps := ConfigProps{
@@ -34,22 +33,22 @@ func (suite *ConfigVaultConfigSuite) TestNewConfig() {
 	}
 
 	config, err := NewConfig(configProps)
-	suite.Nil(err)
-	suite.NotNil(config)
-	suite.Equal(configProps.Service, config.Service)
-	suite.Equal(configProps.Source, config.Source)
-	suite.Equal(configProps.Provider, config.Provider)
-	suite.True(config.Active)
-	suite.Equal(2, len(config.DependsOn))
-	suite.Equal("dep_service1", config.DependsOn[0].Service)
-	suite.Equal("dep_source1", config.DependsOn[0].Source)
-	suite.Equal("dep_service2", config.DependsOn[1].Service)
-	suite.Equal("dep_source2", config.DependsOn[1].Source)
+	assert.Nil(suite.T(), err)
+	assert.NotNil(suite.T(), config)
+	assert.Equal(suite.T(), configProps.Service, config.Service)
+	assert.Equal(suite.T(), configProps.Source, config.Source)
+	assert.Equal(suite.T(), configProps.Provider, config.Provider)
+	assert.Equal(suite.T(), configProps.Active, config.Active)
+	assert.Equal(suite.T(), 2, len(config.DependsOn))
+	assert.Equal(suite.T(), "dep_service1", config.DependsOn[0].Service)
+	assert.Equal(suite.T(), "dep_source1", config.DependsOn[0].Source)
+	assert.Equal(suite.T(), "dep_service2", config.DependsOn[1].Service)
+	assert.Equal(suite.T(), "dep_source2", config.DependsOn[1].Source)
 
 	parsedDate, _ := time.Parse(dateLayout, configProps.UpdatedAt)
-	suite.Equal(parsedDate, config.UpdatedAt)
-	suite.NotZero(config.CreatedAt)
-	suite.NotZero(config.ConfigVersionID)
+	assert.Equal(suite.T(), parsedDate, config.UpdatedAt)
+	assert.NotZero(suite.T(), config.CreatedAt)
+	assert.NotZero(suite.T(), config.ID)
 }
 
 func (suite *ConfigVaultConfigSuite) TestInvalidConfig() {
@@ -62,8 +61,8 @@ func (suite *ConfigVaultConfigSuite) TestInvalidConfig() {
 	}
 
 	_, err := NewConfig(configProps)
-	suite.NotNil(err)
-	suite.Equal(ErrInvalidService, err)
+	assert.NotNil(suite.T(), err)
+	assert.Equal(suite.T(), ErrInvalidService, err)
 }
 
 func (suite *ConfigVaultConfigSuite) TestSetDependsOn() {
@@ -73,35 +72,46 @@ func (suite *ConfigVaultConfigSuite) TestSetDependsOn() {
 		{Service: "service2", Source: "source2"},
 	}
 	config.SetDependsOn(dependsOn)
-	suite.Equal(2, len(config.DependsOn))
-	suite.Equal("service1", config.DependsOn[0].Service)
-	suite.Equal("source1", config.DependsOn[0].Source)
-	suite.Equal("service2", config.DependsOn[1].Service)
-	suite.Equal("source2", config.DependsOn[1].Source)
+	assert.Equal(suite.T(), 2, len(config.DependsOn))
+	assert.Equal(suite.T(), "service1", config.DependsOn[0].Service)
+	assert.Equal(suite.T(), "source1", config.DependsOn[0].Source)
+	assert.Equal(suite.T(), "service2", config.DependsOn[1].Service)
+	assert.Equal(suite.T(), "source2", config.DependsOn[1].Source)
 }
 
-// func (suite *ConfigVaultConfigSuite) TestToMap() {
-// 	configProps := ConfigProps{
-// 		Active:   true,
-// 		Service:  "test_service",
-// 		Source:   "test_source",
-// 		Provider: "test_provider",
-// 		DependsOn: []map[string]interface{}{
-// 			{"service": "dep_service1", "source": "dep_source1"},
-// 		},
-// 		UpdatedAt: "2023-01-01 12:00:00",
-// 	}
+func (suite *ConfigVaultConfigSuite) TestToMap() {
+	configProps := ConfigProps{
+		Active:   true,
+		Service:  "test_service",
+		Source:   "test_source",
+		Provider: "test_provider",
+		DependsOn: []map[string]interface{}{
+			{"service": "dep_service1", "source": "dep_source1"},
+		},
+		UpdatedAt: "2023-01-01 12:00:00",
+	}
 
-// 	config, _ := NewConfig(configProps)
-// 	doc, err := config.ToMap()
-// 	suite.Nil(err)
-// 	suite.NotNil(doc)
-// 	suite.Equal("test_service", doc["service"])
-// 	suite.Equal("test_source", doc["source"])
-// 	suite.Equal("test_provider", doc["provider"])
-// 	suite.True(doc["active"].(bool))
-// 	suite.Equal(1, len(doc["depends_on"].([]interface{})))
-// }
+	// fmt.Printf("Config Props: %+v\n", configProps)
+
+	config, err := NewConfig(configProps)
+	assert.Nil(suite.T(), err)
+	assert.NotNil(suite.T(), config)
+
+	doc, err := config.ToMap()
+	assert.Nil(suite.T(), err)
+	assert.NotNil(suite.T(), doc)
+	assert.IsType(suite.T(), map[string]interface{}{}, doc)
+
+	assert.Equal(suite.T(), string(config.ID), doc["_id"])
+	assert.Equal(suite.T(), string(config.ConfigVersionID), doc["config_version_id"])
+	assert.Equal(suite.T(), config.Service, doc["service"])
+	assert.Equal(suite.T(), config.Source, doc["source"])
+	assert.Equal(suite.T(), config.Provider, doc["provider"])
+	assert.Equal(suite.T(), config.Active, doc["active"])
+
+	assert.IsType(suite.T(), []interface{}{}, doc["depends_on"])
+	assert.Equal(suite.T(), 1, len(doc["depends_on"].([]interface{})))
+}
 
 func (suite *ConfigVaultConfigSuite) TestIsValid() {
 	testdUUID, _ := uuid.GenerateUUIDFromMap(map[string]interface{}{"service": "test_service"})
@@ -115,18 +125,18 @@ func (suite *ConfigVaultConfigSuite) TestIsValid() {
 	}
 
 	err := config.isValid()
-	suite.Nil(err)
+	assert.Nil(suite.T(), err)
 
 	// Test with missing ID
 	config.ID = ""
 	err = config.isValid()
-	suite.NotNil(err)
-	suite.Equal(ErrInvalidID, err)
+	assert.NotNil(suite.T(), err)
+	assert.Equal(suite.T(), ErrInvalidID, err)
 
 	// Test with missing Service
 	config.ID = md5id.NewID(getIDData("test_service", "test_source", "test_provider"))
 	config.Service = ""
 	err = config.isValid()
-	suite.NotNil(err)
-	suite.Equal(ErrInvalidService, err)
+	assert.NotNil(suite.T(), err)
+	assert.Equal(suite.T(), ErrInvalidService, err)
 }

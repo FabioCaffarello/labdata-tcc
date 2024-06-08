@@ -41,15 +41,15 @@ type JobDependencies struct {
 
 // Config represents a configuration entity with various attributes such as service, source, provider, and dependencies.
 type Config struct {
-	ID        md5id.ID          `bson:"_id"`
-	Active    bool              `bson:"active"`
-	Service   string            `bson:"service"`
-	Source    string            `bson:"source"`
-	Provider  string            `bson:"provider"`
-	DependsOn []JobDependencies `bson:"depends_on"`
-	ConfigVersionID uuid.ID     `bson:"config_version_id"`
-	CreatedAt       time.Time   `bson:"created_at"`
-	UpdatedAt       time.Time   `bson:"updated_at"`
+	ID              md5id.ID          `bson:"_id"`
+	Active          bool              `bson:"active"`
+	Service         string            `bson:"service"`
+	Source          string            `bson:"source"`
+	Provider        string            `bson:"provider"`
+	DependsOn       []JobDependencies `bson:"depends_on"`
+	ConfigVersionID uuid.ID           `bson:"config_version_id"`
+	CreatedAt       time.Time         `bson:"created_at"`
+	UpdatedAt       time.Time         `bson:"updated_at"`
 }
 
 // ConfigProps represents the properties needed to create a new Config entity.
@@ -120,13 +120,13 @@ func NewConfig(configProps ConfigProps) (*Config, error) {
 	}
 
 	versionID, err := uuid.GenerateUUIDFromMap(config.GetVersionIDData())
-	fmt.Printf("Version ID: %s\n", versionID)
+	// fmt.Printf("Version ID: %s\n", versionID)
 	if err != nil {
 		return nil, err
 	}
 	config.SetConfigVersionID(versionID)
 
-	fmt.Printf("Config: %+v\n", config)
+	// fmt.Printf("Config: %+v\n", config)
 
 	if err := config.isValid(); err != nil {
 		return nil, err
@@ -159,6 +159,8 @@ func (c *Config) SetConfigVersionID(configVersionID uuid.ID) {
 // ToMap converts the Config entity to a map representation.
 func (c *Config) ToMap() (map[string]interface{}, error) {
 	doc, err := regularTypesConversion.ConvertFromEntityToMapString(c)
+	doc["_id"] = string(doc["_id"].(md5id.ID))
+	doc["config_version_id"] = string(doc["config_version_id"].(uuid.ID))
 	if err != nil {
 		return nil, err
 	}
