@@ -5,6 +5,7 @@
 ## Features
 
 - Convert `map[string]interface{}` to any struct type.
+- Convert an array of `map[string]interface{}` to an array of the specified entity type.
 - Decouples conversion logic from entity types.
 - Makes code more modular and maintainable.
 
@@ -37,6 +38,44 @@ func main() {
 
     jobDependencies := entity.(entity.JobDependencies)
     fmt.Println("JobDependencies:", jobDependencies)
+}
+```
+
+### Convert Array of `map[string]interface{}` to Array of Entities
+
+```go
+package main
+
+import (
+	"fmt"
+	"reflect"
+
+	"libs/golang/ddd/entities/config-vault/entity"
+	"libs/golang/ddd/entities/shared/type-tools/regular-types/conversion"
+)
+
+func main() {
+    dataArray := []map[string]interface{}{
+        {
+            "service": "example-service-1",
+            "source":  "example-source-1",
+        },
+        {
+            "service": "example-service-2",
+            "source":  "example-source-2",
+        },
+    }
+
+    entities, err := regulartypetool.ConvertFromArrayMapStringToEntities(reflect.TypeOf(entity.JobDependencies{}), dataArray)
+    if err != nil {
+        fmt.Println("Error:", err)
+        return
+    }
+
+    for _, e := range entities {
+        entityType := e.(entity.JobDependencies)
+        fmt.Println("JobDependencies:", entityType)
+    }
 }
 ```
 

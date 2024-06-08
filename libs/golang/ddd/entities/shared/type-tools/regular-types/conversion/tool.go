@@ -31,3 +31,18 @@ func ConvertFromMapStringToEntity(entityType reflect.Type, data map[string]inter
 
 	return entity.Interface(), nil
 }
+
+// ConvertFromArrayMapStringToEntities converts an array of map[string]interface{} to an array of the specified entity type.
+func ConvertFromArrayMapStringToEntities(entityType reflect.Type, dataArray []map[string]interface{}) ([]interface{}, error) {
+	var entities []interface{}
+
+	for _, data := range dataArray {
+		entity, err := ConvertFromMapStringToEntity(entityType, data)
+		if err != nil {
+			return nil, err
+		}
+		entities = append(entities, entity)
+	}
+
+	return entities, nil
+}
