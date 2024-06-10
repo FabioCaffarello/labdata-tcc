@@ -3,6 +3,11 @@ package regulartypetool
 import (
 	"fmt"
 	"reflect"
+	"time"
+)
+
+var (
+	dateLayout = "2006-01-02 15:04:05"
 )
 
 // ConvertFromMapStringToEntity converts a map[string]interface{} to the specified entity type.
@@ -17,25 +22,117 @@ func ConvertFromMapStringToEntity(entityType reflect.Type, data map[string]inter
 	for i := 0; i < entityType.NumField(); i++ {
 		field := entityType.Field(i)
 		fieldName := field.Tag.Get("bson")
-		if val, ok := data[fieldName]; ok {
-			fieldValue := reflect.ValueOf(val)
-			if field.Type.Kind() == reflect.Struct {
-				nestedEntity, err := ConvertFromMapStringToEntity(field.Type, val.(map[string]interface{}))
-				if err != nil {
-					return nil, err
-				}
-				entity.Field(i).Set(reflect.ValueOf(nestedEntity))
-			} else if fieldValue.Type().ConvertibleTo(field.Type) {
-				entity.Field(i).Set(fieldValue.Convert(field.Type))
-			} else {
-				return nil, fmt.Errorf("field %s has invalid type", fieldName)
-			}
-		} else {
-			return nil, fmt.Errorf("field %s is missing in the data", fieldName)
+		if err := setFieldValue(entity, field, data[fieldName]); err != nil {
+			return nil, fmt.Errorf("field %s: %w", fieldName, err)
 		}
 	}
 
-	return entity.Interface(), nil
+	// Return a pointer to the newly created entity
+	return entity.Addr().Interface(), nil
+}
+
+// setFieldValue sets the value of a field in a struct based on the provided data.
+func setFieldValue(entity reflect.Value, field reflect.StructField, value interface{}) error {
+	if value == nil {
+		return fmt.Errorf("missing value")
+	}
+
+	fieldValue := entity.FieldByName(field.Name)
+	if !fieldValue.IsValid() {
+		return fmt.Errorf("invalid field")
+	}
+
+	switch fieldValue.Kind() {
+	case reflect.Struct:
+		return setStructField(fieldValue, field, value)
+	case reflect.Slice:
+		return setSliceField(fieldValue, field, value)
+	default:
+		return setBasicField(fieldValue, field, value)
+	}
+}
+
+// setStructField sets the value of a struct field.
+func setStructField(fieldValue reflect.Value, field reflect.StructField, value interface{}) error {
+	if field.Type == reflect.TypeOf(time.Time{}) {
+		return setTimeField(fieldValue, value)
+	}
+
+	nestedEntity, err := ConvertFromMapStringToEntity(field.Type, value.(map[string]interface{}))
+	if err != nil {
+		return err
+	}
+	fieldValue.Set(reflect.ValueOf(nestedEntity).Elem())
+
+	return nil
+}
+
+// setSliceField sets the value of a slice field.
+func setSliceField(fieldValue reflect.Value, field reflect.StructField, value interface{}) error {
+	valueSlice, ok := value.([]interface{})
+	if !ok {
+		// If the value is not a slice of interface{}, it might be a slice of specific types
+		valueSlice = make([]interface{}, reflect.ValueOf(value).Len())
+		for i := 0; i < reflect.ValueOf(value).Len(); i++ {
+			valueSlice[i] = reflect.ValueOf(value).Index(i).Interface()
+		}
+	}
+
+	sliceValue := reflect.MakeSlice(field.Type, len(valueSlice), len(valueSlice))
+	for i, item := range valueSlice {
+		itemValue := sliceValue.Index(i)
+		itemField := field.Type.Elem()
+
+		if itemField.Kind() == reflect.Struct {
+			switch v := item.(type) {
+			case map[string]interface{}:
+				nestedEntity, err := ConvertFromMapStringToEntity(itemField, v)
+				if err != nil {
+					return err
+				}
+				itemValue.Set(reflect.ValueOf(nestedEntity).Elem())
+			default:
+				if reflect.TypeOf(v).ConvertibleTo(itemField) {
+					itemValue.Set(reflect.ValueOf(v).Convert(itemField))
+				} else {
+					return fmt.Errorf("unexpected type for slice element: %T", v)
+				}
+			}
+		} else {
+			itemValue.Set(reflect.ValueOf(item))
+		}
+	}
+
+	fieldValue.Set(sliceValue)
+	return nil
+}
+
+// setBasicField sets the value of a basic field (non-struct, non-slice).
+func setBasicField(fieldValue reflect.Value, field reflect.StructField, value interface{}) error {
+	fieldVal := reflect.ValueOf(value)
+	if fieldVal.Type().ConvertibleTo(field.Type) {
+		fieldValue.Set(fieldVal.Convert(field.Type))
+		return nil
+	}
+
+	return fmt.Errorf("cannot convert %T to %s", value, field.Type)
+}
+
+// setTimeField sets the value of a time.Time field.
+func setTimeField(fieldValue reflect.Value, value interface{}) error {
+	switch v := value.(type) {
+	case string:
+		parsedTime, err := time.Parse(dateLayout, v)
+		if err != nil {
+			return err
+		}
+		fieldValue.Set(reflect.ValueOf(parsedTime))
+	case time.Time:
+		fieldValue.Set(reflect.ValueOf(v))
+	default:
+		return fmt.Errorf("expected string or time.Time, got %T", value)
+	}
+	return nil
 }
 
 // ConvertFromArrayMapStringToEntities converts an array of map[string]interface{} to an array of the specified entity type.
