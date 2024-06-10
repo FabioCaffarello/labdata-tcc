@@ -5,7 +5,6 @@ import (
 	regularTypesConversion "libs/golang/ddd/shared/type-tools/regular-types-converter/conversion"
 	md5id "libs/golang/shared/id/go-md5"
 	uuid "libs/golang/shared/id/go-uuid"
-	typetools "libs/golang/shared/type-tools"
 	"reflect"
 	"time"
 )
@@ -48,8 +47,8 @@ type Config struct {
 	Provider        string            `bson:"provider"`
 	DependsOn       []JobDependencies `bson:"depends_on"`
 	ConfigVersionID uuid.ID           `bson:"config_version_id"`
-	CreatedAt       time.Time         `bson:"created_at"`
-	UpdatedAt       time.Time         `bson:"updated_at"`
+	CreatedAt       string            `bson:"created_at"`
+	UpdatedAt       string            `bson:"updated_at"`
 }
 
 // ConfigProps represents the properties needed to create a new Config entity.
@@ -95,18 +94,8 @@ func transformDependsOn(dependsOn []map[string]interface{}) ([]JobDependencies, 
 // properties and generates necessary IDs.
 func NewConfig(configProps ConfigProps) (*Config, error) {
 	idData := getIDData(configProps.Service, configProps.Source, configProps.Provider)
-	updatedDate, err := typetools.ParseDateWithFormat(configProps.UpdatedAt, dateLayout)
-	if err != nil {
-		return nil, err
-	}
 
 	dependsOn, err := transformDependsOn(configProps.DependsOn)
-	if err != nil {
-		return nil, err
-	}
-
-	createdAt := time.Now().Format(dateLayout)
-	parsedCreatedAt, err := time.Parse(dateLayout, createdAt)
 	if err != nil {
 		return nil, err
 	}
@@ -118,8 +107,8 @@ func NewConfig(configProps ConfigProps) (*Config, error) {
 		Source:    configProps.Source,
 		Provider:  configProps.Provider,
 		DependsOn: dependsOn,
-		UpdatedAt: updatedDate,
-		CreatedAt: parsedCreatedAt,
+		UpdatedAt: configProps.UpdatedAt,
+		CreatedAt: time.Now().Format(dateLayout),
 	}
 
 	versionID, err := uuid.GenerateUUIDFromMap(config.GetVersionIDData())
@@ -171,9 +160,6 @@ func (c *Config) ToMap() (map[string]interface{}, error) {
 	doc["_id"] = string(doc["_id"].(md5id.ID))
 	doc["config_version_id"] = string(doc["config_version_id"].(uuid.ID))
 
-	doc["created_at"] = c.CreatedAt.Format(dateLayout)
-	doc["updated_at"] = c.UpdatedAt.Format(dateLayout)
-
 	// Convert depends_on to a slice of maps
 	dependsOn := make([]map[string]interface{}, len(c.DependsOn))
 	for i, dep := range c.DependsOn {
@@ -199,30 +185,6 @@ func (c *Config) MapToEntity(doc map[string]interface{}) (*Config, error) {
 		doc["config_version_id"] = uuid.ID(configVersionID)
 	} else {
 		return nil, errors.New("field config_version_id has invalid type")
-	}
-
-	if createdAtStr, ok := doc["created_at"].(string); ok {
-		createdAt, err := time.Parse(dateLayout, createdAtStr)
-		if err != nil {
-			return nil, err
-		}
-		doc["created_at"] = createdAt
-	} else if createdAt, ok := doc["created_at"].(time.Time); ok {
-		doc["created_at"] = createdAt
-	} else {
-		return nil, errors.New("field created_at has invalid type for time.Time")
-	}
-
-	if updatedAtStr, ok := doc["updated_at"].(string); ok {
-		updatedAt, err := time.Parse(dateLayout, updatedAtStr)
-		if err != nil {
-			return nil, err
-		}
-		doc["updated_at"] = updatedAt
-	} else if updatedAt, ok := doc["updated_at"].(time.Time); ok {
-		doc["updated_at"] = updatedAt
-	} else {
-		return nil, errors.New("field updated_at has invalid type for time.Time")
 	}
 
 	dependsOnSlice, ok := doc["depends_on"].([]interface{})
@@ -282,9 +244,6 @@ func (c *Config) isValid() error {
 	}
 	if c.ConfigVersionID == "" {
 		return ErrInvalidConfigVersionID
-	}
-	if c.CreatedAt.IsZero() {
-		return ErrInvalidCreatedAt
 	}
 	return nil
 }

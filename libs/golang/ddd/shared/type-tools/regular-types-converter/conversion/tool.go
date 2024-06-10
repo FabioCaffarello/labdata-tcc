@@ -155,7 +155,6 @@ func ConvertFromEntityToMapString(entity interface{}) (map[string]interface{}, e
 	if entityValue.Kind() == reflect.Ptr {
 		entityValue = entityValue.Elem()
 	}
-	fmt.Printf("Entity Value: %+v\n", entityValue) // Debugging line
 	if entityValue.Kind() != reflect.Struct {
 		return nil, fmt.Errorf("entity must be a struct")
 	}

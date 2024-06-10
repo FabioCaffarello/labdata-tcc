@@ -1,7 +1,6 @@
 package entity
 
 import (
-	"fmt"
 	"testing"
 	// "time"
 
@@ -157,17 +156,13 @@ func (suite *ConfigVaultConfigSuite) TestMapToEntity() {
 
 	// Create a new config entity
 	config, err := NewConfig(configProps)
-	fmt.Printf("Config test: %+v\n", config)
 	assert.Nil(suite.T(), err)
 	assert.NotNil(suite.T(), config)
 
 	// Convert config entity to map
 	doc, err := config.ToMap()
-	fmt.Printf("Converted doc test: %+v\n", doc)
 	assert.Nil(suite.T(), err)
 	assert.NotNil(suite.T(), doc)
-
-	fmt.Printf("Converted doc: %+v\n", doc)
 
 	// Convert map back to config entity
 	newConfig := &Config{}
@@ -175,14 +170,14 @@ func (suite *ConfigVaultConfigSuite) TestMapToEntity() {
 	assert.Nil(suite.T(), err)
 	assert.NotNil(suite.T(), newConfig)
 
-	// // Assert the properties
-	// assert.Equal(suite.T(), config.ID, newConfig.ID)
-	// assert.Equal(suite.T(), config.Active, newConfig.Active)
-	// assert.Equal(suite.T(), config.Service, newConfig.Service)
-	// assert.Equal(suite.T(), config.Source, newConfig.Source)
-	// assert.Equal(suite.T(), config.Provider, newConfig.Provider)
-	// assert.Equal(suite.T(), config.ConfigVersionID, newConfig.ConfigVersionID)
-	// assert.Equal(suite.T(), config.CreatedAt, newConfig.CreatedAt)
-	// assert.Equal(suite.T(), config.UpdatedAt, newConfig.UpdatedAt)
-	// assert.Equal(suite.T(), config.DependsOn, newConfig.DependsOn)
+	// Assert the properties
+	assert.Equal(suite.T(), config.ID, newConfig.ID)
+	assert.Equal(suite.T(), config.Active, newConfig.Active)
+	assert.Equal(suite.T(), config.Service, newConfig.Service)
+	assert.Equal(suite.T(), config.Source, newConfig.Source)
+	assert.Equal(suite.T(), config.Provider, newConfig.Provider)
+	assert.Equal(suite.T(), config.ConfigVersionID, newConfig.ConfigVersionID)
+	assert.Equal(suite.T(), config.CreatedAt, newConfig.CreatedAt)
+	assert.Equal(suite.T(), config.UpdatedAt, newConfig.UpdatedAt)
+	assert.Equal(suite.T(), config.DependsOn, newConfig.DependsOn)
 }
