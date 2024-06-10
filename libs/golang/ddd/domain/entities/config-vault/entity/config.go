@@ -2,11 +2,11 @@ package entity
 
 import (
 	"errors"
-	"fmt"
 	regularTypesConversion "libs/golang/ddd/shared/type-tools/regular-types-converter/conversion"
 	md5id "libs/golang/shared/id/go-md5"
 	uuid "libs/golang/shared/id/go-uuid"
 	typetools "libs/golang/shared/type-tools"
+	"reflect"
 	"time"
 )
 
@@ -94,8 +94,6 @@ func transformDependsOn(dependsOn []map[string]interface{}) ([]JobDependencies, 
 // NewConfig creates a new Config entity based on the provided ConfigProps. It validates the
 // properties and generates necessary IDs.
 func NewConfig(configProps ConfigProps) (*Config, error) {
-	fmt.Printf("Config Props: %+v\n", configProps)
-
 	idData := getIDData(configProps.Service, configProps.Source, configProps.Provider)
 	updatedDate, err := typetools.ParseDateWithFormat(configProps.UpdatedAt, dateLayout)
 	if err != nil {
@@ -103,7 +101,12 @@ func NewConfig(configProps ConfigProps) (*Config, error) {
 	}
 
 	dependsOn, err := transformDependsOn(configProps.DependsOn)
-	fmt.Printf("DependsOn: %+v\n", dependsOn)
+	if err != nil {
+		return nil, err
+	}
+
+	createdAt := time.Now().Format(dateLayout)
+	parsedCreatedAt, err := time.Parse(dateLayout, createdAt)
 	if err != nil {
 		return nil, err
 	}
@@ -116,17 +119,14 @@ func NewConfig(configProps ConfigProps) (*Config, error) {
 		Provider:  configProps.Provider,
 		DependsOn: dependsOn,
 		UpdatedAt: updatedDate,
-		CreatedAt: time.Now(),
+		CreatedAt: parsedCreatedAt,
 	}
 
 	versionID, err := uuid.GenerateUUIDFromMap(config.GetVersionIDData())
-	// fmt.Printf("Version ID: %s\n", versionID)
 	if err != nil {
 		return nil, err
 	}
 	config.SetConfigVersionID(versionID)
-
-	// fmt.Printf("Config: %+v\n", config)
 
 	if err := config.isValid(); err != nil {
 		return nil, err
@@ -156,15 +156,114 @@ func (c *Config) SetConfigVersionID(configVersionID uuid.ID) {
 	c.ConfigVersionID = configVersionID
 }
 
+// GetEntityID returns the ID of the Config entity.
+func (c *Config) GetEntityID() string {
+	return string(c.ID)
+}
+
 // ToMap converts the Config entity to a map representation.
 func (c *Config) ToMap() (map[string]interface{}, error) {
 	doc, err := regularTypesConversion.ConvertFromEntityToMapString(c)
-	doc["_id"] = string(doc["_id"].(md5id.ID))
-	doc["config_version_id"] = string(doc["config_version_id"].(uuid.ID))
 	if err != nil {
 		return nil, err
 	}
+
+	doc["_id"] = string(doc["_id"].(md5id.ID))
+	doc["config_version_id"] = string(doc["config_version_id"].(uuid.ID))
+
+	doc["created_at"] = c.CreatedAt.Format(dateLayout)
+	doc["updated_at"] = c.UpdatedAt.Format(dateLayout)
+
+	// Convert depends_on to a slice of maps
+	dependsOn := make([]map[string]interface{}, len(c.DependsOn))
+	for i, dep := range c.DependsOn {
+		dependsOn[i] = map[string]interface{}{
+			"service": dep.Service,
+			"source":  dep.Source,
+		}
+	}
+	doc["depends_on"] = dependsOn
+
 	return doc, nil
+}
+
+// MapToEntity converts a map representation to a Config entity.
+func (c *Config) MapToEntity(doc map[string]interface{}) (*Config, error) {
+	if id, ok := doc["_id"].(string); ok {
+		doc["_id"] = md5id.ID(id)
+	} else {
+		return nil, errors.New("field _id has invalid type")
+	}
+
+	if configVersionID, ok := doc["config_version_id"].(string); ok {
+		doc["config_version_id"] = uuid.ID(configVersionID)
+	} else {
+		return nil, errors.New("field config_version_id has invalid type")
+	}
+
+	if createdAtStr, ok := doc["created_at"].(string); ok {
+		createdAt, err := time.Parse(dateLayout, createdAtStr)
+		if err != nil {
+			return nil, err
+		}
+		doc["created_at"] = createdAt
+	} else if createdAt, ok := doc["created_at"].(time.Time); ok {
+		doc["created_at"] = createdAt
+	} else {
+		return nil, errors.New("field created_at has invalid type for time.Time")
+	}
+
+	if updatedAtStr, ok := doc["updated_at"].(string); ok {
+		updatedAt, err := time.Parse(dateLayout, updatedAtStr)
+		if err != nil {
+			return nil, err
+		}
+		doc["updated_at"] = updatedAt
+	} else if updatedAt, ok := doc["updated_at"].(time.Time); ok {
+		doc["updated_at"] = updatedAt
+	} else {
+		return nil, errors.New("field updated_at has invalid type for time.Time")
+	}
+
+	dependsOnSlice, ok := doc["depends_on"].([]interface{})
+	if !ok {
+		dependsOnMaps, ok := doc["depends_on"].([]map[string]interface{})
+		if !ok {
+			return nil, errors.New("field depends_on has invalid type")
+		}
+		dependsOnSlice = make([]interface{}, len(dependsOnMaps))
+		for i, dep := range dependsOnMaps {
+			dependsOnSlice[i] = dep
+		}
+	}
+
+	jobDeps := make([]JobDependencies, len(dependsOnSlice))
+	for i, dep := range dependsOnSlice {
+		depMap, ok := dep.(map[string]interface{})
+		if !ok {
+			return nil, errors.New("field depends_on has invalid type or missing required fields")
+		}
+		service, serviceOK := depMap["service"].(string)
+		source, sourceOK := depMap["source"].(string)
+		if !serviceOK || !sourceOK {
+			return nil, errors.New("field depends_on has invalid type or missing required fields")
+		}
+		jobDeps[i] = JobDependencies{
+			Service: service,
+			Source:  source,
+		}
+	}
+	doc["depends_on"] = jobDeps
+
+	configEntity, err := regularTypesConversion.ConvertFromMapStringToEntity(reflect.TypeOf(Config{}), doc)
+	if err != nil {
+		return nil, err
+	}
+
+	config := configEntity.(*Config)
+	config.DependsOn = jobDeps
+
+	return config, nil
 }
 
 // isValid validates the Config entity, ensuring all required fields are set.
