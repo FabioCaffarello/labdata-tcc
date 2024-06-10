@@ -24,7 +24,7 @@ func (suite *GoMongoDBSuite) SetupSuite() {
 		User:     "testuser",
 		Password: "testpassword",
 		Host:     "localhost",
-		Port:     "27017",
+		Port:     "27018",
 		DBName:   "testdb",
 	}
 
