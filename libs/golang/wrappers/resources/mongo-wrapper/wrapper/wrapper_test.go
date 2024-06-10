@@ -32,7 +32,7 @@ func (f *MockClientFactory) NewClient(config gomongodb.Config) (*gomongodb.Clien
 	return client, args.Error(1)
 }
 
-func TestMongoDBWrapper_Init(t *testing.T) {
+func TestMongoDBWrapperInit(t *testing.T) {
 	// Set environment variables for testing
 	os.Setenv("MONGODB_USER", "testuser")
 	os.Setenv("MONGODB_PASSWORD", "testpassword")
@@ -65,11 +65,11 @@ func TestMongoDBWrapper_Init(t *testing.T) {
 	})
 }
 
-func TestMongoDBWrapper_GetClient(t *testing.T) {
+func TestMongoDBWrapperGetClient(t *testing.T) {
 	wrapper := &MongoDBWrapper{}
 	mockClient := &gomongodb.Client{}
 	wrapper.client = mockClient
 
 	client := wrapper.GetClient()
-	assert.Equal(t, mockClient, client)
+	assert.Equal(t, mockClient.Client, client)
 }
