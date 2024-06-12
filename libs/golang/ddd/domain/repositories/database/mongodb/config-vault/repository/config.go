@@ -37,8 +37,9 @@ type ConfigRepository struct {
 //   - A pointer to a ConfigRepository instance.
 //
 // Example:
-//   client := mongo.Connect(context.Background(), options.Client().ApplyURI("mongodb://localhost:27017"))
-//   repository := NewConfigRepository(client, "testdb")
+//
+//	client := mongo.Connect(context.Background(), options.Client().ApplyURI("mongodb://localhost:27017"))
+//	repository := NewConfigRepository(client, "testdb")
 func NewConfigRepository(client *mongo.Client, database string) *ConfigRepository {
 	return &ConfigRepository{
 		log:        log.New(os.Stdout, "[CONFIG-REPOSITORY] ", log.LstdFlags),
@@ -58,10 +59,11 @@ func NewConfigRepository(client *mongo.Client, database string) *ConfigRepositor
 //   - An error if the document is not found or cannot be decoded.
 //
 // Example:
-//   config, err := repository.getOneByID("60d5ec49e17e8e304c8f5310")
-//   if err != nil {
-//       log.Fatal(err)
-//   }
+//
+//	config, err := repository.getOneByID("60d5ec49e17e8e304c8f5310")
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
 func (r *ConfigRepository) getOneByID(id string) (*entity.Config, error) {
 	filter := bson.M{"_id": id}
 	document := r.collection.FindOne(context.Background(), filter)
@@ -85,10 +87,11 @@ func (r *ConfigRepository) getOneByID(id string) (*entity.Config, error) {
 //   - An error if the document already exists or cannot be inserted.
 //
 // Example:
-//   err := repository.Create(newConfig)
-//   if err != nil {
-//       log.Fatal(err)
-//   }
+//
+//	err := repository.Create(newConfig)
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
 func (r *ConfigRepository) Create(config *entity.Config) error {
 	r.log.Printf("Saving config: %+v to collection: %s\n", config, configCollection)
 	configMap, err := config.ToMap()
@@ -121,10 +124,11 @@ func (r *ConfigRepository) Create(config *entity.Config) error {
 //   - An error if the document is not found or cannot be decoded.
 //
 // Example:
-//   config, err := repository.FindByID("60d5ec49e17e8e304c8f5310")
-//   if err != nil {
-//       log.Fatal(err)
-//   }
+//
+//	config, err := repository.FindByID("60d5ec49e17e8e304c8f5310")
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
 func (r *ConfigRepository) FindByID(id string) (*entity.Config, error) {
 	return r.getOneByID(id)
 }
@@ -136,13 +140,14 @@ func (r *ConfigRepository) FindByID(id string) (*entity.Config, error) {
 //   - An error if the query fails.
 //
 // Example:
-//   configs, err := repository.FindAll()
-//   if err != nil {
-//       log.Fatal(err)
-//   }
-//   for _, config := range configs {
-//       fmt.Printf("Config: %+v\n", config)
-//   }
+//
+//	configs, err := repository.FindAll()
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
+//	for _, config := range configs {
+//	    fmt.Printf("Config: %+v\n", config)
+//	}
 func (r *ConfigRepository) FindAll() ([]*entity.Config, error) {
 	cursor, err := r.collection.Find(context.Background(), bson.M{})
 	if err != nil {
@@ -171,10 +176,11 @@ func (r *ConfigRepository) FindAll() ([]*entity.Config, error) {
 //   - An error if the document is not found or cannot be updated.
 //
 // Example:
-//   err := repository.Update(updatedConfig)
-//   if err != nil {
-//       log.Fatal(err)
-//   }
+//
+//	err := repository.Update(updatedConfig)
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
 func (r *ConfigRepository) Update(config *entity.Config) error {
 	r.log.Printf("Updating config: %+v\n", config)
 
@@ -213,10 +219,11 @@ func (r *ConfigRepository) Update(config *entity.Config) error {
 //   - An error if the document is not found or cannot be deleted.
 //
 // Example:
-//   err := repository.Delete("60d5ec49e17e8e304c8f5310")
-//   if err != nil {
-//       log.Fatal(err)
-//   }
+//
+//	err := repository.Delete("60d5ec49e17e8e304c8f5310")
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
 func (r *ConfigRepository) Delete(id string) error {
 	r.log.Printf("Deleting config with ID: %s\n", id)
 	filter := bson.M{"_id": id}
@@ -243,14 +250,15 @@ func (r *ConfigRepository) Delete(id string) error {
 //   - An error if the query fails or if the collection does not exist.
 //
 // Example:
-//   query := bson.M{"service": "myservice"}
-//   configs, err := repository.find(query)
-//   if err != nil {
-//       log.Fatal(err)
-//   }
-//   for _, config := range configs {
-//       fmt.Printf("Config: %+v\n", config)
-//   }
+//
+//	query := bson.M{"service": "myservice"}
+//	configs, err := repository.find(query)
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
+//	for _, config := range configs {
+//	    fmt.Printf("Config: %+v\n", config)
+//	}
 func (r *ConfigRepository) find(query bson.M) ([]*entity.Config, error) {
 	cursor, err := r.collection.Find(context.Background(), query)
 	if err != nil {
@@ -300,13 +308,14 @@ func (r *ConfigRepository) find(query bson.M) ([]*entity.Config, error) {
 //   - An error if the query fails.
 //
 // Example:
-//   configs, err := repository.FindAllByService("myservice")
-//   if err != nil {
-//       log.Fatal(err)
-//   }
-//   for _, config := range configs {
-//       fmt.Printf("Config: %+v\n", config)
-//   }
+//
+//	configs, err := repository.FindAllByService("myservice")
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
+//	for _, config := range configs {
+//	    fmt.Printf("Config: %+v\n", config)
+//	}
 func (r *ConfigRepository) FindAllByService(service string) ([]*entity.Config, error) {
 	query := bson.M{"service": service}
 	return r.find(query)
@@ -322,13 +331,14 @@ func (r *ConfigRepository) FindAllByService(service string) ([]*entity.Config, e
 //   - An error if the query fails.
 //
 // Example:
-//   configs, err := repository.FindAllBySource("mysource")
-//   if err != nil {
-//       log.Fatal(err)
-//   }
-//   for _, config := range configs {
-//       fmt.Printf("Config: %+v\n", config)
-//   }
+//
+//	configs, err := repository.FindAllBySource("mysource")
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
+//	for _, config := range configs {
+//	    fmt.Printf("Config: %+v\n", config)
+//	}
 func (r *ConfigRepository) FindAllBySource(source string) ([]*entity.Config, error) {
 	query := bson.M{"source": source}
 	return r.find(query)
@@ -345,13 +355,14 @@ func (r *ConfigRepository) FindAllBySource(source string) ([]*entity.Config, err
 //   - An error if the query fails.
 //
 // Example:
-//   configs, err := repository.FindAllByServiceAndSource("myservice", "mysource")
-//   if err != nil {
-//       log.Fatal(err)
-//   }
-//   for _, config := range configs {
-//       fmt.Printf("Config: %+v\n", config)
-//   }
+//
+//	configs, err := repository.FindAllByServiceAndSource("myservice", "mysource")
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
+//	for _, config := range configs {
+//	    fmt.Printf("Config: %+v\n", config)
+//	}
 func (r *ConfigRepository) FindAllByServiceAndSource(service, source string) ([]*entity.Config, error) {
 	query := bson.M{"service": service, "source": source}
 	return r.find(query)
@@ -369,13 +380,14 @@ func (r *ConfigRepository) FindAllByServiceAndSource(service, source string) ([]
 //   - An error if the query fails.
 //
 // Example:
-//   configs, err := repository.FindAllByServiceAndSourceAndProvider("myservice", "mysource", "myprovider")
-//   if err != nil {
-//       log.Fatal(err)
-//   }
-//   for _, config := range configs {
-//       fmt.Printf("Config: %+v\n", config)
-//   }
+//
+//	configs, err := repository.FindAllByServiceAndSourceAndProvider("myservice", "mysource", "myprovider")
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
+//	for _, config := range configs {
+//	    fmt.Printf("Config: %+v\n", config)
+//	}
 func (r *ConfigRepository) FindAllByServiceAndSourceAndProvider(service, source, provider string) ([]*entity.Config, error) {
 	query := bson.M{"service": service, "source": source, "provider": provider}
 	return r.find(query)
@@ -393,13 +405,14 @@ func (r *ConfigRepository) FindAllByServiceAndSourceAndProvider(service, source,
 //   - An error if the query fails.
 //
 // Example:
-//   configs, err := repository.FindAllByServiceAndProviderAndActive("myservice", "myprovider", true)
-//   if err != nil {
-//       log.Fatal(err)
-//   }
-//   for _, config := range configs {
-//       fmt.Printf("Config: %+v\n", config)
-//   }
+//
+//	configs, err := repository.FindAllByServiceAndProviderAndActive("myservice", "myprovider", true)
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
+//	for _, config := range configs {
+//	    fmt.Printf("Config: %+v\n", config)
+//	}
 func (r *ConfigRepository) FindAllByServiceAndProviderAndActive(service, provider string, active bool) ([]*entity.Config, error) {
 	query := bson.M{"service": service, "provider": provider, "active": active}
 	return r.find(query)
@@ -416,13 +429,14 @@ func (r *ConfigRepository) FindAllByServiceAndProviderAndActive(service, provide
 //   - An error if the query fails.
 //
 // Example:
-//   configs, err := repository.FindAllByDependsOn("dep_service", "dep_source")
-//   if err != nil {
-//       log.Fatal(err)
-//   }
-//   for _, config := range configs {
-//       fmt.Printf("Config: %+v\n", config)
-//   }
+//
+//	configs, err := repository.FindAllByDependsOn("dep_service", "dep_source")
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
+//	for _, config := range configs {
+//	    fmt.Printf("Config: %+v\n", config)
+//	}
 func (r *ConfigRepository) FindAllByDependsOn(service, source string) ([]*entity.Config, error) {
 	query := bson.M{"depends_on": bson.M{"$elemMatch": bson.M{"service": service, "source": source}}}
 	return r.find(query)
