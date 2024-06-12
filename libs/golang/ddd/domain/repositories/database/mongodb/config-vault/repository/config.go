@@ -266,23 +266,7 @@ func (r *ConfigRepository) find(query bson.M) ([]*entity.Config, error) {
 	}
 	defer cursor.Close(context.Background())
 
-	var configs []*entity.Config
-	if !cursor.Next(context.Background()) {
-		// Check if the cursor is empty and return an error if so
-		if cursor.ID() == 0 {
-			return nil, fmt.Errorf("collection does not exist")
-		}
-		return nil, nil
-	}
-
-	// Decode the first document
-	var config entity.Config
-	if err := cursor.Decode(&config); err != nil {
-		return nil, err
-	}
-	configs = append(configs, &config)
-
-	// Decode the rest of the documents
+	var configs []*entity.Config = []*entity.Config{}
 	for cursor.Next(context.Background()) {
 		var config entity.Config
 		if err := cursor.Decode(&config); err != nil {

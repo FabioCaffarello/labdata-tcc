@@ -315,11 +315,13 @@ func (suite *ConfigVaultMongoDBRepositorySuite) TestFind() {
 
 func (suite *ConfigVaultMongoDBRepositorySuite) TestFindEmpty() {
 	repository := NewConfigRepository(suite.client, databaseName)
-	query := bson.M{"service": suite.config.Service}
+	err := repository.Create(suite.config)
+	assert.Nil(suite.T(), err)
+	query := bson.M{"source": "test_source2"}
 
 	configs, err := repository.find(query)
 	assert.Nil(suite.T(), err)
-	assert.Nil(suite.T(), configs)
+	assert.NotNil(suite.T(), configs)
 	assert.Equal(suite.T(), 0, len(configs))
 }
 
@@ -341,14 +343,6 @@ func (suite *ConfigVaultMongoDBRepositorySuite) TestFindAllByService() {
 	assert.Equal(suite.T(), 2, len(configs))
 }
 
-func (suite *ConfigVaultMongoDBRepositorySuite) TestFindAllByServiceEmpty() {
-	repository := NewConfigRepository(suite.client, databaseName)
-	configs, err := repository.FindAllByService(suite.config.Service)
-	assert.Nil(suite.T(), err)
-	assert.Nil(suite.T(), configs)
-	assert.Equal(suite.T(), 0, len(configs))
-}
-
 func (suite *ConfigVaultMongoDBRepositorySuite) TestFindAllBySource() {
 	repository := NewConfigRepository(suite.client, databaseName)
 	err := repository.Create(suite.config)
@@ -366,14 +360,6 @@ func (suite *ConfigVaultMongoDBRepositorySuite) TestFindAllBySource() {
 	assert.Nil(suite.T(), err)
 	assert.NotNil(suite.T(), configs)
 	assert.Equal(suite.T(), 2, len(configs))
-}
-
-func (suite *ConfigVaultMongoDBRepositorySuite) TestFindAllBySourceEmpty() {
-	repository := NewConfigRepository(suite.client, databaseName)
-	configs, err := repository.FindAllBySource(suite.config.Source)
-	assert.Nil(suite.T(), err)
-	assert.Nil(suite.T(), configs)
-	assert.Equal(suite.T(), 0, len(configs))
 }
 
 func (suite *ConfigVaultMongoDBRepositorySuite) TestFindAllByServiceAndSource() {
