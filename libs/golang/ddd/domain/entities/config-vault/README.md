@@ -1,6 +1,6 @@
-# config-vault
+# config-vault/entity
 
-`config-vault` is a Go library that provides structures and functions to manage and manipulate configuration entities within a system. This library includes utilities for converting data between different formats, validating configuration data, and generating necessary identifiers.
+`config-vault/entity` is a Go library that provides structures and functions to manage and manipulate configuration entities within a system. This library includes utilities for converting data between different formats, validating configuration data, and generating necessary identifiers.
 
 ## Features
 
