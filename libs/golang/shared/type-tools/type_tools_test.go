@@ -92,3 +92,60 @@ func (suite *TypeToolsSuite) TestToFloat64WithInvalidInput() {
 	_, err = ToFloat64(true)
 	assert.Error(suite.T(), err)
 }
+
+func (suite *TypeToolsSuite) TestToFloat64WithInt() {
+	num, err := ToFloat64(123)
+	assert.NoError(suite.T(), err)
+	assert.Equal(suite.T(), 123.0, num)
+}
+
+func (suite *TypeToolsSuite) TestToFloat64WithUint() {
+	num, err := ToFloat64(uint(123))
+	assert.NoError(suite.T(), err)
+	assert.Equal(suite.T(), 123.0, num)
+}
+
+func (suite *TypeToolsSuite) TestToFloat64WithFloat() {
+	num, err := ToFloat64(123.456)
+	assert.NoError(suite.T(), err)
+	assert.Equal(suite.T(), 123.456, num)
+}
+
+func (suite *TypeToolsSuite) TestToFloat64WithFloatString() {
+	num, err := ToFloat64("123.456")
+	assert.NoError(suite.T(), err)
+	assert.Equal(suite.T(), 123.456, num)
+}
+
+func (suite *TypeToolsSuite) TestToFloat64WithIntString() {
+	num, err := ToFloat64("123")
+	assert.NoError(suite.T(), err)
+	assert.Equal(suite.T(), 123.0, num)
+}
+
+func (suite *TypeToolsSuite) TestToFloat64WithUintString() {
+	num, err := ToFloat64("123")
+	assert.NoError(suite.T(), err)
+	assert.Equal(suite.T(), 123.0, num)
+}
+
+func (suite *TypeToolsSuite) TestToFloat64WithInvalidString() {
+	_, err := ToFloat64("invalid")
+	assert.Error(suite.T(), err)
+}
+
+func (suite *TypeToolsSuite) TestParseDateWithFormat() {
+	date, err := ParseDateWithFormat("2021-01-01", "2006-01-02")
+	assert.NoError(suite.T(), err)
+	assert.Equal(suite.T(), "2021-01-01 00:00:00 +0000 UTC", date.String())
+}
+
+func (suite *TypeToolsSuite) TestParseDateWithFormatWithInvalidDate() {
+	_, err := ParseDateWithFormat("invalid", "2006-01-02")
+	assert.Error(suite.T(), err)
+}
+
+func (suite *TypeToolsSuite) TestParseDateWithFormatWithInvalidFormat() {
+	_, err := ParseDateWithFormat("2021-01-01", "invalid")
+	assert.Error(suite.T(), err)
+}

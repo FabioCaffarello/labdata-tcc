@@ -9,6 +9,7 @@
 - Convert `float64` to a string representation.
 - Convert `interface{}` to specific Go built-in types.
 - Generic function to convert any type to a string.
+- Parse date strings with a given format.
 
 
 ## Usage
@@ -111,6 +112,30 @@ func main() {
 	} else {
 		fmt.Println(floatStr) // Output: 123.456
 	}
+}
+```
+
+### Parse Date with Format
+```go
+package main
+
+import (
+	"fmt"
+	"time"
+	"github.com/yourusername/yourrepository/type-tools"
+)
+
+func main() {
+	dateStr := "2023-01-01"
+	format := "2006-01-02"
+
+	date, err := typetools.ParseDateWithFormat(dateStr, format)
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+
+	fmt.Println("Parsed date:", date.Format(time.RFC3339))
 }
 ```
 

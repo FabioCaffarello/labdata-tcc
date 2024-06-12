@@ -38,5 +38,5 @@ func (m *MongoDBWrapper) Init() error {
 
 // GetClient returns the MongoDB client.
 func (m *MongoDBWrapper) GetClient() interface{} {
-	return m.client
+	return m.client.Client
 }

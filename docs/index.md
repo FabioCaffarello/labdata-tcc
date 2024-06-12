@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Welcome to the LabData TCC project! This project is part of my final work for the master's program in Data Engineering at FIA Business School. The aim of this project is to ... <!-- TODO: briefly describe the main goal of the project -->. This repository is a monorepo, containing multiple packages and services that work together to achieve the project's goals.
+Welcome to the LabData TCC project! This project is part of my final work for the master's program in Data Engineering at FIA Business School. The aim of this project is to build an event-driven architecture (EDA) using configuration-oriented microservices for downloading videos from YouTube <!-- and Spotify podcasts (maybe) -->. These downloads will be used to create a knowledge graph using large language models (LLMs), enabling semantic queries through prompts as a chat chain. This repository is a monorepo, containing multiple packages and services that work together to achieve the project's goals.
 
 ## Prerequisites
 Depending on how you choose to run the project, the requirements may vary. Please ensure you have met the following requirements based on your preferred method:

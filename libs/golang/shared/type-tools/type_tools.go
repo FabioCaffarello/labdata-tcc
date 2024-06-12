@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"sort"
 	"strconv"
+	"time"
 )
 
 // ToString converts various types of data to a string
@@ -72,4 +73,13 @@ func MapStringToString(m map[string]string) string {
 		str += fmt.Sprintf("%s:%s;", k, m[k])
 	}
 	return str
+}
+
+// ParseDateWithFormat parses a date string with a given format
+func ParseDateWithFormat(date, format string) (time.Time, error) {
+	parsedTime, err := time.Parse(format, date)
+	if err != nil {
+		return time.Time{}, err
+	}
+	return parsedTime, nil
 }

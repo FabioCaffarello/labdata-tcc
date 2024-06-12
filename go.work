@@ -4,8 +4,12 @@ use (
 	./libs/golang/clients/resources/go-minio
 	./libs/golang/clients/resources/go-mongo
 	./libs/golang/clients/resources/go-rabbitmq
+	./libs/golang/ddd/domain/entities/config-vault
+	./libs/golang/ddd/domain/repositories/database/mongodb/config-vault
+	./libs/golang/ddd/shared/type-tools/regular-types-converter
 	./libs/golang/service-discovery
 	./libs/golang/shared/id/go-md5
+	./libs/golang/shared/id/go-uuid
 	./libs/golang/shared/type-tools
 	./libs/golang/wrappers/core/resource-contract
 	./libs/golang/wrappers/core/resource-mapping
