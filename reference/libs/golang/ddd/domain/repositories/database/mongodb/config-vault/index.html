@@ -5,25 +5,25 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="../go-minio/docs/godoc/" rel="prev"/>
+<link href="../../../../entities/config-vault/docs/godoc/" rel="prev"/>
 <link href="docs/godoc/" rel="next"/>
-<link href="../../../../../../assets/images/favicon.png" rel="icon"/>
+<link href="../../../../../../../../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.0, mkdocs-material-9.5.25" name="generator"/>
-<title>go-mongo - Labdata TCC</title>
-<link href="../../../../../../assets/stylesheets/main.6543a935.min.css" rel="stylesheet"/>
+<title>config-vault/repository - Labdata TCC</title>
+<link href="../../../../../../../../../assets/stylesheets/main.6543a935.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
-<link href="../../../../../../assets/_mkdocstrings.css" rel="stylesheet"/>
-<link href="../../../../../../css/github-permalink-style.css" rel="stylesheet"/>
-<script>__md_scope=new URL("../../../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../../../../../../../../assets/_mkdocstrings.css" rel="stylesheet"/>
+<link href="../../../../../../../../../css/github-permalink-style.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../../../../../../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 </head>
 <body dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#go-mongo">
+<a class="md-skip" href="#config-vaultrepository">
           Skip to content
         </a>
 </div>
@@ -31,7 +31,7 @@
 </div>
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
 <nav aria-label="Header" class="md-header__inner md-grid">
-<a aria-label="Labdata TCC" class="md-header__button md-logo" data-md-component="logo" href="../../../../../.." title="Labdata TCC">
+<a aria-label="Labdata TCC" class="md-header__button md-logo" data-md-component="logo" href="../../../../../../../../.." title="Labdata TCC">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
 </a>
 <label class="md-header__button md-icon" for="__drawer">
@@ -47,7 +47,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              go-mongo
+              config-vault/repository
             
           </span>
 </div>
@@ -99,7 +99,7 @@
 <div class="md-grid">
 <ul class="md-tabs__list">
 <li class="md-tabs__item md-tabs__item--active">
-<a class="md-tabs__link" href="../go-minio/">
+<a class="md-tabs__link" href="../../../../../../clients/resources/go-minio/">
           
   
     
@@ -109,7 +109,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../../../../dependency-graph/index.html?select=all#/projects/all?groupByFolder=true">
+<a class="md-tabs__link" href="../../../../../../../../../dependency-graph/index.html?select=all#/projects/all?groupByFolder=true">
         
   
     
@@ -130,7 +130,7 @@
 <div class="md-sidebar__inner">
 <nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
 <label class="md-nav__title" for="__drawer">
-<a aria-label="Labdata TCC" class="md-nav__button md-logo" data-md-component="logo" href="../../../../../.." title="Labdata TCC">
+<a aria-label="Labdata TCC" class="md-nav__button md-logo" data-md-component="logo" href="../../../../../../../../.." title="Labdata TCC">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
 </a>
     Labdata TCC
@@ -174,29 +174,29 @@
             Golang
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_1_1_1" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_1_1_1" type="checkbox"/>
 <label class="md-nav__link" for="__nav_1_1_1" id="__nav_1_1_1_label" tabindex="0">
 <span class="md-ellipsis">
     Clients
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="true" aria-labelledby="__nav_1_1_1_label" class="md-nav" data-md-level="3">
+<nav aria-expanded="false" aria-labelledby="__nav_1_1_1_label" class="md-nav" data-md-level="3">
 <label class="md-nav__title" for="__nav_1_1_1">
 <span class="md-nav__icon md-icon"></span>
             Clients
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_1_1_1_1" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_1_1_1_1" type="checkbox"/>
 <label class="md-nav__link" for="__nav_1_1_1_1" id="__nav_1_1_1_1_label" tabindex="0">
 <span class="md-ellipsis">
     Resources
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="true" aria-labelledby="__nav_1_1_1_1_label" class="md-nav" data-md-level="4">
+<nav aria-expanded="false" aria-labelledby="__nav_1_1_1_1_label" class="md-nav" data-md-level="4">
 <label class="md-nav__title" for="__nav_1_1_1_1">
 <span class="md-nav__icon md-icon"></span>
             Resources
@@ -205,7 +205,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_1_1_1_1_1" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../go-minio/">
+<a class="md-nav__link" href="../../../../../../clients/resources/go-minio/">
 <span class="md-ellipsis">
     Go minio
   </span>
@@ -235,7 +235,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../go-minio/docs/godoc/">
+<a class="md-nav__link" href="../../../../../../clients/resources/go-minio/docs/godoc/">
 <span class="md-ellipsis">
     Godoc
   </span>
@@ -247,19 +247,19 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_1_1_1_1_2" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_1_1_1_1_2" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link md-nav__link--active" href="./">
+<a class="md-nav__link" href="../../../../../../clients/resources/go-mongo/">
 <span class="md-ellipsis">
     Go mongo
   </span>
 </a>
-<label class="md-nav__link md-nav__link--active" for="__nav_1_1_1_1_2" id="__nav_1_1_1_1_2_label" tabindex="0">
+<label class="md-nav__link" for="__nav_1_1_1_1_2" id="__nav_1_1_1_1_2_label" tabindex="0">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="true" aria-labelledby="__nav_1_1_1_1_2_label" class="md-nav" data-md-level="5">
+<nav aria-expanded="false" aria-labelledby="__nav_1_1_1_1_2_label" class="md-nav" data-md-level="5">
 <label class="md-nav__title" for="__nav_1_1_1_1_2">
 <span class="md-nav__icon md-icon"></span>
             Go mongo
@@ -280,7 +280,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="docs/godoc/">
+<a class="md-nav__link" href="../../../../../../clients/resources/go-mongo/docs/godoc/">
 <span class="md-ellipsis">
     Godoc
   </span>
@@ -295,7 +295,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_1_1_1_1_3" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../go-rabbitmq/">
+<a class="md-nav__link" href="../../../../../../clients/resources/go-rabbitmq/">
 <span class="md-ellipsis">
     Go rabbitmq
   </span>
@@ -325,7 +325,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../go-rabbitmq/docs/godoc/">
+<a class="md-nav__link" href="../../../../../../clients/resources/go-rabbitmq/docs/godoc/">
 <span class="md-ellipsis">
     Godoc
   </span>
@@ -343,29 +343,29 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_1_1_2" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_1_1_2" type="checkbox"/>
 <label class="md-nav__link" for="__nav_1_1_2" id="__nav_1_1_2_label" tabindex="0">
 <span class="md-ellipsis">
     Ddd
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="false" aria-labelledby="__nav_1_1_2_label" class="md-nav" data-md-level="3">
+<nav aria-expanded="true" aria-labelledby="__nav_1_1_2_label" class="md-nav" data-md-level="3">
 <label class="md-nav__title" for="__nav_1_1_2">
 <span class="md-nav__icon md-icon"></span>
             Ddd
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_1_1_2_1" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_1_1_2_1" type="checkbox"/>
 <label class="md-nav__link" for="__nav_1_1_2_1" id="__nav_1_1_2_1_label" tabindex="0">
 <span class="md-ellipsis">
     Domain
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="false" aria-labelledby="__nav_1_1_2_1_label" class="md-nav" data-md-level="4">
+<nav aria-expanded="true" aria-labelledby="__nav_1_1_2_1_label" class="md-nav" data-md-level="4">
 <label class="md-nav__title" for="__nav_1_1_2_1">
 <span class="md-nav__icon md-icon"></span>
             Domain
@@ -388,7 +388,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_1_1_2_1_1_1" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../../../ddd/domain/entities/config-vault/">
+<a class="md-nav__link" href="../../../../entities/config-vault/">
 <span class="md-ellipsis">
     Config vault
   </span>
@@ -418,7 +418,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../ddd/domain/entities/config-vault/docs/godoc/">
+<a class="md-nav__link" href="../../../../entities/config-vault/docs/godoc/">
 <span class="md-ellipsis">
     Godoc
   </span>
@@ -433,61 +433,61 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_1_1_2_1_2" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_1_1_2_1_2" type="checkbox"/>
 <label class="md-nav__link" for="__nav_1_1_2_1_2" id="__nav_1_1_2_1_2_label" tabindex="0">
 <span class="md-ellipsis">
     Repositories
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="false" aria-labelledby="__nav_1_1_2_1_2_label" class="md-nav" data-md-level="5">
+<nav aria-expanded="true" aria-labelledby="__nav_1_1_2_1_2_label" class="md-nav" data-md-level="5">
 <label class="md-nav__title" for="__nav_1_1_2_1_2">
 <span class="md-nav__icon md-icon"></span>
             Repositories
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_1_1_2_1_2_1" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_1_1_2_1_2_1" type="checkbox"/>
 <label class="md-nav__link" for="__nav_1_1_2_1_2_1" id="__nav_1_1_2_1_2_1_label" tabindex="0">
 <span class="md-ellipsis">
     Database
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="false" aria-labelledby="__nav_1_1_2_1_2_1_label" class="md-nav" data-md-level="6">
+<nav aria-expanded="true" aria-labelledby="__nav_1_1_2_1_2_1_label" class="md-nav" data-md-level="6">
 <label class="md-nav__title" for="__nav_1_1_2_1_2_1">
 <span class="md-nav__icon md-icon"></span>
             Database
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_1_1_2_1_2_1_1" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_1_1_2_1_2_1_1" type="checkbox"/>
 <label class="md-nav__link" for="__nav_1_1_2_1_2_1_1" id="__nav_1_1_2_1_2_1_1_label" tabindex="0">
 <span class="md-ellipsis">
     Mongodb
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="false" aria-labelledby="__nav_1_1_2_1_2_1_1_label" class="md-nav" data-md-level="7">
+<nav aria-expanded="true" aria-labelledby="__nav_1_1_2_1_2_1_1_label" class="md-nav" data-md-level="7">
 <label class="md-nav__title" for="__nav_1_1_2_1_2_1_1">
 <span class="md-nav__icon md-icon"></span>
             Mongodb
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_1_1_2_1_2_1_1_1" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_1_1_2_1_2_1_1_1" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../../../ddd/domain/repositories/database/mongodb/config-vault/">
+<a class="md-nav__link md-nav__link--active" href="./">
 <span class="md-ellipsis">
     Config vault
   </span>
 </a>
-<label class="md-nav__link" for="__nav_1_1_2_1_2_1_1_1" id="__nav_1_1_2_1_2_1_1_1_label" tabindex="0">
+<label class="md-nav__link md-nav__link--active" for="__nav_1_1_2_1_2_1_1_1" id="__nav_1_1_2_1_2_1_1_1_label" tabindex="0">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_1_1_2_1_2_1_1_1_label" class="md-nav" data-md-level="8">
+<nav aria-expanded="true" aria-labelledby="__nav_1_1_2_1_2_1_1_1_label" class="md-nav" data-md-level="8">
 <label class="md-nav__title" for="__nav_1_1_2_1_2_1_1_1">
 <span class="md-nav__icon md-icon"></span>
             Config vault
@@ -508,7 +508,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../ddd/domain/repositories/database/mongodb/config-vault/docs/godoc/">
+<a class="md-nav__link" href="docs/godoc/">
 <span class="md-ellipsis">
     Godoc
   </span>
@@ -563,7 +563,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_1_1_2_2_1_1" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../../../ddd/shared/type-tools/regular-types-converter/">
+<a class="md-nav__link" href="../../../../../shared/type-tools/regular-types-converter/">
 <span class="md-ellipsis">
     Regular types converter
   </span>
@@ -593,7 +593,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../ddd/shared/type-tools/regular-types-converter/docs/godoc/">
+<a class="md-nav__link" href="../../../../../shared/type-tools/regular-types-converter/docs/godoc/">
 <span class="md-ellipsis">
     Godoc
   </span>
@@ -617,7 +617,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_1_1_3" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../../../service-discovery/">
+<a class="md-nav__link" href="../../../../../../service-discovery/">
 <span class="md-ellipsis">
     Service discovery
   </span>
@@ -647,7 +647,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../service-discovery/docs/godoc/">
+<a class="md-nav__link" href="../../../../../../service-discovery/docs/godoc/">
 <span class="md-ellipsis">
     Godoc
   </span>
@@ -690,7 +690,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_1_1_4_1_1" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../../../shared/id/go-md5/">
+<a class="md-nav__link" href="../../../../../../shared/id/go-md5/">
 <span class="md-ellipsis">
     Go md5
   </span>
@@ -720,7 +720,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../shared/id/go-md5/docs/godoc/">
+<a class="md-nav__link" href="../../../../../../shared/id/go-md5/docs/godoc/">
 <span class="md-ellipsis">
     Godoc
   </span>
@@ -735,7 +735,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_1_1_4_1_2" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../../../shared/id/go-uuid/">
+<a class="md-nav__link" href="../../../../../../shared/id/go-uuid/">
 <span class="md-ellipsis">
     Go uuid
   </span>
@@ -765,7 +765,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../shared/id/go-uuid/docs/godoc/">
+<a class="md-nav__link" href="../../../../../../shared/id/go-uuid/docs/godoc/">
 <span class="md-ellipsis">
     Godoc
   </span>
@@ -783,7 +783,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_1_1_4_2" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../../../shared/type-tools/">
+<a class="md-nav__link" href="../../../../../../shared/type-tools/">
 <span class="md-ellipsis">
     Type tools
   </span>
@@ -813,7 +813,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../shared/type-tools/docs/godoc/">
+<a class="md-nav__link" href="../../../../../../shared/type-tools/docs/godoc/">
 <span class="md-ellipsis">
     Godoc
   </span>
@@ -859,7 +859,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_1_1_5_1_1" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../../../wrappers/core/resource-contract/">
+<a class="md-nav__link" href="../../../../../../wrappers/core/resource-contract/">
 <span class="md-ellipsis">
     Resource contract
   </span>
@@ -889,7 +889,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../wrappers/core/resource-contract/docs/godoc/">
+<a class="md-nav__link" href="../../../../../../wrappers/core/resource-contract/docs/godoc/">
 <span class="md-ellipsis">
     Godoc
   </span>
@@ -904,7 +904,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_1_1_5_1_2" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../../../wrappers/core/resource-mapping/">
+<a class="md-nav__link" href="../../../../../../wrappers/core/resource-mapping/">
 <span class="md-ellipsis">
     Resource mapping
   </span>
@@ -934,7 +934,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../wrappers/core/resource-mapping/docs/godoc/">
+<a class="md-nav__link" href="../../../../../../wrappers/core/resource-mapping/docs/godoc/">
 <span class="md-ellipsis">
     Godoc
   </span>
@@ -966,7 +966,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_1_1_5_2_1" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../../../wrappers/resources/minio-wrapper/">
+<a class="md-nav__link" href="../../../../../../wrappers/resources/minio-wrapper/">
 <span class="md-ellipsis">
     Minio wrapper
   </span>
@@ -996,7 +996,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../wrappers/resources/minio-wrapper/docs/godoc/">
+<a class="md-nav__link" href="../../../../../../wrappers/resources/minio-wrapper/docs/godoc/">
 <span class="md-ellipsis">
     Godoc
   </span>
@@ -1011,7 +1011,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_1_1_5_2_2" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../../../wrappers/resources/mongo-wrapper/">
+<a class="md-nav__link" href="../../../../../../wrappers/resources/mongo-wrapper/">
 <span class="md-ellipsis">
     Mongo wrapper
   </span>
@@ -1041,7 +1041,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../wrappers/resources/mongo-wrapper/docs/godoc/">
+<a class="md-nav__link" href="../../../../../../wrappers/resources/mongo-wrapper/docs/godoc/">
 <span class="md-ellipsis">
     Godoc
   </span>
@@ -1056,7 +1056,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_1_1_5_2_3" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../../../wrappers/resources/rabbitmq-wrapper/">
+<a class="md-nav__link" href="../../../../../../wrappers/resources/rabbitmq-wrapper/">
 <span class="md-ellipsis">
     Rabbitmq wrapper
   </span>
@@ -1086,7 +1086,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../wrappers/resources/rabbitmq-wrapper/docs/godoc/">
+<a class="md-nav__link" href="../../../../../../wrappers/resources/rabbitmq-wrapper/docs/godoc/">
 <span class="md-ellipsis">
     Godoc
   </span>
@@ -1111,7 +1111,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../../../../dependency-graph/index.html?select=all#/projects/all?groupByFolder=true">
+<a class="md-nav__link" href="../../../../../../../../../dependency-graph/index.html?select=all#/projects/all?groupByFolder=true">
 <span class="md-ellipsis">
     Dependency Graph
   </span>
@@ -1147,23 +1147,37 @@
 <nav aria-label="Usage" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#creating-a-mongodb-client">
+<a class="md-nav__link" href="#creating-a-configrepository">
 <span class="md-ellipsis">
-      Creating a MongoDB Client
+      Creating a ConfigRepository
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#pinging-the-mongodb-server">
+<a class="md-nav__link" href="#retrieving-a-config-by-id">
 <span class="md-ellipsis">
-      Pinging the MongoDB Server
+      Retrieving a Config by ID
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#disconnecting-from-mongodb">
+<a class="md-nav__link" href="#updating-a-config">
 <span class="md-ellipsis">
-      Disconnecting from MongoDB
+      Updating a Config
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#deleting-a-config">
+<span class="md-ellipsis">
+      Deleting a Config
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#querying-configurations">
+<span class="md-ellipsis">
+      Querying Configurations
     </span>
 </a>
 </li>
@@ -1184,113 +1198,199 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="go-mongo">go-mongo<a class="headerlink" href="#go-mongo" title="Permanent link"></a></h1>
-<p><code>go-mongo</code> is a Go library that provides a MongoDB client wrapper with utilities for connecting to and interacting with a MongoDB database. This library facilitates creating a connection to a MongoDB instance, pinging the server, and disconnecting from it.</p>
+<h1 id="config-vaultrepository">config-vault/repository<a class="headerlink" href="#config-vaultrepository" title="Permanent link"></a></h1>
+<p><code>config-vault/repository</code> is a Go library that provides a repository layer for managing configuration entities stored in MongoDB. This library includes functionalities for creating, reading, updating, and deleting configuration entities, as well as querying configurations based on different attributes.</p>
 <h2 id="features">Features<a class="headerlink" href="#features" title="Permanent link"></a></h2>
 <ul>
-<li>Connect to a MongoDB instance using configuration parameters</li>
-<li>Ping the MongoDB server to check the connection</li>
-<li>Disconnect from the MongoDB instance</li>
+<li>Create, read, update, and delete configuration entities in MongoDB.</li>
+<li>Query configurations by service, source, provider, and other attributes.</li>
+<li>Handle collection and database existence checks.</li>
 </ul>
 <h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link"></a></h2>
-<h3 id="creating-a-mongodb-client">Creating a MongoDB Client<a class="headerlink" href="#creating-a-mongodb-client" title="Permanent link"></a></h3>
+<h3 id="creating-a-configrepository">Creating a ConfigRepository<a class="headerlink" href="#creating-a-configrepository" title="Permanent link"></a></h3>
+<p>The <code>ConfigRepository</code> struct provides methods to interact with the configuration entities stored in MongoDB.</p>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
 <a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a>
 <a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="kn">import</span><span class="w"> </span><span class="p">(</span>
 <a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">    </span><span class="s">"context"</span>
 <a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">    </span><span class="s">"fmt"</span>
 <a href="#__codelineno-0-6" id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="w">    </span><span class="s">"log"</span>
-<a href="#__codelineno-0-7" id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="w">    </span><span class="s">"libs/golang/clients/resources/go-mongo/client"</span>
-<a href="#__codelineno-0-8" id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="p">)</span>
-<a href="#__codelineno-0-9" id="__codelineno-0-9" name="__codelineno-0-9"></a>
-<a href="#__codelineno-0-10" id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-0-11" id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="w">    </span><span class="nx">config</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">mongo</span><span class="p">.</span><span class="nx">Config</span><span class="p">{</span>
-<a href="#__codelineno-0-12" id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="w">        </span><span class="nx">User</span><span class="p">:</span><span class="w">     </span><span class="s">"testuser"</span><span class="p">,</span>
-<a href="#__codelineno-0-13" id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="w">        </span><span class="nx">Password</span><span class="p">:</span><span class="w"> </span><span class="s">"testpassword"</span><span class="p">,</span>
-<a href="#__codelineno-0-14" id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="w">        </span><span class="nx">Host</span><span class="p">:</span><span class="w">     </span><span class="s">"localhost"</span><span class="p">,</span>
-<a href="#__codelineno-0-15" id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="w">        </span><span class="nx">Port</span><span class="p">:</span><span class="w">     </span><span class="s">"27017"</span><span class="p">,</span>
-<a href="#__codelineno-0-16" id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="w">        </span><span class="nx">DBName</span><span class="p">:</span><span class="w">   </span><span class="s">"testdb"</span><span class="p">,</span>
-<a href="#__codelineno-0-17" id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="w">    </span><span class="p">}</span>
-<a href="#__codelineno-0-18" id="__codelineno-0-18" name="__codelineno-0-18"></a>
-<a href="#__codelineno-0-19" id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="w">    </span><span class="nx">client</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">mongo</span><span class="p">.</span><span class="nx">NewClient</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span>
-<a href="#__codelineno-0-20" id="__codelineno-0-20" name="__codelineno-0-20"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-0-21" id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="w">        </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatalf</span><span class="p">(</span><span class="s">"Failed to create MongoDB client: %v"</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
-<a href="#__codelineno-0-22" id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="w">    </span><span class="p">}</span>
-<a href="#__codelineno-0-23" id="__codelineno-0-23" name="__codelineno-0-23"></a>
-<a href="#__codelineno-0-24" id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="w">    </span><span class="k">defer</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">Disconnect</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nx">Background</span><span class="p">())</span>
-<a href="#__codelineno-0-25" id="__codelineno-0-25" name="__codelineno-0-25"></a>
-<a href="#__codelineno-0-26" id="__codelineno-0-26" name="__codelineno-0-26"></a><span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">"Connected to MongoDB"</span><span class="p">)</span>
-<a href="#__codelineno-0-27" id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="p">}</span>
+<a href="#__codelineno-0-7" id="__codelineno-0-7" name="__codelineno-0-7"></a>
+<a href="#__codelineno-0-8" id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="w">    </span><span class="s">"libs/golang/ddd/domain/entities/config-vault/entity"</span>
+<a href="#__codelineno-0-9" id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="w">    </span><span class="s">"libs/golang/ddd/domain/repositories/database/mongodb/config-vault/repository"</span>
+<a href="#__codelineno-0-10" id="__codelineno-0-10" name="__codelineno-0-10"></a>
+<a href="#__codelineno-0-11" id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="w">    </span><span class="s">"go.mongodb.org/mongo-driver/mongo"</span>
+<a href="#__codelineno-0-12" id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="w">    </span><span class="s">"go.mongodb.org/mongo-driver/mongo/options"</span>
+<a href="#__codelineno-0-13" id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="p">)</span>
+<a href="#__codelineno-0-14" id="__codelineno-0-14" name="__codelineno-0-14"></a>
+<a href="#__codelineno-0-15" id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-0-16" id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="w">    </span><span class="nx">clientOptions</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">options</span><span class="p">.</span><span class="nx">Client</span><span class="p">().</span><span class="nx">ApplyURI</span><span class="p">(</span><span class="s">"mongodb://localhost:27017"</span><span class="p">)</span>
+<a href="#__codelineno-0-17" id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="w">    </span><span class="nx">client</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">mongo</span><span class="p">.</span><span class="nx">Connect</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nx">Background</span><span class="p">(),</span><span class="w"> </span><span class="nx">clientOptions</span><span class="p">)</span>
+<a href="#__codelineno-0-18" id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-0-19" id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="w">        </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+<a href="#__codelineno-0-20" id="__codelineno-0-20" name="__codelineno-0-20"></a><span class="w">    </span><span class="p">}</span>
+<a href="#__codelineno-0-21" id="__codelineno-0-21" name="__codelineno-0-21"></a>
+<a href="#__codelineno-0-22" id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="w">    </span><span class="nx">repo</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">repository</span><span class="p">.</span><span class="nx">NewConfigRepository</span><span class="p">(</span><span class="nx">client</span><span class="p">,</span><span class="w"> </span><span class="s">"testdb"</span><span class="p">)</span>
+<a href="#__codelineno-0-23" id="__codelineno-0-23" name="__codelineno-0-23"></a><span class="w">    </span><span class="nx">configProps</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">entity</span><span class="p">.</span><span class="nx">ConfigProps</span><span class="p">{</span>
+<a href="#__codelineno-0-24" id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="w">        </span><span class="nx">Active</span><span class="p">:</span><span class="w">   </span><span class="kc">true</span><span class="p">,</span>
+<a href="#__codelineno-0-25" id="__codelineno-0-25" name="__codelineno-0-25"></a><span class="w">        </span><span class="nx">Service</span><span class="p">:</span><span class="w">  </span><span class="s">"exampleService"</span><span class="p">,</span>
+<a href="#__codelineno-0-26" id="__codelineno-0-26" name="__codelineno-0-26"></a><span class="w">        </span><span class="nx">Source</span><span class="p">:</span><span class="w">   </span><span class="s">"exampleSource"</span><span class="p">,</span>
+<a href="#__codelineno-0-27" id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="w">        </span><span class="nx">Provider</span><span class="p">:</span><span class="w"> </span><span class="s">"exampleProvider"</span><span class="p">,</span>
+<a href="#__codelineno-0-28" id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="w">        </span><span class="nx">DependsOn</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}{</span>
+<a href="#__codelineno-0-29" id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="w">            </span><span class="p">{</span><span class="s">"service"</span><span class="p">:</span><span class="w"> </span><span class="s">"dependencyService"</span><span class="p">,</span><span class="w"> </span><span class="s">"source"</span><span class="p">:</span><span class="w"> </span><span class="s">"dependencySource"</span><span class="p">},</span>
+<a href="#__codelineno-0-30" id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="w">        </span><span class="p">},</span>
+<a href="#__codelineno-0-31" id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="w">        </span><span class="nx">UpdatedAt</span><span class="p">:</span><span class="w"> </span><span class="s">"2023-06-08 12:00:00"</span><span class="p">,</span>
+<a href="#__codelineno-0-32" id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="w">    </span><span class="p">}</span>
+<a href="#__codelineno-0-33" id="__codelineno-0-33" name="__codelineno-0-33"></a>
+<a href="#__codelineno-0-34" id="__codelineno-0-34" name="__codelineno-0-34"></a><span class="w">    </span><span class="nx">config</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">entity</span><span class="p">.</span><span class="nx">NewConfig</span><span class="p">(</span><span class="nx">configProps</span><span class="p">)</span>
+<a href="#__codelineno-0-35" id="__codelineno-0-35" name="__codelineno-0-35"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-0-36" id="__codelineno-0-36" name="__codelineno-0-36"></a><span class="w">        </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+<a href="#__codelineno-0-37" id="__codelineno-0-37" name="__codelineno-0-37"></a><span class="w">    </span><span class="p">}</span>
+<a href="#__codelineno-0-38" id="__codelineno-0-38" name="__codelineno-0-38"></a>
+<a href="#__codelineno-0-39" id="__codelineno-0-39" name="__codelineno-0-39"></a><span class="w">    </span><span class="nx">err</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">repo</span><span class="p">.</span><span class="nx">Create</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span>
+<a href="#__codelineno-0-40" id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-0-41" id="__codelineno-0-41" name="__codelineno-0-41"></a><span class="w">        </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+<a href="#__codelineno-0-42" id="__codelineno-0-42" name="__codelineno-0-42"></a><span class="w">    </span><span class="p">}</span>
+<a href="#__codelineno-0-43" id="__codelineno-0-43" name="__codelineno-0-43"></a>
+<a href="#__codelineno-0-44" id="__codelineno-0-44" name="__codelineno-0-44"></a><span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">"Config created: %+v\n"</span><span class="p">,</span><span class="w"> </span><span class="nx">config</span><span class="p">)</span>
+<a href="#__codelineno-0-45" id="__codelineno-0-45" name="__codelineno-0-45"></a><span class="p">}</span>
 </code></pre></div>
-<h3 id="pinging-the-mongodb-server">Pinging the MongoDB Server<a class="headerlink" href="#pinging-the-mongodb-server" title="Permanent link"></a></h3>
+<h3 id="retrieving-a-config-by-id">Retrieving a Config by ID<a class="headerlink" href="#retrieving-a-config-by-id" title="Permanent link"></a></h3>
+<p>Use the <code>FindByID</code> method to retrieve a configuration by its ID.</p>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
 <a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a>
 <a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="kn">import</span><span class="w"> </span><span class="p">(</span>
 <a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="w">    </span><span class="s">"context"</span>
 <a href="#__codelineno-1-5" id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="w">    </span><span class="s">"fmt"</span>
 <a href="#__codelineno-1-6" id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="w">    </span><span class="s">"log"</span>
-<a href="#__codelineno-1-7" id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="w">    </span><span class="s">"libs/golang/clients/resources/go-mongo/client"</span>
-<a href="#__codelineno-1-8" id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="p">)</span>
+<a href="#__codelineno-1-7" id="__codelineno-1-7" name="__codelineno-1-7"></a>
+<a href="#__codelineno-1-8" id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="w">    </span><span class="s">"libs/golang/ddd/domain/repositories/database/mongodb/config-vault/repository"</span>
 <a href="#__codelineno-1-9" id="__codelineno-1-9" name="__codelineno-1-9"></a>
-<a href="#__codelineno-1-10" id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-1-11" id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="w">    </span><span class="nx">config</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">mongo</span><span class="p">.</span><span class="nx">Config</span><span class="p">{</span>
-<a href="#__codelineno-1-12" id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="w">        </span><span class="nx">User</span><span class="p">:</span><span class="w">     </span><span class="s">"testuser"</span><span class="p">,</span>
-<a href="#__codelineno-1-13" id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="w">        </span><span class="nx">Password</span><span class="p">:</span><span class="w"> </span><span class="s">"testpassword"</span><span class="p">,</span>
-<a href="#__codelineno-1-14" id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="w">        </span><span class="nx">Host</span><span class="p">:</span><span class="w">     </span><span class="s">"localhost"</span><span class="p">,</span>
-<a href="#__codelineno-1-15" id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="w">        </span><span class="nx">Port</span><span class="p">:</span><span class="w">     </span><span class="s">"27017"</span><span class="p">,</span>
-<a href="#__codelineno-1-16" id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="w">        </span><span class="nx">DBName</span><span class="p">:</span><span class="w">   </span><span class="s">"testdb"</span><span class="p">,</span>
-<a href="#__codelineno-1-17" id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="w">    </span><span class="p">}</span>
-<a href="#__codelineno-1-18" id="__codelineno-1-18" name="__codelineno-1-18"></a>
-<a href="#__codelineno-1-19" id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="w">    </span><span class="nx">client</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">mongo</span><span class="p">.</span><span class="nx">NewClient</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span>
-<a href="#__codelineno-1-20" id="__codelineno-1-20" name="__codelineno-1-20"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-1-21" id="__codelineno-1-21" name="__codelineno-1-21"></a><span class="w">        </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatalf</span><span class="p">(</span><span class="s">"Failed to create MongoDB client: %v"</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
-<a href="#__codelineno-1-22" id="__codelineno-1-22" name="__codelineno-1-22"></a><span class="w">    </span><span class="p">}</span>
-<a href="#__codelineno-1-23" id="__codelineno-1-23" name="__codelineno-1-23"></a>
-<a href="#__codelineno-1-24" id="__codelineno-1-24" name="__codelineno-1-24"></a><span class="w">    </span><span class="k">defer</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">Disconnect</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nx">Background</span><span class="p">())</span>
-<a href="#__codelineno-1-25" id="__codelineno-1-25" name="__codelineno-1-25"></a>
-<a href="#__codelineno-1-26" id="__codelineno-1-26" name="__codelineno-1-26"></a><span class="w">    </span><span class="nx">err</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">Ping</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nx">Background</span><span class="p">(),</span><span class="w"> </span><span class="kc">nil</span><span class="p">)</span>
-<a href="#__codelineno-1-27" id="__codelineno-1-27" name="__codelineno-1-27"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-1-28" id="__codelineno-1-28" name="__codelineno-1-28"></a><span class="w">        </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatalf</span><span class="p">(</span><span class="s">"Failed to ping MongoDB: %v"</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
-<a href="#__codelineno-1-29" id="__codelineno-1-29" name="__codelineno-1-29"></a><span class="w">    </span><span class="p">}</span>
-<a href="#__codelineno-1-30" id="__codelineno-1-30" name="__codelineno-1-30"></a>
-<a href="#__codelineno-1-31" id="__codelineno-1-31" name="__codelineno-1-31"></a><span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">"MongoDB server is reachable"</span><span class="p">)</span>
-<a href="#__codelineno-1-32" id="__codelineno-1-32" name="__codelineno-1-32"></a><span class="p">}</span>
+<a href="#__codelineno-1-10" id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="w">    </span><span class="s">"go.mongodb.org/mongo-driver/mongo"</span>
+<a href="#__codelineno-1-11" id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="w">    </span><span class="s">"go.mongodb.org/mongo-driver/mongo/options"</span>
+<a href="#__codelineno-1-12" id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="p">)</span>
+<a href="#__codelineno-1-13" id="__codelineno-1-13" name="__codelineno-1-13"></a>
+<a href="#__codelineno-1-14" id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-1-15" id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="w">    </span><span class="nx">clientOptions</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">options</span><span class="p">.</span><span class="nx">Client</span><span class="p">().</span><span class="nx">ApplyURI</span><span class="p">(</span><span class="s">"mongodb://localhost:27017"</span><span class="p">)</span>
+<a href="#__codelineno-1-16" id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="w">    </span><span class="nx">client</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">mongo</span><span class="p">.</span><span class="nx">Connect</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nx">Background</span><span class="p">(),</span><span class="w"> </span><span class="nx">clientOptions</span><span class="p">)</span>
+<a href="#__codelineno-1-17" id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-1-18" id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="w">        </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+<a href="#__codelineno-1-19" id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="w">    </span><span class="p">}</span>
+<a href="#__codelineno-1-20" id="__codelineno-1-20" name="__codelineno-1-20"></a>
+<a href="#__codelineno-1-21" id="__codelineno-1-21" name="__codelineno-1-21"></a><span class="w">    </span><span class="nx">repo</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">repository</span><span class="p">.</span><span class="nx">NewConfigRepository</span><span class="p">(</span><span class="nx">client</span><span class="p">,</span><span class="w"> </span><span class="s">"testdb"</span><span class="p">)</span>
+<a href="#__codelineno-1-22" id="__codelineno-1-22" name="__codelineno-1-22"></a><span class="w">    </span><span class="nx">config</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">repo</span><span class="p">.</span><span class="nx">FindByID</span><span class="p">(</span><span class="s">"60d5ec49e17e8e304c8f5310"</span><span class="p">)</span>
+<a href="#__codelineno-1-23" id="__codelineno-1-23" name="__codelineno-1-23"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-1-24" id="__codelineno-1-24" name="__codelineno-1-24"></a><span class="w">        </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+<a href="#__codelineno-1-25" id="__codelineno-1-25" name="__codelineno-1-25"></a><span class="w">    </span><span class="p">}</span>
+<a href="#__codelineno-1-26" id="__codelineno-1-26" name="__codelineno-1-26"></a>
+<a href="#__codelineno-1-27" id="__codelineno-1-27" name="__codelineno-1-27"></a><span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">"Config retrieved: %+v\n"</span><span class="p">,</span><span class="w"> </span><span class="nx">config</span><span class="p">)</span>
+<a href="#__codelineno-1-28" id="__codelineno-1-28" name="__codelineno-1-28"></a><span class="p">}</span>
 </code></pre></div>
-<h3 id="disconnecting-from-mongodb">Disconnecting from MongoDB<a class="headerlink" href="#disconnecting-from-mongodb" title="Permanent link"></a></h3>
+<h3 id="updating-a-config">Updating a Config<a class="headerlink" href="#updating-a-config" title="Permanent link"></a></h3>
+<p>Use the <code>Update</code> method to update an existing configuration.</p>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
 <a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a>
 <a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="kn">import</span><span class="w"> </span><span class="p">(</span>
 <a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="w">    </span><span class="s">"context"</span>
 <a href="#__codelineno-2-5" id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="w">    </span><span class="s">"fmt"</span>
 <a href="#__codelineno-2-6" id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="w">    </span><span class="s">"log"</span>
-<a href="#__codelineno-2-7" id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="w">    </span><span class="s">"libs/golang/clients/resources/go-mongo/client"</span>
-<a href="#__codelineno-2-8" id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="p">)</span>
-<a href="#__codelineno-2-9" id="__codelineno-2-9" name="__codelineno-2-9"></a>
-<a href="#__codelineno-2-10" id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-2-11" id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="w">    </span><span class="nx">config</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">mongo</span><span class="p">.</span><span class="nx">Config</span><span class="p">{</span>
-<a href="#__codelineno-2-12" id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="w">        </span><span class="nx">User</span><span class="p">:</span><span class="w">     </span><span class="s">"testuser"</span><span class="p">,</span>
-<a href="#__codelineno-2-13" id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="w">        </span><span class="nx">Password</span><span class="p">:</span><span class="w"> </span><span class="s">"testpassword"</span><span class="p">,</span>
-<a href="#__codelineno-2-14" id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="w">        </span><span class="nx">Host</span><span class="p">:</span><span class="w">     </span><span class="s">"localhost"</span><span class="p">,</span>
-<a href="#__codelineno-2-15" id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="w">        </span><span class="nx">Port</span><span class="p">:</span><span class="w">     </span><span class="s">"27017"</span><span class="p">,</span>
-<a href="#__codelineno-2-16" id="__codelineno-2-16" name="__codelineno-2-16"></a><span class="w">        </span><span class="nx">DBName</span><span class="p">:</span><span class="w">   </span><span class="s">"testdb"</span><span class="p">,</span>
-<a href="#__codelineno-2-17" id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="w">    </span><span class="p">}</span>
-<a href="#__codelineno-2-18" id="__codelineno-2-18" name="__codelineno-2-18"></a>
-<a href="#__codelineno-2-19" id="__codelineno-2-19" name="__codelineno-2-19"></a><span class="w">    </span><span class="nx">client</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">mongo</span><span class="p">.</span><span class="nx">NewClient</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span>
-<a href="#__codelineno-2-20" id="__codelineno-2-20" name="__codelineno-2-20"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-2-21" id="__codelineno-2-21" name="__codelineno-2-21"></a><span class="w">        </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatalf</span><span class="p">(</span><span class="s">"Failed to create MongoDB client: %v"</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
-<a href="#__codelineno-2-22" id="__codelineno-2-22" name="__codelineno-2-22"></a><span class="w">    </span><span class="p">}</span>
-<a href="#__codelineno-2-23" id="__codelineno-2-23" name="__codelineno-2-23"></a>
-<a href="#__codelineno-2-24" id="__codelineno-2-24" name="__codelineno-2-24"></a><span class="w">    </span><span class="nx">err</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">Disconnect</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nx">Background</span><span class="p">())</span>
-<a href="#__codelineno-2-25" id="__codelineno-2-25" name="__codelineno-2-25"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-2-26" id="__codelineno-2-26" name="__codelineno-2-26"></a><span class="w">        </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatalf</span><span class="p">(</span><span class="s">"Failed to disconnect from MongoDB: %v"</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
-<a href="#__codelineno-2-27" id="__codelineno-2-27" name="__codelineno-2-27"></a><span class="w">    </span><span class="p">}</span>
-<a href="#__codelineno-2-28" id="__codelineno-2-28" name="__codelineno-2-28"></a>
-<a href="#__codelineno-2-29" id="__codelineno-2-29" name="__codelineno-2-29"></a><span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">"Disconnected from MongoDB"</span><span class="p">)</span>
-<a href="#__codelineno-2-30" id="__codelineno-2-30" name="__codelineno-2-30"></a><span class="p">}</span>
+<a href="#__codelineno-2-7" id="__codelineno-2-7" name="__codelineno-2-7"></a>
+<a href="#__codelineno-2-8" id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="w">    </span><span class="s">"libs/golang/ddd/domain/entities/config-vault/entity"</span>
+<a href="#__codelineno-2-9" id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="w">    </span><span class="s">"libs/golang/ddd/domain/repositories/database/mongodb/config-vault/repository"</span>
+<a href="#__codelineno-2-10" id="__codelineno-2-10" name="__codelineno-2-10"></a>
+<a href="#__codelineno-2-11" id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="w">    </span><span class="s">"go.mongodb.org/mongo-driver/mongo"</span>
+<a href="#__codelineno-2-12" id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="w">    </span><span class="s">"go.mongodb.org/mongo-driver/mongo/options"</span>
+<a href="#__codelineno-2-13" id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="p">)</span>
+<a href="#__codelineno-2-14" id="__codelineno-2-14" name="__codelineno-2-14"></a>
+<a href="#__codelineno-2-15" id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-2-16" id="__codelineno-2-16" name="__codelineno-2-16"></a><span class="w">    </span><span class="nx">clientOptions</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">options</span><span class="p">.</span><span class="nx">Client</span><span class="p">().</span><span class="nx">ApplyURI</span><span class="p">(</span><span class="s">"mongodb://localhost:27017"</span><span class="p">)</span>
+<a href="#__codelineno-2-17" id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="w">    </span><span class="nx">client</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">mongo</span><span class="p">.</span><span class="nx">Connect</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nx">Background</span><span class="p">(),</span><span class="w"> </span><span class="nx">clientOptions</span><span class="p">)</span>
+<a href="#__codelineno-2-18" id="__codelineno-2-18" name="__codelineno-2-18"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-2-19" id="__codelineno-2-19" name="__codelineno-2-19"></a><span class="w">        </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+<a href="#__codelineno-2-20" id="__codelineno-2-20" name="__codelineno-2-20"></a><span class="w">    </span><span class="p">}</span>
+<a href="#__codelineno-2-21" id="__codelineno-2-21" name="__codelineno-2-21"></a>
+<a href="#__codelineno-2-22" id="__codelineno-2-22" name="__codelineno-2-22"></a><span class="w">    </span><span class="nx">repo</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">repository</span><span class="p">.</span><span class="nx">NewConfigRepository</span><span class="p">(</span><span class="nx">client</span><span class="p">,</span><span class="w"> </span><span class="s">"testdb"</span><span class="p">)</span>
+<a href="#__codelineno-2-23" id="__codelineno-2-23" name="__codelineno-2-23"></a><span class="w">    </span><span class="nx">config</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">repo</span><span class="p">.</span><span class="nx">FindByID</span><span class="p">(</span><span class="s">"60d5ec49e17e8e304c8f5310"</span><span class="p">)</span>
+<a href="#__codelineno-2-24" id="__codelineno-2-24" name="__codelineno-2-24"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-2-25" id="__codelineno-2-25" name="__codelineno-2-25"></a><span class="w">        </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+<a href="#__codelineno-2-26" id="__codelineno-2-26" name="__codelineno-2-26"></a><span class="w">    </span><span class="p">}</span>
+<a href="#__codelineno-2-27" id="__codelineno-2-27" name="__codelineno-2-27"></a>
+<a href="#__codelineno-2-28" id="__codelineno-2-28" name="__codelineno-2-28"></a><span class="w">    </span><span class="nx">config</span><span class="p">.</span><span class="nx">SetActive</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+<a href="#__codelineno-2-29" id="__codelineno-2-29" name="__codelineno-2-29"></a><span class="w">    </span><span class="nx">err</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">repo</span><span class="p">.</span><span class="nx">Update</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span>
+<a href="#__codelineno-2-30" id="__codelineno-2-30" name="__codelineno-2-30"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-2-31" id="__codelineno-2-31" name="__codelineno-2-31"></a><span class="w">        </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+<a href="#__codelineno-2-32" id="__codelineno-2-32" name="__codelineno-2-32"></a><span class="w">    </span><span class="p">}</span>
+<a href="#__codelineno-2-33" id="__codelineno-2-33" name="__codelineno-2-33"></a>
+<a href="#__codelineno-2-34" id="__codelineno-2-34" name="__codelineno-2-34"></a><span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">"Config updated successfully"</span><span class="p">)</span>
+<a href="#__codelineno-2-35" id="__codelineno-2-35" name="__codelineno-2-35"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="deleting-a-config">Deleting a Config<a class="headerlink" href="#deleting-a-config" title="Permanent link"></a></h3>
+<p>Use the <code>Delete</code> method to remove a configuration by its ID.</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+<a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a>
+<a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<a href="#__codelineno-3-4" id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="w">    </span><span class="s">"context"</span>
+<a href="#__codelineno-3-5" id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="w">    </span><span class="s">"fmt"</span>
+<a href="#__codelineno-3-6" id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="w">    </span><span class="s">"log"</span>
+<a href="#__codelineno-3-7" id="__codelineno-3-7" name="__codelineno-3-7"></a>
+<a href="#__codelineno-3-8" id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="w">    </span><span class="s">"libs/golang/ddd/domain/repositories/database/mongodb/config-vault/repository"</span>
+<a href="#__codelineno-3-9" id="__codelineno-3-9" name="__codelineno-3-9"></a>
+<a href="#__codelineno-3-10" id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="w">    </span><span class="s">"go.mongodb.org/mongo-driver/mongo"</span>
+<a href="#__codelineno-3-11" id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="w">    </span><span class="s">"go.mongodb.org/mongo-driver/mongo/options"</span>
+<a href="#__codelineno-3-12" id="__codelineno-3-12" name="__codelineno-3-12"></a><span class="p">)</span>
+<a href="#__codelineno-3-13" id="__codelineno-3-13" name="__codelineno-3-13"></a>
+<a href="#__codelineno-3-14" id="__codelineno-3-14" name="__codelineno-3-14"></a><span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-3-15" id="__codelineno-3-15" name="__codelineno-3-15"></a><span class="w">    </span><span class="nx">clientOptions</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">options</span><span class="p">.</span><span class="nx">Client</span><span class="p">().</span><span class="nx">ApplyURI</span><span class="p">(</span><span class="s">"mongodb://localhost:27017"</span><span class="p">)</span>
+<a href="#__codelineno-3-16" id="__codelineno-3-16" name="__codelineno-3-16"></a><span class="w">    </span><span class="nx">client</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">mongo</span><span class="p">.</span><span class="nx">Connect</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nx">Background</span><span class="p">(),</span><span class="w"> </span><span class="nx">clientOptions</span><span class="p">)</span>
+<a href="#__codelineno-3-17" id="__codelineno-3-17" name="__codelineno-3-17"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-3-18" id="__codelineno-3-18" name="__codelineno-3-18"></a><span class="w">        </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+<a href="#__codelineno-3-19" id="__codelineno-3-19" name="__codelineno-3-19"></a><span class="w">    </span><span class="p">}</span>
+<a href="#__codelineno-3-20" id="__codelineno-3-20" name="__codelineno-3-20"></a>
+<a href="#__codelineno-3-21" id="__codelineno-3-21" name="__codelineno-3-21"></a><span class="w">    </span><span class="nx">repo</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">repository</span><span class="p">.</span><span class="nx">NewConfigRepository</span><span class="p">(</span><span class="nx">client</span><span class="p">,</span><span class="w"> </span><span class="s">"testdb"</span><span class="p">)</span>
+<a href="#__codelineno-3-22" id="__codelineno-3-22" name="__codelineno-3-22"></a><span class="w">    </span><span class="nx">err</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">repo</span><span class="p">.</span><span class="nx">Delete</span><span class="p">(</span><span class="s">"60d5ec49e17e8e304c8f5310"</span><span class="p">)</span>
+<a href="#__codelineno-3-23" id="__codelineno-3-23" name="__codelineno-3-23"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-3-24" id="__codelineno-3-24" name="__codelineno-3-24"></a><span class="w">        </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+<a href="#__codelineno-3-25" id="__codelineno-3-25" name="__codelineno-3-25"></a><span class="w">    </span><span class="p">}</span>
+<a href="#__codelineno-3-26" id="__codelineno-3-26" name="__codelineno-3-26"></a>
+<a href="#__codelineno-3-27" id="__codelineno-3-27" name="__codelineno-3-27"></a><span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">"Config deleted successfully"</span><span class="p">)</span>
+<a href="#__codelineno-3-28" id="__codelineno-3-28" name="__codelineno-3-28"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="querying-configurations">Querying Configurations<a class="headerlink" href="#querying-configurations" title="Permanent link"></a></h3>
+<p>Use the various query methods to retrieve configurations based on different attributes.</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+<a href="#__codelineno-4-2" id="__codelineno-4-2" name="__codelineno-4-2"></a>
+<a href="#__codelineno-4-3" id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<a href="#__codelineno-4-4" id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="w">    </span><span class="s">"context"</span>
+<a href="#__codelineno-4-5" id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="w">    </span><span class="s">"fmt"</span>
+<a href="#__codelineno-4-6" id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="w">    </span><span class="s">"log"</span>
+<a href="#__codelineno-4-7" id="__codelineno-4-7" name="__codelineno-4-7"></a>
+<a href="#__codelineno-4-8" id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="w">    </span><span class="s">"libs/golang/ddd/domain/repositories/database/mongodb/config-vault/repository"</span>
+<a href="#__codelineno-4-9" id="__codelineno-4-9" name="__codelineno-4-9"></a>
+<a href="#__codelineno-4-10" id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="w">    </span><span class="s">"go.mongodb.org/mongo-driver/mongo"</span>
+<a href="#__codelineno-4-11" id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="w">    </span><span class="s">"go.mongodb.org/mongo-driver/mongo/options"</span>
+<a href="#__codelineno-4-12" id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="p">)</span>
+<a href="#__codelineno-4-13" id="__codelineno-4-13" name="__codelineno-4-13"></a>
+<a href="#__codelineno-4-14" id="__codelineno-4-14" name="__codelineno-4-14"></a><span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-4-15" id="__codelineno-4-15" name="__codelineno-4-15"></a><span class="w">    </span><span class="nx">clientOptions</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">options</span><span class="p">.</span><span class="nx">Client</span><span class="p">().</span><span class="nx">ApplyURI</span><span class="p">(</span><span class="s">"mongodb://localhost:27017"</span><span class="p">)</span>
+<a href="#__codelineno-4-16" id="__codelineno-4-16" name="__codelineno-4-16"></a><span class="w">    </span><span class="nx">client</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">mongo</span><span class="p">.</span><span class="nx">Connect</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nx">Background</span><span class="p">(),</span><span class="w"> </span><span class="nx">clientOptions</span><span class="p">)</span>
+<a href="#__codelineno-4-17" id="__codelineno-4-17" name="__codelineno-4-17"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-4-18" id="__codelineno-4-18" name="__codelineno-4-18"></a><span class="w">        </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+<a href="#__codelineno-4-19" id="__codelineno-4-19" name="__codelineno-4-19"></a><span class="w">    </span><span class="p">}</span>
+<a href="#__codelineno-4-20" id="__codelineno-4-20" name="__codelineno-4-20"></a>
+<a href="#__codelineno-4-21" id="__codelineno-4-21" name="__codelineno-4-21"></a><span class="w">    </span><span class="nx">repo</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">repository</span><span class="p">.</span><span class="nx">NewConfigRepository</span><span class="p">(</span><span class="nx">client</span><span class="p">,</span><span class="w"> </span><span class="s">"testdb"</span><span class="p">)</span>
+<a href="#__codelineno-4-22" id="__codelineno-4-22" name="__codelineno-4-22"></a><span class="w">    </span><span class="nx">configs</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">repo</span><span class="p">.</span><span class="nx">FindAllByService</span><span class="p">(</span><span class="s">"exampleService"</span><span class="p">)</span>
+<a href="#__codelineno-4-23" id="__codelineno-4-23" name="__codelineno-4-23"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-4-24" id="__codelineno-4-24" name="__codelineno-4-24"></a><span class="w">        </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+<a href="#__codelineno-4-25" id="__codelineno-4-25" name="__codelineno-4-25"></a><span class="w">    </span><span class="p">}</span>
+<a href="#__codelineno-4-26" id="__codelineno-4-26" name="__codelineno-4-26"></a>
+<a href="#__codelineno-4-27" id="__codelineno-4-27" name="__codelineno-4-27"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="nx">_</span><span class="p">,</span><span class="w"> </span><span class="nx">config</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="nx">configs</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-4-28" id="__codelineno-4-28" name="__codelineno-4-28"></a><span class="w">        </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">"Config: %+v\n"</span><span class="p">,</span><span class="w"> </span><span class="nx">config</span><span class="p">)</span>
+<a href="#__codelineno-4-29" id="__codelineno-4-29" name="__codelineno-4-29"></a><span class="w">    </span><span class="p">}</span>
+<a href="#__codelineno-4-30" id="__codelineno-4-30" name="__codelineno-4-30"></a><span class="p">}</span>
 </code></pre></div>
 <h2 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link"></a></h2>
-<p>To run the tests for the <code>go-mongo</code> package, use the following command:</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a>npx<span class="w"> </span>nx<span class="w"> </span><span class="nb">test</span><span class="w"> </span>libs-golang-clients-resources-go-mongo
+<p>To run the tests for the <code>repository</code> package, use the following command:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a>npx<span class="w"> </span>nx<span class="w"> </span><span class="nb">test</span><span class="w"> </span>libs-golang-ddd-domain-repositories-database-mongodb-config-vault-repository
 </code></pre></div>
 </article>
 </div>
@@ -1315,8 +1415,8 @@
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"base": "../../../../../..", "features": ["content.code.annotate", "announce.dismiss", "navigation.tracking", "navigation.sections", "navigation.instant", "navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "toc.follow"], "search": "../../../../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
-<script src="../../../../../../assets/javascripts/bundle.081f42fc.min.js"></script>
+<script id="__config" type="application/json">{"base": "../../../../../../../../..", "features": ["content.code.annotate", "announce.dismiss", "navigation.tracking", "navigation.sections", "navigation.instant", "navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "toc.follow"], "search": "../../../../../../../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+<script src="../../../../../../../../../assets/javascripts/bundle.081f42fc.min.js"></script>
 <script>document$.subscribe(() => {
             window.update_swagger_ui_iframe_height = function (id) {
                 var iFrameID = document.getElementById(id);
