@@ -54,7 +54,6 @@ func (suite *ConfigVaultMongoDBRepositorySuite) SetupTest() {
 			{"service": "dep_service1", "source": "dep_source1"},
 			{"service": "dep_service2", "source": "dep_source2"},
 		},
-		UpdatedAt: "2023-01-01 12:00:00",
 	}
 
 	var err error
@@ -215,7 +214,6 @@ func (suite *ConfigVaultMongoDBRepositorySuite) TestUpdate() {
 	assert.NotNil(suite.T(), configUpdated)
 	assert.False(suite.T(), configUpdated.Active)
 	assert.Equal(suite.T(), configUpdated.CreatedAt, configStored.CreatedAt)
-	assert.NotEqual(suite.T(), configUpdated.UpdatedAt, configStored.UpdatedAt)
 	assert.NotEqual(suite.T(), configUpdated.ConfigVersionID, configStored.ConfigVersionID)
 }
 
@@ -255,7 +253,6 @@ func (suite *ConfigVaultMongoDBRepositorySuite) TestUpdateError() {
 	assert.NotNil(suite.T(), configUpdated)
 	assert.False(suite.T(), configUpdated.Active)
 	assert.Equal(suite.T(), configUpdated.CreatedAt, configStored.CreatedAt)
-	assert.NotEqual(suite.T(), configUpdated.UpdatedAt, configStored.UpdatedAt)
 	assert.NotEqual(suite.T(), configUpdated.ConfigVersionID, configStored.ConfigVersionID)
 
 	err = suite.client.Database(databaseName).Drop(nil)

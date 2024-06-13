@@ -45,7 +45,6 @@ func main() {
         DependsOn: []map[string]interface{}{
             {"service": "dependencyService", "source": "dependencySource"},
         },
-        UpdatedAt: "2023-06-08 12:00:00",
     }
 
     config, err := entity.NewConfig(configProps)
