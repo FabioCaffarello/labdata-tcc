@@ -155,11 +155,6 @@ func (c *Config) SetCreatedAt(createdAt string) {
 	c.CreatedAt = createdAt
 }
 
-// SetUpdatedAt sets the updated at timestamp of the Config entity.
-func (c *Config) SetUpdatedAt(updatedAt string) {
-	c.UpdatedAt = updatedAt
-}
-
 // ToMap converts the Config entity to a map representation.
 func (c *Config) ToMap() (map[string]interface{}, error) {
 	doc, err := regularTypesConversion.ConvertFromEntityToMapString(c)

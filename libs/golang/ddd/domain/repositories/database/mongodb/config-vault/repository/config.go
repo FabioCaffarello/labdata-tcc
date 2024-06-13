@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"time"
 
 	"libs/golang/ddd/domain/entities/config-vault/entity"
 
@@ -192,7 +191,6 @@ func (r *ConfigRepository) Update(config *entity.Config) error {
 	}
 
 	config.SetCreatedAt(configStored.CreatedAt)
-	config.SetUpdatedAt(time.Now().Format(dateLayout))
 
 	configMap, err := config.ToMap()
 	if err != nil {
