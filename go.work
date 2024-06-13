@@ -5,8 +5,12 @@ use (
 	./libs/golang/clients/resources/go-mongo
 	./libs/golang/clients/resources/go-rabbitmq
 	./libs/golang/ddd/domain/entities/config-vault
+	./libs/golang/ddd/domain/repositories/database/mock/config-vault
 	./libs/golang/ddd/domain/repositories/database/mongodb/config-vault
+	./libs/golang/ddd/dtos/config-vault
+	./libs/golang/ddd/shared/type-tools/custom-types-converter/config-vault
 	./libs/golang/ddd/shared/type-tools/regular-types-converter
+	./libs/golang/ddd/usecases/config-vault
 	./libs/golang/service-discovery
 	./libs/golang/shared/id/go-md5
 	./libs/golang/shared/id/go-uuid
