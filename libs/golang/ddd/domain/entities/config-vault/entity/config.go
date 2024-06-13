@@ -58,7 +58,7 @@ type ConfigProps struct {
 	Source    string
 	Provider  string
 	DependsOn []map[string]interface{}
-	UpdatedAt string
+	// UpdatedAt string
 }
 
 // getIDData constructs a map with the service, source, and provider information.
@@ -107,7 +107,7 @@ func NewConfig(configProps ConfigProps) (*Config, error) {
 		Source:    configProps.Source,
 		Provider:  configProps.Provider,
 		DependsOn: dependsOn,
-		UpdatedAt: configProps.UpdatedAt,
+		UpdatedAt: time.Now().Format(dateLayout),
 		CreatedAt: time.Now().Format(dateLayout),
 	}
 
