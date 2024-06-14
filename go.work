@@ -4,6 +4,7 @@ use (
 	./libs/golang/clients/resources/go-minio
 	./libs/golang/clients/resources/go-mongo
 	./libs/golang/clients/resources/go-rabbitmq
+	./libs/golang/ddd/adapters/http/handlers/health-check
 	./libs/golang/ddd/domain/entities/config-vault
 	./libs/golang/ddd/domain/repositories/database/mock/config-vault
 	./libs/golang/ddd/domain/repositories/database/mongodb/config-vault
