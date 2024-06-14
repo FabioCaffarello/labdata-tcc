@@ -9,7 +9,7 @@ import (
 // WebHealthzHandler handles HTTP requests for health checks,
 // providing information about the server's uptime and readiness.
 type WebHealthzHandler struct {
-	startedAt    time.Time // The time the server started.
+	startedAt    time.Time    // The time the server started.
 	timeProvider TimeProvider // The TimeProvider implementation for time-related functions.
 }
 
@@ -41,8 +41,7 @@ func NewWebHealthzHandler(timeProvider TimeProvider) *WebHealthzHandler {
 //
 // Example:
 //
-//   http.HandleFunc("/healthz", handler.Healthz)
-//
+//	http.HandleFunc("/healthz", handler.Healthz)
 func (h *WebHealthzHandler) Healthz(w http.ResponseWriter, r *http.Request) {
 	duration := h.timeProvider.Since(h.startedAt)
 	if duration.Seconds() < 5 {
