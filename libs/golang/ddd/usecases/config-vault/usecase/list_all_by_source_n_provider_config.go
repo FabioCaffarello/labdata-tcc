@@ -6,12 +6,12 @@ import (
 	"libs/golang/ddd/shared/type-tools/custom-types-converter/config-vault/converter"
 )
 
-// ListAllBySourceConfigUseCase is the use case for listing all configurations by source.
-type ListAllBySourceConfigUseCase struct {
+// ListAllBySourceAndProviderConfigUseCase is the use case for listing all configurations by source.
+type ListAllBySourceAndProviderConfigUseCase struct {
 	ConfigRepository entity.ConfigRepositoryInterface
 }
 
-// NewListAllBySourceConfigUseCase initializes a new instance of ListAllBySourceConfigUseCase with the provided ConfigRepositoryInterface.
+// NewListAllBySourceAndProviderConfigUseCase initializes a new instance of ListAllBySourceAndProviderConfigUseCase with the provided ConfigRepositoryInterface.
 //
 // Parameters:
 //
@@ -19,11 +19,11 @@ type ListAllBySourceConfigUseCase struct {
 //
 // Returns:
 //
-//	A pointer to an instance of ListAllBySourceConfigUseCase.
-func NewListAllBySourceConfigUseCase(
+//	A pointer to an instance of ListAllBySourceAndProviderConfigUseCase.
+func NewListAllBySourceAndProviderConfigUseCase(
 	configRepository entity.ConfigRepositoryInterface,
-) *ListAllBySourceConfigUseCase {
-	return &ListAllBySourceConfigUseCase{
+) *ListAllBySourceAndProviderConfigUseCase {
+	return &ListAllBySourceAndProviderConfigUseCase{
 		ConfigRepository: configRepository,
 	}
 }
@@ -38,7 +38,7 @@ func NewListAllBySourceConfigUseCase(
 // Returns:
 //
 //	A slice of output DTOs containing the configuration data, and an error if any occurred during the process.
-func (uc *ListAllBySourceConfigUseCase) Execute(provider, source string) ([]outputdto.ConfigDTO, error) {
+func (uc *ListAllBySourceAndProviderConfigUseCase) Execute(provider, source string) ([]outputdto.ConfigDTO, error) {
 	configs, err := uc.ConfigRepository.FindAllBySourceAndProvider(provider, source)
 	if err != nil {
 		return []outputdto.ConfigDTO{}, err

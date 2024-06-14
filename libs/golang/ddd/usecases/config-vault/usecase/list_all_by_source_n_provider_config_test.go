@@ -16,7 +16,7 @@ import (
 type ListAllBySourceAndProviderConfigUseCaseSuite struct {
 	suite.Suite
 	repoMock *mockrepository.ConfigRepositoryMock
-	useCase  *ListAllBySourceConfigUseCase
+	useCase  *ListAllBySourceAndProviderConfigUseCase
 }
 
 func TestListAllBySourceAndProviderConfigUseCaseSuite(t *testing.T) {
@@ -25,7 +25,7 @@ func TestListAllBySourceAndProviderConfigUseCaseSuite(t *testing.T) {
 
 func (suite *ListAllBySourceAndProviderConfigUseCaseSuite) SetupTest() {
 	suite.repoMock = new(mockrepository.ConfigRepositoryMock)
-	suite.useCase = NewListAllBySourceConfigUseCase(suite.repoMock)
+	suite.useCase = NewListAllBySourceAndProviderConfigUseCase(suite.repoMock)
 }
 
 func (suite *ListAllBySourceAndProviderConfigUseCaseSuite) TestExecuteWhenSuccess() {
