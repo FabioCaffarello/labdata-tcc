@@ -18,11 +18,11 @@ type Server struct {
 //
 // Parameters:
 //
-// 	addr: The address to run the server on.
+//	addr: The address to run the server on.
 //
 // Returns:
 //
-// 	A new Server instance.
+//	A new Server instance.
 func NewWebServer(addr string) *Server {
 	return &Server{
 		router: chi.NewRouter(),
@@ -46,16 +46,16 @@ func (s *Server) ConfigureDefaults() {
 //
 // Parameters:
 //
-// 	middlewares: A list of middleware functions to add to the server.
-// 
+//	middlewares: A list of middleware functions to add to the server.
+//
 // Returns:
-// 
-// 	None.
-// 
+//
+//	None.
+//
 // Example:
 //
-// 	server.RegisterMiddlewares(middleware1, middleware2, middleware3)
-// 
+//	server.RegisterMiddlewares(middleware1, middleware2, middleware3)
+//
 // This will add middleware1, middleware2, and middleware3 to the server.
 func (s *Server) RegisterMiddlewares(middlewares ...func(http.Handler) http.Handler) {
 	for _, m := range middlewares {
@@ -67,18 +67,18 @@ func (s *Server) RegisterMiddlewares(middlewares ...func(http.Handler) http.Hand
 //
 // Parameters:
 //
-// 	method: The HTTP method for the route.
-// 	pattern: The URL pattern for the route.
-// 	handler: The handler function for the route.
-// 	group: An optional group name to add the route to.
+//	method: The HTTP method for the route.
+//	pattern: The URL pattern for the route.
+//	handler: The handler function for the route.
+//	group: An optional group name to add the route to.
 //
 // Returns:
 //
-// 	None.
-// 
+//	None.
+//
 // Example:
 //
-// 	server.RegisterRoute("GET", "/hello", helloHandler)
+//	server.RegisterRoute("GET", "/hello", helloHandler)
 //
 // This will add a new route to the server that listens for GET requests on the /hello URL pattern and calls the helloHandler function.
 func (s *Server) RegisterRoute(method, pattern string, handler http.HandlerFunc, group ...string) {
@@ -94,19 +94,19 @@ func (s *Server) RegisterRoute(method, pattern string, handler http.HandlerFunc,
 //
 // Parameters:
 //
-// 	prefix: The common prefix for the group of routes.
-// 	routes: A function that defines the routes for the group.
+//	prefix: The common prefix for the group of routes.
+//	routes: A function that defines the routes for the group.
 //
 // Returns:
 //
-// 	None.
+//	None.
 //
 // Example:
 //
-// 	server.RegisterRouteGroup("/api", func(r chi.Router) {
-// 		r.Get("/hello", helloHandler)
-// 		r.Post("/world", worldHandler)
-// 	})
+//	server.RegisterRouteGroup("/api", func(r chi.Router) {
+//		r.Get("/hello", helloHandler)
+//		r.Post("/world", worldHandler)
+//	})
 //
 // This will add a group of routes under the /api prefix with two routes: /hello and /world.
 func (s *Server) RegisterRouteGroup(prefix string, routes func(r chi.Router)) {
@@ -117,11 +117,11 @@ func (s *Server) RegisterRouteGroup(prefix string, routes func(r chi.Router)) {
 //
 // Parameters:
 //
-// 	None.
+//	None.
 //
 // Returns:
 //
-// 	An error if the server fails to start.
+//	An error if the server fails to start.
 func (s *Server) Start() error {
 	return http.ListenAndServe(s.addr, s.router)
 }
