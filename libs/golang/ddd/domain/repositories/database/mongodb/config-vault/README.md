@@ -199,7 +199,7 @@ func main() {
     }
 
     repo := repository.NewConfigRepository(client, "testdb")
-    configs, err := repo.FindAllByService("exampleService")
+    configs, err := repo.FindAllByServiceAndProvider("exampleProvider", "exampleService")
     if err != nil {
         log.Fatal(err)
     }
