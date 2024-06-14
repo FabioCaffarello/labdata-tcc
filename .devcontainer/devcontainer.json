@@ -38,7 +38,8 @@
                 "technosophos.vscode-make",
                 "ms-vscode.makefile-tools",
                 "nrwl.angular-console",
-                "shd101wyy.markdown-preview-enhanced"
+                "shd101wyy.markdown-preview-enhanced",
+                "Gruntfuggly.todo-tree"
             ],
             "settings": {
                 "terminal.integrated.defaultProfile.linux": "zsh",
