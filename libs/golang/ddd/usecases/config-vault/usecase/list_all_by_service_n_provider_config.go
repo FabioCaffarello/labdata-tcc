@@ -32,13 +32,14 @@ func NewListAllByServiceConfigUseCase(
 //
 // Parameters:
 //
+//	provider: The provider name to filter configurations by.
 //	service: The service name to filter configurations by.
 //
 // Returns:
 //
 //	A slice of output DTOs containing the configuration data, and an error if any occurred during the process.
-func (uc *ListAllByServiceConfigUseCase) Execute(service string) ([]outputdto.ConfigDTO, error) {
-	configs, err := uc.ConfigRepository.FindAllByService(service)
+func (uc *ListAllByServiceConfigUseCase) Execute(provider, service string) ([]outputdto.ConfigDTO, error) {
+	configs, err := uc.ConfigRepository.FindAllByServiceAndProvider(provider, service)
 	if err != nil {
 		return []outputdto.ConfigDTO{}, err
 	}

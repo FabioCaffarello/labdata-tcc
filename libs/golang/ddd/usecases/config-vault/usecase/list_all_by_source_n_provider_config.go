@@ -6,12 +6,12 @@ import (
 	"libs/golang/ddd/shared/type-tools/custom-types-converter/config-vault/converter"
 )
 
-// ListAllByServiceAndSourceConfigUseCase is the use case for listing all configurations by service and source.
-type ListAllByServiceAndSourceConfigUseCase struct {
+// ListAllBySourceConfigUseCase is the use case for listing all configurations by source.
+type ListAllBySourceConfigUseCase struct {
 	ConfigRepository entity.ConfigRepositoryInterface
 }
 
-// NewListAllByServiceAndSourceConfigUseCase initializes a new instance of ListAllByServiceAndSourceConfigUseCase with the provided ConfigRepositoryInterface.
+// NewListAllBySourceConfigUseCase initializes a new instance of ListAllBySourceConfigUseCase with the provided ConfigRepositoryInterface.
 //
 // Parameters:
 //
@@ -19,27 +19,27 @@ type ListAllByServiceAndSourceConfigUseCase struct {
 //
 // Returns:
 //
-//	A pointer to an instance of ListAllByServiceAndSourceConfigUseCase.
-func NewListAllByServiceAndSourceConfigUseCase(
+//	A pointer to an instance of ListAllBySourceConfigUseCase.
+func NewListAllBySourceConfigUseCase(
 	configRepository entity.ConfigRepositoryInterface,
-) *ListAllByServiceAndSourceConfigUseCase {
-	return &ListAllByServiceAndSourceConfigUseCase{
+) *ListAllBySourceConfigUseCase {
+	return &ListAllBySourceConfigUseCase{
 		ConfigRepository: configRepository,
 	}
 }
 
-// Execute retrieves all configurations by service and source from the repository.
+// Execute retrieves all configurations by source from the repository.
 //
 // Parameters:
 //
-//	service: The service name to filter configurations by.
+//	provider: The provider name to filter configurations by.
 //	source: The source name to filter configurations by.
 //
 // Returns:
 //
 //	A slice of output DTOs containing the configuration data, and an error if any occurred during the process.
-func (uc *ListAllByServiceAndSourceConfigUseCase) Execute(service, source string) ([]outputdto.ConfigDTO, error) {
-	configs, err := uc.ConfigRepository.FindAllByServiceAndSource(service, source)
+func (uc *ListAllBySourceConfigUseCase) Execute(provider, source string) ([]outputdto.ConfigDTO, error) {
+	configs, err := uc.ConfigRepository.FindAllBySourceAndProvider(provider, source)
 	if err != nil {
 		return []outputdto.ConfigDTO{}, err
 	}

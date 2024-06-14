@@ -13,22 +13,22 @@ import (
 	"github.com/stretchr/testify/suite"
 )
 
-type ListAllByServiceConfigUseCaseSuite struct {
+type ListAllByServiceAndProviderConfigUseCaseSuite struct {
 	suite.Suite
 	repoMock *mockrepository.ConfigRepositoryMock
 	useCase  *ListAllByServiceConfigUseCase
 }
 
-func TestListAllByServiceConfigUseCaseSuite(t *testing.T) {
-	suite.Run(t, new(ListAllByServiceConfigUseCaseSuite))
+func TestListAllByServiceAndProviderConfigUseCaseSuite(t *testing.T) {
+	suite.Run(t, new(ListAllByServiceAndProviderConfigUseCaseSuite))
 }
 
-func (suite *ListAllByServiceConfigUseCaseSuite) SetupTest() {
+func (suite *ListAllByServiceAndProviderConfigUseCaseSuite) SetupTest() {
 	suite.repoMock = new(mockrepository.ConfigRepositoryMock)
 	suite.useCase = NewListAllByServiceConfigUseCase(suite.repoMock)
 }
 
-func (suite *ListAllByServiceConfigUseCaseSuite) TestExecuteWhenSuccess() {
+func (suite *ListAllByServiceAndProviderConfigUseCaseSuite) TestExecuteWhenSuccess() {
 	entityConfigs := []*entity.Config{
 		{
 			ID:              "1",
@@ -45,7 +45,7 @@ func (suite *ListAllByServiceConfigUseCaseSuite) TestExecuteWhenSuccess() {
 		},
 	}
 
-	suite.repoMock.On("FindAllByService", "service1").Return(entityConfigs, nil)
+	suite.repoMock.On("FindAllByServiceAndProvider", "provider1", "service1").Return(entityConfigs, nil)
 
 	expectedOutput := []outputdto.ConfigDTO{
 		{
@@ -63,17 +63,17 @@ func (suite *ListAllByServiceConfigUseCaseSuite) TestExecuteWhenSuccess() {
 		},
 	}
 
-	output, err := suite.useCase.Execute("service1")
+	output, err := suite.useCase.Execute("provider1", "service1")
 
 	assert.Nil(suite.T(), err)
 	assert.Equal(suite.T(), expectedOutput, output)
 	suite.repoMock.AssertExpectations(suite.T())
 }
 
-func (suite *ListAllByServiceConfigUseCaseSuite) TestExecuteWhenError() {
-	suite.repoMock.On("FindAllByService", "service1").Return(nil, fmt.Errorf("Error occurred while fetching data"))
+func (suite *ListAllByServiceAndProviderConfigUseCaseSuite) TestExecuteWhenError() {
+	suite.repoMock.On("FindAllByServiceAndProvider", "provider1", "service1").Return(nil, fmt.Errorf("Error occurred while fetching data"))
 
-	output, err := suite.useCase.Execute("service1")
+	output, err := suite.useCase.Execute("provider1", "service1")
 
 	assert.NotNil(suite.T(), err)
 	assert.Equal(suite.T(), []outputdto.ConfigDTO{}, output)

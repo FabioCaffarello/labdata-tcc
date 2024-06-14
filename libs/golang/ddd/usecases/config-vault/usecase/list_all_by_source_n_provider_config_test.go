@@ -13,22 +13,22 @@ import (
 	"github.com/stretchr/testify/suite"
 )
 
-type ListAllByServiceAndSourceConfigUseCaseSuite struct {
+type ListAllBySourceAndProviderConfigUseCaseSuite struct {
 	suite.Suite
 	repoMock *mockrepository.ConfigRepositoryMock
-	useCase  *ListAllByServiceAndSourceConfigUseCase
+	useCase  *ListAllBySourceConfigUseCase
 }
 
-func TestListAllByServiceAndSourceConfigUseCaseSuite(t *testing.T) {
-	suite.Run(t, new(ListAllByServiceAndSourceConfigUseCaseSuite))
+func TestListAllBySourceAndProviderConfigUseCaseSuite(t *testing.T) {
+	suite.Run(t, new(ListAllBySourceAndProviderConfigUseCaseSuite))
 }
 
-func (suite *ListAllByServiceAndSourceConfigUseCaseSuite) SetupTest() {
+func (suite *ListAllBySourceAndProviderConfigUseCaseSuite) SetupTest() {
 	suite.repoMock = new(mockrepository.ConfigRepositoryMock)
-	suite.useCase = NewListAllByServiceAndSourceConfigUseCase(suite.repoMock)
+	suite.useCase = NewListAllBySourceConfigUseCase(suite.repoMock)
 }
 
-func (suite *ListAllByServiceAndSourceConfigUseCaseSuite) TestExecutewhenSuccess() {
+func (suite *ListAllBySourceAndProviderConfigUseCaseSuite) TestExecuteWhenSuccess() {
 	entityConfigs := []*entity.Config{
 		{
 			ID:              "1",
@@ -45,7 +45,7 @@ func (suite *ListAllByServiceAndSourceConfigUseCaseSuite) TestExecutewhenSuccess
 		},
 	}
 
-	suite.repoMock.On("FindAllByServiceAndSource", "service1", "source1").Return(entityConfigs, nil)
+	suite.repoMock.On("FindAllBySourceAndProvider", "provider1", "source1").Return(entityConfigs, nil)
 
 	expectedOutput := []outputdto.ConfigDTO{
 		{
@@ -63,17 +63,17 @@ func (suite *ListAllByServiceAndSourceConfigUseCaseSuite) TestExecutewhenSuccess
 		},
 	}
 
-	output, err := suite.useCase.Execute("service1", "source1")
+	output, err := suite.useCase.Execute("provider1", "source1")
 
 	assert.Nil(suite.T(), err)
 	assert.Equal(suite.T(), expectedOutput, output)
 	suite.repoMock.AssertExpectations(suite.T())
 }
 
-func (suite *ListAllByServiceAndSourceConfigUseCaseSuite) TestExecutewhenError() {
-	suite.repoMock.On("FindAllByServiceAndSource", "service1", "source1").Return(nil, fmt.Errorf("Error: Config with service: %s and source: %s not found", "service1", "source1"))
+func (suite *ListAllBySourceAndProviderConfigUseCaseSuite) TestExecuteWhenError() {
+	suite.repoMock.On("FindAllBySourceAndProvider", "provider1", "source1").Return(nil, fmt.Errorf("error"))
 
-	output, err := suite.useCase.Execute("service1", "source1")
+	output, err := suite.useCase.Execute("provider1", "source1")
 
 	assert.NotNil(suite.T(), err)
 	assert.Equal(suite.T(), []outputdto.ConfigDTO{}, output)
