@@ -6,12 +6,12 @@ import (
 	"libs/golang/ddd/shared/type-tools/custom-types-converter/config-vault/converter"
 )
 
-// ListAllByDependsOnConfigUseCase is the use case for listing all configurations by their dependencies.
-type ListAllByDependsOnConfigUseCase struct {
+// ListAllByProviderAndDependsOnConfigUseCase is the use case for listing all configurations by their dependencies.
+type ListAllByProviderAndDependsOnConfigUseCase struct {
 	ConfigRepository entity.ConfigRepositoryInterface
 }
 
-// NewListAllByDependsOnConfigUseCase initializes a new instance of ListAllByDependsOnConfigUseCase with the provided ConfigRepositoryInterface.
+// NewListAllByProviderAndDependsOnConfigUseCase initializes a new instance of ListAllByProviderAndDependsOnConfigUseCase with the provided ConfigRepositoryInterface.
 //
 // Parameters:
 //
@@ -19,11 +19,11 @@ type ListAllByDependsOnConfigUseCase struct {
 //
 // Returns:
 //
-//	A pointer to an instance of ListAllByDependsOnConfigUseCase.
-func NewListAllByDependsOnConfigUseCase(
+//	A pointer to an instance of ListAllByProviderAndDependsOnConfigUseCase.
+func NewListAllByProviderAndDependsOnConfigUseCase(
 	configRepository entity.ConfigRepositoryInterface,
-) *ListAllByDependsOnConfigUseCase {
-	return &ListAllByDependsOnConfigUseCase{
+) *ListAllByProviderAndDependsOnConfigUseCase {
+	return &ListAllByProviderAndDependsOnConfigUseCase{
 		ConfigRepository: configRepository,
 	}
 }
@@ -32,18 +32,15 @@ func NewListAllByDependsOnConfigUseCase(
 //
 // Parameters:
 //
+//	provider: The provider name to filter configurations by.
 //	service: The service name to filter configurations by.
 //	source: The source name to filter configurations by.
 //
 // Returns:
 //
 //	A slice of output DTOs containing the configuration data, and an error if any occurred during the process.
-func (uc *ListAllByDependsOnConfigUseCase) Execute(service, source string) ([]outputdto.ConfigDTO, error) {
-	dependsOn := map[string]interface{}{
-		"service": service,
-		"source":  source,
-	}
-	configs, err := uc.ConfigRepository.FindAllByDependsOn(dependsOn)
+func (uc *ListAllByProviderAndDependsOnConfigUseCase) Execute(provider, service, source string) ([]outputdto.ConfigDTO, error) {
+	configs, err := uc.ConfigRepository.FindAllByProviderAndDependsOn(provider, service, source)
 	if err != nil {
 		return []outputdto.ConfigDTO{}, err
 	}

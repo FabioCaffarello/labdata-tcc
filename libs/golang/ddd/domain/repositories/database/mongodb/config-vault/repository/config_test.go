@@ -398,12 +398,12 @@ func (suite *ConfigVaultMongoDBRepositorySuite) TestFindAllByServiceAndProviderA
 	assert.Equal(suite.T(), 1, len(configs))
 }
 
-func (suite *ConfigVaultMongoDBRepositorySuite) TestFindAllByDependsOn() {
+func (suite *ConfigVaultMongoDBRepositorySuite) TestFindAllByProviderAndDependsOn() {
 	repository := NewConfigRepository(suite.client, databaseName)
 	err := repository.Create(suite.config)
 	assert.Nil(suite.T(), err)
 
-	configs, err := repository.FindAllByDependsOn("dep_service1", "dep_source1")
+	configs, err := repository.FindAllByProviderAndDependsOn("test_provider", "dep_service1", "dep_source1")
 	assert.Nil(suite.T(), err)
 	assert.NotNil(suite.T(), configs)
 	assert.Equal(suite.T(), 1, len(configs))

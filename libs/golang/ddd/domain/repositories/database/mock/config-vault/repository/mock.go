@@ -89,9 +89,9 @@ func (m *ConfigRepositoryMock) FindAllByServiceAndProviderAndActive(service, pro
 	return result.([]*entity.Config), args.Error(1)
 }
 
-// FindAllByDependsOn is a mock implementation of ConfigRepositoryInterface's FindAllByDependsOn method
-func (m *ConfigRepositoryMock) FindAllByDependsOn(dependsOn map[string]interface{}) ([]*entity.Config, error) {
-	args := m.Called(dependsOn)
+// FindAllByProviderAndDependsOn is a mock implementation of ConfigRepositoryInterface's FindAllByProviderAndDependsOn method
+func (m *ConfigRepositoryMock) FindAllByProviderAndDependsOn(provider, service, source string) ([]*entity.Config, error) {
+	args := m.Called(provider, service, source)
 	result := args.Get(0)
 	if result == nil {
 		return nil, args.Error(1)

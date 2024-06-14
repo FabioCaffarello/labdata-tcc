@@ -376,7 +376,7 @@ func (r *ConfigRepository) FindAllByServiceAndProviderAndActive(service, provide
 	return r.find(query)
 }
 
-// FindAllByDependsOn retrieves all Config documents that have dependencies matching the given service and source.
+// FindAllByProviderAndDependsOn retrieves all Config documents that have dependencies matching the given service and source.
 //
 // Parameters:
 //   - service: The service name to match in dependencies.
@@ -388,14 +388,22 @@ func (r *ConfigRepository) FindAllByServiceAndProviderAndActive(service, provide
 //
 // Example:
 //
-//	configs, err := repository.FindAllByDependsOn("dep_service", "dep_source")
+//	configs, err := repository.FindAllByProviderAndDependsOn("provider", "dep_service", "dep_source")
 //	if err != nil {
 //	    log.Fatal(err)
 //	}
 //	for _, config := range configs {
 //	    fmt.Printf("Config: %+v\n", config)
 //	}
-func (r *ConfigRepository) FindAllByDependsOn(service, source string) ([]*entity.Config, error) {
-	query := bson.M{"depends_on": bson.M{"$elemMatch": bson.M{"service": service, "source": source}}}
+func (r *ConfigRepository) FindAllByProviderAndDependsOn(provider, service, source string) ([]*entity.Config, error) {
+	query := bson.M{
+		"provider": provider,
+		"depends_on": bson.M{
+			"$elemMatch": bson.M{
+				"service": service, 
+				"source": source,
+			},
+		},
+	}
 	return r.find(query)
 }

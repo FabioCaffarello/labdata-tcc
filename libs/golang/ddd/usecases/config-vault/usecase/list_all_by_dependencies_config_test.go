@@ -12,22 +12,22 @@ import (
 	"github.com/stretchr/testify/suite"
 )
 
-type ListAllByDependsOnConfigUseCaseSuite struct {
+type ListAllByProviderAndDependsOnConfigUseCaseSuite struct {
 	suite.Suite
 	repoMock *mockrepository.ConfigRepositoryMock
-	useCase  *ListAllByDependsOnConfigUseCase
+	useCase  *ListAllByProviderAndDependsOnConfigUseCase
 }
 
-func TestListAllByDependsOnConfigUseCaseSuite(t *testing.T) {
-	suite.Run(t, new(ListAllByDependsOnConfigUseCaseSuite))
+func TestListAllByProviderAndDependsOnConfigUseCaseSuite(t *testing.T) {
+	suite.Run(t, new(ListAllByProviderAndDependsOnConfigUseCaseSuite))
 }
 
-func (suite *ListAllByDependsOnConfigUseCaseSuite) SetupTest() {
+func (suite *ListAllByProviderAndDependsOnConfigUseCaseSuite) SetupTest() {
 	suite.repoMock = new(mockrepository.ConfigRepositoryMock)
-	suite.useCase = NewListAllByDependsOnConfigUseCase(suite.repoMock)
+	suite.useCase = NewListAllByProviderAndDependsOnConfigUseCase(suite.repoMock)
 }
 
-func (suite *ListAllByDependsOnConfigUseCaseSuite) TestExecuteWhenSuccess() {
+func (suite *ListAllByProviderAndDependsOnConfigUseCaseSuite) TestExecuteWhenSuccess() {
 	entityConfigs := []*entity.Config{
 		{
 			ID:              "1",
@@ -44,12 +44,7 @@ func (suite *ListAllByDependsOnConfigUseCaseSuite) TestExecuteWhenSuccess() {
 		},
 	}
 
-	dependsOn := map[string]interface{}{
-		"service": "service1",
-		"source":  "source1",
-	}
-
-	suite.repoMock.On("FindAllByDependsOn", dependsOn).Return(entityConfigs, nil)
+	suite.repoMock.On("FindAllByProviderAndDependsOn", "provider1", "dep_service1", "dep_source1").Return(entityConfigs, nil)
 
 	expectedOutput := []outputdto.ConfigDTO{
 		{
@@ -67,22 +62,17 @@ func (suite *ListAllByDependsOnConfigUseCaseSuite) TestExecuteWhenSuccess() {
 		},
 	}
 
-	output, err := suite.useCase.Execute("service1", "source1")
+	output, err := suite.useCase.Execute("provider1", "dep_service1", "dep_source1")
 
 	assert.Nil(suite.T(), err)
 	assert.Equal(suite.T(), expectedOutput, output)
 	suite.repoMock.AssertExpectations(suite.T())
 }
 
-func (suite *ListAllByDependsOnConfigUseCaseSuite) TestExecuteWhenError() {
-	dependsOn := map[string]interface{}{
-		"service": "service1",
-		"source":  "source1",
-	}
+func (suite *ListAllByProviderAndDependsOnConfigUseCaseSuite) TestExecuteWhenError() {
+	suite.repoMock.On("FindAllByProviderAndDependsOn", "provider1", "service1", "source1").Return(nil, fmt.Errorf("error"))
 
-	suite.repoMock.On("FindAllByDependsOn", dependsOn).Return(nil, fmt.Errorf("error"))
-
-	output, err := suite.useCase.Execute("service1", "source1")
+	output, err := suite.useCase.Execute("provider1", "service1", "source1")
 
 	assert.NotNil(suite.T(), err)
 	assert.Equal(suite.T(), []outputdto.ConfigDTO{}, output)
