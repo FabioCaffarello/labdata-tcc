@@ -400,8 +400,8 @@ func (r *ConfigRepository) FindAllByProviderAndDependsOn(provider, service, sour
 		"provider": provider,
 		"depends_on": bson.M{
 			"$elemMatch": bson.M{
-				"service": service, 
-				"source": source,
+				"service": service,
+				"source":  source,
 			},
 		},
 	}
