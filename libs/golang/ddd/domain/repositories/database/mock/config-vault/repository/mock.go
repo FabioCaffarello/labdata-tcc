@@ -49,9 +49,9 @@ func (m *ConfigRepositoryMock) Delete(id string) error {
 	return args.Error(0)
 }
 
-// FindAllByService is a mock implementation of ConfigRepositoryInterface's FindAllByService method
-func (m *ConfigRepositoryMock) FindAllByService(service string) ([]*entity.Config, error) {
-	args := m.Called(service)
+// FindAllByServiceAndProvider is a mock implementation of ConfigRepositoryInterface's FindAllByServiceAndProvider method
+func (m *ConfigRepositoryMock) FindAllByServiceAndProvider(provider, service string) ([]*entity.Config, error) {
+	args := m.Called(provider, service)
 	result := args.Get(0)
 	if result == nil {
 		return nil, args.Error(1)
@@ -59,19 +59,9 @@ func (m *ConfigRepositoryMock) FindAllByService(service string) ([]*entity.Confi
 	return result.([]*entity.Config), args.Error(1)
 }
 
-// FindAllBySource is a mock implementation of ConfigRepositoryInterface's FindAllBySource method
-func (m *ConfigRepositoryMock) FindAllBySource(source string) ([]*entity.Config, error) {
-	args := m.Called(source)
-	result := args.Get(0)
-	if result == nil {
-		return nil, args.Error(1)
-	}
-	return result.([]*entity.Config), args.Error(1)
-}
-
-// FindAllByServiceAndSource is a mock implementation of ConfigRepositoryInterface's FindAllByServiceAndSource method
-func (m *ConfigRepositoryMock) FindAllByServiceAndSource(service, source string) ([]*entity.Config, error) {
-	args := m.Called(service, source)
+// FindAllBySourceAndProvider is a mock implementation of ConfigRepositoryInterface's FindAllBySourceAndProvider method
+func (m *ConfigRepositoryMock) FindAllBySourceAndProvider(provider, source string) ([]*entity.Config, error) {
+	args := m.Called(provider, source)
 	result := args.Get(0)
 	if result == nil {
 		return nil, args.Error(1)
