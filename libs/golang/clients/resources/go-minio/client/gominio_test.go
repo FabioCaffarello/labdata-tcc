@@ -26,7 +26,8 @@ func TestGoMinioSuite(t *testing.T) {
 func (suite *GoMinioSuite) SetupSuite() {
 	suite.ctx = context.Background()
 	config := Config{
-		Endpoint:  "localhost:9000",
+		Port:      "9000",
+		Host:      "localhost",
 		AccessKey: "test-root-user",
 		SecretKey: "test-root-password",
 		UseSSL:    false,

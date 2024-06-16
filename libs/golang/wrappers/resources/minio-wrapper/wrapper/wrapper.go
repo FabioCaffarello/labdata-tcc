@@ -22,7 +22,8 @@ func NewMinioWrapper() *MinioWrapper {
 // It returns an error if the client could not be created.
 func (m *MinioWrapper) Init() error {
 	config := gominio.Config{
-		Endpoint:  os.Getenv("MINIO_ENDPOINT"),
+		Port:      os.Getenv("MINIO_PORT"),
+		Host:      os.Getenv("MINIO_HOST"),
 		AccessKey: os.Getenv("MINIO_ACCESS_KEY"),
 		SecretKey: os.Getenv("MINIO_SECRET_KEY"),
 		UseSSL:    os.Getenv("MINIO_USE_SSL") == "true",

@@ -1,10 +1,12 @@
 package servicediscovery
 
 import (
+	"os"
 	"sync"
 
 	resourceImpl "libs/golang/wrappers/core/resource-contract"
 	resourcemapping "libs/golang/wrappers/core/resource-mapping/mapping"
+
 	miniowrapper "libs/golang/wrappers/resources/minio-wrapper/wrapper"
 	mongowrapper "libs/golang/wrappers/resources/mongo-wrapper/wrapper"
 	rabbitmqWrapper "libs/golang/wrappers/resources/rabbitmq-wrapper/wrapper"
@@ -14,6 +16,7 @@ import (
 type ServiceDiscovery struct {
 	resourceMapping *resourcemapping.Resources
 	services        map[string]interface{}
+	mu              sync.RWMutex
 }
 
 var (
@@ -47,22 +50,33 @@ func NewServiceDiscovery() *ServiceDiscovery {
 	return instance
 }
 
+func isEnvVarSet(envVar string) bool {
+	value, exists := os.LookupEnv(envVar)
+	return exists && value != ""
+}
+
 // registerResources registers all necessary resources with their respective keys.
 func (s *ServiceDiscovery) registerResources() {
 	// Register MongoDB resource
-	mongoWrapper := mongowrapper.NewMongoDBWrapper()
-	s.InitResourceWrapper(mongoWrapper)
-	s.resourceMapping.RegisterResource("mongodb", mongoWrapper)
+	if isEnvVarSet("MONGODB_PORT") {
+		mongoWrapper := mongowrapper.NewMongoDBWrapper()
+		s.InitResourceWrapper(mongoWrapper)
+		s.resourceMapping.RegisterResource("mongodb", mongoWrapper)
+	}
 
 	// Register Minio resource
-	minioWrapper := miniowrapper.NewMinioWrapper()
-	s.InitResourceWrapper(minioWrapper)
-	s.resourceMapping.RegisterResource("minio", minioWrapper)
+	if isEnvVarSet("MINIO_PORT") {
+		minioWrapper := miniowrapper.NewMinioWrapper()
+		s.InitResourceWrapper(minioWrapper)
+		s.resourceMapping.RegisterResource("minio", minioWrapper)
+	}
 
 	// Register RabbitMQ resource
-	rabbitMQWrapper := rabbitmqWrapper.NewRabbitMQWrapper()
-	s.InitResourceWrapper(rabbitMQWrapper)
-	s.resourceMapping.RegisterResource("rabbitmq", rabbitMQWrapper)
+	if isEnvVarSet("RABBITMQ_PORT") {
+		rabbitMQWrapper := rabbitmqWrapper.NewRabbitMQWrapper()
+		s.InitResourceWrapper(rabbitMQWrapper)
+		s.resourceMapping.RegisterResource("rabbitmq", rabbitMQWrapper)
+	}
 }
 
 // InitResourceWrapper initializes the given resource wrapper using the configured initializer.

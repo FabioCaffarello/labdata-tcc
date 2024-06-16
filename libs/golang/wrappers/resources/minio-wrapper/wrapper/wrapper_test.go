@@ -34,7 +34,8 @@ func (f *MockClientFactory) NewClient(config gominio.Config) (*gominio.Client, e
 
 func TestMinioWrapper_Init(t *testing.T) {
 	// Set environment variables for testing
-	os.Setenv("MINIO_ENDPOINT", "localhost:9000")
+	os.Setenv("MINIO_PORT", "9000")
+	os.Setenv("MINIO_HOST", "localhost")
 	os.Setenv("MINIO_ACCESS_KEY", "minioaccesskey")
 	os.Setenv("MINIO_SECRET_KEY", "miniosecretkey")
 	os.Setenv("MINIO_USE_SSL", "false")
