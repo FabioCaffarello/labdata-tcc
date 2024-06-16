@@ -32,17 +32,17 @@ type Config struct {
 //
 // Example:
 //
-//	config := Config{
-//      Port:      "9000",
-//      Host:      "localhost",
-//	    AccessKey: "minioaccesskey",
-//	    SecretKey: "miniosecretkey",
-//	    UseSSL:    false,
-//	}
-//	client, err := NewClient(config)
-//	if err != nil {
-//	    log.Fatal(err)
-//	}
+//		config := Config{
+//	     Port:      "9000",
+//	     Host:      "localhost",
+//		    AccessKey: "minioaccesskey",
+//		    SecretKey: "miniosecretkey",
+//		    UseSSL:    false,
+//		}
+//		client, err := NewClient(config)
+//		if err != nil {
+//		    log.Fatal(err)
+//		}
 func NewClient(config Config) (*Client, error) {
 	endpoint := fmt.Sprintf("%s:%s", config.Host, config.Port)
 	client, err := minio.New(endpoint, &minio.Options{
