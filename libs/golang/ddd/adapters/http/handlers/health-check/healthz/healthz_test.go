@@ -24,7 +24,7 @@ func (suite *WebHealthzHandlerSuite) SetupTest() {
 	suite.mockTimeProvider = &MockTimeProvider{
 		currentTime: time.Now(),
 	}
-	suite.handler = NewWebHealthzHandler(suite.mockTimeProvider)
+	suite.handler = NewWebHealthzHandler(suite.mockTimeProvider, 5*time.Second)
 }
 
 func (suite *WebHealthzHandlerSuite) TestHealthzHandlerBeforeFiveSeconds() {
