@@ -4,6 +4,8 @@ import (
 	"os"
 	"testing"
 
+	gomongodb "libs/golang/clients/resources/go-mongo/client"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
 	"go.mongodb.org/mongo-driver/bson"
@@ -39,11 +41,9 @@ func (suite *ConfigVaultMongoDBRepositorySuite) SetupSuite() {
 }
 
 func (suite *ConfigVaultMongoDBRepositorySuite) SetupTest() {
-	clientInterface := suite.wrapper.GetClient()
-
-	var ok bool
-	suite.client, ok = clientInterface.(*mongo.Client)
-	assert.True(suite.T(), ok, "expected *mongo.Client, got %T", clientInterface)
+	clientWrapper, ok := suite.wrapper.GetClient().(*gomongodb.Client)
+	assert.True(suite.T(), ok, "expected *gomongodb.Client, got %T", clientWrapper)
+	suite.client = clientWrapper.Client
 
 	suite.configProps = entity.ConfigProps{
 		Active:   true,

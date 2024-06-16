@@ -14,7 +14,6 @@ import (
 type ServiceDiscovery struct {
 	resourceMapping *resourcemapping.Resources
 	services        map[string]interface{}
-	mu              sync.RWMutex
 }
 
 var (
@@ -51,17 +50,17 @@ func NewServiceDiscovery() *ServiceDiscovery {
 // registerResources registers all necessary resources with their respective keys.
 func (s *ServiceDiscovery) registerResources() {
 	// Register MongoDB resource
-	mongoWrapper := &mongowrapper.MongoDBWrapper{}
+	mongoWrapper := mongowrapper.NewMongoDBWrapper()
 	s.InitResourceWrapper(mongoWrapper)
 	s.resourceMapping.RegisterResource("mongodb", mongoWrapper)
 
 	// Register Minio resource
-	minioWrapper := &miniowrapper.MinioWrapper{}
+	minioWrapper := miniowrapper.NewMinioWrapper()
 	s.InitResourceWrapper(minioWrapper)
 	s.resourceMapping.RegisterResource("minio", minioWrapper)
 
 	// Register RabbitMQ resource
-	rabbitMQWrapper := &rabbitmqWrapper.RabbitMQWrapper{}
+	rabbitMQWrapper := rabbitmqWrapper.NewRabbitMQWrapper()
 	s.InitResourceWrapper(rabbitMQWrapper)
 	s.resourceMapping.RegisterResource("rabbitmq", rabbitMQWrapper)
 }

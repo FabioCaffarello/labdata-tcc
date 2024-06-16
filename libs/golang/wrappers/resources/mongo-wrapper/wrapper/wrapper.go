@@ -1,7 +1,9 @@
 package mongowrapper
 
 import (
+	"fmt"
 	gomongodb "libs/golang/clients/resources/go-mongo/client"
+	"log"
 	"os"
 )
 
@@ -28,6 +30,11 @@ func (m *MongoDBWrapper) Init() error {
 		Port:     os.Getenv("MONGODB_PORT"),
 		DBName:   os.Getenv("MONGODB_DBNAME"),
 	}
+
+	// Check if factory is nil
+	if m.factory == nil {
+		return fmt.Errorf("client factory is nil")
+	}
 	client, err := m.factory.NewClient(config)
 	if err != nil {
 		return err
@@ -38,5 +45,9 @@ func (m *MongoDBWrapper) Init() error {
 
 // GetClient returns the MongoDB client.
 func (m *MongoDBWrapper) GetClient() interface{} {
-	return m.client.Client
+	if m.client == nil {
+		log.Println("MongoDBWrapper client is nil")
+		return nil
+	}
+	return m.client
 }
