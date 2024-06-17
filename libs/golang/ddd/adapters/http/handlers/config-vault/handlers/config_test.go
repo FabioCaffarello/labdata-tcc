@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"errors"
 	"libs/golang/ddd/domain/entities/config-vault/entity"
@@ -13,6 +14,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
+	"github.com/go-chi/chi/v5"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/suite"
@@ -211,7 +213,10 @@ func (suite *WebConfigHandlerSuite) TestUpdateConfigWhenRepositoryFails() {
 func (suite *WebConfigHandlerSuite) TestDeleteConfigWhenSuccess() {
 	suite.repoMock.On("Delete", "1").Return(nil)
 
-	req := httptest.NewRequest("DELETE", "/configs?id=1", nil)
+	req := httptest.NewRequest("DELETE", "/configs/1", nil)
+	rctx := chi.NewRouteContext()
+	rctx.URLParams.Add("id", "1")
+	req = req.WithContext(context.WithValue(req.Context(), chi.RouteCtxKey, rctx))
 	rr := httptest.NewRecorder()
 
 	suite.handler.DeleteConfig(rr, req)
@@ -223,6 +228,8 @@ func (suite *WebConfigHandlerSuite) TestDeleteConfigWhenSuccess() {
 
 func (suite *WebConfigHandlerSuite) TestDeleteConfigWhenIDNotProvided() {
 	req := httptest.NewRequest("DELETE", "/configs", nil)
+	rctx := chi.NewRouteContext()
+	req = req.WithContext(context.WithValue(req.Context(), chi.RouteCtxKey, rctx))
 	rr := httptest.NewRecorder()
 
 	suite.handler.DeleteConfig(rr, req)
@@ -234,7 +241,10 @@ func (suite *WebConfigHandlerSuite) TestDeleteConfigWhenIDNotProvided() {
 func (suite *WebConfigHandlerSuite) TestDeleteConfigWhenRepositoryFails() {
 	suite.repoMock.On("Delete", "1").Return(errors.New("repository error"))
 
-	req := httptest.NewRequest("DELETE", "/configs?id=1", nil)
+	req := httptest.NewRequest("DELETE", "/configs/1", nil)
+	rctx := chi.NewRouteContext()
+	rctx.URLParams.Add("id", "1")
+	req = req.WithContext(context.WithValue(req.Context(), chi.RouteCtxKey, rctx))
 	rr := httptest.NewRecorder()
 
 	suite.handler.DeleteConfig(rr, req)
@@ -347,7 +357,10 @@ func (suite *WebConfigHandlerSuite) TestListConfigByIDWhenSuccess() {
 		UpdatedAt:       "2023-06-01T00:00:00Z",
 	}, nil)
 
-	req := httptest.NewRequest("GET", "/configs?id=1", nil)
+	req := httptest.NewRequest("GET", "/config/1", nil)
+	rctx := chi.NewRouteContext()
+	rctx.URLParams.Add("id", "1")
+	req = req.WithContext(context.WithValue(req.Context(), chi.RouteCtxKey, rctx))
 	rr := httptest.NewRecorder()
 
 	suite.handler.ListConfigByID(rr, req)
@@ -363,7 +376,9 @@ func (suite *WebConfigHandlerSuite) TestListConfigByIDWhenSuccess() {
 }
 
 func (suite *WebConfigHandlerSuite) TestListConfigByIDWhenIDNotProvided() {
-	req := httptest.NewRequest("GET", "/configs", nil)
+	req := httptest.NewRequest("GET", "/config/", nil)
+	rctx := chi.NewRouteContext()
+	req = req.WithContext(context.WithValue(req.Context(), chi.RouteCtxKey, rctx))
 	rr := httptest.NewRecorder()
 
 	suite.handler.ListConfigByID(rr, req)
@@ -375,7 +390,10 @@ func (suite *WebConfigHandlerSuite) TestListConfigByIDWhenIDNotProvided() {
 func (suite *WebConfigHandlerSuite) TestListConfigByIDWhenRepositoryFails() {
 	suite.repoMock.On("FindByID", "1").Return(nil, errors.New("repository error"))
 
-	req := httptest.NewRequest("GET", "/configs?id=1", nil)
+	req := httptest.NewRequest("GET", "/config/1", nil)
+	rctx := chi.NewRouteContext()
+	rctx.URLParams.Add("id", "1")
+	req = req.WithContext(context.WithValue(req.Context(), chi.RouteCtxKey, rctx))
 	rr := httptest.NewRecorder()
 
 	suite.handler.ListConfigByID(rr, req)
@@ -401,7 +419,7 @@ func (suite *WebConfigHandlerSuite) TestListConfigsByServiceAndProviderWhenSucce
 		},
 	}
 
-	suite.repoMock.On("FindAllByServiceAndProvider", "test_service", "test_provider").Return([]*entity.Config{
+	suite.repoMock.On("FindAllByServiceAndProvider", "test_provider", "test_service").Return([]*entity.Config{
 		{
 			ID:              "1",
 			Active:          true,
@@ -414,7 +432,11 @@ func (suite *WebConfigHandlerSuite) TestListConfigsByServiceAndProviderWhenSucce
 		},
 	}, nil)
 
-	req := httptest.NewRequest("GET", "/configs?service=test_service&provider=test_provider", nil)
+	req := httptest.NewRequest("GET", "/configs/service/test_service/provider/test_provider", nil)
+	rctx := chi.NewRouteContext()
+	rctx.URLParams.Add("service", "test_service")
+	rctx.URLParams.Add("provider", "test_provider")
+	req = req.WithContext(context.WithValue(req.Context(), chi.RouteCtxKey, rctx))
 	rr := httptest.NewRecorder()
 
 	suite.handler.ListConfigsByServiceAndProvider(rr, req)
@@ -430,7 +452,10 @@ func (suite *WebConfigHandlerSuite) TestListConfigsByServiceAndProviderWhenSucce
 }
 
 func (suite *WebConfigHandlerSuite) TestListConfigsByServiceAndProviderWhenServiceOrProviderNotProvided() {
-	req := httptest.NewRequest("GET", "/configs?service=test_service", nil)
+	req := httptest.NewRequest("GET", "/configs/service/test_service", nil)
+	rctx := chi.NewRouteContext()
+	rctx.URLParams.Add("service", "test_service")
+	req = req.WithContext(context.WithValue(req.Context(), chi.RouteCtxKey, rctx))
 	rr := httptest.NewRecorder()
 
 	suite.handler.ListConfigsByServiceAndProvider(rr, req)
@@ -440,9 +465,13 @@ func (suite *WebConfigHandlerSuite) TestListConfigsByServiceAndProviderWhenServi
 }
 
 func (suite *WebConfigHandlerSuite) TestListConfigsByServiceAndProviderWhenRepositoryFails() {
-	suite.repoMock.On("FindAllByServiceAndProvider", "test_service", "test_provider").Return(nil, errors.New("repository error"))
+	suite.repoMock.On("FindAllByServiceAndProvider", "test_provider", "test_service").Return(nil, errors.New("repository error"))
 
-	req := httptest.NewRequest("GET", "/configs?service=test_service&provider=test_provider", nil)
+	req := httptest.NewRequest("GET", "/configs/service/test_service/provider/test_provider", nil)
+	rctx := chi.NewRouteContext()
+	rctx.URLParams.Add("service", "test_service")
+	rctx.URLParams.Add("provider", "test_provider")
+	req = req.WithContext(context.WithValue(req.Context(), chi.RouteCtxKey, rctx))
 	rr := httptest.NewRecorder()
 
 	suite.handler.ListConfigsByServiceAndProvider(rr, req)
@@ -468,7 +497,7 @@ func (suite *WebConfigHandlerSuite) TestListConfigsBySourceAndProviderWhenSucces
 		},
 	}
 
-	suite.repoMock.On("FindAllBySourceAndProvider", "test_source", "test_provider").Return([]*entity.Config{
+	suite.repoMock.On("FindAllBySourceAndProvider", "test_provider", "test_source").Return([]*entity.Config{
 		{
 			ID:              "1",
 			Active:          true,
@@ -481,7 +510,11 @@ func (suite *WebConfigHandlerSuite) TestListConfigsBySourceAndProviderWhenSucces
 		},
 	}, nil)
 
-	req := httptest.NewRequest("GET", "/configs?source=test_source&provider=test_provider", nil)
+	req := httptest.NewRequest("GET", "/configs/source/test_source/provider/test_provider", nil)
+	rctx := chi.NewRouteContext()
+	rctx.URLParams.Add("source", "test_source")
+	rctx.URLParams.Add("provider", "test_provider")
+	req = req.WithContext(context.WithValue(req.Context(), chi.RouteCtxKey, rctx))
 	rr := httptest.NewRecorder()
 
 	suite.handler.ListConfigsBySourceAndProvider(rr, req)
@@ -497,7 +530,10 @@ func (suite *WebConfigHandlerSuite) TestListConfigsBySourceAndProviderWhenSucces
 }
 
 func (suite *WebConfigHandlerSuite) TestListConfigsBySourceAndProviderWhenSourceOrProviderNotProvided() {
-	req := httptest.NewRequest("GET", "/configs?source=test_source", nil)
+	req := httptest.NewRequest("GET", "/configs/source/test_source", nil)
+	rctx := chi.NewRouteContext()
+	rctx.URLParams.Add("source", "test_source")
+	req = req.WithContext(context.WithValue(req.Context(), chi.RouteCtxKey, rctx))
 	rr := httptest.NewRecorder()
 
 	suite.handler.ListConfigsBySourceAndProvider(rr, req)
@@ -507,9 +543,13 @@ func (suite *WebConfigHandlerSuite) TestListConfigsBySourceAndProviderWhenSource
 }
 
 func (suite *WebConfigHandlerSuite) TestListConfigsBySourceAndProviderWhenRepositoryFails() {
-	suite.repoMock.On("FindAllBySourceAndProvider", "test_source", "test_provider").Return(nil, errors.New("repository error"))
+	suite.repoMock.On("FindAllBySourceAndProvider", "test_provider", "test_source").Return(nil, errors.New("repository error"))
 
-	req := httptest.NewRequest("GET", "/configs?source=test_source&provider=test_provider", nil)
+	req := httptest.NewRequest("GET", "/configs/source/test_source/provider/test_provider", nil)
+	rctx := chi.NewRouteContext()
+	rctx.URLParams.Add("source", "test_source")
+	rctx.URLParams.Add("provider", "test_provider")
+	req = req.WithContext(context.WithValue(req.Context(), chi.RouteCtxKey, rctx))
 	rr := httptest.NewRecorder()
 
 	suite.handler.ListConfigsBySourceAndProvider(rr, req)
@@ -548,7 +588,12 @@ func (suite *WebConfigHandlerSuite) TestListConfigsByServiceAndSourceAndProvider
 		},
 	}, nil)
 
-	req := httptest.NewRequest("GET", "/configs?service=test_service&source=test_source&provider=test_provider", nil)
+	req := httptest.NewRequest("GET", "/configs/service/test_service/source/test_source/provider/test_provider", nil)
+	rctx := chi.NewRouteContext()
+	rctx.URLParams.Add("service", "test_service")
+	rctx.URLParams.Add("source", "test_source")
+	rctx.URLParams.Add("provider", "test_provider")
+	req = req.WithContext(context.WithValue(req.Context(), chi.RouteCtxKey, rctx))
 	rr := httptest.NewRecorder()
 
 	suite.handler.ListConfigsByServiceAndSourceAndProvider(rr, req)
@@ -564,7 +609,11 @@ func (suite *WebConfigHandlerSuite) TestListConfigsByServiceAndSourceAndProvider
 }
 
 func (suite *WebConfigHandlerSuite) TestListConfigsByServiceAndSourceAndProviderWhenServiceSourceOrProviderNotProvided() {
-	req := httptest.NewRequest("GET", "/configs?service=test_service&source=test_source", nil)
+	req := httptest.NewRequest("GET", "/configs/service/test_service/source/test_source", nil)
+	rctx := chi.NewRouteContext()
+	rctx.URLParams.Add("service", "test_service")
+	rctx.URLParams.Add("source", "test_source")
+	req = req.WithContext(context.WithValue(req.Context(), chi.RouteCtxKey, rctx))
 	rr := httptest.NewRecorder()
 
 	suite.handler.ListConfigsByServiceAndSourceAndProvider(rr, req)
@@ -576,7 +625,12 @@ func (suite *WebConfigHandlerSuite) TestListConfigsByServiceAndSourceAndProvider
 func (suite *WebConfigHandlerSuite) TestListConfigsByServiceAndSourceAndProviderWhenRepositoryFails() {
 	suite.repoMock.On("FindAllByServiceAndSourceAndProvider", "test_service", "test_source", "test_provider").Return(nil, errors.New("repository error"))
 
-	req := httptest.NewRequest("GET", "/configs?service=test_service&source=test_source&provider=test_provider", nil)
+	req := httptest.NewRequest("GET", "/configs/service/test_service/source/test_source/provider/test_provider", nil)
+	rctx := chi.NewRouteContext()
+	rctx.URLParams.Add("service", "test_service")
+	rctx.URLParams.Add("source", "test_source")
+	rctx.URLParams.Add("provider", "test_provider")
+	req = req.WithContext(context.WithValue(req.Context(), chi.RouteCtxKey, rctx))
 	rr := httptest.NewRecorder()
 
 	suite.handler.ListConfigsByServiceAndSourceAndProvider(rr, req)
@@ -615,7 +669,12 @@ func (suite *WebConfigHandlerSuite) TestListConfigsByServiceAndProviderAndActive
 		},
 	}, nil)
 
-	req := httptest.NewRequest("GET", "/configs?service=test_service&provider=test_provider&active=true", nil)
+	req := httptest.NewRequest("GET", "/configs/service/test_service/provider/test_provider/active/true", nil)
+	rctx := chi.NewRouteContext()
+	rctx.URLParams.Add("service", "test_service")
+	rctx.URLParams.Add("provider", "test_provider")
+	rctx.URLParams.Add("active", "true")
+	req = req.WithContext(context.WithValue(req.Context(), chi.RouteCtxKey, rctx))
 	rr := httptest.NewRecorder()
 
 	suite.handler.ListConfigsByServiceAndProviderAndActive(rr, req)
@@ -631,7 +690,11 @@ func (suite *WebConfigHandlerSuite) TestListConfigsByServiceAndProviderAndActive
 }
 
 func (suite *WebConfigHandlerSuite) TestListConfigsByServiceAndProviderAndActiveWhenServiceProviderOrActiveNotProvided() {
-	req := httptest.NewRequest("GET", "/configs?service=test_service&provider=test_provider", nil)
+	req := httptest.NewRequest("GET", "/configs/service/test_service/provider/test_provider", nil)
+	rctx := chi.NewRouteContext()
+	rctx.URLParams.Add("service", "test_service")
+	rctx.URLParams.Add("provider", "test_provider")
+	req = req.WithContext(context.WithValue(req.Context(), chi.RouteCtxKey, rctx))
 	rr := httptest.NewRecorder()
 
 	suite.handler.ListConfigsByServiceAndProviderAndActive(rr, req)
@@ -641,7 +704,12 @@ func (suite *WebConfigHandlerSuite) TestListConfigsByServiceAndProviderAndActive
 }
 
 func (suite *WebConfigHandlerSuite) TestListConfigsByServiceAndProviderAndActiveWhenInvalidActiveStatus() {
-	req := httptest.NewRequest("GET", "/configs?service=test_service&provider=test_provider&active=invalid", nil)
+	req := httptest.NewRequest("GET", "/configs/service/test_service/provider/test_provider/active/invalid", nil)
+	rctx := chi.NewRouteContext()
+	rctx.URLParams.Add("service", "test_service")
+	rctx.URLParams.Add("provider", "test_provider")
+	rctx.URLParams.Add("active", "invalid")
+	req = req.WithContext(context.WithValue(req.Context(), chi.RouteCtxKey, rctx))
 	rr := httptest.NewRecorder()
 
 	suite.handler.ListConfigsByServiceAndProviderAndActive(rr, req)
@@ -653,7 +721,12 @@ func (suite *WebConfigHandlerSuite) TestListConfigsByServiceAndProviderAndActive
 func (suite *WebConfigHandlerSuite) TestListConfigsByServiceAndProviderAndActiveWhenRepositoryFails() {
 	suite.repoMock.On("FindAllByServiceAndProviderAndActive", "test_service", "test_provider", true).Return(nil, errors.New("repository error"))
 
-	req := httptest.NewRequest("GET", "/configs?service=test_service&provider=test_provider&active=true", nil)
+	req := httptest.NewRequest("GET", "/configs/service/test_service/provider/test_provider/active/true", nil)
+	rctx := chi.NewRouteContext()
+	rctx.URLParams.Add("service", "test_service")
+	rctx.URLParams.Add("provider", "test_provider")
+	rctx.URLParams.Add("active", "true")
+	req = req.WithContext(context.WithValue(req.Context(), chi.RouteCtxKey, rctx))
 	rr := httptest.NewRecorder()
 
 	suite.handler.ListConfigsByServiceAndProviderAndActive(rr, req)
@@ -697,7 +770,12 @@ func (suite *WebConfigHandlerSuite) TestListConfigsByProviderAndDependenciesWhen
 		},
 	}, nil)
 
-	req := httptest.NewRequest("GET", "/configs/dependencies?provider=test_provider&service=dep_service&source=dep_source", nil)
+	req := httptest.NewRequest("GET", "/configs/dependencies/provider/test_provider/service/dep_service/source/dep_source", nil)
+	rctx := chi.NewRouteContext()
+	rctx.URLParams.Add("provider", "test_provider")
+	rctx.URLParams.Add("service", "dep_service")
+	rctx.URLParams.Add("source", "dep_source")
+	req = req.WithContext(context.WithValue(req.Context(), chi.RouteCtxKey, rctx))
 	rr := httptest.NewRecorder()
 
 	suite.handler.ListConfigsByProviderAndDependencies(rr, req)
@@ -716,16 +794,18 @@ func (suite *WebConfigHandlerSuite) TestListConfigsByDependenciesWhenNoDependenc
 	tests := []struct {
 		url string
 	}{
-		{"/configs/dependencies?provider="},
-		{"/configs/dependencies?service="},
-		{"/configs/dependencies?source="},
-		{"/configs/dependencies?provider=&service="},
-		{"/configs/dependencies?provider=&source="},
-		{"/configs/dependencies?service=&source="},
+		{"/configs/dependencies/provider//service//source/"},
+		{"/configs/dependencies/provider//service/dep_service/source/"},
+		{"/configs/dependencies/provider//service//source/dep_source"},
+		{"/configs/dependencies/provider/test_provider/service//source/"},
+		{"/configs/dependencies/provider/test_provider/service/dep_service/source/"},
+		{"/configs/dependencies/provider/test_provider/service//source/dep_source"},
 	}
 
 	for _, tc := range tests {
 		req := httptest.NewRequest("GET", tc.url, nil)
+		rctx := chi.NewRouteContext()
+		req = req.WithContext(context.WithValue(req.Context(), chi.RouteCtxKey, rctx))
 		rr := httptest.NewRecorder()
 
 		suite.handler.ListConfigsByProviderAndDependencies(rr, req)
@@ -738,7 +818,12 @@ func (suite *WebConfigHandlerSuite) TestListConfigsByDependenciesWhenNoDependenc
 func (suite *WebConfigHandlerSuite) TestListConfigsByProviderAndDependenciesWhenRepositoryFails() {
 	suite.repoMock.On("FindAllByProviderAndDependsOn", "test_provider", "dep_service", "dep_source").Return(nil, errors.New("repository error"))
 
-	req := httptest.NewRequest("GET", "/configs?provider=test_provider&service=dep_service&source=dep_source", nil)
+	req := httptest.NewRequest("GET", "/configs/dependencies/provider/test_provider/service/dep_service/source/dep_source", nil)
+	rctx := chi.NewRouteContext()
+	rctx.URLParams.Add("provider", "test_provider")
+	rctx.URLParams.Add("service", "dep_service")
+	rctx.URLParams.Add("source", "dep_source")
+	req = req.WithContext(context.WithValue(req.Context(), chi.RouteCtxKey, rctx))
 	rr := httptest.NewRecorder()
 
 	suite.handler.ListConfigsByProviderAndDependencies(rr, req)

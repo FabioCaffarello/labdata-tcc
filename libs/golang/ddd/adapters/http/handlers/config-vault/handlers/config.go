@@ -7,6 +7,8 @@ import (
 	"libs/golang/ddd/usecases/config-vault/usecase"
 	typetools "libs/golang/shared/type-tools"
 	"net/http"
+
+	"github.com/go-chi/chi/v5"
 )
 
 // WebConfigHandler handles HTTP requests for configuration operations.
@@ -117,7 +119,7 @@ func (h *WebConfigHandler) UpdateConfig(w http.ResponseWriter, r *http.Request) 
 //
 // If the ID is not provided or an error occurs during the deletion process, it responds with the appropriate HTTP status code.
 func (h *WebConfigHandler) DeleteConfig(w http.ResponseWriter, r *http.Request) {
-	id := r.URL.Query().Get("id")
+	id := chi.URLParam(r, "id")
 	if id == "" {
 		http.Error(w, "ID is required", http.StatusBadRequest)
 		return
@@ -176,7 +178,7 @@ func (h *WebConfigHandler) ListAllConfigs(w http.ResponseWriter, r *http.Request
 //
 // If the ID is not provided or an error occurs during the listing process, it responds with the appropriate HTTP status code.
 func (h *WebConfigHandler) ListConfigByID(w http.ResponseWriter, r *http.Request) {
-	id := r.URL.Query().Get("id")
+	id := chi.URLParam(r, "id")
 	if id == "" {
 		http.Error(w, "ID is required", http.StatusBadRequest)
 		return
@@ -211,15 +213,15 @@ func (h *WebConfigHandler) ListConfigByID(w http.ResponseWriter, r *http.Request
 //
 // If the service or provider is not provided or an error occurs during the listing process, it responds with the appropriate HTTP status code.
 func (h *WebConfigHandler) ListConfigsByServiceAndProvider(w http.ResponseWriter, r *http.Request) {
-	service := r.URL.Query().Get("service")
-	provider := r.URL.Query().Get("provider")
+	provider := chi.URLParam(r, "provider")
+	service := chi.URLParam(r, "service")
 	if service == "" || provider == "" {
 		http.Error(w, "Service and provider are required", http.StatusBadRequest)
 		return
 	}
 
 	listConfigsUseCase := usecase.NewListAllByServiceAndProviderConfigUseCase(h.ConfigRepository)
-	configs, err := listConfigsUseCase.Execute(service, provider)
+	configs, err := listConfigsUseCase.Execute(provider, service)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -247,15 +249,15 @@ func (h *WebConfigHandler) ListConfigsByServiceAndProvider(w http.ResponseWriter
 //
 // If the source or provider is not provided or an error occurs during the listing process, it responds with the appropriate HTTP status code.
 func (h *WebConfigHandler) ListConfigsBySourceAndProvider(w http.ResponseWriter, r *http.Request) {
-	source := r.URL.Query().Get("source")
-	provider := r.URL.Query().Get("provider")
+	provider := chi.URLParam(r, "provider")
+	source := chi.URLParam(r, "source")
 	if source == "" || provider == "" {
 		http.Error(w, "Source and provider are required", http.StatusBadRequest)
 		return
 	}
 
 	listConfigsUseCase := usecase.NewListAllBySourceAndProviderConfigUseCase(h.ConfigRepository)
-	configs, err := listConfigsUseCase.Execute(source, provider)
+	configs, err := listConfigsUseCase.Execute(provider, source)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -283,9 +285,10 @@ func (h *WebConfigHandler) ListConfigsBySourceAndProvider(w http.ResponseWriter,
 //
 // If the service, source, or provider is not provided or an error occurs during the listing process, it responds with the appropriate HTTP status code.
 func (h *WebConfigHandler) ListConfigsByServiceAndSourceAndProvider(w http.ResponseWriter, r *http.Request) {
-	service := r.URL.Query().Get("service")
-	source := r.URL.Query().Get("source")
-	provider := r.URL.Query().Get("provider")
+	provider := chi.URLParam(r, "provider")
+	service := chi.URLParam(r, "service")
+	source := chi.URLParam(r, "source")
+
 	if service == "" || source == "" || provider == "" {
 		http.Error(w, "Service, source, and provider are required", http.StatusBadRequest)
 		return
@@ -320,9 +323,10 @@ func (h *WebConfigHandler) ListConfigsByServiceAndSourceAndProvider(w http.Respo
 //
 // If the service, provider, or active status is not provided or an error occurs during the listing process, it responds with the appropriate HTTP status code.
 func (h *WebConfigHandler) ListConfigsByServiceAndProviderAndActive(w http.ResponseWriter, r *http.Request) {
-	service := r.URL.Query().Get("service")
-	provider := r.URL.Query().Get("provider")
-	active := r.URL.Query().Get("active")
+	provider := chi.URLParam(r, "provider")
+	service := chi.URLParam(r, "service")
+	active := chi.URLParam(r, "active")
+
 	if service == "" || provider == "" || active == "" {
 		http.Error(w, "Service, provider, and active status are required", http.StatusBadRequest)
 		return
@@ -363,9 +367,10 @@ func (h *WebConfigHandler) ListConfigsByServiceAndProviderAndActive(w http.Respo
 //
 // If the dependencies are not provided or an error occurs during the listing process, it responds with the appropriate HTTP status code.
 func (h *WebConfigHandler) ListConfigsByProviderAndDependencies(w http.ResponseWriter, r *http.Request) {
-	provider := r.URL.Query().Get("provider")
-	service := r.URL.Query().Get("service")
-	source := r.URL.Query().Get("source")
+	provider := chi.URLParam(r, "provider")
+	service := chi.URLParam(r, "service")
+	source := chi.URLParam(r, "source")
+
 	if provider == "" && service == "" && source == "" {
 		http.Error(w, "At least one dependency is required", http.StatusBadRequest)
 		return
