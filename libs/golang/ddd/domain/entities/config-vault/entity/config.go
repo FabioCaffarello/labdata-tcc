@@ -58,7 +58,7 @@ type ConfigProps struct {
 	Source    string
 	Provider  string
 	DependsOn []map[string]interface{}
-	UpdatedAt string
+	// UpdatedAt string
 }
 
 // getIDData constructs a map with the service, source, and provider information.
@@ -107,7 +107,7 @@ func NewConfig(configProps ConfigProps) (*Config, error) {
 		Source:    configProps.Source,
 		Provider:  configProps.Provider,
 		DependsOn: dependsOn,
-		UpdatedAt: configProps.UpdatedAt,
+		UpdatedAt: time.Now().Format(dateLayout),
 		CreatedAt: time.Now().Format(dateLayout),
 	}
 
@@ -153,11 +153,6 @@ func (c *Config) GetEntityID() string {
 // SetCreatedAt sets the created at timestamp of the Config entity.
 func (c *Config) SetCreatedAt(createdAt string) {
 	c.CreatedAt = createdAt
-}
-
-// SetUpdatedAt sets the updated at timestamp of the Config entity.
-func (c *Config) SetUpdatedAt(updatedAt string) {
-	c.UpdatedAt = updatedAt
 }
 
 // ToMap converts the Config entity to a map representation.

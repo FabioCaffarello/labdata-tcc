@@ -83,3 +83,8 @@ func ParseDateWithFormat(date, format string) (time.Time, error) {
 	}
 	return parsedTime, nil
 }
+
+// ParseBool parses a boolean string
+func ParseBool(data string) (bool, error) {
+	return strconv.ParseBool(data)
+}

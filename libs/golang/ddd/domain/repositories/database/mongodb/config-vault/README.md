@@ -45,7 +45,6 @@ func main() {
         DependsOn: []map[string]interface{}{
             {"service": "dependencyService", "source": "dependencySource"},
         },
-        UpdatedAt: "2023-06-08 12:00:00",
     }
 
     config, err := entity.NewConfig(configProps)
@@ -200,7 +199,7 @@ func main() {
     }
 
     repo := repository.NewConfigRepository(client, "testdb")
-    configs, err := repo.FindAllByService("exampleService")
+    configs, err := repo.FindAllByServiceAndProvider("exampleProvider", "exampleService")
     if err != nil {
         log.Fatal(err)
     }

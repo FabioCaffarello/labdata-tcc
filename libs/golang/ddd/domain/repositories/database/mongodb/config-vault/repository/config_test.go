@@ -4,6 +4,8 @@ import (
 	"os"
 	"testing"
 
+	gomongodb "libs/golang/clients/resources/go-mongo/client"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
 	"go.mongodb.org/mongo-driver/bson"
@@ -39,11 +41,9 @@ func (suite *ConfigVaultMongoDBRepositorySuite) SetupSuite() {
 }
 
 func (suite *ConfigVaultMongoDBRepositorySuite) SetupTest() {
-	clientInterface := suite.wrapper.GetClient()
-
-	var ok bool
-	suite.client, ok = clientInterface.(*mongo.Client)
-	assert.True(suite.T(), ok, "expected *mongo.Client, got %T", clientInterface)
+	clientWrapper, ok := suite.wrapper.GetClient().(*gomongodb.Client)
+	assert.True(suite.T(), ok, "expected *gomongodb.Client, got %T", clientWrapper)
+	suite.client = clientWrapper.Client
 
 	suite.configProps = entity.ConfigProps{
 		Active:   true,
@@ -54,7 +54,6 @@ func (suite *ConfigVaultMongoDBRepositorySuite) SetupTest() {
 			{"service": "dep_service1", "source": "dep_source1"},
 			{"service": "dep_service2", "source": "dep_source2"},
 		},
-		UpdatedAt: "2023-01-01 12:00:00",
 	}
 
 	var err error
@@ -215,7 +214,6 @@ func (suite *ConfigVaultMongoDBRepositorySuite) TestUpdate() {
 	assert.NotNil(suite.T(), configUpdated)
 	assert.False(suite.T(), configUpdated.Active)
 	assert.Equal(suite.T(), configUpdated.CreatedAt, configStored.CreatedAt)
-	assert.NotEqual(suite.T(), configUpdated.UpdatedAt, configStored.UpdatedAt)
 	assert.NotEqual(suite.T(), configUpdated.ConfigVersionID, configStored.ConfigVersionID)
 }
 
@@ -255,7 +253,6 @@ func (suite *ConfigVaultMongoDBRepositorySuite) TestUpdateError() {
 	assert.NotNil(suite.T(), configUpdated)
 	assert.False(suite.T(), configUpdated.Active)
 	assert.Equal(suite.T(), configUpdated.CreatedAt, configStored.CreatedAt)
-	assert.NotEqual(suite.T(), configUpdated.UpdatedAt, configStored.UpdatedAt)
 	assert.NotEqual(suite.T(), configUpdated.ConfigVersionID, configStored.ConfigVersionID)
 
 	err = suite.client.Database(databaseName).Drop(nil)
@@ -325,7 +322,7 @@ func (suite *ConfigVaultMongoDBRepositorySuite) TestFindEmpty() {
 	assert.Equal(suite.T(), 0, len(configs))
 }
 
-func (suite *ConfigVaultMongoDBRepositorySuite) TestFindAllByService() {
+func (suite *ConfigVaultMongoDBRepositorySuite) TestFindAllByServiceAndProvider() {
 	repository := NewConfigRepository(suite.client, databaseName)
 	err := repository.Create(suite.config)
 	assert.Nil(suite.T(), err)
@@ -337,13 +334,13 @@ func (suite *ConfigVaultMongoDBRepositorySuite) TestFindAllByService() {
 	err = repository.Create(secConfig)
 	assert.Nil(suite.T(), err)
 
-	configs, err := repository.FindAllByService(suite.config.Service)
+	configs, err := repository.FindAllByServiceAndProvider(suite.config.Provider, suite.config.Service)
 	assert.Nil(suite.T(), err)
 	assert.NotNil(suite.T(), configs)
 	assert.Equal(suite.T(), 2, len(configs))
 }
 
-func (suite *ConfigVaultMongoDBRepositorySuite) TestFindAllBySource() {
+func (suite *ConfigVaultMongoDBRepositorySuite) TestFindAllBySourceAndProvider() {
 	repository := NewConfigRepository(suite.client, databaseName)
 	err := repository.Create(suite.config)
 	assert.Nil(suite.T(), err)
@@ -356,29 +353,10 @@ func (suite *ConfigVaultMongoDBRepositorySuite) TestFindAllBySource() {
 	err = repository.Create(secConfig)
 	assert.Nil(suite.T(), err)
 
-	configs, err := repository.FindAllBySource(suite.config.Source)
+	configs, err := repository.FindAllBySourceAndProvider(suite.config.Provider, suite.config.Source)
 	assert.Nil(suite.T(), err)
 	assert.NotNil(suite.T(), configs)
 	assert.Equal(suite.T(), 2, len(configs))
-}
-
-func (suite *ConfigVaultMongoDBRepositorySuite) TestFindAllByServiceAndSource() {
-	repository := NewConfigRepository(suite.client, databaseName)
-	err := repository.Create(suite.config)
-	assert.Nil(suite.T(), err)
-
-	secDoc := suite.configProps
-	secDoc.Service = "test_service2"
-	secConfig, err := entity.NewConfig(secDoc)
-	assert.Nil(suite.T(), err)
-
-	err = repository.Create(secConfig)
-	assert.Nil(suite.T(), err)
-
-	configs, err := repository.FindAllByServiceAndSource(suite.config.Service, suite.config.Source)
-	assert.Nil(suite.T(), err)
-	assert.NotNil(suite.T(), configs)
-	assert.Equal(suite.T(), 1, len(configs))
 }
 
 func (suite *ConfigVaultMongoDBRepositorySuite) TestFindAllByServiceAndSourceAndProvider() {
@@ -420,12 +398,12 @@ func (suite *ConfigVaultMongoDBRepositorySuite) TestFindAllByServiceAndProviderA
 	assert.Equal(suite.T(), 1, len(configs))
 }
 
-func (suite *ConfigVaultMongoDBRepositorySuite) TestFindAllByDependsOn() {
+func (suite *ConfigVaultMongoDBRepositorySuite) TestFindAllByProviderAndDependsOn() {
 	repository := NewConfigRepository(suite.client, databaseName)
 	err := repository.Create(suite.config)
 	assert.Nil(suite.T(), err)
 
-	configs, err := repository.FindAllByDependsOn("dep_service1", "dep_source1")
+	configs, err := repository.FindAllByProviderAndDependsOn("test_provider", "dep_service1", "dep_source1")
 	assert.Nil(suite.T(), err)
 	assert.NotNil(suite.T(), configs)
 	assert.Equal(suite.T(), 1, len(configs))

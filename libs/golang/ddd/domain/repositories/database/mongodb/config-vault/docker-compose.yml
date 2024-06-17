@@ -13,17 +13,3 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-
-  # rockmongo:
-  #   image: mongo-express
-  #   container_name: rockmongo
-  #   ports:
-  #     - 8082:8081
-  #   environment:
-  #     ME_CONFIG_MONGODB_SERVER: mongo
-  #     ME_CONFIG_MONGODB_PORT: 27017
-  #     ME_CONFIG_MONGODB_ENABLE_ADMIN: "true"
-  #     ME_CONFIG_MONGODB_ADMINUSERNAME: testuser
-  #     ME_CONFIG_MONGODB_ADMINPASSWORD: testpassword
-  #   depends_on:
-  #     - mongo

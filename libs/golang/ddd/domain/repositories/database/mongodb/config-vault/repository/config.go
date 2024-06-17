@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"time"
 
 	"libs/golang/ddd/domain/entities/config-vault/entity"
 
@@ -15,7 +14,6 @@ import (
 
 var (
 	configCollection = "configs"
-	dateLayout       = "2006-01-02 15:04:05"
 )
 
 // ConfigRepository manages the operations on the Config collection in MongoDB.
@@ -192,7 +190,6 @@ func (r *ConfigRepository) Update(config *entity.Config) error {
 	}
 
 	config.SetCreatedAt(configStored.CreatedAt)
-	config.SetUpdatedAt(time.Now().Format(dateLayout))
 
 	configMap, err := config.ToMap()
 	if err != nil {
@@ -282,7 +279,7 @@ func (r *ConfigRepository) find(query bson.M) ([]*entity.Config, error) {
 	return configs, nil
 }
 
-// FindAllByService retrieves all Config documents that match the given service.
+// FindAllByServiceAndProvider retrieves all Config documents that match the given provider and service.
 //
 // Parameters:
 //   - service: The service name to match.
@@ -293,19 +290,19 @@ func (r *ConfigRepository) find(query bson.M) ([]*entity.Config, error) {
 //
 // Example:
 //
-//	configs, err := repository.FindAllByService("myservice")
+//	configs, err := repository.FindAllByServiceAndProvider("myprovider", "myservice")
 //	if err != nil {
 //	    log.Fatal(err)
 //	}
 //	for _, config := range configs {
 //	    fmt.Printf("Config: %+v\n", config)
 //	}
-func (r *ConfigRepository) FindAllByService(service string) ([]*entity.Config, error) {
-	query := bson.M{"service": service}
+func (r *ConfigRepository) FindAllByServiceAndProvider(provider, service string) ([]*entity.Config, error) {
+	query := bson.M{"provider": provider, "service": service}
 	return r.find(query)
 }
 
-// FindAllBySource retrieves all Config documents that match the given source.
+// FindAllBySourceAndProvider retrieves all Config documents that match the given provider and source.
 //
 // Parameters:
 //   - source: The source name to match.
@@ -316,39 +313,15 @@ func (r *ConfigRepository) FindAllByService(service string) ([]*entity.Config, e
 //
 // Example:
 //
-//	configs, err := repository.FindAllBySource("mysource")
+//	configs, err := repository.FindAllBySourceAndProvider("myprovider", "mysource")
 //	if err != nil {
 //	    log.Fatal(err)
 //	}
 //	for _, config := range configs {
 //	    fmt.Printf("Config: %+v\n", config)
 //	}
-func (r *ConfigRepository) FindAllBySource(source string) ([]*entity.Config, error) {
-	query := bson.M{"source": source}
-	return r.find(query)
-}
-
-// FindAllByServiceAndSource retrieves all Config documents that match the given service and source.
-//
-// Parameters:
-//   - service: The service name to match.
-//   - source: The source name to match.
-//
-// Returns:
-//   - A slice of pointers to Config entities.
-//   - An error if the query fails.
-//
-// Example:
-//
-//	configs, err := repository.FindAllByServiceAndSource("myservice", "mysource")
-//	if err != nil {
-//	    log.Fatal(err)
-//	}
-//	for _, config := range configs {
-//	    fmt.Printf("Config: %+v\n", config)
-//	}
-func (r *ConfigRepository) FindAllByServiceAndSource(service, source string) ([]*entity.Config, error) {
-	query := bson.M{"service": service, "source": source}
+func (r *ConfigRepository) FindAllBySourceAndProvider(provider, source string) ([]*entity.Config, error) {
+	query := bson.M{"provider": provider, "source": source}
 	return r.find(query)
 }
 
@@ -402,7 +375,7 @@ func (r *ConfigRepository) FindAllByServiceAndProviderAndActive(service, provide
 	return r.find(query)
 }
 
-// FindAllByDependsOn retrieves all Config documents that have dependencies matching the given service and source.
+// FindAllByProviderAndDependsOn retrieves all Config documents that have dependencies matching the given service and source.
 //
 // Parameters:
 //   - service: The service name to match in dependencies.
@@ -414,14 +387,22 @@ func (r *ConfigRepository) FindAllByServiceAndProviderAndActive(service, provide
 //
 // Example:
 //
-//	configs, err := repository.FindAllByDependsOn("dep_service", "dep_source")
+//	configs, err := repository.FindAllByProviderAndDependsOn("provider", "dep_service", "dep_source")
 //	if err != nil {
 //	    log.Fatal(err)
 //	}
 //	for _, config := range configs {
 //	    fmt.Printf("Config: %+v\n", config)
 //	}
-func (r *ConfigRepository) FindAllByDependsOn(service, source string) ([]*entity.Config, error) {
-	query := bson.M{"depends_on": bson.M{"$elemMatch": bson.M{"service": service, "source": source}}}
+func (r *ConfigRepository) FindAllByProviderAndDependsOn(provider, service, source string) ([]*entity.Config, error) {
+	query := bson.M{
+		"provider": provider,
+		"depends_on": bson.M{
+			"$elemMatch": bson.M{
+				"service": service,
+				"source":  source,
+			},
+		},
+	}
 	return r.find(query)
 }

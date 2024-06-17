@@ -71,5 +71,5 @@ func TestMongoDBWrapperGetClient(t *testing.T) {
 	wrapper.client = mockClient
 
 	client := wrapper.GetClient()
-	assert.Equal(t, mockClient.Client, client)
+	assert.Equal(t, mockClient, client)
 }

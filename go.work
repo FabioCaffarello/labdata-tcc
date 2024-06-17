@@ -4,9 +4,16 @@ use (
 	./libs/golang/clients/resources/go-minio
 	./libs/golang/clients/resources/go-mongo
 	./libs/golang/clients/resources/go-rabbitmq
+	./libs/golang/ddd/adapters/http/handlers/config-vault
+	./libs/golang/ddd/adapters/http/handlers/health-check
 	./libs/golang/ddd/domain/entities/config-vault
+	./libs/golang/ddd/domain/repositories/database/mock/config-vault
 	./libs/golang/ddd/domain/repositories/database/mongodb/config-vault
+	./libs/golang/ddd/dtos/config-vault
+	./libs/golang/ddd/shared/type-tools/custom-types-converter/config-vault
 	./libs/golang/ddd/shared/type-tools/regular-types-converter
+	./libs/golang/ddd/usecases/config-vault
+	./libs/golang/server/http/chi-webserver
 	./libs/golang/service-discovery
 	./libs/golang/shared/id/go-md5
 	./libs/golang/shared/id/go-uuid
@@ -16,4 +23,5 @@ use (
 	./libs/golang/wrappers/resources/minio-wrapper
 	./libs/golang/wrappers/resources/mongo-wrapper
 	./libs/golang/wrappers/resources/rabbitmq-wrapper
+	./services/shared/config-vault
 )

@@ -20,7 +20,8 @@ type Client struct {
 
 // Config holds the configuration for connecting to a Minio instance.
 type Config struct {
-	Endpoint  string // Minio server endpoint
+	Port      string // Minio server port
+	Host      string // Minio server host
 	AccessKey string // Access key for authentication
 	SecretKey string // Secret key for authentication
 	UseSSL    bool   // Use SSL connection
@@ -31,18 +32,20 @@ type Config struct {
 //
 // Example:
 //
-//	config := Config{
-//	    Endpoint:  "localhost:9000",
-//	    AccessKey: "minioaccesskey",
-//	    SecretKey: "miniosecretkey",
-//	    UseSSL:    false,
-//	}
-//	client, err := NewClient(config)
-//	if err != nil {
-//	    log.Fatal(err)
-//	}
+//		config := Config{
+//	     Port:      "9000",
+//	     Host:      "localhost",
+//		    AccessKey: "minioaccesskey",
+//		    SecretKey: "miniosecretkey",
+//		    UseSSL:    false,
+//		}
+//		client, err := NewClient(config)
+//		if err != nil {
+//		    log.Fatal(err)
+//		}
 func NewClient(config Config) (*Client, error) {
-	client, err := minio.New(config.Endpoint, &minio.Options{
+	endpoint := fmt.Sprintf("%s:%s", config.Host, config.Port)
+	client, err := minio.New(endpoint, &minio.Options{
 		Creds:  credentials.NewStaticV4(config.AccessKey, config.SecretKey, ""),
 		Secure: config.UseSSL,
 	})
