@@ -1,0 +1,56 @@
+services:
+  mongo:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: user
+      MONGO_INITDB_ROOT_PASSWORD: password
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    healthcheck:
+      test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - labdata-tcc
+
+  config-vault:
+    image: fabiocaffarello/config-vault:latest
+    container_name: config-vault
+    ports:
+      - 8000:8000
+    environment:
+      - MONGODB_USER=user
+      - MONGODB_PASSWORD=password
+      - MONGODB_HOST=mongo
+      - MONGODB_PORT=27017
+      - MONGODB_DBNAME=config-vault
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://config-vault:8000/healthz"]
+      interval: 10s
+      timeout: 1s
+      retries: 5
+    networks:
+      - labdata-tcc
+
+  rockmongo:
+    image: mongo-express
+    container_name: rockmongo
+    ports:
+      - 8082:8081
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongo
+      ME_CONFIG_MONGODB_PORT: 27017
+      ME_CONFIG_MONGODB_ENABLE_ADMIN: "true"
+      ME_CONFIG_MONGODB_ADMINUSERNAME: user
+      ME_CONFIG_MONGODB_ADMINPASSWORD: password
+    depends_on:
+      - mongo
+    networks:
+      - labdata-tcc
+
+networks:
+  labdata-tcc:
+    name: labdata-tcc
+    driver: bridge
