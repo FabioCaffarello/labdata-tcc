@@ -26,6 +26,9 @@
         15672,
         8082
     ],
+    "mounts": [
+        "source=${env:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
+    ],
     "customizations": {
         "vscode": {
             "extensions": [
