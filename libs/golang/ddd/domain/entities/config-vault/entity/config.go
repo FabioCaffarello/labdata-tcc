@@ -58,7 +58,6 @@ type ConfigProps struct {
 	Source    string
 	Provider  string
 	DependsOn []map[string]interface{}
-	// UpdatedAt string
 }
 
 // getIDData constructs a map with the service, source, and provider information.
