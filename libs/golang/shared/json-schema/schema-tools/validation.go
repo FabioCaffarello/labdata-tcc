@@ -21,19 +21,20 @@ const metaschemaURL = "http://json-schema.org/draft-07/schema#" // URL of the JS
 // - error: An error object if the JSON Schema is invalid, otherwise nil.
 //
 // Example:
-//  schema := map[string]interface{}{
-//      "$schema": "http://json-schema.org/draft-07/schema#",
-//      "type": "object",
-//      "properties": map[string]interface{}{
-//          "name": map[string]interface{}{
-//              "type": "string",
-//          },
-//      },
-//  }
-//  err := ValidateJSONSchema(schema)
-//  if err != nil {
-//      // Handle error
-//  }
+//
+//	schema := map[string]interface{}{
+//	    "$schema": "http://json-schema.org/draft-07/schema#",
+//	    "type": "object",
+//	    "properties": map[string]interface{}{
+//	        "name": map[string]interface{}{
+//	            "type": "string",
+//	        },
+//	    },
+//	}
+//	err := ValidateJSONSchema(schema)
+//	if err != nil {
+//	    // Handle error
+//	}
 func ValidateJSONSchema(jsonSchema map[string]interface{}) error {
 	// Convert the JSON schema map to a JSON string
 	jsonSchemaBytes, err := json.Marshal(jsonSchema)
