@@ -4,39 +4,37 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/suite"
 )
 
-type JsonSchemaValidatorSuite struct {
-	suite.Suite
-}
-
-func TestJsonSchemaValidatorSuite(t *testing.T) {
-	suite.Run(t, new(JsonSchemaValidatorSuite))
-}
-
-func (suite *JsonSchemaValidatorSuite) TestValidateJSONSchemaValidSchema() {
-	jsonSchema := map[string]interface{}{
+func TestValidateJSONSchema(t *testing.T) {
+	validSchema := map[string]interface{}{
 		"type": "object",
 		"properties": map[string]interface{}{
-			"name": map[string]interface{}{
+			"test": map[string]interface{}{
 				"type": "string",
 			},
 		},
+		"required": []string{
+			"test",
+		},
 	}
 
-	err := ValidateJSONSchema(jsonSchema)
-
-	assert.NoError(suite.T(), err)
-}
-
-func (suite *JsonSchemaValidatorSuite) TestValidateJSONSchemaInvalidSchema() {
-	invalidJsonSchema := map[string]interface{}{
-		"type": "invalid_type",
+	invalidSchema := map[string]interface{}{
+		"type": "object",
+		"properties": map[string]interface{}{
+			"test": map[string]interface{}{
+				"type": "invalid_type",
+			},
+		},
+		"required": []string{
+			"test",
+		},
 	}
 
-	err := ValidateJSONSchema(invalidJsonSchema)
+	err := ValidateJSONSchema(validSchema)
+	assert.NoError(t, err, "Valid schema should not produce an error")
 
-	assert.Error(suite.T(), err)
-	assert.Contains(suite.T(), err.Error(), "jsonSchema validation failed")
+	err = ValidateJSONSchema(invalidSchema)
+	assert.Error(t, err, "Invalid schema should produce an error")
+	assert.Contains(t, err.Error(), "jsonSchema validation failed", "Error message should contain validation failure info")
 }

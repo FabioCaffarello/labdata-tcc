@@ -36,6 +36,16 @@ const metaschemaURL = "http://json-schema.org/draft-07/schema#" // URL of the JS
 //	    // Handle error
 //	}
 func ValidateJSONSchema(jsonSchema map[string]interface{}) error {
+	// Check if the schema is empty
+	if len(jsonSchema) == 0 {
+		return errors.New("jsonSchema is empty")
+	}
+
+	// Ensure the schema includes the $schema property to reference Draft-07 metaschema
+	if _, ok := jsonSchema["$schema"]; !ok {
+		jsonSchema["$schema"] = metaschemaURL
+	}
+
 	// Convert the JSON schema map to a JSON string
 	jsonSchemaBytes, err := json.Marshal(jsonSchema)
 	if err != nil {
@@ -60,6 +70,5 @@ func ValidateJSONSchema(jsonSchema map[string]interface{}) error {
 		}
 		return errors.New("jsonSchema validation failed: " + strings.Join(errorMessages, ", "))
 	}
-
 	return nil
 }
