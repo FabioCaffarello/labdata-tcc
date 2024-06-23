@@ -9,12 +9,16 @@ use (
 	./libs/golang/ddd/domain/entities/config-vault
 	./libs/golang/ddd/domain/entities/schema-vault
 	./libs/golang/ddd/domain/repositories/database/mock/config-vault
+	./libs/golang/ddd/domain/repositories/database/mock/schema-vault
 	./libs/golang/ddd/domain/repositories/database/mongodb/config-vault
 	./libs/golang/ddd/domain/repositories/database/mongodb/schema-vault
 	./libs/golang/ddd/dtos/config-vault
+	./libs/golang/ddd/dtos/schema-vault
 	./libs/golang/ddd/shared/type-tools/custom-types-converter/config-vault
+	./libs/golang/ddd/shared/type-tools/custom-types-converter/schema-vault
 	./libs/golang/ddd/shared/type-tools/regular-types-converter
 	./libs/golang/ddd/usecases/config-vault
+	./libs/golang/ddd/usecases/schema-vault
 	./libs/golang/server/http/chi-webserver
 	./libs/golang/service-discovery
 	./libs/golang/shared/id/go-md5
