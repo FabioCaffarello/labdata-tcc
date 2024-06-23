@@ -7,8 +7,10 @@ use (
 	./libs/golang/ddd/adapters/http/handlers/config-vault
 	./libs/golang/ddd/adapters/http/handlers/health-check
 	./libs/golang/ddd/domain/entities/config-vault
+	./libs/golang/ddd/domain/entities/schema-vault
 	./libs/golang/ddd/domain/repositories/database/mock/config-vault
 	./libs/golang/ddd/domain/repositories/database/mongodb/config-vault
+	./libs/golang/ddd/domain/repositories/database/mongodb/schema-vault
 	./libs/golang/ddd/dtos/config-vault
 	./libs/golang/ddd/shared/type-tools/custom-types-converter/config-vault
 	./libs/golang/ddd/shared/type-tools/regular-types-converter
@@ -17,6 +19,7 @@ use (
 	./libs/golang/service-discovery
 	./libs/golang/shared/id/go-md5
 	./libs/golang/shared/id/go-uuid
+	./libs/golang/shared/json-schema
 	./libs/golang/shared/type-tools
 	./libs/golang/wrappers/core/resource-contract
 	./libs/golang/wrappers/core/resource-mapping
