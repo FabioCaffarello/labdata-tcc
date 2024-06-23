@@ -23,7 +23,7 @@ func (suite *SchemaConverterEntityToDTOSuite) TestConvertJsonSchemaEntityToDTO()
 		JsonType:   "object",
 	}
 
-	expected := shareddto.JsonSchema{
+	expected := shareddto.JsonSchemaDTO{
 		Required:   jsonSchema.Required,
 		Properties: jsonSchema.Properties,
 		JsonType:   jsonSchema.JsonType,

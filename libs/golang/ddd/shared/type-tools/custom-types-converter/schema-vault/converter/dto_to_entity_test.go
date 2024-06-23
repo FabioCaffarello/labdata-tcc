@@ -18,7 +18,7 @@ func TestConfigConverterDTOToEntitySuite(t *testing.T) {
 }
 
 func (suite *SchemaConverterDTOToEntitySuite) TestConvertJsonSchemaDTOToEntity() {
-	jsonSchemaDTO := shareddto.JsonSchema{
+	jsonSchemaDTO := shareddto.JsonSchemaDTO{
 		Required:   []string{"field1", "field2"},
 		Properties: map[string]interface{}{"field1": "value1", "field2": "value2"},
 		JsonType:   "object",
@@ -38,7 +38,7 @@ func (suite *SchemaConverterDTOToEntitySuite) TestConvertJsonSchemaDTOToEntity()
 }
 
 func (s *SchemaConverterDTOToEntitySuite) TestConvertJsonSchemaDTOToMap() {
-	jsonSchemaDTO := shareddto.JsonSchema{
+	jsonSchemaDTO := shareddto.JsonSchemaDTO{
 		Required:   []string{"field1", "field2"},
 		Properties: map[string]interface{}{"field1": "value1", "field2": "value2"},
 		JsonType:   "object",

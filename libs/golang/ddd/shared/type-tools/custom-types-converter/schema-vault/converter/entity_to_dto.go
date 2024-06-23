@@ -15,8 +15,8 @@ import (
 // Returns:
 //
 //	A shareddto.JsonSchema containing the converted data.
-func ConvertJsonSchemaEntityToDTO(jsonSchema entity.JsonSchema) shareddto.JsonSchema {
-	return shareddto.JsonSchema{
+func ConvertJsonSchemaEntityToDTO(jsonSchema entity.JsonSchema) shareddto.JsonSchemaDTO {
+	return shareddto.JsonSchemaDTO{
 		Required:   jsonSchema.Required,
 		Properties: jsonSchema.Properties,
 		JsonType:   jsonSchema.JsonType,
