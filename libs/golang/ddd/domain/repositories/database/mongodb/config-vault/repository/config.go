@@ -16,7 +16,7 @@ var (
 	configCollection = "configs"
 )
 
-// ConfigRepository manages the operations on the Config collection in MongoDB.
+// ConfigRepository manages the operations on the configs collection in MongoDB.
 type ConfigRepository struct {
 	log        *log.Logger
 	client     *mongo.Client
