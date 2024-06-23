@@ -34,9 +34,13 @@ func ConvertJsonSchemaDTOToEntity(jsonSchemaDTO shareddto.JsonSchema) entity.Jso
 //
 //	A map containing the converted data.
 func ConvertJsonSchemaDTOToMap(jsonSchemaDTO shareddto.JsonSchema) map[string]interface{} {
+	required := make([]interface{}, len(jsonSchemaDTO.Required))
+	for i, v := range jsonSchemaDTO.Required {
+		required[i] = v
+	}
 	return map[string]interface{}{
-		"required":   jsonSchemaDTO.Required,
+		"required":   required,
 		"properties": jsonSchemaDTO.Properties,
-		"json_type":  jsonSchemaDTO.JsonType,
+		"type":       jsonSchemaDTO.JsonType,
 	}
 }

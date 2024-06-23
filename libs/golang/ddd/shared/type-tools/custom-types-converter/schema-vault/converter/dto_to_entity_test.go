@@ -44,10 +44,15 @@ func (s *SchemaConverterDTOToEntitySuite) TestConvertJsonSchemaDTOToMap() {
 		JsonType:   "object",
 	}
 
+	required := make([]interface{}, len(jsonSchemaDTO.Required))
+	for i, v := range jsonSchemaDTO.Required {
+		required[i] = v
+	}
+
 	expected := map[string]interface{}{
-		"required":   jsonSchemaDTO.Required,
+		"required":   required,
 		"properties": jsonSchemaDTO.Properties,
-		"json_type":  jsonSchemaDTO.JsonType,
+		"type":  jsonSchemaDTO.JsonType,
 	}
 
 	jsonSchemaMap := ConvertJsonSchemaDTOToMap(jsonSchemaDTO)
