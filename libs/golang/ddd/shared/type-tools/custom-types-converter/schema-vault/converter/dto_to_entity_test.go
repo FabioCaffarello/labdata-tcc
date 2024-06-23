@@ -52,7 +52,7 @@ func (s *SchemaConverterDTOToEntitySuite) TestConvertJsonSchemaDTOToMap() {
 	expected := map[string]interface{}{
 		"required":   required,
 		"properties": jsonSchemaDTO.Properties,
-		"type":  jsonSchemaDTO.JsonType,
+		"type":       jsonSchemaDTO.JsonType,
 	}
 
 	jsonSchemaMap := ConvertJsonSchemaDTOToMap(jsonSchemaDTO)
