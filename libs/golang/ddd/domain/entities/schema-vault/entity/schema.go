@@ -35,9 +35,9 @@ var (
 )
 
 type JsonSchema struct {
-	Required   []string               `bson:"required"`
-	Properties map[string]interface{} `bson:"properties"`
-	JsonType   string                 `bson:"type"`
+	Required   []string               `bson:"required"`   // Required lists the required fields in the JSON schema.
+	Properties map[string]interface{} `bson:"properties"` // Properties lists the properties in the JSON schema.
+	JsonType   string                 `bson:"type"`       // JsonType specifies the type of JSON schema.
 }
 
 // Schema represents a schema entity with various attributes such as service, source, provider, and schema type.
