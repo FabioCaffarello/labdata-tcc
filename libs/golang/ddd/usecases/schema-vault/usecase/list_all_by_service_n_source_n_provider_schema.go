@@ -48,15 +48,15 @@ func (uc *ListAllByServiceAndSourceAndProviderSchemaUseCase) Execute(provider, s
 	schemaDTOs := make([]outputdto.SchemaDTO, 0, len(schemas))
 	for _, schema := range schemas {
 		schemaDTOs = append(schemaDTOs, outputdto.SchemaDTO{
-			ID:         string(schema.ID),
-			Service:    schema.Service,
-			Source:     schema.Source,
-			Provider:   schema.Provider,
-			SchemaType: schema.SchemaType,
+			ID:              string(schema.ID),
+			Service:         schema.Service,
+			Source:          schema.Source,
+			Provider:        schema.Provider,
+			SchemaType:      schema.SchemaType,
 			SchemaVersionID: string(schema.SchemaVersionID),
-			JsonSchema: converter.ConvertJsonSchemaEntityToDTO(schema.JsonSchema),
-			CreatedAt:  schema.CreatedAt,
-			UpdatedAt:  schema.UpdatedAt,
+			JsonSchema:      converter.ConvertJsonSchemaEntityToDTO(schema.JsonSchema),
+			CreatedAt:       schema.CreatedAt,
+			UpdatedAt:       schema.UpdatedAt,
 		})
 	}
 

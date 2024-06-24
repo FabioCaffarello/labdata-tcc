@@ -6,6 +6,7 @@ use (
 	./libs/golang/clients/resources/go-rabbitmq
 	./libs/golang/ddd/adapters/http/handlers/config-vault
 	./libs/golang/ddd/adapters/http/handlers/health-check
+	./libs/golang/ddd/adapters/http/handlers/schema-vault
 	./libs/golang/ddd/domain/entities/config-vault
 	./libs/golang/ddd/domain/entities/schema-vault
 	./libs/golang/ddd/domain/repositories/database/mock/config-vault
