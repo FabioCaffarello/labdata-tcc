@@ -133,7 +133,7 @@ func (h *WebConfigHandler) DeleteConfig(w http.ResponseWriter, r *http.Request) 
 	}
 
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte("Config deleted successfully"))
+	w.Write([]byte("Config deleted successfully!"))
 }
 
 // ListAllConfigs handles HTTP GET requests to list all configurations. It executes the ListAllConfigUseCase and writes

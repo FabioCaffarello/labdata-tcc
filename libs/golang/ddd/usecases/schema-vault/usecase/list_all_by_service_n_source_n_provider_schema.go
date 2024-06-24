@@ -39,7 +39,7 @@ func NewListAllByServiceAndSourceAndProviderSchemaUseCase(
 // Returns:
 //
 //	A slice of output DTOs containing the schema data, and an error if any occurred during the process.
-func (uc *ListAllByServiceAndSourceAndProviderSchemaUseCase) Execute(service, source, provider string) ([]outputdto.SchemaDTO, error) {
+func (uc *ListAllByServiceAndSourceAndProviderSchemaUseCase) Execute(provider, service, source string) ([]outputdto.SchemaDTO, error) {
 	schemas, err := uc.SchemaRepository.FindAllByServiceAndSourceAndProvider(service, source, provider)
 	if err != nil {
 		return []outputdto.SchemaDTO{}, err
@@ -53,6 +53,7 @@ func (uc *ListAllByServiceAndSourceAndProviderSchemaUseCase) Execute(service, so
 			Source:     schema.Source,
 			Provider:   schema.Provider,
 			SchemaType: schema.SchemaType,
+			SchemaVersionID: string(schema.SchemaVersionID),
 			JsonSchema: converter.ConvertJsonSchemaEntityToDTO(schema.JsonSchema),
 			CreatedAt:  schema.CreatedAt,
 			UpdatedAt:  schema.UpdatedAt,
