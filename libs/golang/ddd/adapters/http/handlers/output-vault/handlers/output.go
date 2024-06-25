@@ -219,8 +219,8 @@ func (h *WebOutputHandler) ListOutputsByServiceAndProvider(w http.ResponseWriter
 		return
 	}
 
-	listAllByServiceAndSourceOutputUseCase := usecase.NewListAllBySourceAndProviderOutputUseCase(h.OutputRepository)
-	outputs, err := listAllByServiceAndSourceOutputUseCase.Execute(provider, service)
+	listAllByServiceAndProviderOutputUseCase := usecase.NewListAllByServiceAndProviderOutputUseCase(h.OutputRepository)
+	outputs, err := listAllByServiceAndProviderOutputUseCase.Execute(provider, service)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
