@@ -586,7 +586,7 @@ func (suite *WebSchemaHandlerSuite) TestListSchemasByServiceAndProviderWhenSucce
 		},
 	}
 
-	suite.repoMock.On("FindAllBySourceAndProvider", "test_provider", "test_service").Return(entitySchemas, nil)
+	suite.repoMock.On("FindAllByServiceAndProvider", "test_provider", "test_service").Return(entitySchemas, nil)
 
 	expectedOutput := []outputdto.SchemaDTO{
 		{
@@ -646,7 +646,7 @@ func (suite *WebSchemaHandlerSuite) TestListSchemasByServiceAndProviderWhenServi
 }
 
 func (suite *WebSchemaHandlerSuite) TestListSchemasByServiceAndProviderWhenRepositoryFails() {
-	suite.repoMock.On("FindAllBySourceAndProvider", "test_provider", "test_service").Return(nil, errors.New("repository error"))
+	suite.repoMock.On("FindAllByServiceAndProvider", "test_provider", "test_service").Return(nil, errors.New("repository error"))
 
 	req := httptest.NewRequest("GET", "/schemas/service/test_service/provider/test_provider", nil)
 	rctx := chi.NewRouteContext()

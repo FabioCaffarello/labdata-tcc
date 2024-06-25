@@ -201,7 +201,20 @@ func (suite *SchemaRepositoryTestSuite) TestUpdate() {
 	assert.Nil(suite.T(), err)
 	assert.NotNil(suite.T(), schemaStored)
 
-	suite.schemaProps.SchemaType = "test-schema-type-updated"
+	suite.schemaProps.JsonSchema = map[string]interface{}{
+		"type": "object",
+		"properties": map[string]interface{}{
+			"field1": map[string]interface{}{
+				"type": "string",
+			},
+			"field2": map[string]interface{}{
+				"type": "boolean",
+			},
+		},
+		"required": []interface{}{
+			"field1",
+		},
+	}
 	schema, err := entity.NewSchema(suite.schemaProps)
 	assert.Nil(suite.T(), err)
 
@@ -237,7 +250,20 @@ func (suite *SchemaRepositoryTestSuite) TestUpdateError() {
 	assert.Nil(suite.T(), err)
 	assert.NotNil(suite.T(), schemaStored)
 
-	suite.schemaProps.SchemaType = "test-schema-type-updated"
+	suite.schemaProps.JsonSchema = map[string]interface{}{
+		"type": "object",
+		"properties": map[string]interface{}{
+			"field1": map[string]interface{}{
+				"type": "string",
+			},
+			"field2": map[string]interface{}{
+				"type": "boolean",
+			},
+		},
+		"required": []interface{}{
+			"field1",
+		},
+	}
 	schema, err := entity.NewSchema(suite.schemaProps)
 	assert.Nil(suite.T(), err)
 
