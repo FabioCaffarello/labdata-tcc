@@ -6,7 +6,6 @@ import (
 	mockrepository "libs/golang/ddd/domain/repositories/database/mock/schema-vault/repository"
 	inputdto "libs/golang/ddd/dtos/schema-vault/input"
 	outputdto "libs/golang/ddd/dtos/schema-vault/output"
-	"log"
 
 	shareddto "libs/golang/ddd/dtos/schema-vault/shared"
 	"libs/golang/ddd/shared/type-tools/custom-types-converter/schema-vault/converter"
@@ -62,7 +61,6 @@ func (suite *CreateSchemaUseCaseSuite) SetupTest() {
 
 func (suite *CreateSchemaUseCaseSuite) TestExecuteWhenSuccess() {
 	expectedSchema, _ := entity.NewSchema(suite.schemaProps)
-	log.Printf("expectedSchema: %v", expectedSchema)
 	suite.repoMock.On("Create", expectedSchema).Return(nil)
 
 	output, err := suite.useCase.Execute(suite.inputDTO)

@@ -53,7 +53,7 @@ func (suite *ListAllByServiceAndSourceAndProviderSchemaUseCaseSuite) TestExecute
 		},
 	}
 
-	suite.repoMock.On("FindAllByServiceAndSourceAndProvider", "provider1", "service1", "source1").Return(entitySchemas, nil)
+	suite.repoMock.On("FindAllByServiceAndSourceAndProvider", "service1", "source1", "provider1").Return(entitySchemas, nil)
 
 	expectedOutput := []outputdto.SchemaDTO{
 		{
@@ -85,7 +85,7 @@ func (suite *ListAllByServiceAndSourceAndProviderSchemaUseCaseSuite) TestExecute
 }
 
 func (suite *ListAllByServiceAndSourceAndProviderSchemaUseCaseSuite) TestExecuteWhenError() {
-	suite.repoMock.On("FindAllByServiceAndSourceAndProvider", "provider1", "service1", "source1").Return(nil, fmt.Errorf("error"))
+	suite.repoMock.On("FindAllByServiceAndSourceAndProvider", "service1", "source1", "provider1").Return(nil, fmt.Errorf("error"))
 
 	output, err := suite.useCase.Execute("provider1", "service1", "source1")
 	assert.NotNil(suite.T(), err)
