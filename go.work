@@ -6,19 +6,26 @@ use (
 	./libs/golang/clients/resources/go-rabbitmq
 	./libs/golang/ddd/adapters/http/handlers/config-vault
 	./libs/golang/ddd/adapters/http/handlers/health-check
+	./libs/golang/ddd/adapters/http/handlers/output-vault
 	./libs/golang/ddd/adapters/http/handlers/schema-vault
 	./libs/golang/ddd/domain/entities/config-vault
+	./libs/golang/ddd/domain/entities/output-vault
 	./libs/golang/ddd/domain/entities/schema-vault
 	./libs/golang/ddd/domain/repositories/database/mock/config-vault
+	./libs/golang/ddd/domain/repositories/database/mock/output-vault
 	./libs/golang/ddd/domain/repositories/database/mock/schema-vault
 	./libs/golang/ddd/domain/repositories/database/mongodb/config-vault
+	./libs/golang/ddd/domain/repositories/database/mongodb/output-vault
 	./libs/golang/ddd/domain/repositories/database/mongodb/schema-vault
 	./libs/golang/ddd/dtos/config-vault
+	./libs/golang/ddd/dtos/output-vault
 	./libs/golang/ddd/dtos/schema-vault
 	./libs/golang/ddd/shared/type-tools/custom-types-converter/config-vault
+	./libs/golang/ddd/shared/type-tools/custom-types-converter/output-vault
 	./libs/golang/ddd/shared/type-tools/custom-types-converter/schema-vault
 	./libs/golang/ddd/shared/type-tools/regular-types-converter
 	./libs/golang/ddd/usecases/config-vault
+	./libs/golang/ddd/usecases/output-vault
 	./libs/golang/ddd/usecases/schema-vault
 	./libs/golang/server/http/chi-webserver
 	./libs/golang/service-discovery
@@ -32,4 +39,5 @@ use (
 	./libs/golang/wrappers/resources/mongo-wrapper
 	./libs/golang/wrappers/resources/rabbitmq-wrapper
 	./services/shared/config-vault
+	./services/shared/schema-vault
 )
