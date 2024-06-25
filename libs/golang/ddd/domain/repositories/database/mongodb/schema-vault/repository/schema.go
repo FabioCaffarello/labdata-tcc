@@ -62,6 +62,7 @@ func NewSchemaRepository(client *mongo.Client, database string) *SchemaRepositor
 //	if err != nil {
 //	    log.Fatal(err)
 //	}
+//	fmt.Println(schema)
 func (r *SchemaRepository) getOneByID(id string) (*entity.Schema, error) {
 	filter := bson.M{"_id": id}
 	document := r.collection.FindOne(context.Background(), filter)
@@ -139,6 +140,7 @@ func (r *SchemaRepository) Create(schema *entity.Schema) error {
 //	if err != nil {
 //	    log.Fatal(err)
 //	}
+//	fmt.Println(schema)
 func (r *SchemaRepository) FindByID(id string) (*entity.Schema, error) {
 	return r.getOneByID(id)
 }
@@ -163,6 +165,7 @@ func (r *SchemaRepository) FindAll() ([]*entity.Schema, error) {
 	if err != nil {
 		return nil, err
 	}
+	defer cursor.Close(context.Background())
 
 	var schemas []*entity.Schema
 	for cursor.Next(context.Background()) {
@@ -199,7 +202,7 @@ func (r *SchemaRepository) FindAll() ([]*entity.Schema, error) {
 //	    log.Fatal(err)
 //	}
 func (r *SchemaRepository) Update(schema *entity.Schema) error {
-	r.log.Printf("Updating schema: %+v\n", schema)
+	r.log.Printf("Updating schema: %+v\n in collection: %s\n", schema, schemaCollection)
 
 	schemaID := schema.GetEntityID()
 	schemaStored, err := r.getOneByID(schemaID)
@@ -251,7 +254,7 @@ func (r *SchemaRepository) Update(schema *entity.Schema) error {
 //	    log.Fatal(err)
 //	}
 func (r *SchemaRepository) Delete(id string) error {
-	r.log.Printf("Deleting schema with ID: %s\n", id)
+	r.log.Printf("Deleting schema with ID: %s from collection: %s\n", id, schemaCollection)
 	filter := bson.M{"_id": id}
 	_, err := r.getOneByID(id)
 	if err != nil {
@@ -290,6 +293,7 @@ func (r *SchemaRepository) find(query bson.M) ([]*entity.Schema, error) {
 	if err != nil {
 		return nil, err
 	}
+	defer cursor.Close(context.Background())
 
 	var schemas []*entity.Schema
 	for cursor.Next(context.Background()) {
@@ -315,6 +319,7 @@ func (r *SchemaRepository) find(query bson.M) ([]*entity.Schema, error) {
 //
 // Parameters:
 //   - service: The service name to match.
+//   - provider: The provider name to match.
 //
 // Returns:
 //   - A slice of pointers to Schema entities.

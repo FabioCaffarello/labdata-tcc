@@ -157,10 +157,10 @@ func (suite *SchemaRepositoryTestSuite) TestFindAll() {
 
 	secDoc := suite.schemaProps
 	secDoc.Service = "test_service2"
-	seSchema, err := entity.NewSchema(secDoc)
+	secSchema, err := entity.NewSchema(secDoc)
 	assert.Nil(suite.T(), err)
 
-	err = repository.Create(seSchema)
+	err = repository.Create(secSchema)
 	assert.Nil(suite.T(), err)
 
 	schemas, err := repository.FindAll()
