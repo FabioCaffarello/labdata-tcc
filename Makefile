@@ -26,6 +26,15 @@ check: guard-project cleanup
 check-all: cleanup
 	npx nx run-many --target=test --all
 
+image:
+	npx nx run-many --target=image --all
+
+run:
+	docker-compose up -d
+
+purge-images:
+	@docker images --filter "dangling=true" -q | xargs -r docker rmi
+
 cleanup:
 	@npx nx reset;
 	@containers=$$(docker ps -q -a); \

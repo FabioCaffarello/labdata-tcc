@@ -34,6 +34,25 @@ services:
     networks:
       - labdata-tcc
 
+  schema-vault:
+    image: fabiocaffarello/schema-vault:latest
+    container_name: schema-vault
+    ports:
+      - 8001:8000
+    environment:
+      - MONGODB_USER=user
+      - MONGODB_PASSWORD=password
+      - MONGODB_HOST=mongo
+      - MONGODB_PORT=27017
+      - MONGODB_DBNAME=schema-vault
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://schema-vault:8000/healthz"]
+      interval: 10s
+      timeout: 1s
+      retries: 5
+    networks:
+      - labdata-tcc
+
   rockmongo:
     image: mongo-express
     container_name: rockmongo
