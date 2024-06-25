@@ -79,16 +79,16 @@ func (suite *WebSchemaHandlerSuite) TestCreateSchemaWhenSuccess() {
 				"field1",
 			},
 		},
-		CreatedAt: "2023-06-01T00:00:00Z",
-		UpdatedAt: "2023-06-01T00:00:00Z",
+		CreatedAt: "2023-06-01 00:00:00",
+		UpdatedAt: "2023-06-01 00:00:00",
 	}
 
 	suite.repoMock.On("Create", mock.AnythingOfType("*entity.Schema")).Return(nil).Run(func(args mock.Arguments) {
 		arg := args.Get(0).(*entity.Schema)
 		arg.ID = "1"
 		arg.SchemaVersionID = "v1"
-		arg.CreatedAt = "2023-06-01T00:00:00Z"
-		arg.UpdatedAt = "2023-06-01T00:00:00Z"
+		arg.CreatedAt = "2023-06-01 00:00:00"
+		arg.UpdatedAt = "2023-06-01 00:00:00"
 	})
 
 	jsonBody, _ := json.Marshal(inputDTO)
@@ -199,16 +199,16 @@ func (suite *WebSchemaHandlerSuite) TestUpdateSchemaWhenSuccess() {
 				"field1",
 			},
 		},
-		CreatedAt: "2023-06-01T00:00:00Z",
-		UpdatedAt: "2023-06-01T00:00:00Z",
+		CreatedAt: "2023-06-01 00:00:00",
+		UpdatedAt: "2023-06-01 00:00:00",
 	}
 
 	suite.repoMock.On("Update", mock.AnythingOfType("*entity.Schema")).Return(nil).Run(func(args mock.Arguments) {
 		arg := args.Get(0).(*entity.Schema)
 		arg.ID = "1"
 		arg.SchemaVersionID = "v1"
-		arg.CreatedAt = "2023-06-01T00:00:00Z"
-		arg.UpdatedAt = "2023-06-01T00:00:00Z"
+		arg.CreatedAt = "2023-06-01 00:00:00"
+		arg.UpdatedAt = "2023-06-01 00:00:00"
 	})
 
 	jsonBody, _ := json.Marshal(inputDTO)
@@ -341,8 +341,8 @@ func (suite *WebSchemaHandlerSuite) TestListAllSchemasWhenSuccess() {
 				},
 				JsonType: "object",
 			},
-			CreatedAt: "2023-06-01T00:00:00Z",
-			UpdatedAt: "2023-06-01T00:00:00Z",
+			CreatedAt: "2023-06-01 00:00:00",
+			UpdatedAt: "2023-06-01 00:00:00",
 		},
 		{
 			ID:         "2",
@@ -362,8 +362,8 @@ func (suite *WebSchemaHandlerSuite) TestListAllSchemasWhenSuccess() {
 				},
 				JsonType: "object",
 			},
-			CreatedAt: "2023-06-01T00:00:00Z",
-			UpdatedAt: "2023-06-01T00:00:00Z",
+			CreatedAt: "2023-06-01 00:00:00",
+			UpdatedAt: "2023-06-01 00:00:00",
 		},
 	}
 
@@ -388,8 +388,8 @@ func (suite *WebSchemaHandlerSuite) TestListAllSchemasWhenSuccess() {
 				},
 				Required: []string{"field1"},
 			},
-			CreatedAt: "2023-06-01T00:00:00Z",
-			UpdatedAt: "2023-06-01T00:00:00Z",
+			CreatedAt: "2023-06-01 00:00:00",
+			UpdatedAt: "2023-06-01 00:00:00",
 		},
 		{
 			ID:         "2",
@@ -409,8 +409,8 @@ func (suite *WebSchemaHandlerSuite) TestListAllSchemasWhenSuccess() {
 				},
 				Required: []string{"field1"},
 			},
-			CreatedAt: "2023-06-01T00:00:00Z",
-			UpdatedAt: "2023-06-01T00:00:00Z",
+			CreatedAt: "2023-06-01 00:00:00",
+			UpdatedAt: "2023-06-01 00:00:00",
 		},
 	}
 
@@ -463,8 +463,8 @@ func (suite *WebSchemaHandlerSuite) TestListSchemaByIDWhenSuccess() {
 				},
 				JsonType: "object",
 			},
-			CreatedAt: "2023-06-01T00:00:00Z",
-			UpdatedAt: "2023-06-01T00:00:00Z",
+			CreatedAt: "2023-06-01 00:00:00",
+			UpdatedAt: "2023-06-01 00:00:00",
 		},
 		{
 			ID:         "2",
@@ -484,8 +484,8 @@ func (suite *WebSchemaHandlerSuite) TestListSchemaByIDWhenSuccess() {
 				},
 				JsonType: "object",
 			},
-			CreatedAt: "2023-06-01T00:00:00Z",
-			UpdatedAt: "2023-06-01T00:00:00Z",
+			CreatedAt: "2023-06-01 00:00:00",
+			UpdatedAt: "2023-06-01 00:00:00",
 		},
 	}
 
@@ -509,8 +509,8 @@ func (suite *WebSchemaHandlerSuite) TestListSchemaByIDWhenSuccess() {
 			},
 			Required: []string{"field1"},
 		},
-		CreatedAt: "2023-06-01T00:00:00Z",
-		UpdatedAt: "2023-06-01T00:00:00Z",
+		CreatedAt: "2023-06-01 00:00:00",
+		UpdatedAt: "2023-06-01 00:00:00",
 	}
 
 	req := httptest.NewRequest(http.MethodGet, "/schemas/1", nil)
@@ -581,8 +581,8 @@ func (suite *WebSchemaHandlerSuite) TestListSchemasByServiceAndProviderWhenSucce
 				},
 				JsonType: "object",
 			},
-			CreatedAt: "2023-06-01T00:00:00Z",
-			UpdatedAt: "2023-06-01T00:00:00Z",
+			CreatedAt: "2023-06-01 00:00:00",
+			UpdatedAt: "2023-06-01 00:00:00",
 		},
 	}
 
@@ -608,8 +608,8 @@ func (suite *WebSchemaHandlerSuite) TestListSchemasByServiceAndProviderWhenSucce
 				},
 				Required: []string{"field1"},
 			},
-			CreatedAt: "2023-06-01T00:00:00Z",
-			UpdatedAt: "2023-06-01T00:00:00Z",
+			CreatedAt: "2023-06-01 00:00:00",
+			UpdatedAt: "2023-06-01 00:00:00",
 		},
 	}
 
@@ -684,8 +684,8 @@ func (suite *WebSchemaHandlerSuite) TestListSchemasBySourceAndProviderWhenSucces
 				},
 				JsonType: "object",
 			},
-			CreatedAt: "2023-06-01T00:00:00Z",
-			UpdatedAt: "2023-06-01T00:00:00Z",
+			CreatedAt: "2023-06-01 00:00:00",
+			UpdatedAt: "2023-06-01 00:00:00",
 		},
 	}
 
@@ -711,8 +711,8 @@ func (suite *WebSchemaHandlerSuite) TestListSchemasBySourceAndProviderWhenSucces
 				},
 				Required: []string{"field1"},
 			},
-			CreatedAt: "2023-06-01T00:00:00Z",
-			UpdatedAt: "2023-06-01T00:00:00Z",
+			CreatedAt: "2023-06-01 00:00:00",
+			UpdatedAt: "2023-06-01 00:00:00",
 		},
 	}
 
@@ -774,8 +774,8 @@ func (suite *WebSchemaHandlerSuite) TestListSchemasByServiceAndSourceAndProvider
 				},
 				JsonType: "object",
 			},
-			CreatedAt: "2023-06-01T00:00:00Z",
-			UpdatedAt: "2023-06-01T00:00:00Z",
+			CreatedAt: "2023-06-01 00:00:00",
+			UpdatedAt: "2023-06-01 00:00:00",
 		},
 	}
 
@@ -801,8 +801,8 @@ func (suite *WebSchemaHandlerSuite) TestListSchemasByServiceAndSourceAndProvider
 				},
 				Required: []string{"field1"},
 			},
-			CreatedAt: "2023-06-01T00:00:00Z",
-			UpdatedAt: "2023-06-01T00:00:00Z",
+			CreatedAt: "2023-06-01 00:00:00",
+			UpdatedAt: "2023-06-01 00:00:00",
 		},
 	}
 
