@@ -1,5 +1,5 @@
 {
-  "name": "schema-vault",
+  "name": "libs-golang-ddd-domain-repositories-database-mock-schema-vault",
   "$schema": "../../../../../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/golang/ddd/domain/repositories/database/mock/schema-vault",

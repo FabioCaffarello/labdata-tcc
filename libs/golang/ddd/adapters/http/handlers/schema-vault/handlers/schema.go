@@ -219,8 +219,8 @@ func (h *WebSchemaHandler) ListSchemasByServiceAndProvider(w http.ResponseWriter
 		return
 	}
 
-	listAllByServiceAndSourceSchemaUseCase := usecase.NewListAllBySourceAndProviderSchemaUseCase(h.SchemaRepository)
-	schemas, err := listAllByServiceAndSourceSchemaUseCase.Execute(provider, service)
+	listAllByServiceAndProviderSchemaUseCase := usecase.NewListAllByServiceAndProviderSchemaUseCase(h.SchemaRepository)
+	schemas, err := listAllByServiceAndProviderSchemaUseCase.Execute(provider, service)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

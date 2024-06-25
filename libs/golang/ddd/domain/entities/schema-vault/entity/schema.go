@@ -63,11 +63,12 @@ type SchemaProps struct {
 }
 
 // getIDData constructs a map with the service, source, and provider information.
-func getIDData(service, source, provider string) map[string]string {
+func getIDData(service, source, provider, schemaType string) map[string]string {
 	return map[string]string{
-		"service":  service,
-		"source":   source,
-		"provider": provider,
+		"service":     service,
+		"source":      source,
+		"provider":    provider,
+		"schema_type": schemaType,
 	}
 }
 
@@ -116,7 +117,7 @@ func normalizeJsonSchema(jsonSchema JsonSchema) map[string]interface{} {
 
 // NewSchema creates a new Schema entity with the provided properties.
 func NewSchema(schemaProps SchemaProps) (*Schema, error) {
-	idData := getIDData(schemaProps.Service, schemaProps.Source, schemaProps.Provider)
+	idData := getIDData(schemaProps.Service, schemaProps.Source, schemaProps.Provider, schemaProps.SchemaType)
 
 	jsonSchema := transformJsonSchema(schemaProps.JsonSchema)
 

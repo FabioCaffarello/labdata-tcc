@@ -289,6 +289,7 @@ func (r *SchemaRepository) Delete(id string) error {
 //	    fmt.Printf("Schema: %+v\n", schema)
 //	}
 func (r *SchemaRepository) find(query bson.M) ([]*entity.Schema, error) {
+	log.Printf("Query: %+v\n", query)
 	cursor, err := r.collection.Find(context.Background(), query)
 	if err != nil {
 		return nil, err

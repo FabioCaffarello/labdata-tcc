@@ -44,14 +44,15 @@ func (uc *ListOneByIDSchemaUseCase) Execute(id string) (outputdto.SchemaDTO, err
 	}
 
 	dto := outputdto.SchemaDTO{
-		ID:         string(schema.ID),
-		Service:    schema.Service,
-		Source:     schema.Source,
-		Provider:   schema.Provider,
-		SchemaType: schema.SchemaType,
-		JsonSchema: converter.ConvertJsonSchemaEntityToDTO(schema.JsonSchema),
-		CreatedAt:  schema.CreatedAt,
-		UpdatedAt:  schema.UpdatedAt,
+		ID:              string(schema.ID),
+		Service:         schema.Service,
+		Source:          schema.Source,
+		Provider:        schema.Provider,
+		SchemaType:      schema.SchemaType,
+		JsonSchema:      converter.ConvertJsonSchemaEntityToDTO(schema.JsonSchema),
+		SchemaVersionID: string(schema.SchemaVersionID),
+		CreatedAt:       schema.CreatedAt,
+		UpdatedAt:       schema.UpdatedAt,
 	}
 
 	return dto, nil
