@@ -57,7 +57,7 @@ func makeHTTPHealthzTransport(httpServer *webserver.Server, healthzHandler *heal
 	httpServer.RegisterRoute("GET", "/healthz", healthzHandler.Healthz)
 }
 
-// makeHTTPConfigTransport registers the configuration routes on the HTTP server.
+// makeHTTPSchemaTransport registers the schemas routes on the HTTP server.
 //
 // Parameters:
 //   - httpServer: The web server instance.
