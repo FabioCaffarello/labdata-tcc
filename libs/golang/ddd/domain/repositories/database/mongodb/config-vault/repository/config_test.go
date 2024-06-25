@@ -31,7 +31,7 @@ func (suite *ConfigVaultMongoDBRepositorySuite) SetupSuite() {
 	os.Setenv("MONGODB_USER", "testuser")
 	os.Setenv("MONGODB_PASSWORD", "testpassword")
 	os.Setenv("MONGODB_HOST", "localhost")
-	os.Setenv("MONGODB_PORT", "27017")
+	os.Setenv("MONGODB_PORT", "27019")
 	os.Setenv("MONGODB_DBNAME", databaseName)
 
 	suite.wrapper = mongowrapper.NewMongoDBWrapper()
