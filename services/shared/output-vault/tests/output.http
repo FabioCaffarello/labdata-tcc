@@ -1,0 +1,104 @@
+
+POST http://localhost:8002/output HTTP/1.1
+Content-Type: application/json
+
+{
+    "service": "file-downloader",
+    "source": "channel 1",
+    "provider": "br",
+    "data": {
+        "uri": "http://minio:9000/channel-1/20240624/video-1.mp4",
+        "videoID": "4WQbz4KwmRs",
+        "partition": "20240624"
+    },
+    "metadata": {
+        "input_id": "input1",
+        "input": {
+            "data": {
+                "reference": {
+                    "year": 2024,
+                    "month": 6,
+                    "day": 25
+                }
+            },
+            "processing_id": "processing1",
+            "processing_timestamp": "2024-06-24 08:30:00"
+        }
+    }
+}
+
+###
+POST http://localhost:8002/output HTTP/1.1
+Content-Type: application/json
+
+{
+    "service": "file-downloader",
+    "source": "channel 1",
+    "provider": "br",
+    "data": {
+        "uri": "http://minio:9000/channel-1/20240624/video-2.mp4",
+        "videoID": "4WQbz4KwgRs",
+        "partition": "20240624"
+    },
+    "metadata": {
+        "input_id": "input1",
+        "input": {
+            "data": {
+                "reference": {
+                    "year": 2024,
+                    "month": 6,
+                    "day": 25
+                }
+            },
+            "processing_id": "processing1",
+            "processing_timestamp": "2024-06-24 08:30:00"
+        }
+    }
+}
+
+###
+PUT http://localhost:8002/output HTTP/1.1
+Content-Type: application/json
+
+{
+    "service": "file-downloader",
+    "source": "channel 1",
+    "provider": "br",
+    "data": {
+        "uri": "http://minio:9000/channel-1/20240624/video-2.mp4",
+        "videoID": "4WQbz4KwgRs",
+        "partition": "20240624"
+    },
+    "metadata": {
+        "input_id": "input2",
+        "input": {
+            "data": {
+                "reference": {
+                    "year": 2024,
+                    "month": 6,
+                    "day": 25
+                }
+            },
+            "processing_id": "processing2",
+            "processing_timestamp": "2024-06-24 08:30:00"
+        }
+    }
+}
+
+###
+GET http://localhost:8002/output HTTP/1.1
+
+###
+GET http://localhost:8002/output/6f1af8c5d2a95ad29abc00ddfbbba092 HTTP/1.1
+
+###
+DELETE http://localhost:8002/output/6f1af8c5d2a95ad29abc00ddfbbba092 HTTP/1.1
+
+###
+GET http://localhost:8002/output/provider/br/service/file-downloader HTTP/1.1
+
+###
+GET http://localhost:8002/output/provider/br/source/channel 1 HTTP/1.1
+
+###
+GET http://localhost:8002/output/provider/br/service/file-downloader/source/channel 1 HTTP/1.1

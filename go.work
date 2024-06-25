@@ -40,5 +40,6 @@ use (
 	./libs/golang/wrappers/resources/mongo-wrapper
 	./libs/golang/wrappers/resources/rabbitmq-wrapper
 	./services/shared/config-vault
+	./services/shared/output-vault
 	./services/shared/schema-vault
 )

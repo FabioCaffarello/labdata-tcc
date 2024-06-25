@@ -53,6 +53,25 @@ services:
     networks:
       - labdata-tcc
 
+  output-vault:
+    image: fabiocaffarello/output-vault:latest
+    container_name: output-vault
+    ports:
+      - 8002:8000
+    environment:
+      - MONGODB_USER=user
+      - MONGODB_PASSWORD=password
+      - MONGODB_HOST=mongo
+      - MONGODB_PORT=27017
+      - MONGODB_DBNAME=output-vault
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://output-vault:8000/healthz"]
+      interval: 10s
+      timeout: 1s
+      retries: 5
+    networks:
+      - labdata-tcc
+
   rockmongo:
     image: mongo-express
     container_name: rockmongo
