@@ -29,6 +29,7 @@ use (
 	./libs/golang/ddd/usecases/schema-vault
 	./libs/golang/server/http/chi-webserver
 	./libs/golang/service-discovery
+	./libs/golang/shared/go-request
 	./libs/golang/shared/id/go-md5
 	./libs/golang/shared/id/go-uuid
 	./libs/golang/shared/json-schema
