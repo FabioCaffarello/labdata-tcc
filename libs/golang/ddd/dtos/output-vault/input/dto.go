@@ -1,0 +1,16 @@
+package inputdto
+
+import (
+	shareddto "libs/golang/ddd/dtos/output-vault/shared"
+)
+
+// OutputDTO represents the data transfer object for output input.
+// It includes the necessary details required for creating or updating
+// a configuration, such as service details, source, provider and metadata.
+type OutputDTO struct {
+	Data     map[string]interface{} `json:"data"`     // Data represents the output data.
+	Service  string                 `json:"service"`  // Service represents the name of the service for which the output is created.
+	Source   string                 `json:"source"`   // Source indicates the origin or source of the output.
+	Provider string                 `json:"provider"` // Provider specifies the provider of the output.
+	Metadata shareddto.MetadataDTO  `json:"metadata"` // Metadata represents the metadata of the output.
+}
