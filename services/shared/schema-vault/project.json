@@ -49,7 +49,7 @@
       "executor": "nx:run-commands",
       "dependsOn": ["build"],
       "options": {
-        "command": "docker build -t fabiocaffarello/schena-vault:latest -f ./Dockerfile .",
+        "command": "docker build -t fabiocaffarello/schema-vault:latest -f ./Dockerfile .",
         "cwd": "{projectRoot}"
       }
     }
