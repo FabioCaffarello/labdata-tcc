@@ -4,7 +4,6 @@ import (
 	"errors"
 	regularTypesConversion "libs/golang/ddd/shared/type-tools/regular-types-converter/conversion"
 	md5id "libs/golang/shared/id/go-md5"
-	"log"
 	"reflect"
 	"time"
 )
@@ -121,7 +120,6 @@ func NewOutput(props OutputProps) (*Output, error) {
 	idData := getIDData(props.Service, props.Source, props.Provider, props.Data)
 
 	metadata, err := transformMetadata(props.Metadata)
-	log.Printf("Metadata: %+v", metadata)
 	if err != nil {
 		return nil, err
 	}
@@ -136,7 +134,6 @@ func NewOutput(props OutputProps) (*Output, error) {
 		UpdatedAt: time.Now().Format(dateLayout),
 		CreatedAt: time.Now().Format(dateLayout),
 	}
-	log.Printf("Output: %+v", output)
 
 	if err := output.isValid(); err != nil {
 		return nil, err

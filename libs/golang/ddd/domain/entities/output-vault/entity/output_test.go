@@ -174,13 +174,18 @@ func (suite *OutputVaultConfigSuite) TestMapToEntity() {
 	assert.NotNil(suite.T(), doc)
 	assert.IsType(suite.T(), map[string]interface{}{}, doc)
 
-	assert.Equal(suite.T(), string(output.ID), doc["_id"])
-	assert.Equal(suite.T(), output.Service, doc["service"])
-	assert.Equal(suite.T(), output.Source, doc["source"])
-	assert.Equal(suite.T(), output.Provider, doc["provider"])
-	assert.Equal(suite.T(), output.Data, doc["data"])
-	assert.Equal(suite.T(), output.Metadata.InputID, doc["metadata"].(map[string]interface{})["input_id"])
-	assert.Equal(suite.T(), output.Metadata.Input.ProcessingID, doc["metadata"].(map[string]interface{})["input"].(map[string]interface{})["processing_id"])
-	assert.Equal(suite.T(), output.Metadata.Input.ProcessingTimestamp, doc["metadata"].(map[string]interface{})["input"].(map[string]interface{})["processing_timestamp"])
-	assert.Equal(suite.T(), output.Metadata.Input.Data, doc["metadata"].(map[string]interface{})["input"].(map[string]interface{})["data"])
+	newOuput := &Output{}
+	newOuput, err = newOuput.MapToEntity(doc)
+	assert.Nil(suite.T(), err)
+	assert.NotNil(suite.T(), newOuput)
+
+	assert.Equal(suite.T(), output.ID, newOuput.ID)
+	assert.Equal(suite.T(), output.Service, newOuput.Service)
+	assert.Equal(suite.T(), output.Source, newOuput.Source)
+	assert.Equal(suite.T(), output.Provider, newOuput.Provider)
+	assert.Equal(suite.T(), output.Data, newOuput.Data)
+	assert.Equal(suite.T(), output.Metadata.InputID, newOuput.Metadata.InputID)
+	assert.Equal(suite.T(), output.Metadata.Input.ProcessingID, newOuput.Metadata.Input.ProcessingID)
+	assert.Equal(suite.T(), output.Metadata.Input.ProcessingTimestamp, newOuput.Metadata.Input.ProcessingTimestamp)
+	assert.Equal(suite.T(), output.Metadata.Input.Data, newOuput.Metadata.Input.Data)
 }
