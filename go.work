@@ -9,6 +9,7 @@ use (
 	./libs/golang/ddd/adapters/http/handlers/output-vault
 	./libs/golang/ddd/adapters/http/handlers/schema-vault
 	./libs/golang/ddd/domain/entities/config-vault
+	./libs/golang/ddd/domain/entities/input-broker
 	./libs/golang/ddd/domain/entities/output-vault
 	./libs/golang/ddd/domain/entities/schema-vault
 	./libs/golang/ddd/domain/repositories/database/mock/config-vault
