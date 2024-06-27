@@ -190,7 +190,6 @@ func (r *OutputRepository) FindAll() ([]*entity.Output, error) {
 //	}
 func (r *OutputRepository) Update(output *entity.Output) error {
 	r.log.Printf("Updating output: %+v in collection: %s\n", output, schemaCollection)
-
 	outputID := output.GetEntityID()
 	outputStored, err := r.getOneByID(outputID)
 	if err != nil {
@@ -351,13 +350,13 @@ func (r *OutputRepository) FindAllBySourceAndProvider(provider, source string) (
 //
 // Example:
 //
-//	 outputs, err := repository.FindAllByServiceAndSourceAndProvider("myprovider", "myservice", "mysource")
-//		if err != nil {
-//		    log.Fatal(err)
-//		}
-//		for _, output := range outputs {
-//			fmt.Println(output)
-//		}
+//	outputs, err := repository.FindAllByServiceAndSourceAndProvider("myprovider", "myservice", "mysource")
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	for _, output := range outputs {
+//		fmt.Println(output)
+//	}
 func (r *OutputRepository) FindAllByServiceAndSourceAndProvider(service, source, provider string) ([]*entity.Output, error) {
 	return r.find(bson.M{"provider": provider, "service": service, "source": source})
 }

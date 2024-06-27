@@ -1,18 +1,16 @@
 package repository
 
 import (
+	gomongodb "libs/golang/clients/resources/go-mongo/client"
+	"libs/golang/ddd/domain/entities/config-vault/entity"
+	mongowrapper "libs/golang/wrappers/resources/mongo-wrapper/wrapper"
 	"os"
 	"testing"
-
-	gomongodb "libs/golang/clients/resources/go-mongo/client"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
-
-	"libs/golang/ddd/domain/entities/config-vault/entity"
-	mongowrapper "libs/golang/wrappers/resources/mongo-wrapper/wrapper"
 )
 
 type ConfigVaultMongoDBRepositorySuite struct {

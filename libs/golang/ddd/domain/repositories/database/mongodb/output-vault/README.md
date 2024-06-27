@@ -1,173 +1,219 @@
-# output-vault/entity
+# output-vault/repository
 
-`output-vault/entity` is a Go library that provides structures and functions to manage and manipulate output entities within a system. This library includes utilities for converting data between different formats, validating output data, and generating necessary identifiers.
+`output-vault/repository` is a Go library that provides a repository layer for managing output entities stored in MongoDB. This library includes functionalities for creating, reading, updating, and deleting output entities, as well as querying outputs based on different attributes.
 
 ## Features
 
-- Define and manage output entities.
-- Convert between `map[string]interface{}` and entity structs.
-- Validate output data.
-- Generate and handle MD5 identifiers.
+- Create, read, update, and delete output entities in MongoDB.
+- Query outputs by service, source, provider, and other attributes.
+- Handle collection and database existence checks.
 
 ## Usage
 
-### Defining Output Entities
+### Creating an OutputRepository
 
-The `Output` struct represents an output entity with attributes such as service, source, provider, and data.
+The `OutputRepository` struct provides methods to interact with the output entities stored in MongoDB.
 
 ```go
 package main
 
 import (
+    "context"
     "fmt"
+    "log"
+
     "libs/golang/ddd/domain/entities/output-vault/entity"
+    "libs/golang/ddd/domain/repositories/database/mongodb/output-vault/repository"
+
+    "go.mongodb.org/mongo-driver/mongo"
+    "go.mongodb.org/mongo-driver/mongo/options"
 )
 
 func main() {
+    clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
+    client, err := mongo.Connect(context.Background(), clientOptions)
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    repo := repository.NewOutputRepository(client, "testdb")
     outputProps := entity.OutputProps{
-        Data: map[string]interface{}{
-            "field1": "value1",
-            "field2": "value2",
-        },
-        Service:  "test_service",
-        Source:   "test_source",
-        Provider: "test_provider",
-        Metadata: map[string]interface{}{
-            "input_id": "input_id",
-            "input": map[string]interface{}{
-                "data": map[string]interface{}{
-                    "input1": "value1",
-                },
-                "processing_id":        "processing_id",
-                "processing_timestamp": "2023-06-01 00:00:00",
-            },
+        Active:   true,
+        Service:  "exampleService",
+        Source:   "exampleSource",
+        Provider: "exampleProvider",
+        DependsOn: []map[string]interface{}{
+            {"service": "dependencyService", "source": "dependencySource"},
         },
     }
 
     output, err := entity.NewOutput(outputProps)
     if err != nil {
-        fmt.Println("Error creating output:", err)
-        return
+        log.Fatal(err)
     }
 
-    fmt.Printf("Output: %+v\n", output)
+    err = repo.Create(output)
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    fmt.Printf("Output created: %+v\n", output)
 }
 ```
 
-### Converting Output Entities to Maps
+### Retrieving an Output by ID
 
-The `ToMap` method converts an `Output` entity to a `map[string]interface{}` representation.
+Use the `FindByID` method to retrieve an output by its ID.
 
 ```go
 package main
 
 import (
+    "context"
     "fmt"
-    "libs/golang/ddd/domain/entities/output-vault/entity"
+    "log"
+
+    "libs/golang/ddd/domain/repositories/database/mongodb/output-vault/repository"
+
+    "go.mongodb.org/mongo-driver/mongo"
+    "go.mongodb.org/mongo-driver/mongo/options"
 )
 
 func main() {
-    outputProps := entity.OutputProps{
-        Data: map[string]interface{}{
-            "field1": "value1",
-            "field2": "value2",
-        },
-        Service:  "test_service",
-        Source:   "test_source",
-        Provider: "test_provider",
-        Metadata: map[string]interface{}{
-            "input_id": "input_id",
-            "input": map[string]interface{}{
-                "data": map[string]interface{}{
-                    "input1": "value1",
-                },
-                "processing_id":        "processing_id",
-                "processing_timestamp": "2023-06-01 00:00:00",
-            },
-        },
-    }
-
-    output, err := entity.NewOutput(outputProps)
+    clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
+    client, err := mongo.Connect(context.Background(), clientOptions)
     if err != nil {
-        fmt.Println("Error creating output:", err)
-        return
+        log.Fatal(err)
     }
 
-    outputMap, err := output.ToMap()
+    repo := repository.NewOutputRepository(client, "testdb")
+    output, err := repo.FindByID("60d5ec49e17e8e304c8f5310")
     if err != nil {
-        fmt.Println("Error converting output to map:", err)
-        return
+        log.Fatal(err)
     }
 
-    fmt.Printf("Output as map: %+v\n", outputMap)
+    fmt.Printf("Output retrieved: %+v\n", output)
 }
 ```
 
-### Validating Output Entities
+### Updating an Output
 
-The `isValid` method ensures that all required fields of an `Output` entity are set.
+Use the `Update` method to update an existing output.
 
 ```go
 package main
 
 import (
+    "context"
     "fmt"
+    "log"
+
     "libs/golang/ddd/domain/entities/output-vault/entity"
+    "libs/golang/ddd/domain/repositories/database/mongodb/output-vault/repository"
+
+    "go.mongodb.org/mongo-driver/mongo"
+    "go.mongodb.org/mongo-driver/mongo/options"
 )
 
 func main() {
-    outputProps := entity.OutputProps{
-        Data: map[string]interface{}{
-            "field1": "value1",
-            "field2": "value2",
-        },
-        Service:  "test_service",
-        Source:   "test_source",
-        Provider: "test_provider",
-        Metadata: map[string]interface{}{
-            "input_id": "input_id",
-            "input": map[string]interface{}{
-                "data": map[string]interface{}{
-                    "input1": "value1",
-                },
-                "processing_id":        "processing_id",
-                "processing_timestamp": "2023-06-01 00:00:00",
-            },
-        },
-    }
-
-    output, err := entity.NewOutput(outputProps)
+    clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
+    client, err := mongo.Connect(context.Background(), clientOptions)
     if err != nil {
-        fmt.Println("Error creating output:", err)
-        return
+        log.Fatal(err)
     }
 
-    err = output.isValid()
+    repo := repository.NewOutputRepository(client, "testdb")
+    output, err := repo.FindByID("60d5ec49e17e8e304c8f5310")
     if err != nil {
-        fmt.Println("Output is invalid:", err)
-        return
+        log.Fatal(err)
     }
 
-    fmt.Println("Output is valid")
+    output.SetActive(false)
+    err = repo.Update(output)
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    fmt.Println("Output updated successfully")
+}
+```
+
+### Deleting an Output
+
+Use the `Delete` method to remove an output by its ID.
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "log"
+
+    "libs/golang/ddd/domain/repositories/database/mongodb/output-vault/repository"
+
+    "go.mongodb.org/mongo-driver/mongo"
+    "go.mongodb.org/mongo-driver/mongo/options"
+)
+
+func main() {
+    clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
+    client, err := mongo.Connect(context.Background(), clientOptions)
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    repo := repository.NewOutputRepository(client, "testdb")
+    err = repo.Delete("60d5ec49e17e8e304c8f5310")
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    fmt.Println("Output deleted successfully")
+}
+```
+
+### Querying Outputs
+
+Use the various query methods to retrieve outputs based on different attributes.
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "log"
+
+    "libs/golang/ddd/domain/repositories/database/mongodb/output-vault/repository"
+
+    "go.mongodb.org/mongo-driver/mongo"
+    "go.mongodb.org/mongo-driver/mongo/options"
+)
+
+func main() {
+    clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
+    client, err := mongo.Connect(context.Background(), clientOptions)
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    repo := repository.NewOutputRepository(client, "testdb")
+    outputs, err := repo.FindAllByServiceAndProvider("exampleProvider", "exampleService")
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    for _, output := range outputs {
+        fmt.Printf("Output: %+v\n", output)
+    }
 }
 ```
 
 ## Testing
 
-To run the tests for the `entity` package, use the following command:
+To run the tests for the `repository` package, use the following command:
 
 ```sh
-npx nx test libs-golang-ddd-domain-entities-output-vault
+npx nx test libs-golang-ddd-domain-repositories-database-mongodb-output-vault-repository
 ```
-
-## Errors
-
-- `ErrInvalidID`: Returned when the ID of an `Output` is invalid.
-- `ErrInvalidService`: Returned when the service of an `Output` is invalid.
-- `ErrInvalidSource`: Returned when the source of an `Output` is invalid.
-- `ErrInvalidProvider`: Returned when the provider of an `Output` is invalid.
-- `ErrInvalidInputID`: Returned when the input ID of an `Output` is invalid.
-- `ErrInvalidProcessingID`: Returned when the processing ID of an `Output` is invalid.
-- `ErrInvalidProcessingTimestamp`: Returned when the processing timestamp of an `Output` is invalid.
-- `ErrInvalidData`: Returned when the data of an `Output` is invalid.
-- `ErrInvalidInputData`: Returned when the input data of an `Output` is invalid.
