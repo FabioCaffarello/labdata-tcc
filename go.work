@@ -21,6 +21,7 @@ use (
 	./libs/golang/ddd/domain/repositories/database/mongodb/output-vault
 	./libs/golang/ddd/domain/repositories/database/mongodb/schema-vault
 	./libs/golang/ddd/dtos/config-vault
+	./libs/golang/ddd/dtos/input-broker
 	./libs/golang/ddd/dtos/output-vault
 	./libs/golang/ddd/dtos/schema-vault
 	./libs/golang/ddd/shared/type-tools/custom-types-converter/config-vault
