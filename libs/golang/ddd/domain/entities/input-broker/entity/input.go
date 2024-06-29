@@ -105,10 +105,11 @@ func NewInput(props InputProps) (*Input, error) {
 		ID:   md5id.NewID(idData),
 		Data: props.Data,
 		Metadata: Metadata{
-			ProcessingID: processingID,
-			Service:      props.Service,
-			Source:       props.Source,
-			Provider:     props.Provider,
+			ProcessingID:        processingID,
+			ProcessingTimestamp: time.Now().Format(dateLayout),
+			Service:             props.Service,
+			Source:              props.Source,
+			Provider:            props.Provider,
 		},
 		Status: Status{
 			Code:   StatusCodeIdle,
