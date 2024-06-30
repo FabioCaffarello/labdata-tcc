@@ -585,7 +585,7 @@ func (suite *WebOutputHandlerSuite) TestListOutputsByServiceAndProviderWhenSucce
 		},
 	}
 
-	suite.repoMock.On("FindAllBySourceAndProvider", "test_provider", "test_service").Return(entityOutputs, nil)
+	suite.repoMock.On("FindAllByServiceAndProvider", "test_provider", "test_service").Return(entityOutputs, nil)
 
 	expectedOutput := []outputdto.OutputDTO{
 		{
@@ -643,7 +643,7 @@ func (suite *WebOutputHandlerSuite) TestListOutputsByServiceAndProviderWhenServi
 }
 
 func (suite *WebOutputHandlerSuite) TestListOutputsByServiceAndProviderWhenRepositoryFails() {
-	suite.repoMock.On("FindAllBySourceAndProvider", "test_provider", "test_service").Return(nil, errors.New("repository error"))
+	suite.repoMock.On("FindAllByServiceAndProvider", "test_provider", "test_service").Return(nil, errors.New("repository error"))
 
 	req := httptest.NewRequest("GET", "/outputs/service/test_service/provider/test_provider", nil)
 	rctx := chi.NewRouteContext()
