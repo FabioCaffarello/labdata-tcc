@@ -6,7 +6,7 @@ type InputRepositoryInterface interface {
 	FindAll() ([]*Input, error)
 	Update(output *Input) error
 	Delete(id string) error
-	FindByStatus(status int) ([]*Input, error)
+	FindAllByStatusAndProvider(provider string, status int) ([]*Input, error)
 	FindAllByServiceAndProvider(provider, service string) ([]*Input, error)
 	FindAllBySourceAndProvider(provider, source string) ([]*Input, error)
 	FindAllByServiceAndSourceAndProvider(provider, service, source string) ([]*Input, error)

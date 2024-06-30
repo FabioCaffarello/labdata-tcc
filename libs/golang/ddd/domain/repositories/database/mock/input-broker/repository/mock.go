@@ -79,9 +79,9 @@ func (m *InputRepositoryMock) FindAllByServiceAndSourceAndProvider(provider, ser
 	return result.([]*entity.Input), args.Error(1)
 }
 
-// FindAllByStatus is a mock implementation of InputRepositoryInterface's FindAllByStatus method
-func (m *InputRepositoryMock) FindAllByStatus(status int) ([]*entity.Input, error) {
-	args := m.Called(status)
+// FindAllByStatusAndProvider is a mock implementation of InputRepositoryInterface's FindAllByStatusAndProvider method
+func (m *InputRepositoryMock) FindAllByStatusAndProvider(provider string, status int) ([]*entity.Input, error) {
+	args := m.Called(provider, status)
 	result := args.Get(0)
 	if result == nil {
 		return nil, args.Error(1)
