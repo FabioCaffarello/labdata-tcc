@@ -357,6 +357,6 @@ func (r *OutputRepository) FindAllBySourceAndProvider(provider, source string) (
 //	for _, output := range outputs {
 //		fmt.Println(output)
 //	}
-func (r *OutputRepository) FindAllByServiceAndSourceAndProvider(service, source, provider string) ([]*entity.Output, error) {
+func (r *OutputRepository) FindAllByServiceAndSourceAndProvider(provider, service, source string) ([]*entity.Output, error) {
 	return r.find(bson.M{"provider": provider, "service": service, "source": source})
 }
