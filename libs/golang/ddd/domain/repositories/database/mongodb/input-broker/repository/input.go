@@ -281,7 +281,7 @@ func (r *InputRepository) find(query bson.M) ([]*entity.Input, error) {
 	return inputs, nil
 }
 
-// FindAllByStatus retrieves all Input documents from the collection with the specified status.
+// FindAllByStatusAndProvider retrieves all Input documents from the collection with the specified status.
 //
 // Parameters:
 //   - status: The status code.
@@ -292,15 +292,15 @@ func (r *InputRepository) find(query bson.M) ([]*entity.Input, error) {
 //
 // Example:
 //
-//	inputs, err := repository.FindAllByStatus(0)
+//	inputs, err := repository.FindAllByStatusAndProvider("myprovider", 0)
 //	if err != nil {
 //		log.Fatal(err)
 //	}
 //	for _, input := range inputs {
 //		fmt.Println(input)
 //	}
-func (r *InputRepository) FindAllByStatus(status int) ([]*entity.Input, error) {
-	query := bson.M{"status.code": status}
+func (r *InputRepository) FindAllByStatusAndProvider(provider string, status int) ([]*entity.Input, error) {
+	query := bson.M{"metadata.provider": provider, "status.code": status}
 	return r.find(query)
 }
 

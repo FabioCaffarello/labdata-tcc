@@ -391,7 +391,7 @@ func (suite *InputBrokerMongoDBRepositorySuite) TestFindAllByStatus() {
 	err = repository.Create(secInput)
 	assert.Nil(suite.T(), err)
 
-	inputs, err := repository.FindAllByStatus(1)
+	inputs, err := repository.FindAllByStatusAndProvider("test-provider", 1)
 	assert.Nil(suite.T(), err)
 	assert.NotNil(suite.T(), inputs)
 	assert.Equal(suite.T(), 1, len(inputs))
