@@ -34,7 +34,6 @@ func (suite *InputCreatedEventHandlerSuite) TestHandle() {
 	payload := map[string]string{"key": "value"}
 	testEvent.SetPayload(payload)
 	var wg sync.WaitGroup
-	exchangeName := "test-exchange"
 	routingKey := "test-routing-key"
 
 	// Expected JSON output
@@ -43,7 +42,7 @@ func (suite *InputCreatedEventHandlerSuite) TestHandle() {
 
 	// Act
 	wg.Add(1)
-	suite.eventHandler.Handle(testEvent, &wg, exchangeName, routingKey)
+	suite.eventHandler.Handle(testEvent, &wg, routingKey)
 	wg.Wait()
 
 	// Assert
@@ -57,7 +56,6 @@ func (suite *InputCreatedEventHandlerSuite) TestHandleNotifyError() {
 	payload := map[string]string{"key": "value"}
 	testEvent.SetPayload(payload)
 	var wg sync.WaitGroup
-	exchangeName := "test-exchange"
 	routingKey := "test-routing-key"
 
 	// Expected JSON output
@@ -66,7 +64,7 @@ func (suite *InputCreatedEventHandlerSuite) TestHandleNotifyError() {
 
 	// Act
 	wg.Add(1)
-	suite.eventHandler.Handle(testEvent, &wg, exchangeName, routingKey)
+	suite.eventHandler.Handle(testEvent, &wg, routingKey)
 	wg.Wait()
 
 	// Assert

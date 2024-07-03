@@ -21,7 +21,7 @@ func NewInputCreatedHandler(notifier NotifierInterface) *InputCreatedHandler {
 }
 
 // Handle processes the event and sends a notification.
-func (si *InputCreatedHandler) Handle(event events.EventInterface, wg *sync.WaitGroup, exchangeName string, routingKey string) {
+func (si *InputCreatedHandler) Handle(event events.EventInterface, wg *sync.WaitGroup, routingKey string) {
 	defer wg.Done()
 	jsonOutput, _ := json.Marshal(event.GetPayload())
 	err := si.Notifier.Notify(jsonOutput, routingKey)
