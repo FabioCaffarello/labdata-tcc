@@ -11,7 +11,6 @@ RUN mkdir -p /home/vscode/.ssh && \
     echo "Host *\n  ForwardAgent yes" > /home/vscode/.ssh/config && \
     chown -R vscode:vscode /home/vscode/.ssh
 
-EXPOSE 8000
 EXPOSE 9000
 EXPOSE 27017
 EXPOSE 27018
