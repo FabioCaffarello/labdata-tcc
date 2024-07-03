@@ -70,13 +70,12 @@ func (m *MockEventDispatcher) Register(eventName string, handler events.EventHan
 //
 // Parameters:
 //   - event: An instance of EventInterface representing the event to be dispatched.
-//   - exchangeName: A string representing the name of the exchange.
 //   - routingKey: A string representing the routing key for the event.
 //
 // Returns:
 //   - An error if dispatching fails, or nil if successful.
-func (m *MockEventDispatcher) Dispatch(event events.EventInterface, exchangeName string, routingKey string) error {
-	args := m.Called(event, exchangeName, routingKey)
+func (m *MockEventDispatcher) Dispatch(event events.EventInterface, routingKey string) error {
+	args := m.Called(event, routingKey)
 	return args.Error(0)
 }
 

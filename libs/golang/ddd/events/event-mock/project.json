@@ -1,5 +1,5 @@
 {
-  "name": "event-mock",
+  "name": "libs-golang-ddd-events-event-mock",
   "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/golang/ddd/events/event-mock",
