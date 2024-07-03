@@ -15,7 +15,7 @@ type EventInterface interface {
 
 // EventHandlerInterface defines the method that an event handler should implement.
 type EventHandlerInterface interface {
-	Handle(event EventInterface, wg *sync.WaitGroup, exchangeName string, routingKey string)
+	Handle(event EventInterface, wg *sync.WaitGroup, routingKey string)
 }
 
 // EventListenerInterface defines the method that an event listener should implement.
@@ -26,7 +26,7 @@ type EventListenerInterface interface {
 // EventDispatcherInterface defines the methods that an event dispatcher should implement.
 type EventDispatcherInterface interface {
 	Register(eventName string, handler EventHandlerInterface) error
-	Dispatch(event EventInterface, exchangeName string, routingKey string) error
+	Dispatch(event EventInterface, routingKey string) error
 	Remove(eventName string, handler EventHandlerInterface) error
 	Has(eventName string, handler EventHandlerInterface) bool
 	Clear()

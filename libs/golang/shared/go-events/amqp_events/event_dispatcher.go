@@ -22,13 +22,13 @@ func NewEventDispatcher() *EventDispatcher {
 
 // Dispatch sends an event to all registered handlers for the event's name.
 // It uses goroutines and a WaitGroup to handle concurrent execution of handlers.
-// exchangeName and routingKey are used for routing the event in the AMQP system.
-func (ev *EventDispatcher) Dispatch(event EventInterface, exchangeName string, routingKey string) error {
+// routingKey are used for routing the event in the AMQP system.
+func (ev *EventDispatcher) Dispatch(event EventInterface, routingKey string) error {
 	if handlers, ok := ev.handlers[event.GetName()]; ok {
 		wg := &sync.WaitGroup{}
 		for _, handler := range handlers {
 			wg.Add(1)
-			go handler.Handle(event, wg, exchangeName, routingKey)
+			go handler.Handle(event, wg, routingKey)
 		}
 		wg.Wait()
 	}

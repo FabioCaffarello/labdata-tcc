@@ -35,14 +35,14 @@ type TestEventHandler struct {
 	ID int
 }
 
-func (h *TestEventHandler) Handle(event EventInterface, wg *sync.WaitGroup, exchangeName string, routingKey string) {
+func (h *TestEventHandler) Handle(event EventInterface, wg *sync.WaitGroup, routingKey string) {
 }
 
 type MockHandler struct {
 	mock.Mock
 }
 
-func (m *MockHandler) Handle(event EventInterface, wg *sync.WaitGroup, exchangeName string, routingKey string) {
+func (m *MockHandler) Handle(event EventInterface, wg *sync.WaitGroup, routingKey string) {
 	m.Called(event)
 	wg.Done()
 }
@@ -173,7 +173,7 @@ func (suite *EventDispatcherTestSuite) TestEventDispatch_Dispatch() {
 	suite.eventDispatcher.Register(suite.event.GetName(), eh)
 	suite.eventDispatcher.Register(suite.event.GetName(), eh2)
 
-	suite.eventDispatcher.Dispatch(&suite.event, suite.exchangeName, suite.routingKey)
+	suite.eventDispatcher.Dispatch(&suite.event, suite.routingKey)
 	eh.AssertExpectations(suite.T())
 	eh2.AssertExpectations(suite.T())
 	eh.AssertNumberOfCalls(suite.T(), "Handle", 1)
