@@ -344,39 +344,38 @@ func (suite *InMemoryDocDBClientTestSuite) TestClientUpdateOneInvalidUpdate() {
 	err = suite.client.UpdateOne(suite.collectionName2, "1", update)
 	assert.NotNil(suite.T(), err)
 
-    err = suite.client.UpdateOne(suite.collectionName1, "1", nil)
-    assert.NotNil(suite.T(), err)
+	err = suite.client.UpdateOne(suite.collectionName1, "1", nil)
+	assert.NotNil(suite.T(), err)
 
-    err = suite.client.UpdateOne(suite.collectionName1, "1", map[string]interface{}{})
-    assert.NotNil(suite.T(), err)
+	err = suite.client.UpdateOne(suite.collectionName1, "1", map[string]interface{}{})
+	assert.NotNil(suite.T(), err)
 }
 
 func (suite *InMemoryDocDBClientTestSuite) TestClientDeleteAll() {
-    err := suite.client.CreateCollection(suite.collectionName1)
-    assert.Nil(suite.T(), err)
+	err := suite.client.CreateCollection(suite.collectionName1)
+	assert.Nil(suite.T(), err)
 
-    err = suite.client.InsertOne(suite.collectionName1, suite.document1)
-    assert.Nil(suite.T(), err)
+	err = suite.client.InsertOne(suite.collectionName1, suite.document1)
+	assert.Nil(suite.T(), err)
 
-    err = suite.client.InsertOne(suite.collectionName1, suite.document2)
-    assert.Nil(suite.T(), err)
+	err = suite.client.InsertOne(suite.collectionName1, suite.document2)
+	assert.Nil(suite.T(), err)
 
-    err = suite.client.DeleteAll(suite.collectionName1)
-    assert.Nil(suite.T(), err)
+	err = suite.client.DeleteAll(suite.collectionName1)
+	assert.Nil(suite.T(), err)
 
-    documents, err := suite.client.FindAll(suite.collectionName1)
-    assert.Nil(suite.T(), err)
-    assert.Equal(suite.T(), 0, len(documents))
+	documents, err := suite.client.FindAll(suite.collectionName1)
+	assert.Nil(suite.T(), err)
+	assert.Equal(suite.T(), 0, len(documents))
 }
 
 func (suite *InMemoryDocDBClientTestSuite) TestClientDeleteAllError() {
-    err := suite.client.CreateCollection(suite.collectionName1)
-    assert.Nil(suite.T(), err)
+	err := suite.client.CreateCollection(suite.collectionName1)
+	assert.Nil(suite.T(), err)
 
-    err = suite.client.InsertOne(suite.collectionName1, suite.document1)
-    assert.Nil(suite.T(), err)
+	err = suite.client.InsertOne(suite.collectionName1, suite.document1)
+	assert.Nil(suite.T(), err)
 
-    err = suite.client.DeleteAll(suite.collectionName2)
-    assert.NotNil(suite.T(), err)
+	err = suite.client.DeleteAll(suite.collectionName2)
+	assert.NotNil(suite.T(), err)
 }
-
