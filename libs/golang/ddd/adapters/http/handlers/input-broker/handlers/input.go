@@ -11,9 +11,9 @@ import (
 
 // WebInputHandler handles HTTP requests for input-related operations.
 type WebInputHandler struct {
-	InputRepository   entity.InputRepositoryInterface  // Interface for input repository operations.
-	EventDispatcher   events.EventDispatcherInterface  // Interface for event dispatching.
-	InputCreatedEvent events.EventInterface            // Event interface for input creation event.
+	InputRepository   entity.InputRepositoryInterface // Interface for input repository operations.
+	EventDispatcher   events.EventDispatcherInterface // Interface for event dispatching.
+	InputCreatedEvent events.EventInterface           // Event interface for input creation event.
 }
 
 // NewWebInputHandler creates a new instance of WebInputHandler with the provided dependencies.
