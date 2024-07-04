@@ -1,18 +1,28 @@
 go 1.22
 
 use (
+	./libs/golang/clients/apis/config-vault
+	./libs/golang/clients/apis/input-broker
+	./libs/golang/clients/apis/output-vault
+	./libs/golang/clients/apis/schema-vault
+	./libs/golang/clients/resources/go-docdb
 	./libs/golang/clients/resources/go-minio
 	./libs/golang/clients/resources/go-mongo
 	./libs/golang/clients/resources/go-rabbitmq
+	./libs/golang/database/go-docdb
 	./libs/golang/ddd/adapters/http/handlers/config-vault
 	./libs/golang/ddd/adapters/http/handlers/health-check
+	./libs/golang/ddd/adapters/http/handlers/input-broker
 	./libs/golang/ddd/adapters/http/handlers/output-vault
 	./libs/golang/ddd/adapters/http/handlers/schema-vault
 	./libs/golang/ddd/domain/entities/config-vault
+	./libs/golang/ddd/domain/entities/events-router
 	./libs/golang/ddd/domain/entities/input-broker
 	./libs/golang/ddd/domain/entities/output-vault
 	./libs/golang/ddd/domain/entities/schema-vault
+	./libs/golang/ddd/domain/repositories/database/in-memory/go-docdb/events-router
 	./libs/golang/ddd/domain/repositories/database/mock/config-vault
+	./libs/golang/ddd/domain/repositories/database/mock/events-router
 	./libs/golang/ddd/domain/repositories/database/mock/input-broker
 	./libs/golang/ddd/domain/repositories/database/mock/output-vault
 	./libs/golang/ddd/domain/repositories/database/mock/schema-vault
@@ -21,18 +31,30 @@ use (
 	./libs/golang/ddd/domain/repositories/database/mongodb/output-vault
 	./libs/golang/ddd/domain/repositories/database/mongodb/schema-vault
 	./libs/golang/ddd/dtos/config-vault
+	./libs/golang/ddd/dtos/events-router
 	./libs/golang/ddd/dtos/input-broker
 	./libs/golang/ddd/dtos/output-vault
 	./libs/golang/ddd/dtos/schema-vault
+	./libs/golang/ddd/events/event-mock
+	./libs/golang/ddd/events/events-router
+	./libs/golang/ddd/events/input-broker
 	./libs/golang/ddd/shared/type-tools/custom-types-converter/config-vault
+	./libs/golang/ddd/shared/type-tools/custom-types-converter/input-broker
 	./libs/golang/ddd/shared/type-tools/custom-types-converter/output-vault
 	./libs/golang/ddd/shared/type-tools/custom-types-converter/schema-vault
 	./libs/golang/ddd/shared/type-tools/regular-types-converter
 	./libs/golang/ddd/usecases/config-vault
+	./libs/golang/ddd/usecases/events-router
+	./libs/golang/ddd/usecases/input-broker
 	./libs/golang/ddd/usecases/output-vault
 	./libs/golang/ddd/usecases/schema-vault
+	./libs/golang/server/events/amqp-consumer
+	./libs/golang/server/events/event-server
+	./libs/golang/server/events/listener
+	./libs/golang/server/events/usecase-impl
 	./libs/golang/server/http/chi-webserver
 	./libs/golang/service-discovery
+	./libs/golang/shared/go-events
 	./libs/golang/shared/go-request
 	./libs/golang/shared/id/go-md5
 	./libs/golang/shared/id/go-uuid
@@ -44,6 +66,8 @@ use (
 	./libs/golang/wrappers/resources/mongo-wrapper
 	./libs/golang/wrappers/resources/rabbitmq-wrapper
 	./services/shared/config-vault
+	./services/shared/events-router
+	./services/shared/input-broker
 	./services/shared/output-vault
 	./services/shared/schema-vault
 )
