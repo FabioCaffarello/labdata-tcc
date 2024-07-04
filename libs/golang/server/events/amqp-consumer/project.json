@@ -1,0 +1,21 @@
+{
+  "name": "libs-golang-server-events-amqp-consumer",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/golang/server/events/amqp-consumer",
+  "tags": [
+    "lang:golang",
+    "scope:server"
+  ],
+  "targets": {
+    "test": {
+      "executor": "@nx-go/nx-go:test"
+    },
+    "lint": {
+      "executor": "@nx-go/nx-go:lint"
+    },
+    "tidy": {
+      "executor": "@nx-go/nx-go:tidy"
+    }
+  }
+}
