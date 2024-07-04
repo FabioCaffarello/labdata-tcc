@@ -23,6 +23,9 @@ var (
 
 	// ErrInvalidProcessingID is returned when the processing ID of an EventOrder is invalid.
 	ErrInvalidProcessingID = errors.New("invalid processing ID")
+
+	// ErrInvalidStage is returned when the stage of an EventOrder is invalid.
+	ErrInvalidStage = errors.New("invalid stage")
 )
 
 // EventOrder represents an event order entity with various attributes.
@@ -31,6 +34,7 @@ type EventOrder struct {
 	Service      string                 `bson:"service"`
 	Source       string                 `bson:"source"`
 	Provider     string                 `bson:"provider"`
+	Stage        string                 `bson:"stage"`
 	ProcessingID uuid.ID                `bson:"processing_id"`
 	Data         map[string]interface{} `bson:"data"`
 }
@@ -41,6 +45,7 @@ type EventOrderProps struct {
 	Source       string
 	Provider     string
 	ProcessingID string
+	Stage        string
 	Data         map[string]interface{}
 }
 
@@ -69,6 +74,7 @@ func NewEventOrder(props EventOrderProps) (*EventOrder, error) {
 		Service:      props.Service,
 		Source:       props.Source,
 		Provider:     props.Provider,
+		Stage:        props.Stage,
 		ProcessingID: uuid.ID(props.ProcessingID),
 		Data:         props.Data,
 	}
@@ -160,6 +166,10 @@ func (i *EventOrder) isValid() error {
 
 	if i.ProcessingID == "" {
 		return ErrInvalidProcessingID
+	}
+
+	if i.Stage == "" {
+		return ErrInvalidStage
 	}
 
 	return nil

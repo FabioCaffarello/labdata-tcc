@@ -23,6 +23,7 @@ func (suite *EventsRouterEventOrderSuite) TestNewEventOrderWhenSuccess() {
 		Source:       "test_source",
 		Provider:     "test_provider",
 		ProcessingID: "xyz789",
+		Stage:        "test_stage",
 		Data:         map[string]interface{}{"key": "value"},
 	}
 
@@ -42,6 +43,7 @@ func (suite *EventsRouterEventOrderSuite) TestNewEventOrderWhenInvalidService() 
 		Source:       "test_source",
 		Provider:     "test_provider",
 		ProcessingID: "xyz789",
+		Stage:        "test_stage",
 		Data:         map[string]interface{}{"key": "value"},
 	}
 
@@ -57,6 +59,7 @@ func (suite *EventsRouterEventOrderSuite) TestNewEventOrderWhenInvalidSource() {
 		Source:       "",
 		Provider:     "test_provider",
 		ProcessingID: "xyz789",
+		Stage:        "test_stage",
 		Data:         map[string]interface{}{"key": "value"},
 	}
 
@@ -72,6 +75,7 @@ func (suite *EventsRouterEventOrderSuite) TestNewEventOrderWhenInvalidProvider()
 		Source:       "test_source",
 		Provider:     "",
 		ProcessingID: "xyz789",
+		Stage:        "test_stage",
 		Data:         map[string]interface{}{"key": "value"},
 	}
 
@@ -87,6 +91,7 @@ func (suite *EventsRouterEventOrderSuite) TestNewEventOrderWhenInvalidProcessing
 		Source:       "test_source",
 		Provider:     "test_provider",
 		ProcessingID: "",
+		Stage:        "test_stage",
 		Data:         map[string]interface{}{"key": "value"},
 	}
 
@@ -96,12 +101,29 @@ func (suite *EventsRouterEventOrderSuite) TestNewEventOrderWhenInvalidProcessing
 	assert.Equal(suite.T(), ErrInvalidProcessingID, err)
 }
 
+func (suite *EventsRouterEventOrderSuite) TestNewEventOrderWhenInvalidStage() {
+	props := EventOrderProps{
+		Service:      "test_service",
+		Source:       "test_source",
+		Provider:     "test_provider",
+		ProcessingID: "xyz789",
+		Stage:        "",
+		Data:         map[string]interface{}{"key": "value"},
+	}
+
+	eventOrder, err := NewEventOrder(props)
+
+	assert.Nil(suite.T(), eventOrder)
+	assert.Equal(suite.T(), ErrInvalidStage, err)
+}
+
 func (suite *EventsRouterEventOrderSuite) TestGetEntityID() {
 	props := EventOrderProps{
 		Service:      "test_service",
 		Source:       "test_source",
 		Provider:     "test_provider",
 		ProcessingID: "xyz789",
+		Stage:        "test_stage",
 		Data:         map[string]interface{}{"key": "value"},
 	}
 
@@ -117,6 +139,7 @@ func (suite *EventsRouterEventOrderSuite) TestToMap() {
 		Source:       "test_source",
 		Provider:     "test_provider",
 		ProcessingID: "xyz789",
+		Stage:        "test_stage",
 		Data:         map[string]interface{}{"key": "value"},
 	}
 	eventOrder, err := NewEventOrder(props)
@@ -143,6 +166,7 @@ func (suite *EventsRouterEventOrderSuite) TestMapToEntity() {
 		Source:       "test_source",
 		Provider:     "test_provider",
 		ProcessingID: "xyz789",
+		Stage:        "test_stage",
 		Data:         map[string]interface{}{"key": "value"},
 	}
 
