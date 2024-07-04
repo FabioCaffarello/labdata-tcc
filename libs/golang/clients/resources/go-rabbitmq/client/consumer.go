@@ -13,7 +13,7 @@ type RabbitMQConsumer struct {
 	rmqClient    *Client         // RabbitMQ client instance
 	autoAck      bool            // Automatic acknowledgment flag
 	args         amqp.Table      // Additional arguments for the queue declaration
-	consumerName string          // Name of the consumer
+	ConsumerName string          // Name of the consumer
 	wg           *sync.WaitGroup // WaitGroup to manage goroutines
 }
 
@@ -37,7 +37,7 @@ func NewRabbitMQConsumer(rmqClient *Client, config ConsumerConfig) *RabbitMQCons
 		rmqClient:    rmqClient,
 		autoAck:      config.AutoAck,
 		args:         config.Args,
-		consumerName: config.ConsumerName,
+		ConsumerName: config.ConsumerName,
 		wg:           &sync.WaitGroup{},
 	}
 }
@@ -60,15 +60,13 @@ func (c *RabbitMQConsumer) Consume(ctx context.Context, msgCh chan amqp.Delivery
 	if err != nil {
 		panic(err)
 	}
-	log.Printf("Declared queue: %s", q.Name)
 
 	if err := c.rmqClient.bindQueue(q.Name, routingKey); err != nil {
 		panic(err)
 	}
-	log.Printf("Bound queue: %s with routing key: %s", q.Name, routingKey)
 
 	deliveryCh := make(chan amqp.Delivery)
-	go c.rmqClient.consume(deliveryCh, c.consumerName, q.Name, c.autoAck)
+	go c.rmqClient.consume(deliveryCh, c.ConsumerName, q.Name, c.autoAck)
 	log.Println("Started internal consume routine")
 
 	c.wg.Add(1)

@@ -5,6 +5,7 @@ import (
 	shareddto "libs/golang/ddd/dtos/config-vault/shared"
 	"testing"
 
+	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
 )
 
@@ -40,8 +41,8 @@ func (suite *ConfigConverterDTOToEntitySuite) TestConvertJobDependenciesDTOToEnt
 
 	entityDeps := ConvertJobDependenciesDTOToEntity(dto)
 
-	suite.Equal(len(expected), len(entityDeps))
-	suite.Equal(expected, entityDeps)
+	assert.Equal(suite.T(), len(expected), len(entityDeps))
+	assert.Equal(suite.T(), expected, entityDeps)
 }
 
 func (suite *ConfigConverterDTOToEntitySuite) TestConvertJobDependenciesDTOToEntity_Multiple() {
@@ -69,15 +70,15 @@ func (suite *ConfigConverterDTOToEntitySuite) TestConvertJobDependenciesDTOToEnt
 
 	entityDeps := ConvertJobDependenciesDTOToEntity(dto)
 
-	suite.Equal(len(expected), len(entityDeps))
-	suite.Equal(expected, entityDeps)
+	assert.Equal(suite.T(), len(expected), len(entityDeps))
+	assert.Equal(suite.T(), expected, entityDeps)
 }
 
 func (suite *ConfigConverterDTOToEntitySuite) TestConvertJobDependenciesDTOToMapWhenEmpty() {
 	dto := []shareddto.JobDependenciesDTO{}
 	entityMap := ConvertJobDependenciesDTOToMap(dto)
 
-	suite.Equal(0, len(entityMap))
+	assert.Equal(suite.T(), 0, len(entityMap))
 }
 
 func (suite *ConfigConverterDTOToEntitySuite) TestConvertJobDependenciesDTOToMapWhenSingle() {
@@ -97,8 +98,8 @@ func (suite *ConfigConverterDTOToEntitySuite) TestConvertJobDependenciesDTOToMap
 
 	entityMap := ConvertJobDependenciesDTOToMap(dto)
 
-	suite.Equal(len(expected), len(entityMap))
-	suite.Equal(expected, entityMap)
+	assert.Equal(suite.T(), len(expected), len(entityMap))
+	assert.Equal(suite.T(), expected, entityMap)
 }
 
 func (suite *ConfigConverterDTOToEntitySuite) TestConvertJobDependenciesDTOToMapWhenMultiple() {
@@ -126,6 +127,6 @@ func (suite *ConfigConverterDTOToEntitySuite) TestConvertJobDependenciesDTOToMap
 
 	entityMap := ConvertJobDependenciesDTOToMap(dto)
 
-	suite.Equal(len(expected), len(entityMap))
-	suite.Equal(expected, entityMap)
+	assert.Equal(suite.T(), len(expected), len(entityMap))
+	assert.Equal(suite.T(), expected, entityMap)
 }

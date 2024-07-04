@@ -255,6 +255,7 @@ func (c *Client) publish(ctx context.Context, contentType string, message []byte
 		},
 	)
 	if err != nil {
+		log.Printf("Failed to publish message: %v", err)
 		return fmt.Errorf("failed to publish message: %w", err)
 	}
 	log.Printf("Published message to routing key: %s", routingKey)

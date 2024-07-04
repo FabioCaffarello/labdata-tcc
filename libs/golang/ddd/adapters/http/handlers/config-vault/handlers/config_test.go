@@ -70,7 +70,7 @@ func (suite *WebConfigHandlerSuite) TestCreateConfigWhenSuccess() {
 	})
 
 	jsonBody, _ := json.Marshal(inputDTO)
-	req := httptest.NewRequest("POST", "/configs", bytes.NewBuffer(jsonBody))
+	req := httptest.NewRequest(http.MethodPost, "/configs", bytes.NewBuffer(jsonBody))
 	req.Header.Set("Content-Type", "application/json")
 	rr := httptest.NewRecorder()
 
@@ -87,7 +87,7 @@ func (suite *WebConfigHandlerSuite) TestCreateConfigWhenSuccess() {
 }
 
 func (suite *WebConfigHandlerSuite) TestCreateConfigWhenDecodingFails() {
-	req := httptest.NewRequest("POST", "/configs", bytes.NewBuffer([]byte("invalid json")))
+	req := httptest.NewRequest(http.MethodPost, "/configs", bytes.NewBuffer([]byte("invalid json")))
 	req.Header.Set("Content-Type", "application/json")
 	rr := httptest.NewRecorder()
 
@@ -111,7 +111,7 @@ func (suite *WebConfigHandlerSuite) TestCreateConfigWhenRepositoryFails() {
 	suite.repoMock.On("Create", mock.AnythingOfType("*entity.Config")).Return(errors.New("repository error"))
 
 	jsonBody, _ := json.Marshal(inputDTO)
-	req := httptest.NewRequest("POST", "/configs", bytes.NewBuffer(jsonBody))
+	req := httptest.NewRequest(http.MethodPost, "/configs", bytes.NewBuffer(jsonBody))
 	req.Header.Set("Content-Type", "application/json")
 	rr := httptest.NewRecorder()
 

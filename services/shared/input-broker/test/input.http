@@ -1,0 +1,14 @@
+
+POST http://localhost:8003/input HTTP/1.1
+Content-Type: application/json
+
+{
+    "service": "file-downloader",
+    "source": "channel",
+    "provider": "br",
+    "data": {
+        "year": 2024,
+        "month": 12,
+        "day": 10
+    }
+}
