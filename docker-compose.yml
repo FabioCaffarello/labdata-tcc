@@ -15,6 +15,24 @@ services:
     networks:
       - labdata-tcc
 
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+      RABBITMQ_DEFAULT_VHOST: /
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks:
+      - labdata-tcc
+
   config-vault:
     image: fabiocaffarello/config-vault:latest
     container_name: config-vault
@@ -69,6 +87,56 @@ services:
       interval: 10s
       timeout: 1s
       retries: 5
+    networks:
+      - labdata-tcc
+
+  input-broker:
+    image: fabiocaffarello/input-broker:latest
+    container_name: input-broker
+    ports:
+      - 8003:8000
+    environment:
+      - MONGODB_USER=user
+      - MONGODB_PASSWORD=password
+      - MONGODB_HOST=mongo
+      - MONGODB_PORT=27017
+      - MONGODB_DBNAME=input-broker
+      - RABBITMQ_USER=guest
+      - RABBITMQ_PASSWORD=guest
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_PROTOCOL=amqp
+      - RABBITMQ_EXCHANGE_NAME=services
+      - RABBITMQ_EXCHANGE_TYPE=topic
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://input-broker:8000/healthz"]
+      interval: 10s
+      timeout: 1s
+      retries: 5
+    networks:
+      - labdata-tcc
+
+  events-router:
+    image: fabiocaffarello/events-router:latest
+    container_name: events-router
+    environment:
+      - DOCDB_DBNAME=events-order
+      - CONSUMER_NAME=events-router
+      - RABBITMQ_USER=guest
+      - RABBITMQ_PASSWORD=guest
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_PROTOCOL=amqp
+      - RABBITMQ_EXCHANGE_NAME=services
+      - RABBITMQ_EXCHANGE_TYPE=topic
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      input-broker:
+        condition: service_healthy
     networks:
       - labdata-tcc
 
