@@ -16,6 +16,13 @@
     },
     "tidy": {
       "executor": "@nx-go/nx-go:tidy"
+    },
+    "godoc": {
+      "executor": "nx:run-commands",
+      "options": {
+      "command": "gomarkdoc --output docs/godoc.md  ./...",
+      "cwd": "{projectRoot}"
+      }
     }
   }
 }

@@ -19,7 +19,7 @@ type EventOrderRepository struct {
 	collectionName string
 }
 
-// NewModelOrderRepository creates a new instance of EventOrderRepository.
+// NewEventOrderRepository creates a new instance of EventOrderRepository.
 //
 // Parameters:
 //   - client: The client instance to interact with the document-based database.
@@ -27,7 +27,7 @@ type EventOrderRepository struct {
 //
 // Returns:
 //   - A pointer to the newly created EventOrderRepository instance.
-func NewModelOrderRepository(
+func NewEventOrderRepository(
 	client *client.Client,
 	database string,
 ) *EventOrderRepository {

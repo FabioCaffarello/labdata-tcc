@@ -30,7 +30,7 @@ import (
 func main() {
     db := database.NewInMemoryDocBD("test_database")
     client := client.NewClient(db)
-    repo := repository.NewModelOrderRepository(client, "test_database")
+    repo := repository.NewEventOrderRepository(client, "test_database")
     
     eventOrderProps := entity.EventOrderProps{
         Service:      "exampleService",
@@ -76,7 +76,7 @@ import (
 func main() {
     db := database.NewInMemoryDocBD("test_database")
     client := client.NewClient(db)
-    repo := repository.NewModelOrderRepository(client, "test_database")
+    repo := repository.NewEventOrderRepository(client, "test_database")
     
     eventOrder, err := repo.FindByID("9b97f68f63f3faa91d2d6558428f1863")
     if err != nil {
@@ -106,7 +106,7 @@ import (
 func main() {
     db := database.NewInMemoryDocBD("test_database")
     client := client.NewClient(db)
-    repo := repository.NewModelOrderRepository(client, "test_database")
+    repo := repository.NewEventOrderRepository(client, "test_database")
     
     err := repo.Delete("9b97f68f63f3faa91d2d6558428f1863")
     if err != nil {
@@ -136,7 +136,7 @@ import (
 func main() {
     db := database.NewInMemoryDocBD("test_database")
     client := client.NewClient(db)
-    repo := repository.NewModelOrderRepository(client, "test_database")
+    repo := repository.NewEventOrderRepository(client, "test_database")
     
     eventOrders, err := repo.FindAll()
     if err != nil {

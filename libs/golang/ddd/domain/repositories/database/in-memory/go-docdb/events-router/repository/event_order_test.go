@@ -26,7 +26,7 @@ func (suite *EventOrderRepositorySuite) SetupTest() {
 	// Initialize the in-memory database client
 	db := database.NewInMemoryDocBD("test_database")
 	suite.client = client.NewClient(db)
-	suite.repo = NewModelOrderRepository(suite.client, "test_database")
+	suite.repo = NewEventOrderRepository(suite.client, "test_database")
 }
 
 func (suite *EventOrderRepositorySuite) TearDownTest() {
@@ -34,7 +34,7 @@ func (suite *EventOrderRepositorySuite) TearDownTest() {
 	suite.repo = nil
 }
 
-func (suite *EventOrderRepositorySuite) TestNewModelOrderRepository() {
+func (suite *EventOrderRepositorySuite) TestNewEventOrderRepository() {
 	assert.NotNil(suite.T(), suite.repo)
 	assert.Equal(suite.T(), "events-order", suite.repo.collectionName)
 }
@@ -46,6 +46,7 @@ func (suite *EventOrderRepositorySuite) TestGetOneByIDSuccess() {
 		"service":       "test_service",
 		"source":        "test_source",
 		"provider":      "test_provider",
+		"stage":         "test_stage",
 		"processing_id": "xyz789",
 		"data": map[string]interface{}{
 			"key": "value",
@@ -80,6 +81,7 @@ func (suite *EventOrderRepositorySuite) TestFindByID() {
 		"service":       "test_service",
 		"source":        "test_source",
 		"provider":      "test_provider",
+		"stage":         "test_stage",
 		"processing_id": "xyz789",
 		"data": map[string]interface{}{
 			"key": "value",
@@ -105,6 +107,7 @@ func (suite *EventOrderRepositorySuite) TestCreateSuccess() {
 		Service:      "test_service",
 		Source:       "test_source",
 		Provider:     "test_provider",
+		Stage:        "test_stage",
 		ProcessingID: "xyz789",
 		Data: map[string]interface{}{
 			"key": "value",
@@ -135,6 +138,7 @@ func (suite *EventOrderRepositorySuite) TestCreateDuplicate() {
 		Service:      "test_service",
 		Source:       "test_source",
 		Provider:     "test_provider",
+		Stage:        "test_stage",
 		ProcessingID: "xyz789",
 		Data: map[string]interface{}{
 			"key": "value",
@@ -159,6 +163,7 @@ func (suite *EventOrderRepositorySuite) TestCreateInvalid() {
 	props := entity.EventOrderProps{
 		Source:       "test_source",
 		Provider:     "test_provider",
+		Stage:        "test_stage",
 		ProcessingID: "xyz789",
 		Data: map[string]interface{}{
 			"key": "value",
@@ -179,6 +184,7 @@ func (suite *EventOrderRepositorySuite) TestCreateWithoutData() {
 		Service:      "test_service",
 		Source:       "test_source",
 		Provider:     "test_provider",
+		Stage:        "test_stage",
 		ProcessingID: "xyz789",
 		Data:         nil,
 	}
@@ -208,6 +214,7 @@ func (suite *EventOrderRepositorySuite) TestFindAll() {
 		"service":       "test_service1",
 		"source":        "test_source1",
 		"provider":      "test_provider1",
+		"stage":         "test_stage1",
 		"processing_id": "xyz7891",
 		"data": map[string]interface{}{
 			"key1": "value1",
@@ -218,6 +225,7 @@ func (suite *EventOrderRepositorySuite) TestFindAll() {
 		"service":       "test_service2",
 		"source":        "test_source2",
 		"provider":      "test_provider2",
+		"stage":         "test_stage2",
 		"processing_id": "xyz7892",
 		"data": map[string]interface{}{
 			"key2": "value2",
@@ -256,6 +264,7 @@ func (suite *EventOrderRepositorySuite) TestDeleteSuccess() {
 		"service":       "test_service",
 		"source":        "test_source",
 		"provider":      "test_provider",
+		"stage":         "test_stage",
 		"processing_id": "xyz789",
 		"data": map[string]interface{}{
 			"key": "value",
