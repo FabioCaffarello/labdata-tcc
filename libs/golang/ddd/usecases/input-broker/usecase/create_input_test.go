@@ -52,7 +52,7 @@ func (suite *CreateInputUseCaseSuite) TestExecuteWhenSuccess() {
 	expectedInput, _ := entity.NewInput(suite.inputProps)
 	suite.repoMock.On("Create", expectedInput).Return(nil)
 	suite.eventMock.On("SetPayload", mock.Anything).Return()
-	suite.dispatcherMock.On("Dispatch", suite.eventMock, fmt.Sprintf("input.created.%s.%s", suite.inputDTO.Service, suite.inputDTO.Source)).Return(nil)
+	suite.dispatcherMock.On("Dispatch", suite.eventMock, fmt.Sprintf("input.created.%s.%s.%s", suite.inputDTO.Provider, suite.inputDTO.Service, suite.inputDTO.Source)).Return(nil)
 
 	output, err := suite.useCase.Execute(suite.inputDTO)
 
