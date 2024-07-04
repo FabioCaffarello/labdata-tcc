@@ -7,6 +7,7 @@ import (
 	"encoding/xml"
 	"errors"
 	"fmt"
+	"io"
 	"log"
 	"net/http"
 	"net/url"
@@ -16,6 +17,9 @@ import (
 
 var (
 	defaultContentType = "application/json"
+	DefaultHTTPClient  = &http.Client{
+		Timeout: 10 * time.Second,
+	}
 )
 
 // parseBaseURL parses the given base URL and returns a parsed *url.URL or an error if the URL is invalid.
@@ -319,9 +323,12 @@ func SendRequest(
 			return fmt.Errorf("HTTP request failed: %s", res.resp.Status)
 		}
 
-		if err := json.NewDecoder(res.resp.Body).Decode(result); err != nil {
-			return fmt.Errorf("failed to decode response body: %w", err)
+		if result != nil {
+			if err := json.NewDecoder(res.resp.Body).Decode(result); err != nil && err != io.EOF {
+				return fmt.Errorf("failed to decode response body: %w", err)
+			}
 		}
+
 		return nil
 	}
 }
