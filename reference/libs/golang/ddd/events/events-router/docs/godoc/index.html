@@ -1,0 +1,4278 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="../../" rel="prev"/>
+<link href="../../../input-broker/" rel="next"/>
+<link href="../../../../../../../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.6.0, mkdocs-material-9.5.25" name="generator"/>
+<title>Godoc - Labdata TCC</title>
+<link href="../../../../../../../../assets/stylesheets/main.6543a935.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<link href="../../../../../../../../assets/_mkdocstrings.css" rel="stylesheet"/>
+<link href="../../../../../../../../css/github-permalink-style.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../../../../../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#event">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="Labdata TCC" class="md-header__button md-logo" data-md-component="logo" href="../../../../../../../.." title="Labdata TCC">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Labdata TCC
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Godoc
+            
+          </span>
+</div>
+</div>
+</div>
+<script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/FabioCaffarello/labdata-tcc" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+</nav>
+<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
+<div class="md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../../../../../..">
+        
+  
+    
+  
+  Architecture
+
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../../../../../services/shared/config-vault/">
+          
+  
+    
+  
+  Services
+
+        </a>
+</li>
+<li class="md-tabs__item md-tabs__item--active">
+<a class="md-tabs__link" href="../../../../../clients/apis/config-vault/">
+          
+  
+    
+  
+  Libraries
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../../../../../../dependency-graph/index.html?select=all#/projects/all?groupByFolder=true">
+        
+  
+    
+  
+  Dependency Graph
+
+      </a>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Labdata TCC" class="md-nav__button md-logo" data-md-component="logo" href="../../../../../../../.." title="Labdata TCC">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+    Labdata TCC
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/FabioCaffarello/labdata-tcc" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../../../..">
+<span class="md-ellipsis">
+    Architecture
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Services
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+            Services
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+<span class="md-ellipsis">
+    Shared
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_1_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_1">
+<span class="md-nav__icon md-icon"></span>
+            Shared
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_1_1" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../../../../services/shared/config-vault/">
+<span class="md-ellipsis">
+    Config vault
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_2_1_1" id="__nav_2_1_1_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_1_1_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_2_1_1">
+<span class="md-nav__icon md-icon"></span>
+            Config vault
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_1_1_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_1_1_2" id="__nav_2_1_1_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_1_1_2_label" class="md-nav" data-md-level="4">
+<label class="md-nav__title" for="__nav_2_1_1_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../../../services/shared/config-vault/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_1_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../../../../services/shared/events-router/">
+<span class="md-ellipsis">
+    Events router
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_2_1_2" id="__nav_2_1_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_1_2_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_2_1_2">
+<span class="md-nav__icon md-icon"></span>
+            Events router
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_1_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_1_2_2" id="__nav_2_1_2_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_1_2_2_label" class="md-nav" data-md-level="4">
+<label class="md-nav__title" for="__nav_2_1_2_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../../../services/shared/events-router/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_1_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../../../../services/shared/input-broker/">
+<span class="md-ellipsis">
+    Input broker
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_2_1_3" id="__nav_2_1_3_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_1_3_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_2_1_3">
+<span class="md-nav__icon md-icon"></span>
+            Input broker
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_1_3_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_1_3_2" id="__nav_2_1_3_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_1_3_2_label" class="md-nav" data-md-level="4">
+<label class="md-nav__title" for="__nav_2_1_3_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../../../services/shared/input-broker/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_1_4" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../../../../services/shared/output-vault/">
+<span class="md-ellipsis">
+    Output vault
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_2_1_4" id="__nav_2_1_4_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_1_4_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_2_1_4">
+<span class="md-nav__icon md-icon"></span>
+            Output vault
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_1_4_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_1_4_2" id="__nav_2_1_4_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_1_4_2_label" class="md-nav" data-md-level="4">
+<label class="md-nav__title" for="__nav_2_1_4_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../../../services/shared/output-vault/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_1_5" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../../../../services/shared/schema-vault/">
+<span class="md-ellipsis">
+    Schema vault
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_2_1_5" id="__nav_2_1_5_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_1_5_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_2_1_5">
+<span class="md-nav__icon md-icon"></span>
+            Schema vault
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_1_5_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_1_5_2" id="__nav_2_1_5_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_1_5_2_label" class="md-nav" data-md-level="4">
+<label class="md-nav__title" for="__nav_2_1_5_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../../../services/shared/schema-vault/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+<span class="md-ellipsis">
+    Libraries
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+            Libraries
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_3_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="">
+<span class="md-ellipsis">
+    Golang
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_3_1_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_1">
+<span class="md-nav__icon md-icon"></span>
+            Golang
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_1" id="__nav_3_1_1_label" tabindex="0">
+<span class="md-ellipsis">
+    Clients
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_1_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_1_1">
+<span class="md-nav__icon md-icon"></span>
+            Clients
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_1_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_1_1" id="__nav_3_1_1_1_label" tabindex="0">
+<span class="md-ellipsis">
+    Apis
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_1_1_label" class="md-nav" data-md-level="4">
+<label class="md-nav__title" for="__nav_3_1_1_1">
+<span class="md-nav__icon md-icon"></span>
+            Apis
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_1_1_1" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../../clients/apis/config-vault/">
+<span class="md-ellipsis">
+    Config vault
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_1_1_1" id="__nav_3_1_1_1_1_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_1_1_1_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_1_1_1">
+<span class="md-nav__icon md-icon"></span>
+            Config vault
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_1_1_1_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_1_1_1_2" id="__nav_3_1_1_1_1_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_1_1_1_2_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_1_1_1_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../clients/apis/config-vault/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_1_1_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../../clients/apis/input-broker/">
+<span class="md-ellipsis">
+    Input broker
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_1_1_2" id="__nav_3_1_1_1_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_1_1_2_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_1_1_2">
+<span class="md-nav__icon md-icon"></span>
+            Input broker
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_1_1_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_1_1_2_2" id="__nav_3_1_1_1_2_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_1_1_2_2_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_1_1_2_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../clients/apis/input-broker/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_1_1_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../../clients/apis/output-vault/">
+<span class="md-ellipsis">
+    Output vault
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_1_1_3" id="__nav_3_1_1_1_3_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_1_1_3_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_1_1_3">
+<span class="md-nav__icon md-icon"></span>
+            Output vault
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_1_1_3_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_1_1_3_2" id="__nav_3_1_1_1_3_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_1_1_3_2_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_1_1_3_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../clients/apis/output-vault/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_1_1_4" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../../clients/apis/schema-vault/">
+<span class="md-ellipsis">
+    Schema vault
+  </span>
+</a>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_1_1_4_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_1_1_4">
+<span class="md-nav__icon md-icon"></span>
+            Schema vault
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_1_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_1_2" id="__nav_3_1_1_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Resources
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_1_2_label" class="md-nav" data-md-level="4">
+<label class="md-nav__title" for="__nav_3_1_1_2">
+<span class="md-nav__icon md-icon"></span>
+            Resources
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_1_2_1" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../../clients/resources/go-docdb/">
+<span class="md-ellipsis">
+    Go docdb
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_1_2_1" id="__nav_3_1_1_2_1_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_1_2_1_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_1_2_1">
+<span class="md-nav__icon md-icon"></span>
+            Go docdb
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_1_2_1_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_1_2_1_2" id="__nav_3_1_1_2_1_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_1_2_1_2_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_1_2_1_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../clients/resources/go-docdb/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_1_2_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../../clients/resources/go-minio/">
+<span class="md-ellipsis">
+    Go minio
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_1_2_2" id="__nav_3_1_1_2_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_1_2_2_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_1_2_2">
+<span class="md-nav__icon md-icon"></span>
+            Go minio
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_1_2_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_1_2_2_2" id="__nav_3_1_1_2_2_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_1_2_2_2_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_1_2_2_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../clients/resources/go-minio/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_1_2_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../../clients/resources/go-mongo/">
+<span class="md-ellipsis">
+    Go mongo
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_1_2_3" id="__nav_3_1_1_2_3_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_1_2_3_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_1_2_3">
+<span class="md-nav__icon md-icon"></span>
+            Go mongo
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_1_2_3_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_1_2_3_2" id="__nav_3_1_1_2_3_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_1_2_3_2_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_1_2_3_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../clients/resources/go-mongo/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_1_2_4" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../../clients/resources/go-rabbitmq/">
+<span class="md-ellipsis">
+    Go rabbitmq
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_1_2_4" id="__nav_3_1_1_2_4_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_1_2_4_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_1_2_4">
+<span class="md-nav__icon md-icon"></span>
+            Go rabbitmq
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_1_2_4_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_1_2_4_2" id="__nav_3_1_1_2_4_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_1_2_4_2_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_1_2_4_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../clients/resources/go-rabbitmq/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_2" id="__nav_3_1_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Database
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_2_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_1_2">
+<span class="md-nav__icon md-icon"></span>
+            Database
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_2_1" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../../database/go-docdb/">
+<span class="md-ellipsis">
+    Go docdb
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_2_1" id="__nav_3_1_2_1_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_2_1_label" class="md-nav" data-md-level="4">
+<label class="md-nav__title" for="__nav_3_1_2_1">
+<span class="md-nav__icon md-icon"></span>
+            Go docdb
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_2_1_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_2_1_2" id="__nav_3_1_2_1_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_2_1_2_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_2_1_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../database/go-docdb/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_3_1_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3" id="__nav_3_1_3_label" tabindex="0">
+<span class="md-ellipsis">
+    Ddd
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_3_1_3_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_1_3">
+<span class="md-nav__icon md-icon"></span>
+            Ddd
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_1" id="__nav_3_1_3_1_label" tabindex="0">
+<span class="md-ellipsis">
+    Adapters
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_1_label" class="md-nav" data-md-level="4">
+<label class="md-nav__title" for="__nav_3_1_3_1">
+<span class="md-nav__icon md-icon"></span>
+            Adapters
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_1_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_1_1" id="__nav_3_1_3_1_1_label" tabindex="0">
+<span class="md-ellipsis">
+    Http
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_1_1_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_3_1_1">
+<span class="md-nav__icon md-icon"></span>
+            Http
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_1_1_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_1_1_1" id="__nav_3_1_3_1_1_1_label" tabindex="0">
+<span class="md-ellipsis">
+    Handlers
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_1_1_1_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_3_1_1_1">
+<span class="md-nav__icon md-icon"></span>
+            Handlers
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_1_1_1_1" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../adapters/http/handlers/config-vault/">
+<span class="md-ellipsis">
+    Config vault
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_3_1_1_1_1" id="__nav_3_1_3_1_1_1_1_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_1_1_1_1_label" class="md-nav" data-md-level="7">
+<label class="md-nav__title" for="__nav_3_1_3_1_1_1_1">
+<span class="md-nav__icon md-icon"></span>
+            Config vault
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_1_1_1_1_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_1_1_1_1_2" id="__nav_3_1_3_1_1_1_1_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_1_1_1_1_2_label" class="md-nav" data-md-level="8">
+<label class="md-nav__title" for="__nav_3_1_3_1_1_1_1_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../adapters/http/handlers/config-vault/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_1_1_1_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../adapters/http/handlers/health-check/">
+<span class="md-ellipsis">
+    Health check
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_3_1_1_1_2" id="__nav_3_1_3_1_1_1_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_1_1_1_2_label" class="md-nav" data-md-level="7">
+<label class="md-nav__title" for="__nav_3_1_3_1_1_1_2">
+<span class="md-nav__icon md-icon"></span>
+            Health check
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_1_1_1_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_1_1_1_2_2" id="__nav_3_1_3_1_1_1_2_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_1_1_1_2_2_label" class="md-nav" data-md-level="8">
+<label class="md-nav__title" for="__nav_3_1_3_1_1_1_2_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../adapters/http/handlers/health-check/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_1_1_1_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../adapters/http/handlers/input-broker/">
+<span class="md-ellipsis">
+    Input broker
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_3_1_1_1_3" id="__nav_3_1_3_1_1_1_3_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_1_1_1_3_label" class="md-nav" data-md-level="7">
+<label class="md-nav__title" for="__nav_3_1_3_1_1_1_3">
+<span class="md-nav__icon md-icon"></span>
+            Input broker
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_1_1_1_3_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_1_1_1_3_2" id="__nav_3_1_3_1_1_1_3_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_1_1_1_3_2_label" class="md-nav" data-md-level="8">
+<label class="md-nav__title" for="__nav_3_1_3_1_1_1_3_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../adapters/http/handlers/input-broker/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_1_1_1_4" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../adapters/http/handlers/output-vault/">
+<span class="md-ellipsis">
+    Output vault
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_3_1_1_1_4" id="__nav_3_1_3_1_1_1_4_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_1_1_1_4_label" class="md-nav" data-md-level="7">
+<label class="md-nav__title" for="__nav_3_1_3_1_1_1_4">
+<span class="md-nav__icon md-icon"></span>
+            Output vault
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_1_1_1_4_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_1_1_1_4_2" id="__nav_3_1_3_1_1_1_4_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_1_1_1_4_2_label" class="md-nav" data-md-level="8">
+<label class="md-nav__title" for="__nav_3_1_3_1_1_1_4_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../adapters/http/handlers/output-vault/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_1_1_1_5" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../adapters/http/handlers/schema-vault/">
+<span class="md-ellipsis">
+    Schema vault
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_3_1_1_1_5" id="__nav_3_1_3_1_1_1_5_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_1_1_1_5_label" class="md-nav" data-md-level="7">
+<label class="md-nav__title" for="__nav_3_1_3_1_1_1_5">
+<span class="md-nav__icon md-icon"></span>
+            Schema vault
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_1_1_1_5_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_1_1_1_5_2" id="__nav_3_1_3_1_1_1_5_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_1_1_1_5_2_label" class="md-nav" data-md-level="8">
+<label class="md-nav__title" for="__nav_3_1_3_1_1_1_5_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../adapters/http/handlers/schema-vault/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_2" id="__nav_3_1_3_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Domain
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_2_label" class="md-nav" data-md-level="4">
+<label class="md-nav__title" for="__nav_3_1_3_2">
+<span class="md-nav__icon md-icon"></span>
+            Domain
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_2_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_2_1" id="__nav_3_1_3_2_1_label" tabindex="0">
+<span class="md-ellipsis">
+    Entities
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_2_1_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_3_2_1">
+<span class="md-nav__icon md-icon"></span>
+            Entities
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_2_1_1" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../domain/entities/config-vault/">
+<span class="md-ellipsis">
+    Config vault
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_3_2_1_1" id="__nav_3_1_3_2_1_1_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_2_1_1_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_3_2_1_1">
+<span class="md-nav__icon md-icon"></span>
+            Config vault
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_2_1_1_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_2_1_1_2" id="__nav_3_1_3_2_1_1_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_2_1_1_2_label" class="md-nav" data-md-level="7">
+<label class="md-nav__title" for="__nav_3_1_3_2_1_1_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../domain/entities/config-vault/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_2_1_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../domain/entities/events-router/">
+<span class="md-ellipsis">
+    Events router
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_3_2_1_2" id="__nav_3_1_3_2_1_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_2_1_2_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_3_2_1_2">
+<span class="md-nav__icon md-icon"></span>
+            Events router
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_2_1_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_2_1_2_2" id="__nav_3_1_3_2_1_2_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_2_1_2_2_label" class="md-nav" data-md-level="7">
+<label class="md-nav__title" for="__nav_3_1_3_2_1_2_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../domain/entities/events-router/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_2_1_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../domain/entities/input-broker/">
+<span class="md-ellipsis">
+    Input broker
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_3_2_1_3" id="__nav_3_1_3_2_1_3_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_2_1_3_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_3_2_1_3">
+<span class="md-nav__icon md-icon"></span>
+            Input broker
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_2_1_3_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_2_1_3_2" id="__nav_3_1_3_2_1_3_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_2_1_3_2_label" class="md-nav" data-md-level="7">
+<label class="md-nav__title" for="__nav_3_1_3_2_1_3_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../domain/entities/input-broker/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_2_1_4" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../domain/entities/output-vault/">
+<span class="md-ellipsis">
+    Output vault
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_3_2_1_4" id="__nav_3_1_3_2_1_4_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_2_1_4_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_3_2_1_4">
+<span class="md-nav__icon md-icon"></span>
+            Output vault
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_2_1_4_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_2_1_4_2" id="__nav_3_1_3_2_1_4_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_2_1_4_2_label" class="md-nav" data-md-level="7">
+<label class="md-nav__title" for="__nav_3_1_3_2_1_4_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../domain/entities/output-vault/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_2_1_5" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../domain/entities/schema-vault/">
+<span class="md-ellipsis">
+    Schema vault
+  </span>
+</a>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_2_1_5_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_3_2_1_5">
+<span class="md-nav__icon md-icon"></span>
+            Schema vault
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_2_2" id="__nav_3_1_3_2_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Repositories
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_2_2_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_3_2_2">
+<span class="md-nav__icon md-icon"></span>
+            Repositories
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_2_2_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_2_2_1" id="__nav_3_1_3_2_2_1_label" tabindex="0">
+<span class="md-ellipsis">
+    Database
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_2_2_1_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_3_2_2_1">
+<span class="md-nav__icon md-icon"></span>
+            Database
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_2_2_1_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_2_2_1_1" id="__nav_3_1_3_2_2_1_1_label" tabindex="0">
+<span class="md-ellipsis">
+    In memory
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_2_2_1_1_label" class="md-nav" data-md-level="7">
+<label class="md-nav__title" for="__nav_3_1_3_2_2_1_1">
+<span class="md-nav__icon md-icon"></span>
+            In memory
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_2_2_1_1_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_2_2_1_1_1" id="__nav_3_1_3_2_2_1_1_1_label" tabindex="0">
+<span class="md-ellipsis">
+    Go docdb
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_2_2_1_1_1_label" class="md-nav" data-md-level="8">
+<label class="md-nav__title" for="__nav_3_1_3_2_2_1_1_1">
+<span class="md-nav__icon md-icon"></span>
+            Go docdb
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_2_2_1_1_1_1" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../domain/repositories/database/in-memory/go-docdb/events-router/">
+<span class="md-ellipsis">
+    Events router
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_3_2_2_1_1_1_1" id="__nav_3_1_3_2_2_1_1_1_1_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_2_2_1_1_1_1_label" class="md-nav" data-md-level="9">
+<label class="md-nav__title" for="__nav_3_1_3_2_2_1_1_1_1">
+<span class="md-nav__icon md-icon"></span>
+            Events router
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_2_2_1_1_1_1_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_2_2_1_1_1_1_2" id="__nav_3_1_3_2_2_1_1_1_1_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_2_2_1_1_1_1_2_label" class="md-nav" data-md-level="10">
+<label class="md-nav__title" for="__nav_3_1_3_2_2_1_1_1_1_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../domain/repositories/database/in-memory/go-docdb/events-router/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_2_2_1_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_2_2_1_2" id="__nav_3_1_3_2_2_1_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Mock
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_2_2_1_2_label" class="md-nav" data-md-level="7">
+<label class="md-nav__title" for="__nav_3_1_3_2_2_1_2">
+<span class="md-nav__icon md-icon"></span>
+            Mock
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_2_2_1_2_1" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../domain/repositories/database/mock/config-vault/">
+<span class="md-ellipsis">
+    Config vault
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_3_2_2_1_2_1" id="__nav_3_1_3_2_2_1_2_1_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_2_2_1_2_1_label" class="md-nav" data-md-level="8">
+<label class="md-nav__title" for="__nav_3_1_3_2_2_1_2_1">
+<span class="md-nav__icon md-icon"></span>
+            Config vault
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_2_2_1_2_1_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_2_2_1_2_1_2" id="__nav_3_1_3_2_2_1_2_1_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_2_2_1_2_1_2_label" class="md-nav" data-md-level="9">
+<label class="md-nav__title" for="__nav_3_1_3_2_2_1_2_1_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../domain/repositories/database/mock/config-vault/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_2_2_1_2_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../domain/repositories/database/mock/events-router/">
+<span class="md-ellipsis">
+    Events router
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_3_2_2_1_2_2" id="__nav_3_1_3_2_2_1_2_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_2_2_1_2_2_label" class="md-nav" data-md-level="8">
+<label class="md-nav__title" for="__nav_3_1_3_2_2_1_2_2">
+<span class="md-nav__icon md-icon"></span>
+            Events router
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_2_2_1_2_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_2_2_1_2_2_2" id="__nav_3_1_3_2_2_1_2_2_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_2_2_1_2_2_2_label" class="md-nav" data-md-level="9">
+<label class="md-nav__title" for="__nav_3_1_3_2_2_1_2_2_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../domain/repositories/database/mock/events-router/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_2_2_1_2_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../domain/repositories/database/mock/input-broker/">
+<span class="md-ellipsis">
+    Input broker
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_3_2_2_1_2_3" id="__nav_3_1_3_2_2_1_2_3_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_2_2_1_2_3_label" class="md-nav" data-md-level="8">
+<label class="md-nav__title" for="__nav_3_1_3_2_2_1_2_3">
+<span class="md-nav__icon md-icon"></span>
+            Input broker
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_2_2_1_2_3_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_2_2_1_2_3_2" id="__nav_3_1_3_2_2_1_2_3_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_2_2_1_2_3_2_label" class="md-nav" data-md-level="9">
+<label class="md-nav__title" for="__nav_3_1_3_2_2_1_2_3_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../domain/repositories/database/mock/input-broker/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_2_2_1_2_4" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../domain/repositories/database/mock/output-vault/">
+<span class="md-ellipsis">
+    Output vault
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_3_2_2_1_2_4" id="__nav_3_1_3_2_2_1_2_4_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_2_2_1_2_4_label" class="md-nav" data-md-level="8">
+<label class="md-nav__title" for="__nav_3_1_3_2_2_1_2_4">
+<span class="md-nav__icon md-icon"></span>
+            Output vault
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_2_2_1_2_4_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_2_2_1_2_4_2" id="__nav_3_1_3_2_2_1_2_4_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_2_2_1_2_4_2_label" class="md-nav" data-md-level="9">
+<label class="md-nav__title" for="__nav_3_1_3_2_2_1_2_4_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../domain/repositories/database/mock/output-vault/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_2_2_1_2_5" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../domain/repositories/database/mock/schema-vault/">
+<span class="md-ellipsis">
+    Schema vault
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_3_2_2_1_2_5" id="__nav_3_1_3_2_2_1_2_5_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_2_2_1_2_5_label" class="md-nav" data-md-level="8">
+<label class="md-nav__title" for="__nav_3_1_3_2_2_1_2_5">
+<span class="md-nav__icon md-icon"></span>
+            Schema vault
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_2_2_1_2_5_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_2_2_1_2_5_2" id="__nav_3_1_3_2_2_1_2_5_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_2_2_1_2_5_2_label" class="md-nav" data-md-level="9">
+<label class="md-nav__title" for="__nav_3_1_3_2_2_1_2_5_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../domain/repositories/database/mock/schema-vault/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_2_2_1_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_2_2_1_3" id="__nav_3_1_3_2_2_1_3_label" tabindex="0">
+<span class="md-ellipsis">
+    Mongodb
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_2_2_1_3_label" class="md-nav" data-md-level="7">
+<label class="md-nav__title" for="__nav_3_1_3_2_2_1_3">
+<span class="md-nav__icon md-icon"></span>
+            Mongodb
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_2_2_1_3_1" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../domain/repositories/database/mongodb/config-vault/">
+<span class="md-ellipsis">
+    Config vault
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_3_2_2_1_3_1" id="__nav_3_1_3_2_2_1_3_1_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_2_2_1_3_1_label" class="md-nav" data-md-level="8">
+<label class="md-nav__title" for="__nav_3_1_3_2_2_1_3_1">
+<span class="md-nav__icon md-icon"></span>
+            Config vault
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_2_2_1_3_1_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_2_2_1_3_1_2" id="__nav_3_1_3_2_2_1_3_1_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_2_2_1_3_1_2_label" class="md-nav" data-md-level="9">
+<label class="md-nav__title" for="__nav_3_1_3_2_2_1_3_1_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../domain/repositories/database/mongodb/config-vault/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_2_2_1_3_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../domain/repositories/database/mongodb/input-broker/">
+<span class="md-ellipsis">
+    Input broker
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_3_2_2_1_3_2" id="__nav_3_1_3_2_2_1_3_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_2_2_1_3_2_label" class="md-nav" data-md-level="8">
+<label class="md-nav__title" for="__nav_3_1_3_2_2_1_3_2">
+<span class="md-nav__icon md-icon"></span>
+            Input broker
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_2_2_1_3_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_2_2_1_3_2_2" id="__nav_3_1_3_2_2_1_3_2_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_2_2_1_3_2_2_label" class="md-nav" data-md-level="9">
+<label class="md-nav__title" for="__nav_3_1_3_2_2_1_3_2_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../domain/repositories/database/mongodb/input-broker/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_2_2_1_3_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../domain/repositories/database/mongodb/output-vault/">
+<span class="md-ellipsis">
+    Output vault
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_3_2_2_1_3_3" id="__nav_3_1_3_2_2_1_3_3_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_2_2_1_3_3_label" class="md-nav" data-md-level="8">
+<label class="md-nav__title" for="__nav_3_1_3_2_2_1_3_3">
+<span class="md-nav__icon md-icon"></span>
+            Output vault
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_2_2_1_3_3_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_2_2_1_3_3_2" id="__nav_3_1_3_2_2_1_3_3_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_2_2_1_3_3_2_label" class="md-nav" data-md-level="9">
+<label class="md-nav__title" for="__nav_3_1_3_2_2_1_3_3_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../domain/repositories/database/mongodb/output-vault/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_2_2_1_3_4" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../domain/repositories/database/mongodb/schema-vault/">
+<span class="md-ellipsis">
+    Schema vault
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_3_2_2_1_3_4" id="__nav_3_1_3_2_2_1_3_4_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_2_2_1_3_4_label" class="md-nav" data-md-level="8">
+<label class="md-nav__title" for="__nav_3_1_3_2_2_1_3_4">
+<span class="md-nav__icon md-icon"></span>
+            Schema vault
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_2_2_1_3_4_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_2_2_1_3_4_2" id="__nav_3_1_3_2_2_1_3_4_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_2_2_1_3_4_2_label" class="md-nav" data-md-level="9">
+<label class="md-nav__title" for="__nav_3_1_3_2_2_1_3_4_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../domain/repositories/database/mongodb/schema-vault/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_3" id="__nav_3_1_3_3_label" tabindex="0">
+<span class="md-ellipsis">
+    Dtos
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_3_label" class="md-nav" data-md-level="4">
+<label class="md-nav__title" for="__nav_3_1_3_3">
+<span class="md-nav__icon md-icon"></span>
+            Dtos
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_3_1" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../dtos/config-vault/">
+<span class="md-ellipsis">
+    Config vault
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_3_3_1" id="__nav_3_1_3_3_1_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_3_1_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_3_3_1">
+<span class="md-nav__icon md-icon"></span>
+            Config vault
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_3_1_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_3_1_2" id="__nav_3_1_3_3_1_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_3_1_2_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_3_3_1_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../dtos/config-vault/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_3_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../dtos/events-router/">
+<span class="md-ellipsis">
+    Events router
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_3_3_2" id="__nav_3_1_3_3_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_3_2_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_3_3_2">
+<span class="md-nav__icon md-icon"></span>
+            Events router
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_3_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_3_2_2" id="__nav_3_1_3_3_2_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_3_2_2_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_3_3_2_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../dtos/events-router/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_3_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../dtos/input-broker/">
+<span class="md-ellipsis">
+    Input broker
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_3_3_3" id="__nav_3_1_3_3_3_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_3_3_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_3_3_3">
+<span class="md-nav__icon md-icon"></span>
+            Input broker
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_3_3_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_3_3_2" id="__nav_3_1_3_3_3_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_3_3_2_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_3_3_3_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../dtos/input-broker/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_3_4" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../dtos/output-vault/">
+<span class="md-ellipsis">
+    Output vault
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_3_3_4" id="__nav_3_1_3_3_4_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_3_4_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_3_3_4">
+<span class="md-nav__icon md-icon"></span>
+            Output vault
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_3_4_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_3_4_2" id="__nav_3_1_3_3_4_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_3_4_2_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_3_3_4_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../dtos/output-vault/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_3_5" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../dtos/schema-vault/">
+<span class="md-ellipsis">
+    Schema vault
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_3_3_5" id="__nav_3_1_3_3_5_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_3_5_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_3_3_5">
+<span class="md-nav__icon md-icon"></span>
+            Schema vault
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_3_5_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_3_5_2" id="__nav_3_1_3_3_5_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_3_5_2_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_3_3_5_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../dtos/schema-vault/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_3_1_3_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_4" id="__nav_3_1_3_4_label" tabindex="0">
+<span class="md-ellipsis">
+    Events
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_3_1_3_4_label" class="md-nav" data-md-level="4">
+<label class="md-nav__title" for="__nav_3_1_3_4">
+<span class="md-nav__icon md-icon"></span>
+            Events
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_4_1" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../event-mock/">
+<span class="md-ellipsis">
+    Event mock
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_3_4_1" id="__nav_3_1_3_4_1_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_4_1_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_3_4_1">
+<span class="md-nav__icon md-icon"></span>
+            Event mock
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_4_1_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_4_1_2" id="__nav_3_1_3_4_1_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_4_1_2_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_3_4_1_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../event-mock/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_3_1_3_4_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../">
+<span class="md-ellipsis">
+    Events router
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_3_4_2" id="__nav_3_1_3_4_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="true" aria-labelledby="__nav_3_1_3_4_2_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_3_4_2">
+<span class="md-nav__icon md-icon"></span>
+            Events router
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_3_1_3_4_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_4_2_2" id="__nav_3_1_3_4_2_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_3_1_3_4_2_2_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_3_4_2_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#index">
+<span class="md-ellipsis">
+      Index
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#type-errorcreated">
+<span class="md-ellipsis">
+      type ErrorCreated
+    </span>
+</a>
+<nav aria-label="type ErrorCreated" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#func-newerrorcreated">
+<span class="md-ellipsis">
+      func NewErrorCreated
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#func-errorcreated-getdatetime">
+<span class="md-ellipsis">
+      func (*ErrorCreated) GetDateTime
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#func-errorcreated-getname">
+<span class="md-ellipsis">
+      func (*ErrorCreated) GetName
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#func-errorcreated-getpayload">
+<span class="md-ellipsis">
+      func (*ErrorCreated) GetPayload
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#func-errorcreated-setpayload">
+<span class="md-ellipsis">
+      func (*ErrorCreated) SetPayload
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#type-orderedprocess">
+<span class="md-ellipsis">
+      type OrderedProcess
+    </span>
+</a>
+<nav aria-label="type OrderedProcess" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#func-neworderedprocess">
+<span class="md-ellipsis">
+      func NewOrderedProcess
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#func-orderedprocess-getdatetime">
+<span class="md-ellipsis">
+      func (*OrderedProcess) GetDateTime
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#func-orderedprocess-getname">
+<span class="md-ellipsis">
+      func (*OrderedProcess) GetName
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#func-orderedprocess-getpayload">
+<span class="md-ellipsis">
+      func (*OrderedProcess) GetPayload
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#func-orderedprocess-setpayload">
+<span class="md-ellipsis">
+      func (*OrderedProcess) SetPayload
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_4_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../input-broker/">
+<span class="md-ellipsis">
+    Input broker
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_3_4_3" id="__nav_3_1_3_4_3_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_4_3_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_3_4_3">
+<span class="md-nav__icon md-icon"></span>
+            Input broker
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_4_3_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_4_3_2" id="__nav_3_1_3_4_3_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_4_3_2_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_3_4_3_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../input-broker/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_5" id="__nav_3_1_3_5_label" tabindex="0">
+<span class="md-ellipsis">
+    Shared
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_5_label" class="md-nav" data-md-level="4">
+<label class="md-nav__title" for="__nav_3_1_3_5">
+<span class="md-nav__icon md-icon"></span>
+            Shared
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_5_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_5_1" id="__nav_3_1_3_5_1_label" tabindex="0">
+<span class="md-ellipsis">
+    Type tools
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_5_1_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_3_5_1">
+<span class="md-nav__icon md-icon"></span>
+            Type tools
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_5_1_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_5_1_1" id="__nav_3_1_3_5_1_1_label" tabindex="0">
+<span class="md-ellipsis">
+    Custom types converter
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_5_1_1_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_3_5_1_1">
+<span class="md-nav__icon md-icon"></span>
+            Custom types converter
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_5_1_1_1" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../shared/type-tools/custom-types-converter/config-vault/">
+<span class="md-ellipsis">
+    Config vault
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_3_5_1_1_1" id="__nav_3_1_3_5_1_1_1_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_5_1_1_1_label" class="md-nav" data-md-level="7">
+<label class="md-nav__title" for="__nav_3_1_3_5_1_1_1">
+<span class="md-nav__icon md-icon"></span>
+            Config vault
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_5_1_1_1_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_5_1_1_1_2" id="__nav_3_1_3_5_1_1_1_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_5_1_1_1_2_label" class="md-nav" data-md-level="8">
+<label class="md-nav__title" for="__nav_3_1_3_5_1_1_1_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../shared/type-tools/custom-types-converter/config-vault/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_5_1_1_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../shared/type-tools/custom-types-converter/input-broker/">
+<span class="md-ellipsis">
+    Input broker
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_3_5_1_1_2" id="__nav_3_1_3_5_1_1_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_5_1_1_2_label" class="md-nav" data-md-level="7">
+<label class="md-nav__title" for="__nav_3_1_3_5_1_1_2">
+<span class="md-nav__icon md-icon"></span>
+            Input broker
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_5_1_1_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_5_1_1_2_2" id="__nav_3_1_3_5_1_1_2_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_5_1_1_2_2_label" class="md-nav" data-md-level="8">
+<label class="md-nav__title" for="__nav_3_1_3_5_1_1_2_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../shared/type-tools/custom-types-converter/input-broker/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_5_1_1_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../shared/type-tools/custom-types-converter/output-vault/">
+<span class="md-ellipsis">
+    Output vault
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_3_5_1_1_3" id="__nav_3_1_3_5_1_1_3_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_5_1_1_3_label" class="md-nav" data-md-level="7">
+<label class="md-nav__title" for="__nav_3_1_3_5_1_1_3">
+<span class="md-nav__icon md-icon"></span>
+            Output vault
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_5_1_1_3_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_5_1_1_3_2" id="__nav_3_1_3_5_1_1_3_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_5_1_1_3_2_label" class="md-nav" data-md-level="8">
+<label class="md-nav__title" for="__nav_3_1_3_5_1_1_3_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../shared/type-tools/custom-types-converter/output-vault/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_5_1_1_4" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../shared/type-tools/custom-types-converter/schema-vault/">
+<span class="md-ellipsis">
+    Schema vault
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_3_5_1_1_4" id="__nav_3_1_3_5_1_1_4_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_5_1_1_4_label" class="md-nav" data-md-level="7">
+<label class="md-nav__title" for="__nav_3_1_3_5_1_1_4">
+<span class="md-nav__icon md-icon"></span>
+            Schema vault
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_5_1_1_4_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_5_1_1_4_2" id="__nav_3_1_3_5_1_1_4_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_5_1_1_4_2_label" class="md-nav" data-md-level="8">
+<label class="md-nav__title" for="__nav_3_1_3_5_1_1_4_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../shared/type-tools/custom-types-converter/schema-vault/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_5_1_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../shared/type-tools/regular-types-converter/">
+<span class="md-ellipsis">
+    Regular types converter
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_3_5_1_2" id="__nav_3_1_3_5_1_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_5_1_2_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_3_5_1_2">
+<span class="md-nav__icon md-icon"></span>
+            Regular types converter
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_5_1_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_5_1_2_2" id="__nav_3_1_3_5_1_2_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_5_1_2_2_label" class="md-nav" data-md-level="7">
+<label class="md-nav__title" for="__nav_3_1_3_5_1_2_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../shared/type-tools/regular-types-converter/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_6" id="__nav_3_1_3_6_label" tabindex="0">
+<span class="md-ellipsis">
+    Usecases
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_6_label" class="md-nav" data-md-level="4">
+<label class="md-nav__title" for="__nav_3_1_3_6">
+<span class="md-nav__icon md-icon"></span>
+            Usecases
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_6_1" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../usecases/config-vault/">
+<span class="md-ellipsis">
+    Config vault
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_3_6_1" id="__nav_3_1_3_6_1_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_6_1_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_3_6_1">
+<span class="md-nav__icon md-icon"></span>
+            Config vault
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_6_1_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_6_1_2" id="__nav_3_1_3_6_1_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_6_1_2_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_3_6_1_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../usecases/config-vault/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_6_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../usecases/events-router/">
+<span class="md-ellipsis">
+    Events router
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_3_6_2" id="__nav_3_1_3_6_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_6_2_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_3_6_2">
+<span class="md-nav__icon md-icon"></span>
+            Events router
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_6_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_6_2_2" id="__nav_3_1_3_6_2_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_6_2_2_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_3_6_2_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../usecases/events-router/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_6_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../usecases/input-broker/">
+<span class="md-ellipsis">
+    Input broker
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_3_6_3" id="__nav_3_1_3_6_3_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_6_3_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_3_6_3">
+<span class="md-nav__icon md-icon"></span>
+            Input broker
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_6_3_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_6_3_2" id="__nav_3_1_3_6_3_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_6_3_2_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_3_6_3_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../usecases/input-broker/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_6_4" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../usecases/output-vault/">
+<span class="md-ellipsis">
+    Output vault
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_3_6_4" id="__nav_3_1_3_6_4_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_6_4_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_3_6_4">
+<span class="md-nav__icon md-icon"></span>
+            Output vault
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_6_4_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_6_4_2" id="__nav_3_1_3_6_4_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_6_4_2_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_3_6_4_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../usecases/output-vault/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_6_5" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../usecases/schema-vault/">
+<span class="md-ellipsis">
+    Schema vault
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_3_6_5" id="__nav_3_1_3_6_5_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_6_5_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_3_6_5">
+<span class="md-nav__icon md-icon"></span>
+            Schema vault
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_3_6_5_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_3_6_5_2" id="__nav_3_1_3_6_5_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_3_6_5_2_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_3_6_5_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../usecases/schema-vault/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_4" id="__nav_3_1_4_label" tabindex="0">
+<span class="md-ellipsis">
+    Server
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_4_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_1_4">
+<span class="md-nav__icon md-icon"></span>
+            Server
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_4_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_4_1" id="__nav_3_1_4_1_label" tabindex="0">
+<span class="md-ellipsis">
+    Events
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_4_1_label" class="md-nav" data-md-level="4">
+<label class="md-nav__title" for="__nav_3_1_4_1">
+<span class="md-nav__icon md-icon"></span>
+            Events
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_4_1_1" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../../server/events/amqp-consumer/">
+<span class="md-ellipsis">
+    Amqp consumer
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_4_1_1" id="__nav_3_1_4_1_1_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_4_1_1_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_4_1_1">
+<span class="md-nav__icon md-icon"></span>
+            Amqp consumer
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_4_1_1_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_4_1_1_2" id="__nav_3_1_4_1_1_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_4_1_1_2_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_4_1_1_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../server/events/amqp-consumer/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_4_1_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../../server/events/event-server/">
+<span class="md-ellipsis">
+    Event server
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_4_1_2" id="__nav_3_1_4_1_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_4_1_2_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_4_1_2">
+<span class="md-nav__icon md-icon"></span>
+            Event server
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_4_1_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_4_1_2_2" id="__nav_3_1_4_1_2_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_4_1_2_2_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_4_1_2_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../server/events/event-server/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_4_1_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../../server/events/listener/">
+<span class="md-ellipsis">
+    Listener
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_4_1_3" id="__nav_3_1_4_1_3_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_4_1_3_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_4_1_3">
+<span class="md-nav__icon md-icon"></span>
+            Listener
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_4_1_3_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_4_1_3_2" id="__nav_3_1_4_1_3_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_4_1_3_2_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_4_1_3_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../server/events/listener/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_4_1_4" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../../server/events/usecase-impl/">
+<span class="md-ellipsis">
+    Usecase impl
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_4_1_4" id="__nav_3_1_4_1_4_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_4_1_4_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_4_1_4">
+<span class="md-nav__icon md-icon"></span>
+            Usecase impl
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_4_1_4_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_4_1_4_2" id="__nav_3_1_4_1_4_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_4_1_4_2_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_4_1_4_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../server/events/usecase-impl/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_4_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_4_2" id="__nav_3_1_4_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Http
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_4_2_label" class="md-nav" data-md-level="4">
+<label class="md-nav__title" for="__nav_3_1_4_2">
+<span class="md-nav__icon md-icon"></span>
+            Http
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_4_2_1" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../../server/http/chi-webserver/">
+<span class="md-ellipsis">
+    Chi webserver
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_4_2_1" id="__nav_3_1_4_2_1_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_4_2_1_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_4_2_1">
+<span class="md-nav__icon md-icon"></span>
+            Chi webserver
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_4_2_1_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_4_2_1_2" id="__nav_3_1_4_2_1_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_4_2_1_2_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_4_2_1_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../server/http/chi-webserver/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_5" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../../service-discovery/">
+<span class="md-ellipsis">
+    Service discovery
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_5" id="__nav_3_1_5_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_5_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_1_5">
+<span class="md-nav__icon md-icon"></span>
+            Service discovery
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_5_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_5_2" id="__nav_3_1_5_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_5_2_label" class="md-nav" data-md-level="4">
+<label class="md-nav__title" for="__nav_3_1_5_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../service-discovery/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_6" id="__nav_3_1_6_label" tabindex="0">
+<span class="md-ellipsis">
+    Shared
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_6_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_1_6">
+<span class="md-nav__icon md-icon"></span>
+            Shared
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_6_1" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../../shared/go-events/">
+<span class="md-ellipsis">
+    Go events
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_6_1" id="__nav_3_1_6_1_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_6_1_label" class="md-nav" data-md-level="4">
+<label class="md-nav__title" for="__nav_3_1_6_1">
+<span class="md-nav__icon md-icon"></span>
+            Go events
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_6_1_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_6_1_2" id="__nav_3_1_6_1_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_6_1_2_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_6_1_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../shared/go-events/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_6_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../../shared/go-request/">
+<span class="md-ellipsis">
+    Go request
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_6_2" id="__nav_3_1_6_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_6_2_label" class="md-nav" data-md-level="4">
+<label class="md-nav__title" for="__nav_3_1_6_2">
+<span class="md-nav__icon md-icon"></span>
+            Go request
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_6_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_6_2_2" id="__nav_3_1_6_2_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_6_2_2_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_6_2_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../shared/go-request/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_6_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_6_3" id="__nav_3_1_6_3_label" tabindex="0">
+<span class="md-ellipsis">
+    Id
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_6_3_label" class="md-nav" data-md-level="4">
+<label class="md-nav__title" for="__nav_3_1_6_3">
+<span class="md-nav__icon md-icon"></span>
+            Id
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_6_3_1" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../../shared/id/go-md5/">
+<span class="md-ellipsis">
+    Go md5
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_6_3_1" id="__nav_3_1_6_3_1_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_6_3_1_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_6_3_1">
+<span class="md-nav__icon md-icon"></span>
+            Go md5
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_6_3_1_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_6_3_1_2" id="__nav_3_1_6_3_1_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_6_3_1_2_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_6_3_1_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../shared/id/go-md5/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_6_3_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../../shared/id/go-uuid/">
+<span class="md-ellipsis">
+    Go uuid
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_6_3_2" id="__nav_3_1_6_3_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_6_3_2_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_6_3_2">
+<span class="md-nav__icon md-icon"></span>
+            Go uuid
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_6_3_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_6_3_2_2" id="__nav_3_1_6_3_2_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_6_3_2_2_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_6_3_2_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../shared/id/go-uuid/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_6_4" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../../shared/json-schema/">
+<span class="md-ellipsis">
+    Json schema
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_6_4" id="__nav_3_1_6_4_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_6_4_label" class="md-nav" data-md-level="4">
+<label class="md-nav__title" for="__nav_3_1_6_4">
+<span class="md-nav__icon md-icon"></span>
+            Json schema
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_6_4_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_6_4_2" id="__nav_3_1_6_4_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_6_4_2_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_6_4_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../shared/json-schema/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_6_5" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../../shared/type-tools/">
+<span class="md-ellipsis">
+    Type tools
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_6_5" id="__nav_3_1_6_5_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_6_5_label" class="md-nav" data-md-level="4">
+<label class="md-nav__title" for="__nav_3_1_6_5">
+<span class="md-nav__icon md-icon"></span>
+            Type tools
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_6_5_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_6_5_2" id="__nav_3_1_6_5_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_6_5_2_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_6_5_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../shared/type-tools/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_7" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_7" id="__nav_3_1_7_label" tabindex="0">
+<span class="md-ellipsis">
+    Wrappers
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_7_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_1_7">
+<span class="md-nav__icon md-icon"></span>
+            Wrappers
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_7_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_7_1" id="__nav_3_1_7_1_label" tabindex="0">
+<span class="md-ellipsis">
+    Core
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_7_1_label" class="md-nav" data-md-level="4">
+<label class="md-nav__title" for="__nav_3_1_7_1">
+<span class="md-nav__icon md-icon"></span>
+            Core
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_7_1_1" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../../wrappers/core/resource-contract/">
+<span class="md-ellipsis">
+    Resource contract
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_7_1_1" id="__nav_3_1_7_1_1_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_7_1_1_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_7_1_1">
+<span class="md-nav__icon md-icon"></span>
+            Resource contract
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_7_1_1_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_7_1_1_2" id="__nav_3_1_7_1_1_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_7_1_1_2_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_7_1_1_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../wrappers/core/resource-contract/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_7_1_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../../wrappers/core/resource-mapping/">
+<span class="md-ellipsis">
+    Resource mapping
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_7_1_2" id="__nav_3_1_7_1_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_7_1_2_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_7_1_2">
+<span class="md-nav__icon md-icon"></span>
+            Resource mapping
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_7_1_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_7_1_2_2" id="__nav_3_1_7_1_2_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_7_1_2_2_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_7_1_2_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../wrappers/core/resource-mapping/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_7_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_7_2" id="__nav_3_1_7_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Resources
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_7_2_label" class="md-nav" data-md-level="4">
+<label class="md-nav__title" for="__nav_3_1_7_2">
+<span class="md-nav__icon md-icon"></span>
+            Resources
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_7_2_1" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../../wrappers/resources/minio-wrapper/">
+<span class="md-ellipsis">
+    Minio wrapper
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_7_2_1" id="__nav_3_1_7_2_1_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_7_2_1_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_7_2_1">
+<span class="md-nav__icon md-icon"></span>
+            Minio wrapper
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_7_2_1_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_7_2_1_2" id="__nav_3_1_7_2_1_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_7_2_1_2_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_7_2_1_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../wrappers/resources/minio-wrapper/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_7_2_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../../wrappers/resources/mongo-wrapper/">
+<span class="md-ellipsis">
+    Mongo wrapper
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_7_2_2" id="__nav_3_1_7_2_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_7_2_2_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_7_2_2">
+<span class="md-nav__icon md-icon"></span>
+            Mongo wrapper
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_7_2_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_7_2_2_2" id="__nav_3_1_7_2_2_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_7_2_2_2_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_7_2_2_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../wrappers/resources/mongo-wrapper/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_7_2_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../../wrappers/resources/rabbitmq-wrapper/">
+<span class="md-ellipsis">
+    Rabbitmq wrapper
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_1_7_2_3" id="__nav_3_1_7_2_3_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_7_2_3_label" class="md-nav" data-md-level="5">
+<label class="md-nav__title" for="__nav_3_1_7_2_3">
+<span class="md-nav__icon md-icon"></span>
+            Rabbitmq wrapper
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1_7_2_3_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1_7_2_3_2" id="__nav_3_1_7_2_3_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Docs
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_7_2_3_2_label" class="md-nav" data-md-level="6">
+<label class="md-nav__title" for="__nav_3_1_7_2_3_2">
+<span class="md-nav__icon md-icon"></span>
+            Docs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../wrappers/resources/rabbitmq-wrapper/docs/godoc/">
+<span class="md-ellipsis">
+    Godoc
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../../../../../dependency-graph/index.html?select=all#/projects/all?groupByFolder=true">
+<span class="md-ellipsis">
+    Dependency Graph
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#index">
+<span class="md-ellipsis">
+      Index
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#type-errorcreated">
+<span class="md-ellipsis">
+      type ErrorCreated
+    </span>
+</a>
+<nav aria-label="type ErrorCreated" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#func-newerrorcreated">
+<span class="md-ellipsis">
+      func NewErrorCreated
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#func-errorcreated-getdatetime">
+<span class="md-ellipsis">
+      func (*ErrorCreated) GetDateTime
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#func-errorcreated-getname">
+<span class="md-ellipsis">
+      func (*ErrorCreated) GetName
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#func-errorcreated-getpayload">
+<span class="md-ellipsis">
+      func (*ErrorCreated) GetPayload
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#func-errorcreated-setpayload">
+<span class="md-ellipsis">
+      func (*ErrorCreated) SetPayload
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#type-orderedprocess">
+<span class="md-ellipsis">
+      type OrderedProcess
+    </span>
+</a>
+<nav aria-label="type OrderedProcess" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#func-neworderedprocess">
+<span class="md-ellipsis">
+      func NewOrderedProcess
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#func-orderedprocess-getdatetime">
+<span class="md-ellipsis">
+      func (*OrderedProcess) GetDateTime
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#func-orderedprocess-getname">
+<span class="md-ellipsis">
+      func (*OrderedProcess) GetName
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#func-orderedprocess-getpayload">
+<span class="md-ellipsis">
+      func (*OrderedProcess) GetPayload
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#func-orderedprocess-setpayload">
+<span class="md-ellipsis">
+      func (*OrderedProcess) SetPayload
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<!-- Code generated by gomarkdoc. DO NOT EDIT -->
+<h1 id="event">event<a class="headerlink" href="#event" title="Permanent link"></a></h1>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="s">"libs/golang/ddd/events/events-router/event"</span>
+</code></pre></div>
+<h2 id="index">Index<a class="headerlink" href="#index" title="Permanent link"></a></h2>
+<ul>
+<li><a href="#ErrorCreated">type ErrorCreated</a></li>
+<li><a href="#NewErrorCreated">func NewErrorCreated() *ErrorCreated</a></li>
+<li><a href="#ErrorCreated.GetDateTime">func (e *ErrorCreated) GetDateTime() time.Time</a></li>
+<li><a href="#ErrorCreated.GetName">func (e *ErrorCreated) GetName() string</a></li>
+<li><a href="#ErrorCreated.GetPayload">func (e *ErrorCreated) GetPayload() interface{}</a></li>
+<li><a href="#ErrorCreated.SetPayload">func (e *ErrorCreated) SetPayload(payload interface{})</a></li>
+<li><a href="#OrderedProcess">type OrderedProcess</a></li>
+<li><a href="#NewOrderedProcess">func NewOrderedProcess() *OrderedProcess</a></li>
+<li><a href="#OrderedProcess.GetDateTime">func (e *OrderedProcess) GetDateTime() time.Time</a></li>
+<li><a href="#OrderedProcess.GetName">func (e *OrderedProcess) GetName() string</a></li>
+<li><a href="#OrderedProcess.GetPayload">func (e *OrderedProcess) GetPayload() interface{}</a></li>
+<li><a href="#OrderedProcess.SetPayload">func (e *OrderedProcess) SetPayload(payload interface{})</a></li>
+</ul>
+<p><a name="ErrorCreated"></a></p>
+<h2 id="type-errorcreated">type ErrorCreated<a class="headerlink" href="#type-errorcreated" title="Permanent link"></a></h2>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="kd">type</span><span class="w"> </span><span class="nx">ErrorCreated</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="w">    </span><span class="nx">Name</span><span class="w">    </span><span class="kt">string</span>
+<a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">    </span><span class="nx">Payload</span><span class="w"> </span><span class="kd">interface</span><span class="p">{}</span>
+<a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="p">}</span>
+</code></pre></div>
+<p><a name="NewErrorCreated"></a></p>
+<h3 id="func-newerrorcreated">func NewErrorCreated<a class="headerlink" href="#func-newerrorcreated" title="Permanent link"></a></h3>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="kd">func</span><span class="w"> </span><span class="nx">NewErrorCreated</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="nx">ErrorCreated</span>
+</code></pre></div>
+<p><a name="ErrorCreated.GetDateTime"></a></p>
+<h3 id="func-errorcreated-getdatetime">func (*ErrorCreated) GetDateTime<a class="headerlink" href="#func-errorcreated-getdatetime" title="Permanent link"></a></h3>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="w"> </span><span class="o">*</span><span class="nx">ErrorCreated</span><span class="p">)</span><span class="w"> </span><span class="nx">GetDateTime</span><span class="p">()</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nx">Time</span>
+</code></pre></div>
+<p><a name="ErrorCreated.GetName"></a></p>
+<h3 id="func-errorcreated-getname">func (*ErrorCreated) GetName<a class="headerlink" href="#func-errorcreated-getname" title="Permanent link"></a></h3>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="w"> </span><span class="o">*</span><span class="nx">ErrorCreated</span><span class="p">)</span><span class="w"> </span><span class="nx">GetName</span><span class="p">()</span><span class="w"> </span><span class="kt">string</span>
+</code></pre></div>
+<p><a name="ErrorCreated.GetPayload"></a></p>
+<h3 id="func-errorcreated-getpayload">func (*ErrorCreated) GetPayload<a class="headerlink" href="#func-errorcreated-getpayload" title="Permanent link"></a></h3>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="w"> </span><span class="o">*</span><span class="nx">ErrorCreated</span><span class="p">)</span><span class="w"> </span><span class="nx">GetPayload</span><span class="p">()</span><span class="w"> </span><span class="kd">interface</span><span class="p">{}</span>
+</code></pre></div>
+<p><a name="ErrorCreated.SetPayload"></a></p>
+<h3 id="func-errorcreated-setpayload">func (*ErrorCreated) SetPayload<a class="headerlink" href="#func-errorcreated-setpayload" title="Permanent link"></a></h3>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="w"> </span><span class="o">*</span><span class="nx">ErrorCreated</span><span class="p">)</span><span class="w"> </span><span class="nx">SetPayload</span><span class="p">(</span><span class="nx">payload</span><span class="w"> </span><span class="kd">interface</span><span class="p">{})</span>
+</code></pre></div>
+<p><a name="OrderedProcess"></a></p>
+<h2 id="type-orderedprocess">type OrderedProcess<a class="headerlink" href="#type-orderedprocess" title="Permanent link"></a></h2>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="kd">type</span><span class="w"> </span><span class="nx">OrderedProcess</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-7-2" id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="w">    </span><span class="nx">Name</span><span class="w">    </span><span class="kt">string</span>
+<a href="#__codelineno-7-3" id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="w">    </span><span class="nx">Payload</span><span class="w"> </span><span class="kd">interface</span><span class="p">{}</span>
+<a href="#__codelineno-7-4" id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="p">}</span>
+</code></pre></div>
+<p><a name="NewOrderedProcess"></a></p>
+<h3 id="func-neworderedprocess">func NewOrderedProcess<a class="headerlink" href="#func-neworderedprocess" title="Permanent link"></a></h3>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-8-1" id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="kd">func</span><span class="w"> </span><span class="nx">NewOrderedProcess</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="nx">OrderedProcess</span>
+</code></pre></div>
+<p><a name="OrderedProcess.GetDateTime"></a></p>
+<h3 id="func-orderedprocess-getdatetime">func (*OrderedProcess) GetDateTime<a class="headerlink" href="#func-orderedprocess-getdatetime" title="Permanent link"></a></h3>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-9-1" id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="w"> </span><span class="o">*</span><span class="nx">OrderedProcess</span><span class="p">)</span><span class="w"> </span><span class="nx">GetDateTime</span><span class="p">()</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nx">Time</span>
+</code></pre></div>
+<p><a name="OrderedProcess.GetName"></a></p>
+<h3 id="func-orderedprocess-getname">func (*OrderedProcess) GetName<a class="headerlink" href="#func-orderedprocess-getname" title="Permanent link"></a></h3>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-10-1" id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="w"> </span><span class="o">*</span><span class="nx">OrderedProcess</span><span class="p">)</span><span class="w"> </span><span class="nx">GetName</span><span class="p">()</span><span class="w"> </span><span class="kt">string</span>
+</code></pre></div>
+<p><a name="OrderedProcess.GetPayload"></a></p>
+<h3 id="func-orderedprocess-getpayload">func (*OrderedProcess) GetPayload<a class="headerlink" href="#func-orderedprocess-getpayload" title="Permanent link"></a></h3>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-11-1" id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="w"> </span><span class="o">*</span><span class="nx">OrderedProcess</span><span class="p">)</span><span class="w"> </span><span class="nx">GetPayload</span><span class="p">()</span><span class="w"> </span><span class="kd">interface</span><span class="p">{}</span>
+</code></pre></div>
+<p><a name="OrderedProcess.SetPayload"></a></p>
+<h3 id="func-orderedprocess-setpayload">func (*OrderedProcess) SetPayload<a class="headerlink" href="#func-orderedprocess-setpayload" title="Permanent link"></a></h3>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-12-1" id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="w"> </span><span class="o">*</span><span class="nx">OrderedProcess</span><span class="p">)</span><span class="w"> </span><span class="nx">SetPayload</span><span class="p">(</span><span class="nx">payload</span><span class="w"> </span><span class="kd">interface</span><span class="p">{})</span>
+</code></pre></div>
+<h1 id="handler">handler<a class="headerlink" href="#handler" title="Permanent link"></a></h1>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-13-1" id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="kn">import</span><span class="w"> </span><span class="s">"libs/golang/ddd/events/events-router/handlers"</span>
+</code></pre></div>
+<h2 id="index_1">Index<a class="headerlink" href="#index_1" title="Permanent link"></a></h2>
+<ul>
+<li><a href="#ErrorCreatedHandler">type ErrorCreatedHandler</a></li>
+<li><a href="#NewErrorCreatedHandler">func NewErrorCreatedHandler(notifier NotifierInterface) *ErrorCreatedHandler</a></li>
+<li><a href="#ErrorCreatedHandler.Handle">func (si *ErrorCreatedHandler) Handle(event events.EventInterface, wg *sync.WaitGroup, routingKey string)</a></li>
+<li><a href="#MockRabbitMQNotifier">type MockRabbitMQNotifier</a></li>
+<li><a href="#MockRabbitMQNotifier.Notify">func (m *MockRabbitMQNotifier) Notify(message []byte, routingKey string) error</a></li>
+<li><a href="#NotifierInterface">type NotifierInterface</a></li>
+<li><a href="#OrderedProcessHandler">type OrderedProcessHandler</a></li>
+<li><a href="#NewOrderedProcessHandler">func NewOrderedProcessHandler(notifier NotifierInterface) *OrderedProcessHandler</a></li>
+<li><a href="#OrderedProcessHandler.Handle">func (si *OrderedProcessHandler) Handle(event events.EventInterface, wg *sync.WaitGroup, routingKey string)</a></li>
+</ul>
+<p><a name="ErrorCreatedHandler"></a></p>
+<h2 id="type-errorcreatedhandler">type ErrorCreatedHandler<a class="headerlink" href="#type-errorcreatedhandler" title="Permanent link"></a></h2>
+<p>ErrorCreatedHandler handles events of type ErrorCreated.</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-14-1" id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="kd">type</span><span class="w"> </span><span class="nx">ErrorCreatedHandler</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-14-2" id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="w">    </span><span class="nx">Notifier</span><span class="w"> </span><span class="nx">NotifierInterface</span>
+<a href="#__codelineno-14-3" id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="p">}</span>
+</code></pre></div>
+<p><a name="NewErrorCreatedHandler"></a></p>
+<h3 id="func-newerrorcreatedhandler">func NewErrorCreatedHandler<a class="headerlink" href="#func-newerrorcreatedhandler" title="Permanent link"></a></h3>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-15-1" id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="kd">func</span><span class="w"> </span><span class="nx">NewErrorCreatedHandler</span><span class="p">(</span><span class="nx">notifier</span><span class="w"> </span><span class="nx">NotifierInterface</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="nx">ErrorCreatedHandler</span>
+</code></pre></div>
+<p>NewErrorCreatedHandler creates a new ErrorCreatedHandler.</p>
+<p><a name="ErrorCreatedHandler.Handle"></a></p>
+<h3 id="func-errorcreatedhandler-handle">func (*ErrorCreatedHandler) Handle<a class="headerlink" href="#func-errorcreatedhandler-handle" title="Permanent link"></a></h3>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-16-1" id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">si</span><span class="w"> </span><span class="o">*</span><span class="nx">ErrorCreatedHandler</span><span class="p">)</span><span class="w"> </span><span class="nx">Handle</span><span class="p">(</span><span class="nx">event</span><span class="w"> </span><span class="nx">events</span><span class="p">.</span><span class="nx">EventInterface</span><span class="p">,</span><span class="w"> </span><span class="nx">wg</span><span class="w"> </span><span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">,</span><span class="w"> </span><span class="nx">routingKey</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span>
+</code></pre></div>
+<p>Handle processes the event and sends a notification.</p>
+<p><a name="MockRabbitMQNotifier"></a></p>
+<h2 id="type-mockrabbitmqnotifier">type MockRabbitMQNotifier<a class="headerlink" href="#type-mockrabbitmqnotifier" title="Permanent link"></a></h2>
+<p>MockRabbitMQNotifier is a mock implementation of RabbitMQNotifier for testing purposes.</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-17-1" id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="kd">type</span><span class="w"> </span><span class="nx">MockRabbitMQNotifier</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-17-2" id="__codelineno-17-2" name="__codelineno-17-2"></a><span class="w">    </span><span class="nx">mock</span><span class="p">.</span><span class="nx">Mock</span>
+<a href="#__codelineno-17-3" id="__codelineno-17-3" name="__codelineno-17-3"></a><span class="p">}</span>
+</code></pre></div>
+<p><a name="MockRabbitMQNotifier.Notify"></a></p>
+<h3 id="func-mockrabbitmqnotifier-notify">func (*MockRabbitMQNotifier) Notify<a class="headerlink" href="#func-mockrabbitmqnotifier-notify" title="Permanent link"></a></h3>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-18-1" id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">m</span><span class="w"> </span><span class="o">*</span><span class="nx">MockRabbitMQNotifier</span><span class="p">)</span><span class="w"> </span><span class="nx">Notify</span><span class="p">(</span><span class="nx">message</span><span class="w"> </span><span class="p">[]</span><span class="kt">byte</span><span class="p">,</span><span class="w"> </span><span class="nx">routingKey</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span>
+</code></pre></div>
+<p>Notify is the mock implementation of the Notify method.</p>
+<p><a name="NotifierInterface"></a></p>
+<h2 id="type-notifierinterface">type NotifierInterface<a class="headerlink" href="#type-notifierinterface" title="Permanent link"></a></h2>
+<p>NotifierInterface defines the methods that a notifier should implement.</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-19-1" id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="kd">type</span><span class="w"> </span><span class="nx">NotifierInterface</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-19-2" id="__codelineno-19-2" name="__codelineno-19-2"></a><span class="w">    </span><span class="nx">Notify</span><span class="p">(</span><span class="nx">message</span><span class="w"> </span><span class="p">[]</span><span class="kt">byte</span><span class="p">,</span><span class="w"> </span><span class="nx">routingKey</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span>
+<a href="#__codelineno-19-3" id="__codelineno-19-3" name="__codelineno-19-3"></a><span class="p">}</span>
+</code></pre></div>
+<p><a name="OrderedProcessHandler"></a></p>
+<h2 id="type-orderedprocesshandler">type OrderedProcessHandler<a class="headerlink" href="#type-orderedprocesshandler" title="Permanent link"></a></h2>
+<p>OrderedProcessHandler handles events of type OrderedProcess.</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-20-1" id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="kd">type</span><span class="w"> </span><span class="nx">OrderedProcessHandler</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-20-2" id="__codelineno-20-2" name="__codelineno-20-2"></a><span class="w">    </span><span class="nx">Notifier</span><span class="w"> </span><span class="nx">NotifierInterface</span>
+<a href="#__codelineno-20-3" id="__codelineno-20-3" name="__codelineno-20-3"></a><span class="p">}</span>
+</code></pre></div>
+<p><a name="NewOrderedProcessHandler"></a></p>
+<h3 id="func-neworderedprocesshandler">func NewOrderedProcessHandler<a class="headerlink" href="#func-neworderedprocesshandler" title="Permanent link"></a></h3>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-21-1" id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="kd">func</span><span class="w"> </span><span class="nx">NewOrderedProcessHandler</span><span class="p">(</span><span class="nx">notifier</span><span class="w"> </span><span class="nx">NotifierInterface</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="nx">OrderedProcessHandler</span>
+</code></pre></div>
+<p>NewOrderedProcessHandler creates a new OrderedProcessHandler.</p>
+<p><a name="OrderedProcessHandler.Handle"></a></p>
+<h3 id="func-orderedprocesshandler-handle">func (*OrderedProcessHandler) Handle<a class="headerlink" href="#func-orderedprocesshandler-handle" title="Permanent link"></a></h3>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-22-1" id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">si</span><span class="w"> </span><span class="o">*</span><span class="nx">OrderedProcessHandler</span><span class="p">)</span><span class="w"> </span><span class="nx">Handle</span><span class="p">(</span><span class="nx">event</span><span class="w"> </span><span class="nx">events</span><span class="p">.</span><span class="nx">EventInterface</span><span class="p">,</span><span class="w"> </span><span class="nx">wg</span><span class="w"> </span><span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">,</span><span class="w"> </span><span class="nx">routingKey</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span>
+</code></pre></div>
+<p>Handle processes the event and sends a notification.</p>
+<p>Generated by <a href="https://github.com/princjef/gomarkdoc">gomarkdoc</a></p>
+</article>
+</div>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../../../../../../../..", "features": ["content.code.annotate", "announce.dismiss", "navigation.tracking", "navigation.sections", "navigation.instant", "navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "toc.follow"], "search": "../../../../../../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+<script src="../../../../../../../../assets/javascripts/bundle.081f42fc.min.js"></script>
+<script>document$.subscribe(() => {
+            window.update_swagger_ui_iframe_height = function (id) {
+                var iFrameID = document.getElementById(id);
+                if (iFrameID) {
+                    full_height = (iFrameID.contentWindow.document.body.scrollHeight + 80) + "px";
+                    iFrameID.height = full_height;
+                    iFrameID.style.height = full_height;
+                }
+            }
+        
+            let iframe_id_list = []
+            var iframes = document.getElementsByClassName("swagger-ui-iframe");
+            for (var i = 0; i < iframes.length; i++) { 
+                iframe_id_list.push(iframes[i].getAttribute("id"))
+            }
+        
+            let ticking = true;
+            
+            document.addEventListener('scroll', function(e) {
+                if (!ticking) {
+                    window.requestAnimationFrame(()=> {
+                        let half_vh = window.innerHeight/2;
+                        for(var i = 0; i < iframe_id_list.length; i++) {
+                            let element = document.getElementById(iframe_id_list[i])
+                            if(element==null){
+                                return
+                            }
+                            let diff = element.getBoundingClientRect().top
+                            if(element.contentWindow.update_top_val){
+                                element.contentWindow.update_top_val(half_vh - diff)
+                            }
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+        
+            const dark_scheme_name = "slate"
+            
+            window.scheme = document.body.getAttribute("data-md-color-scheme")
+            const options = {
+                attributeFilter: ['data-md-color-scheme'],
+            };
+            function color_scheme_callback(mutations) {
+                for (let mutation of mutations) {
+                    if (mutation.attributeName === "data-md-color-scheme") {
+                        scheme = document.body.getAttribute("data-md-color-scheme")
+                        var iframe_list = document.getElementsByClassName("swagger-ui-iframe")
+                        for(var i = 0; i < iframe_list.length; i++) {
+                            var ele = iframe_list.item(i);
+                            if (ele) {
+                                if (scheme === dark_scheme_name) {
+                                    ele.contentWindow.enable_dark_mode();
+                                } else {
+                                    ele.contentWindow.disable_dark_mode();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            observer = new MutationObserver(color_scheme_callback);
+            observer.observe(document.body, options);
+            })</script></body>
+</html>
