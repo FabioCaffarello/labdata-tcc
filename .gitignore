@@ -1,5 +1,11 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+# Python
+reports
+__pycache__
+.cache
+.coverage
+
 # docs
 docs/dependency-graph
 site
