@@ -37,6 +37,7 @@ func main() {
         Source:       "test_source",
         Provider:     "test_provider",
         ProcessingID: "processing_id",
+        InputID:      "input-id",
         Data: map[string]interface{}{
             "field1": "value1",
             "field2": "value2",
@@ -92,6 +93,7 @@ func TestEventOrderRepositoryMock(t *testing.T) {
         Source:       "test_source",
         Provider:     "test_provider",
         ProcessingID: "processing_id",
+        InputID:      "input-id",
         Data: map[string]interface{}{
             "field1": "value1",
             "field2": "value2",
