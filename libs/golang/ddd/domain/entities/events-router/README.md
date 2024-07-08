@@ -31,6 +31,7 @@ func main() {
         Service:      "test_service",
         Source:       "test_source",
         Provider:     "test_provider",
+		InputID:      "input-id",
         ProcessingID: "xyz789",
     }
 
@@ -64,6 +65,7 @@ func main() {
         Service:      "test_service",
         Source:       "test_source",
         Provider:     "test_provider",
+		InputID:      "input-id",
         ProcessingID: "xyz789",
     }
 
@@ -103,6 +105,7 @@ func main() {
         Service:      "test_service",
         Source:       "test_source",
         Provider:     "test_provider",
+		InputID:      "input-id",
         ProcessingID: "xyz789",
     }
 
