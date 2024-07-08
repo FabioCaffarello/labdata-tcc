@@ -1,5 +1,5 @@
 
-POST http://localhost:8000/config HTTP/1.1
+POST http://localhost:8001/config HTTP/1.1
 Content-Type: application/json
 
 {
@@ -14,7 +14,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:8000/config HTTP/1.1
+POST http://localhost:8001/config HTTP/1.1
 Content-Type: application/json
 
 {
@@ -29,7 +29,7 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:8000/config HTTP/1.1
+PUT http://localhost:8001/config HTTP/1.1
 Content-Type: application/json
 
 {
@@ -44,25 +44,25 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:8000/config HTTP/1.1
+GET http://localhost:8001/config HTTP/1.1
 
 ###
-GET http://localhost:8000/config/c79214e6e49296430a7f66af00675f7e HTTP/1.1
+GET http://localhost:8001/config/c79214e6e49296430a7f66af00675f7e HTTP/1.1
 
 ###
-DELETE http://localhost:8000/config/c79214e6e49296430a7f66af00675f7e HTTP/1.1
+DELETE http://localhost:8001/config/c79214e6e49296430a7f66af00675f7e HTTP/1.1
 
 ###
-GET http://localhost:8000/config/provider/br/service/file-parser HTTP/1.1
+GET http://localhost:8001/config/provider/br/service/file-parser HTTP/1.1
 
 ###
-GET http://localhost:8000/config/provider/br/source/channel 2 HTTP/1.1
+GET http://localhost:8001/config/provider/br/source/channel 2 HTTP/1.1
 
 ###
-GET http://localhost:8000/config/provider/br/service/file-parser/active/true HTTP/1.1
+GET http://localhost:8001/config/provider/br/service/file-parser/active/true HTTP/1.1
 
 ###
-GET http://localhost:8000/config/provider/br/service/file-parser/source/channel 2 HTTP/1.1
+GET http://localhost:8001/config/provider/br/service/file-parser/source/channel 2 HTTP/1.1
 
 ###
-GET http://localhost:8000/config/provider/br/dependencies/service/file-downloader/source/channel 1 HTTP/1.1
+GET http://localhost:8001/config/provider/br/dependencies/service/file-downloader/source/channel 1 HTTP/1.1

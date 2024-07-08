@@ -100,6 +100,18 @@ func makeHTTPHealthzTransport(httpServer *webserver.Server, healthzHandler *heal
 //   - configHandler: The configuration handler.
 func makeHTTPConfigTransport(httpServer *webserver.Server, configHandler *webHandler.WebInputHandler) {
 	httpServer.RegisterRoute("POST", "/input", configHandler.CreateInput)
+	httpServer.RegisterRoute("GET", "/input", configHandler.ListAllInputs)
+	httpServer.RegisterRoute("GET", "/input/{id}", configHandler.ListInputByID)
+	httpServer.RegisterRoute("UPDATE", "/input/{id}", configHandler.UpdateInput)
+	httpServer.RegisterRoute("DELETE", "/input/{id}", configHandler.DeleteInput)
+	httpServer.RegisterRoute("UPDATE", "/input/{id}/status", configHandler.UpdateInputStatus)
+	httpServer.RegisterRoute("GET", "/input/provider/{provider}/service/{service}", configHandler.ListInputsByServiceAndProvider)
+	httpServer.RegisterRoute("GET", "/input/provider/{provider}/source/{source}", configHandler.ListInputsBySourceAndProvider)
+	httpServer.RegisterRoute("GET", "/input/provider/{provider}/service/{service}/source/{source}", configHandler.ListInputsByServiceAndSourceAndProvider)
+	httpServer.RegisterRoute("GET", "/input/provider/{provider}/service/{service}/status/{status}", configHandler.ListInputsByStatusAndServiceAndProvider)
+	httpServer.RegisterRoute("GET", "/input/provider/{provider}/source/{source}/status/{status}", configHandler.ListInputsByStatusAndSourceAndProvider)
+	httpServer.RegisterRoute("GET", "/input/provider/{provider}/service/{service}/source/{source}/status/{status}", configHandler.ListInputsByStatusAndServiceAndSourceAndProvider)
+	httpServer.RegisterRoute("GET", "/input/provider/{provider}/status/{status}", configHandler.ListInputsByStatusAndProvider)
 }
 
 func main() {

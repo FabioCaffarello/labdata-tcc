@@ -71,6 +71,8 @@ func makeHTTPSchemaTransport(httpServer *webserver.Server, schemaHandler *webHan
 	httpServer.RegisterRoute("GET", "/schema/provider/{provider}/service/{service}", schemaHandler.ListSchemasByServiceAndProvider)
 	httpServer.RegisterRoute("GET", "/schema/provider/{provider}/source/{source}", schemaHandler.ListSchemasBySourceAndProvider)
 	httpServer.RegisterRoute("GET", "/schema/provider/{provider}/service/{service}/source/{source}", schemaHandler.ListSchemasByServiceAndSourceAndProvider)
+	httpServer.RegisterRoute("GET", "/schema/provider/{provider}/service/{service}/source/{source}/schema-type/{scemaType}", schemaHandler.ListSchemasByServiceAndSourceAndProviderAndSchemaType)
+	httpServer.RegisterRoute("POST", "/schema/validate", schemaHandler.ValidateSchema)
 }
 
 // main is the entry point of the application.
