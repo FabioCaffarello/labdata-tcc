@@ -384,3 +384,35 @@ func (r *SchemaRepository) FindAllBySourceAndProvider(provider, source string) (
 func (r *SchemaRepository) FindAllByServiceAndSourceAndProvider(service, source, provider string) ([]*entity.Schema, error) {
 	return r.find(bson.M{"provider": provider, "service": service, "source": source})
 }
+
+// FindAllByServiceAndSourceAndProviderAndSchemaType retrieves one Schema document that matches the given service, source, provider, and schema type.
+//
+// Parameters:
+//   - service: The service name to match.
+//   - source: The source name to match.
+//   - provider: The provider name to match.
+//   - schemaType: The schema type to match.
+//
+// Returns:
+//   - A pointer to the Schema entity.
+//   - An error if the query fails.
+//
+// Example:
+//
+//	schema, err := repository.FindOneByServiceAndSourceAndProviderAndSchemaType("myservice", "mysource", "myprovider", "myschematype")
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
+//	fmt.Println(schema)
+func (r *SchemaRepository) FindOneByServiceAndSourceAndProviderAndSchemaType(service, source, provider, schemaType string) (*entity.Schema, error) {
+	schemas, err := r.find(bson.M{"provider": provider, "service": service, "source": source, "schema_type": schemaType})
+	if err != nil {
+		return nil, err
+	}
+
+	if len(schemas) == 0 {
+		return nil, fmt.Errorf("schema not found")
+	}
+
+	return schemas[0], nil
+}
