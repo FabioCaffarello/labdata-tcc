@@ -72,3 +72,34 @@ func ValidateJSONSchema(jsonSchema map[string]interface{}) error {
 	}
 	return nil
 }
+
+// ValidateJSONData validates the input data against the provided JSON schema.
+// It takes a map representation of the JSON Schema and the data to be validated.
+// Returns an error if the data is invalid according to the schema.
+//
+// Parameters:
+// - jsonSchema: map[string]interface{}: The JSON Schema to validate against.
+// - jsonData: map[string]interface{}: The data to be validated.
+//
+// Returns:
+// - error: An error object if the data is invalid according to the JSON Schema, otherwise nil.
+func ValidateJSONData(jsonSchema map[string]interface{}, jsonData map[string]interface{}) error {
+	schemaLoader := gojsonschema.NewGoLoader(jsonSchema)
+	dataLoader := gojsonschema.NewGoLoader(jsonData)
+
+	result, err := gojsonschema.Validate(schemaLoader, dataLoader)
+	if err != nil {
+		return err
+	}
+
+	if !result.Valid() {
+		validationErrors := result.Errors()
+		errorMessages := make([]string, len(validationErrors))
+		for i, err := range validationErrors {
+			errorMessages[i] = err.String()
+		}
+		return errors.New("data validation failed: " + strings.Join(errorMessages, ", "))
+	}
+
+	return nil
+}
