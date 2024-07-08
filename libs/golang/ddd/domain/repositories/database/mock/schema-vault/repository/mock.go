@@ -78,3 +78,13 @@ func (m *SchemaRepositoryMock) FindAllByServiceAndSourceAndProvider(service, sou
 	}
 	return result.([]*entity.Schema), args.Error(1)
 }
+
+// FindOneByServiceAndSourceAndProviderAndSchemaType is a mock implementation of SchemaRepositoryInterface's FindOneByServiceAndSourceAndProviderAndSchemaType method
+func (m *SchemaRepositoryMock) FindOneByServiceAndSourceAndProviderAndSchemaType(provider, service, source, schemaType string) (*entity.Schema, error) {
+	args := m.Called(provider, service, source, schemaType)
+	result := args.Get(0)
+	if result == nil {
+		return nil, args.Error(1)
+	}
+	return result.(*entity.Schema), args.Error(1)
+}

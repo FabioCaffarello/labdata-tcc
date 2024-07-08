@@ -82,6 +82,7 @@ The `SchemaRepositoryMock` struct provides mock implementations for the followin
 - `FindAllByServiceAndProvider`: Simulates finding all schema entities by service and provider.
 - `FindAllBySourceAndProvider`: Simulates finding all schema entities by source and provider.
 - `FindAllByServiceAndSourceAndProvider`: Simulates finding all schema entities by service, source, and provider.
+- `FindOneByServiceAndSourceAndProviderAndSchemaType`: Simulates finding one schema entitiy by service, source, provider and schema type.
 
 ### Example Test Using the Mock
 
