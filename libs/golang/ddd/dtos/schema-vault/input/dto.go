@@ -14,3 +14,11 @@ type SchemaDTO struct {
 	SchemaType string                  `json:"schema_type"` // SchemaType specifies the type of schema.
 	JsonSchema shareddto.JsonSchemaDTO `json:"json_schema"` // JsonSchemaDTO represents the JSON schema of the configuration.
 }
+
+type SchemaDataDTO struct {
+	Service    string                 `json:"service"`     // Service represents the name of the service for which the configuration is created.
+	Source     string                 `json:"source"`      // Source indicates the origin or source of the configuration.
+	Provider   string                 `json:"provider"`    // Provider specifies the provider of the configuration.
+	SchemaType string                 `json:"schema_type"` // SchemaType specifies the type of schema.
+	Data       map[string]interface{} `json:"data"`        // Data represents the data of the respective schema type.
+}
