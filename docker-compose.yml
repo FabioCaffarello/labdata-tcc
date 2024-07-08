@@ -37,7 +37,7 @@ services:
     image: fabiocaffarello/config-vault:latest
     container_name: config-vault
     ports:
-      - 8000:8000
+      - 8001:8000
     environment:
       - MONGODB_USER=user
       - MONGODB_PASSWORD=password
@@ -56,7 +56,7 @@ services:
     image: fabiocaffarello/schema-vault:latest
     container_name: schema-vault
     ports:
-      - 8001:8000
+      - 8002:8000
     environment:
       - MONGODB_USER=user
       - MONGODB_PASSWORD=password
@@ -75,7 +75,7 @@ services:
     image: fabiocaffarello/output-vault:latest
     container_name: output-vault
     ports:
-      - 8002:8000
+      - 8003:8000
     environment:
       - MONGODB_USER=user
       - MONGODB_PASSWORD=password
@@ -94,7 +94,7 @@ services:
     image: fabiocaffarello/input-broker:latest
     container_name: input-broker
     ports:
-      - 8003:8000
+      - 8004:8000
     environment:
       - MONGODB_USER=user
       - MONGODB_PASSWORD=password
