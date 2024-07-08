@@ -5,6 +5,7 @@ import (
 	"libs/golang/clients/resources/go-docdb/client"
 	"libs/golang/database/go-docdb/database"
 	"libs/golang/ddd/domain/entities/events-router/entity"
+	"sort"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -48,6 +49,7 @@ func (suite *EventOrderRepositorySuite) TestGetOneByIDSuccess() {
 		"provider":      "test_provider",
 		"stage":         "test_stage",
 		"processing_id": "xyz789",
+		"input_id":      "input-id",
 		"data": map[string]interface{}{
 			"key": "value",
 		},
@@ -83,6 +85,7 @@ func (suite *EventOrderRepositorySuite) TestFindByID() {
 		"provider":      "test_provider",
 		"stage":         "test_stage",
 		"processing_id": "xyz789",
+		"input_id":      "input-id",
 		"data": map[string]interface{}{
 			"key": "value",
 		},
@@ -109,6 +112,7 @@ func (suite *EventOrderRepositorySuite) TestCreateSuccess() {
 		Provider:     "test_provider",
 		Stage:        "test_stage",
 		ProcessingID: "xyz789",
+		InputID:      "input-id",
 		Data: map[string]interface{}{
 			"key": "value",
 		},
@@ -140,6 +144,7 @@ func (suite *EventOrderRepositorySuite) TestCreateDuplicate() {
 		Provider:     "test_provider",
 		Stage:        "test_stage",
 		ProcessingID: "xyz789",
+		InputID:      "input-id",
 		Data: map[string]interface{}{
 			"key": "value",
 		},
@@ -165,6 +170,7 @@ func (suite *EventOrderRepositorySuite) TestCreateInvalid() {
 		Provider:     "test_provider",
 		Stage:        "test_stage",
 		ProcessingID: "xyz789",
+		InputID:      "input-id",
 		Data: map[string]interface{}{
 			"key": "value",
 		},
@@ -186,6 +192,7 @@ func (suite *EventOrderRepositorySuite) TestCreateWithoutData() {
 		Provider:     "test_provider",
 		Stage:        "test_stage",
 		ProcessingID: "xyz789",
+		InputID:      "input-id",
 		Data:         nil,
 	}
 	eventOrder, err := entity.NewEventOrder(props)
@@ -216,6 +223,7 @@ func (suite *EventOrderRepositorySuite) TestFindAll() {
 		"provider":      "test_provider1",
 		"stage":         "test_stage1",
 		"processing_id": "xyz7891",
+		"input_id":      "input-id1",
 		"data": map[string]interface{}{
 			"key1": "value1",
 		},
@@ -227,6 +235,7 @@ func (suite *EventOrderRepositorySuite) TestFindAll() {
 		"provider":      "test_provider2",
 		"stage":         "test_stage2",
 		"processing_id": "xyz7892",
+		"input_id":      "input-id2",
 		"data": map[string]interface{}{
 			"key2": "value2",
 		},
@@ -241,6 +250,11 @@ func (suite *EventOrderRepositorySuite) TestFindAll() {
 	assert.Nil(suite.T(), err)
 	assert.NotNil(suite.T(), results)
 	assert.Equal(suite.T(), 2, len(results))
+
+	// Sort results by ID
+	sort.SliceStable(results, func(i, j int) bool {
+		return results[i].ID < results[j].ID
+	})
 
 	// Check first document
 	assert.Equal(suite.T(), "test_service1", results[0].Service)
@@ -266,6 +280,7 @@ func (suite *EventOrderRepositorySuite) TestDeleteSuccess() {
 		"provider":      "test_provider",
 		"stage":         "test_stage",
 		"processing_id": "xyz789",
+		"input_id":      "input-id",
 		"data": map[string]interface{}{
 			"key": "value",
 		},

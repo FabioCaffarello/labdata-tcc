@@ -37,6 +37,7 @@ func main() {
         Source:       "exampleSource",
         Provider:     "exampleProvider",
         ProcessingID: "xyz789",
+        InputID:      "input-id",
         Data: map[string]interface{}{
             "field1": "value1",
             "field2": "value2",
