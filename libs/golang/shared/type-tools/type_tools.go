@@ -88,3 +88,8 @@ func ParseDateWithFormat(date, format string) (time.Time, error) {
 func ParseBool(data string) (bool, error) {
 	return strconv.ParseBool(data)
 }
+
+// ParseInt parses an integer string
+func ParseInt(data string) (int, error) {
+	return strconv.Atoi(data)
+}
