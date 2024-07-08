@@ -1,0 +1,80 @@
+{
+  "name": "python-clients-resources-py-minio",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/python/clients/resources/py-minio/pyminio",
+  "targets": {
+    "lock": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "poetry lock --no-update",
+        "cwd": "libs/python/clients/resources/py-minio"
+      }
+    },
+    "add": {
+      "executor": "@nxlv/python:add",
+      "options": {}
+    },
+    "update": {
+      "executor": "@nxlv/python:update",
+      "options": {}
+    },
+    "remove": {
+      "executor": "@nxlv/python:remove",
+      "options": {}
+    },
+    "build": {
+      "executor": "@nxlv/python:build",
+      "outputs": [
+        "{projectRoot}/dist"
+      ],
+      "options": {
+        "outputPath": "libs/python/clients/resources/py-minio/dist",
+        "publish": false,
+        "lockedVersions": true,
+        "bundleLocalDependencies": true
+      }
+    },
+    "install": {
+      "executor": "@nxlv/python:install",
+      "options": {
+        "silent": false,
+        "args": "",
+        "cacheDir": ".cache/pypoetry",
+        "verbose": false,
+        "debug": false
+      }
+    },
+    "lint": {
+      "executor": "@nxlv/python:flake8",
+      "outputs": [
+        "{workspaceRoot}/reports/libs/python/clients/resources/py-minio/pylint.txt"
+      ],
+      "options": {
+        "outputFile": "reports/libs/python/clients/resources/py-minio/pylint.txt"
+      }
+    },
+    "start": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "docker-compose up -d",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "test": {
+      "executor": "@nxlv/python:run-commands",
+      "outputs": [
+        "{workspaceRoot}/reports/libs/python/clients/resources/py-minio/unittests",
+        "{workspaceRoot}/coverage/libs/python/clients/resources/py-minio"
+      ],
+      "options": {
+        "command": "poetry run pytest tests/ && docker-compose down -v",
+        "cwd": "libs/python/clients/resources/py-minio"
+      }
+    }
+  },
+  "tags": [
+    "lang:python",
+    "scope:resource-cli"
+  ]
+}
