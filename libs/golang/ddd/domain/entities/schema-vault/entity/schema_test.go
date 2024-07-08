@@ -509,3 +509,40 @@ func (suite *SchemaVaultConfigSuite) TestToMapWhenEmptyJsonSchema() {
 	assert.Error(suite.T(), err)
 	assert.Nil(suite.T(), schemaMap)
 }
+
+func (suite *SchemaVaultConfigSuite) TestJsonSchemaToMap() {
+	jsonSchema := JsonSchema{
+		JsonType: "object",
+		Properties: map[string]interface{}{
+			"field1": map[string]interface{}{
+				"type": "string",
+			},
+			"field2": map[string]interface{}{
+				"type": "string",
+			},
+		},
+		Required: []string{
+			"field1",
+		},
+	}
+
+	jsonSchemaMap, err := jsonSchema.ToMap()
+	assert.NoError(suite.T(), err)
+
+	expectedJsonSchemaMap := map[string]interface{}{
+		"type": "object",
+		"properties": map[string]interface{}{
+			"field1": map[string]interface{}{
+				"type": "string",
+			},
+			"field2": map[string]interface{}{
+				"type": "string",
+			},
+		},
+		"required": []string{
+			"field1",
+		},
+	}
+
+	assert.Equal(suite.T(), expectedJsonSchemaMap, jsonSchemaMap)
+}
