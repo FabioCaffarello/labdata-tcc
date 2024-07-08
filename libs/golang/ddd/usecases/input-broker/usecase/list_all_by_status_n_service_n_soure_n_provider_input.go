@@ -41,7 +41,7 @@ func NewListAllByStatusAndServiceAndSourceAndProviderInputUseCaseSuite(
 //
 //	A slice of input DTOs containing the input data, and an error if any occurred during the process.
 func (uc *ListAllByStatusAndServiceAndSourceAndProviderInputUseCaseSuite) Execute(provider, service, source string, status int) ([]outputdto.InputDTO, error) {
-	inputs, err := uc.InputRepository.FindAllByStatusAndServiceAndSourceAndProvider(provider, service, source, status)
+	inputs, err := uc.InputRepository.FindAllByStatusAndServiceAndSourceAndProvider(service, source, provider, status)
 	if err != nil {
 		return []outputdto.InputDTO{}, err
 	}
