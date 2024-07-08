@@ -42,7 +42,8 @@
                 "nrwl.angular-console",
                 "shd101wyy.markdown-preview-enhanced",
                 "Gruntfuggly.todo-tree",
-                "humao.rest-client"
+                "humao.rest-client",
+                "ms-python.vscode-pylance"
             ],
             "settings": {
                 "terminal.integrated.defaultProfile.linux": "zsh",
