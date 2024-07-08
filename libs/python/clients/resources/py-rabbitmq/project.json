@@ -1,0 +1,80 @@
+{
+  "name": "python-clients-resources-py-rabbitmq",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/python/clients/resources/py-rabbitmq/pyrabbitmq",
+  "targets": {
+    "lock": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "poetry lock --no-update",
+        "cwd": "libs/python/clients/resources/py-rabbitmq"
+      }
+    },
+    "add": {
+      "executor": "@nxlv/python:add",
+      "options": {}
+    },
+    "update": {
+      "executor": "@nxlv/python:update",
+      "options": {}
+    },
+    "remove": {
+      "executor": "@nxlv/python:remove",
+      "options": {}
+    },
+    "build": {
+      "executor": "@nxlv/python:build",
+      "outputs": [
+        "{projectRoot}/dist"
+      ],
+      "options": {
+        "outputPath": "libs/python/clients/resources/py-rabbitmq/dist",
+        "publish": false,
+        "lockedVersions": true,
+        "bundleLocalDependencies": true
+      }
+    },
+    "install": {
+      "executor": "@nxlv/python:install",
+      "options": {
+        "silent": false,
+        "args": "",
+        "cacheDir": ".cache/pypoetry",
+        "verbose": false,
+        "debug": false
+      }
+    },
+    "lint": {
+      "executor": "@nxlv/python:flake8",
+      "outputs": [
+        "{workspaceRoot}/reports/libs/python/clients/resources/py-rabbitmq/pylint.txt"
+      ],
+      "options": {
+        "outputFile": "reports/libs/python/clients/resources/py-rabbitmq/pylint.txt"
+      }
+    },    
+    "start": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "docker-compose up -d",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "test": {
+      "executor": "@nxlv/python:run-commands",
+      "outputs": [
+        "{workspaceRoot}/reports/libs/python/clients/resources/py-rabbitmq/unittests",
+        "{workspaceRoot}/coverage/libs/python/clients/resources/py-rabbitmq"
+      ],
+      "options": {
+        "command": "poetry run pytest tests/",
+        "cwd": "{projectRoot}"
+      }
+    }
+  },
+  "tags": [
+    "lang:python",
+    "scope:resource-cli"
+  ]
+}
