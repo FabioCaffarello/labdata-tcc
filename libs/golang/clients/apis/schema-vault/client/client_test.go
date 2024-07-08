@@ -120,6 +120,23 @@ func (suite *ClientTestSuite) SetupTest() {
 			w.WriteHeader(http.StatusOK)
 			json.NewEncoder(w).Encode(schemaList)
 
+		case r.URL.Path == "/schema/provider/provider1/service/service1/source/source1" && r.Method == http.MethodGet:
+			schemaList := []outputdto.SchemaDTO{
+				{
+					ID:              "1",
+					Service:         "service1",
+					Source:          "source1",
+					Provider:        "provider1",
+					SchemaType:      "type1",
+					JsonSchema:      shareddto.JsonSchemaDTO{},
+					SchemaVersionID: "v1",
+					CreatedAt:       "2023-06-01T00:00:00Z",
+					UpdatedAt:       "2023-06-01T00:00:00Z",
+				},
+			}
+			w.WriteHeader(http.StatusOK)
+			json.NewEncoder(w).Encode(schemaList)
+
 		case r.URL.Path == "/schema/provider/provider1/source/source1" && r.Method == http.MethodGet:
 			schemaList := []outputdto.SchemaDTO{
 				{
@@ -137,22 +154,31 @@ func (suite *ClientTestSuite) SetupTest() {
 			w.WriteHeader(http.StatusOK)
 			json.NewEncoder(w).Encode(schemaList)
 
-		case r.URL.Path == "/schema/provider/provider1/service/service1/source/source1" && r.Method == http.MethodGet:
-			schemaList := []outputdto.SchemaDTO{
-				{
-					ID:              "1",
-					Service:         "service1",
-					Source:          "source1",
-					Provider:        "provider1",
-					SchemaType:      "type1",
-					JsonSchema:      shareddto.JsonSchemaDTO{},
-					SchemaVersionID: "v1",
-					CreatedAt:       "2023-06-01T00:00:00Z",
-					UpdatedAt:       "2023-06-01T00:00:00Z",
+		case r.URL.Path == "/schema/provider/provider1/service/service1/source/source1/schema-type/input" && r.Method == http.MethodGet:
+			schema := outputdto.SchemaDTO{
+				ID:         "1",
+				Service:    "service1",
+				Source:     "source1",
+				Provider:   "provider1",
+				SchemaType: "input",
+				JsonSchema: shareddto.JsonSchemaDTO{
+					Required: []string{"field1"},
+					Properties: map[string]interface{}{
+						"field1": map[string]interface{}{
+							"type": "string",
+						},
+					},
+					JsonType: "object",
 				},
+				SchemaVersionID: "v1",
+				CreatedAt:       "2023-06-01T00:00:00Z",
+				UpdatedAt:       "2023-06-01T00:00:00Z",
 			}
 			w.WriteHeader(http.StatusOK)
-			json.NewEncoder(w).Encode(schemaList)
+			json.NewEncoder(w).Encode(schema)
+
+		case r.URL.Path == "/schema/validate" && r.Method == http.MethodPost:
+			w.WriteHeader(http.StatusOK)
 
 		default:
 			http.NotFound(w, r)
@@ -332,4 +358,88 @@ func (suite *ClientTestSuite) TestListSchemasByServiceAndSourceAndProviderWhenSu
 
 	assert.Nil(suite.T(), err)
 	assert.Equal(suite.T(), expectedOutput, schemaOutput)
+}
+
+func (suite *ClientTestSuite) TestListSchemaByServiceAndSourceAndProviderAndSchemaTypeWhenSuccess() {
+	expectedOutput := outputdto.SchemaDTO{
+		ID:         "1",
+		Service:    "service1",
+		Source:     "source1",
+		Provider:   "provider1",
+		SchemaType: "input",
+		JsonSchema: shareddto.JsonSchemaDTO{
+			Required: []string{"field1"},
+			Properties: map[string]interface{}{
+				"field1": map[string]interface{}{
+					"type": "string",
+				},
+			},
+			JsonType: "object",
+		},
+		SchemaVersionID: "v1",
+		CreatedAt:       "2023-06-01T00:00:00Z",
+		UpdatedAt:       "2023-06-01T00:00:00Z",
+	}
+
+	schemaOutput, err := suite.client.ListSchemaByServiceAndSourceAndProviderAndSchemaType("provider1", "service1", "source1", "input")
+
+	assert.Nil(suite.T(), err)
+	assert.Equal(suite.T(), expectedOutput, schemaOutput)
+}
+
+func (suite *ClientTestSuite) TestValidateSchemaWhenSuccess() {
+	schemaData := inputdto.SchemaDataDTO{
+		Service:    "service1",
+		Source:     "source1",
+		Provider:   "provider1",
+		SchemaType: "input",
+		Data: map[string]interface{}{
+			"field1": "value1",
+		},
+	}
+
+	err := suite.client.ValidateSchema(schemaData)
+
+	assert.Nil(suite.T(), err)
+}
+
+func (suite *ClientTestSuite) TestValidateSchemaWhenBadRequest() {
+	suite.mockServer.Config.Handler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.URL.Path == "/schema/validate" && r.Method == http.MethodPost {
+			http.Error(w, "Bad Request", http.StatusBadRequest)
+		} else {
+			http.NotFound(w, r)
+		}
+	})
+
+	schemaData := inputdto.SchemaDataDTO{
+		Service:    "service1",
+		Source:     "source1",
+		Provider:   "provider1",
+		SchemaType: "input",
+		Data: map[string]interface{}{
+			"field1": "value1",
+		},
+	}
+
+	err := suite.client.ValidateSchema(schemaData)
+
+	assert.NotNil(suite.T(), err)
+	assert.Contains(suite.T(), err.Error(), "Bad Request")
+}
+
+func (suite *ClientTestSuite) TestListSchemaByServiceAndSourceAndProviderAndSchemaTypeWhenNotFound() {
+	suite.mockServer.Config.Handler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.URL.Path == "/schema/provider/provider1/service/service1/source/source1/schema-type/input" && r.Method == http.MethodGet {
+			http.NotFound(w, r)
+		} else {
+			http.NotFound(w, r)
+		}
+	})
+
+	schemaOutput, err := suite.client.ListSchemaByServiceAndSourceAndProviderAndSchemaType("provider1", "service1", "source1", "input")
+
+	assert.NotNil(suite.T(), err)
+	assert.Contains(suite.T(), err.Error(), "404")
+	assert.Equal(suite.T(), outputdto.SchemaDTO{}, schemaOutput)
 }
