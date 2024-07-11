@@ -8,7 +8,7 @@ import (
 // It includes the necessary details required for creating or updating or listing
 // an output, such as service details, source, provider and metadata.
 type OutputDTO struct {
-	ID        string                 `json:"id"`         // ID is the unique identifier of the output.
+	ID        string                 `json:"_id"`        // ID is the unique identifier of the output.
 	Data      map[string]interface{} `json:"data"`       // Data represents the output data.
 	Service   string                 `json:"service"`    // Service represents the name of the service for which the output is created.
 	Source    string                 `json:"source"`     // Source indicates the origin or source of the output.
