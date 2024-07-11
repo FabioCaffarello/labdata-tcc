@@ -39,6 +39,10 @@ readme = "README.md"
     path = "../../../ddd/dtos/schema-vault"
     develop = true
 
+
+[tool.poetry.group.dev.dependencies]
+respx = "^0.21.1"
+
 [build-system]
 requires = [ "poetry-core" ]
 build-backend = "poetry.core.masonry.api"

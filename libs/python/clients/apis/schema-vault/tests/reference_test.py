@@ -1,4 +1,5 @@
 from typing import Any, Dict, List
+from dto_schema_vault.input import SchemaDataDTO
 
 
 def get_schema(
@@ -7,19 +8,17 @@ def get_schema(
     source="test-source",
     provider="provider",
     schema_type="type",
-    json_schema=None,
     schema_version_id="schema-version-id",
 ) -> Dict[str, Any]:
-    if json_schema is None:
-        json_schema = {
-            "type": "object",
-            "properties": {
-                "field": {
-                    "type": "string"
-                }
-            },
-            "required": ["field"]
-        }
+    json_schema = {
+        "type": "object",
+        "properties": {
+            "field": {
+                "type": "string"
+            }
+        },
+        "required": ["field"]
+    }
     return {
         "_id": schema_id,
         "service": service,
@@ -42,13 +41,16 @@ def get_schemas() -> List[Dict[str, Any]]:
             source="test-source-2",
             provider="provider-2",
             schema_type="type-2",
-            json_schema={
-                "type": "object",
-                "properties": {
-                    "field": {"type": "string"}
-                },
-                "required": ["field"]
-            },
             schema_version_id="schema-version-id-2"
         )
     ]
+
+
+def get_schema_data_dto() -> SchemaDataDTO:
+    return SchemaDataDTO(
+        service="test-service",
+        source="test-source",
+        provider="provider",
+        schema_type="type",
+        data={"field": "value"}
+    )

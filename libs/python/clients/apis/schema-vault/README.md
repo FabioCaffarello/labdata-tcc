@@ -55,7 +55,7 @@ data = {
 }
 
 async def create_schema():
-    schema = await client.create_schema(data)
+    schema = await client.create(data)
     print(schema)
 
 asyncio.run(create_schema())

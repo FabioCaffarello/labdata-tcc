@@ -1,27 +1,27 @@
 import unittest
-from unittest.mock import patch
+from unittest.mock import AsyncMock, patch
 import respx
 import httpx
 from typing import Dict
 from dto_schema_vault.output import SchemaDTO
 from cli_schema_vault.client import AsyncPySchemaVaultClient
-from tests.reference_test import get_schema, get_schemas
+from tests.reference_test import get_schema, get_schemas, get_schema_data_dto
 
 
 class TestAsyncPySchemaVaultClient(unittest.IsolatedAsyncioTestCase):
 
     def setUp(self):
-        patcher = patch('pysd.sd.ServiceDiscovery.services_schema_vault_endpoint', return_value="http://localhost:8002")
+        patcher = patch('pysd.sd.ServiceDiscovery.services_schema_vault_endpoint', new_callable=AsyncMock)
         self.mock_endpoint = patcher.start()
         self.mock_endpoint.return_value = "http://localhost:8002"
         self.addCleanup(patcher.stop)
 
         self.client = AsyncPySchemaVaultClient(base_url=self.mock_endpoint.return_value)
         self.mock_response = lambda data: httpx.Response(200, json=data)
-        self.client.configs_endpoint = "/schemas"
+        self.client.schemas_endpoint = "/schemas"
 
     def mock_response(self, data: Dict):
-        return httpx.Response(httpx.codes.OK, json=data)
+        return httpx.Response(200, json=data)
 
     @respx.mock
     async def test_create_schema(self):
@@ -29,9 +29,9 @@ class TestAsyncPySchemaVaultClient(unittest.IsolatedAsyncioTestCase):
         endpoint = f"{self.client.client.base_url}{self.client.schemas_endpoint}"
         respx.post(endpoint).mock(return_value=self.mock_response(data))
 
-        result = await self.client.create_schema(data)
+        result = await self.client.create(data)
         self.assertIsInstance(result, SchemaDTO)
-        self.assertEqual(result.id, data["_id"])
+        self.assertEqual(result.schema_id, data["_id"])
 
     @respx.mock
     async def test_update_schema(self):
@@ -41,7 +41,7 @@ class TestAsyncPySchemaVaultClient(unittest.IsolatedAsyncioTestCase):
 
         result = await self.client.update_schema(data)
         self.assertIsInstance(result, SchemaDTO)
-        self.assertEqual(result.id, data["_id"])
+        self.assertEqual(result.schema_id, data["_id"])
 
     @respx.mock
     async def test_list_all_schemas(self):
@@ -62,7 +62,7 @@ class TestAsyncPySchemaVaultClient(unittest.IsolatedAsyncioTestCase):
 
         result = await self.client.get_schema_by_id(schema_id)
         self.assertIsInstance(result, SchemaDTO)
-        self.assertEqual(result.id, schema_data["_id"])
+        self.assertEqual(result.schema_id, schema_data["_id"])
 
     @respx.mock
     async def test_delete_schema(self):
@@ -120,7 +120,7 @@ class TestAsyncPySchemaVaultClient(unittest.IsolatedAsyncioTestCase):
         service = "test-service"
         source = "test-source"
         schema_type = "type"
-        schemas_data = get_schemas()
+        schema_data = get_schema()
         endpoint = (
             f"{self.client.client.base_url}{self.client.schemas_endpoint}"
             f"/provider/{provider}"
@@ -129,7 +129,7 @@ class TestAsyncPySchemaVaultClient(unittest.IsolatedAsyncioTestCase):
             f"/schema-type/{schema_type}"
         )
 
-        respx.get(endpoint).mock(return_value=self.mock_response(schemas_data))
+        respx.get(endpoint).mock(return_value=self.mock_response(schema_data))
 
         result = await self.client.list_schemas_by_service_source_provider_and_schema_type(
             provider,
@@ -137,12 +137,12 @@ class TestAsyncPySchemaVaultClient(unittest.IsolatedAsyncioTestCase):
             source,
             schema_type
         )
-        self.assertIsInstance(result, list)
-        self.assertTrue(all(isinstance(schema, SchemaDTO) for schema in result))
+        self.assertIsInstance(result, SchemaDTO)
+        self.assertEqual(result.schema_id, schema_data["_id"])
 
     @respx.mock
     async def test_validate_schema(self):
-        data = get_schema()
+        data = get_schema_data_dto()
         endpoint = f"{self.client.client.base_url}{self.client.schemas_endpoint}/validate"
         respx.post(endpoint).mock(return_value=self.mock_response({"valid": True}))
 

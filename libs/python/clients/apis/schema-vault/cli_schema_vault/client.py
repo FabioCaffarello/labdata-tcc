@@ -2,7 +2,8 @@ from typing import List, Dict, Any
 from pyrequest.async_factory import RateLimitedAsyncHttpClient
 from pysd.sd import new_from_env
 from dto_schema_vault.output import SchemaDTO
-from pyserializer.serializer import serialize_to_dataclass
+from dto_schema_vault.input import SchemaDataDTO
+from pyserializer.serializer import serialize_to_dataclass, serialize_to_dict
 
 
 class AsyncPySchemaVaultClient:
@@ -23,9 +24,9 @@ class AsyncPySchemaVaultClient:
         self.max_calls = 100
         self.period = 60
         self.client = RateLimitedAsyncHttpClient(base_url, self.max_calls, self.period)
-        self.schemas_endpoint = "/schemas"
+        self.schemas_endpoint = "/schema"
 
-    async def create_schema(self, data: Dict[str, Any]) -> SchemaDTO:
+    async def create(self, data: Dict[str, Any]) -> SchemaDTO:
         """
         Create a new schema using the provided data.
 
@@ -147,7 +148,7 @@ class AsyncPySchemaVaultClient:
         service: str,
         source: str,
         schema_type: str
-    ) -> List[SchemaDTO]:
+    ) -> SchemaDTO:
         """
         Retrieve a list of schemas associated with a specific service, source, provider, and schema type.
 
@@ -158,7 +159,7 @@ class AsyncPySchemaVaultClient:
             schema_type (str): The type of the schema.
 
         Returns:
-            List[SchemaDTO]: A list of schemas for the specified service, source, provider, and schema type in the
+            SchemaDTO: A schemas for the specified service, source, provider, and schema type in the
             form of data classes.
         """
         endpoint = (
@@ -168,10 +169,10 @@ class AsyncPySchemaVaultClient:
             f"/source/{source}"
             f"/schema-type/{schema_type}"
         )
-        schemas_data = await self.client.make_request("GET", endpoint)
-        return [serialize_to_dataclass(schema, SchemaDTO) for schema in schemas_data]
+        schema_data = await self.client.make_request("GET", endpoint)
+        return serialize_to_dataclass(schema_data, SchemaDTO)
 
-    async def validate_schema(self, data: Dict[str, Any]) -> bool:
+    async def validate_schema(self, data: SchemaDataDTO) -> bool:
         """
         Validate a schema using the provided data.
 
@@ -182,7 +183,8 @@ class AsyncPySchemaVaultClient:
             bool: True if the schema is valid, False otherwise.
         """
         endpoint = f"{self.schemas_endpoint}/validate"
-        validation_response = await self.client.make_request("POST", endpoint, data=data)
+        form_data = serialize_to_dict(data)
+        validation_response = await self.client.make_request("POST", endpoint, data=form_data)
         return validation_response.get("valid", False)
 
 
