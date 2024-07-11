@@ -36,7 +36,7 @@ job_parameters = JobParametersDTO(
 )
 
 config = ConfigDTO(
-    id="123",
+    config_id="123",
     active=True,
     service="test-service",
     source="test-source",

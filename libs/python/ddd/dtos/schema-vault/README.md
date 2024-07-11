@@ -36,7 +36,7 @@ json_schema = JsonSchemaDTO(
 )
 
 schema = SchemaDTO(
-    id="schema-id",
+    schema_id="schema-id",
     service="test-service",
     source="test-source",
     provider="provider",

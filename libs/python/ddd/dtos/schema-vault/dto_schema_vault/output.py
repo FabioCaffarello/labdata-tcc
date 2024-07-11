@@ -5,7 +5,7 @@ from dto_schema_vault.shared import JsonSchemaDTO
 @dataclass
 class SchemaDTO:
     # ID is the unique identifier of the Schema entity.
-    id: str = field(metadata={"json": "_id"})
+    schema_id: str = field(metadata={"json": "_id"})
     # Service represents the name of the service for which the configuration is created.
     service: str = field(metadata={"json": "service"})
     # Source indicates the origin or source of the configuration.
