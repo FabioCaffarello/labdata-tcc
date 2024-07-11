@@ -12,7 +12,6 @@ import (
 	shareddto "libs/golang/ddd/dtos/schema-vault/shared"
 	"net/http"
 	"net/http/httptest"
-	"strings"
 	"testing"
 
 	"github.com/go-chi/chi/v5"
@@ -899,7 +898,11 @@ func (suite *WebSchemaHandlerSuite) TestValidateSchemaWhenSuccess() {
 	suite.handler.ValidateSchema(rr, req)
 
 	assert.Equal(suite.T(), http.StatusOK, rr.Code)
-	assert.Equal(suite.T(), `{"valid":true}`, strings.TrimSpace(rr.Body.String()))
+	var actualOutput outputdto.SchemaValidationDTO
+	err := json.NewDecoder(rr.Body).Decode(&actualOutput)
+	assert.NoError(suite.T(), err)
+
+	assert.True(suite.T(), actualOutput.Valid)
 	suite.repoMock.AssertExpectations(suite.T())
 }
 
