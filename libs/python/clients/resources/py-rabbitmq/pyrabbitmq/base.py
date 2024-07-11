@@ -163,7 +163,7 @@ class BaseRabbitMQ:
         queue = await channel.declare_queue(queue_name, durable=True)
         await queue.bind(self.exchange, routing_key)
         logger.info(
-            f"Created and bound queue '{queue_name}' to exchange '{exchange_name}' with""routing key '{routing_key}'"
+            f"Created and bound queue '{queue_name}' to exchange '{exchange_name}' with routing key '{routing_key}'"
         )
         return queue
 
