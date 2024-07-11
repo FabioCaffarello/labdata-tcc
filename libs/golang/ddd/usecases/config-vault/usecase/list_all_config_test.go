@@ -4,12 +4,13 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/suite"
 	"libs/golang/ddd/domain/entities/config-vault/entity"
 	mockrepository "libs/golang/ddd/domain/repositories/database/mock/config-vault/repository"
 	outputdto "libs/golang/ddd/dtos/config-vault/output"
 	shareddto "libs/golang/ddd/dtos/config-vault/shared"
+
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/suite"
 )
 
 type ListAllConfigUseCaseSuite struct {
@@ -36,6 +37,9 @@ func (suite *ListAllConfigUseCaseSuite) TestExecutewhenSuccess() {
 			Source:          "source1",
 			Provider:        "provider1",
 			ConfigVersionID: "v1",
+			JobParameters: entity.JobParameters{
+				ParserModule: "parser_module1",
+			},
 			DependsOn: []entity.JobDependencies{
 				{Service: "dep_service1", Source: "dep_source1"},
 			},
@@ -49,6 +53,9 @@ func (suite *ListAllConfigUseCaseSuite) TestExecutewhenSuccess() {
 			Source:          "source2",
 			Provider:        "provider2",
 			ConfigVersionID: "v2",
+			JobParameters: entity.JobParameters{
+				ParserModule: "parser_module2",
+			},
 			DependsOn: []entity.JobDependencies{
 				{Service: "dep_service2", Source: "dep_source2"},
 			},
@@ -67,6 +74,9 @@ func (suite *ListAllConfigUseCaseSuite) TestExecutewhenSuccess() {
 			Source:          "source1",
 			Provider:        "provider1",
 			ConfigVersionID: "v1",
+			JobParameters: shareddto.JobParametersDTO{
+				ParserModule: "parser_module1",
+			},
 			DependsOn: []shareddto.JobDependenciesDTO{
 				{Service: "dep_service1", Source: "dep_source1"},
 			},
@@ -80,6 +90,9 @@ func (suite *ListAllConfigUseCaseSuite) TestExecutewhenSuccess() {
 			Source:          "source2",
 			Provider:        "provider2",
 			ConfigVersionID: "v2",
+			JobParameters: shareddto.JobParametersDTO{
+				ParserModule: "parser_module2",
+			},
 			DependsOn: []shareddto.JobDependenciesDTO{
 				{Service: "dep_service2", Source: "dep_source2"},
 			},

@@ -41,11 +41,12 @@ func NewUpdateConfigUseCase(
 //	An output DTO containing the updated configuration data, and an error if any occurred during the process.
 func (uc *UpdateConfigUseCase) Execute(input inputdto.ConfigDTO) (outputdto.ConfigDTO, error) {
 	configProps := entity.ConfigProps{
-		Active:    input.Active,
-		Service:   input.Service,
-		Source:    input.Source,
-		Provider:  input.Provider,
-		DependsOn: converter.ConvertJobDependenciesDTOToMap(input.DependsOn),
+		Active:        input.Active,
+		Service:       input.Service,
+		Source:        input.Source,
+		Provider:      input.Provider,
+		JobParameters: converter.ConvertJobParametersDTOToMap(input.JobParameters),
+		DependsOn:     converter.ConvertJobDependenciesDTOToMap(input.DependsOn),
 	}
 
 	entityConfig, err := entity.NewConfig(configProps)
@@ -65,6 +66,7 @@ func (uc *UpdateConfigUseCase) Execute(input inputdto.ConfigDTO) (outputdto.Conf
 		Source:          entityConfig.Source,
 		Provider:        entityConfig.Provider,
 		ConfigVersionID: string(entityConfig.ConfigVersionID),
+		JobParameters:   converter.ConvertJobParametersEntityToDTO(entityConfig.JobParameters),
 		DependsOn:       converter.ConvertJobDependenciesEntityToDTO(entityConfig.DependsOn),
 		CreatedAt:       entityConfig.CreatedAt,
 		UpdatedAt:       entityConfig.UpdatedAt,

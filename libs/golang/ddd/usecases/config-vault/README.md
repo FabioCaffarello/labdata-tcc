@@ -43,6 +43,9 @@ func main() {
         Service:  "exampleService",
         Source:   "exampleSource",
         Provider: "exampleProvider",
+        JobParameters: shareddto.JobParametersDTO{
+            ParserModule: "parser_module1",
+        },
         DependsOn: []shareddto.JobDependenciesDTO{
             {Service: "dependencyService", Source: "dependencySource"},
         },
@@ -91,6 +94,9 @@ func main() {
         Service:  "exampleService",
         Source:   "exampleSource",
         Provider: "exampleProvider",
+        JobParameters: shareddto.JobParametersDTO{
+            ParserModule: "parser_module1",
+        },
         DependsOn: []shareddto.JobDependenciesDTO{
             {Service: "dependencyService", Source: "dependencySource"},
         },

@@ -5,6 +5,7 @@ import (
 	inputdto "libs/golang/ddd/dtos/config-vault/input"
 	outputdto "libs/golang/ddd/dtos/config-vault/output"
 	"libs/golang/ddd/shared/type-tools/custom-types-converter/config-vault/converter"
+	"log"
 )
 
 // CreateConfigUseCase is the use case for creating a new configuration.
@@ -41,12 +42,15 @@ func NewCreateConfigUseCase(
 //	An output DTO containing the created configuration data, and an error if any occurred during the process.
 func (uc *CreateConfigUseCase) Execute(input inputdto.ConfigDTO) (outputdto.ConfigDTO, error) {
 	configProps := entity.ConfigProps{
-		Active:    input.Active,
-		Service:   input.Service,
-		Source:    input.Source,
-		Provider:  input.Provider,
-		DependsOn: converter.ConvertJobDependenciesDTOToMap(input.DependsOn),
+		Active:        input.Active,
+		Service:       input.Service,
+		Source:        input.Source,
+		Provider:      input.Provider,
+		JobParameters: converter.ConvertJobParametersDTOToMap(input.JobParameters),
+		DependsOn:     converter.ConvertJobDependenciesDTOToMap(input.DependsOn),
 	}
+
+	log.Printf("Creating new configuration with properties: %+v", configProps)
 
 	entityConfig, err := entity.NewConfig(configProps)
 	if err != nil {
@@ -59,6 +63,9 @@ func (uc *CreateConfigUseCase) Execute(input inputdto.ConfigDTO) (outputdto.Conf
 	}
 
 	dtoDependsOn := converter.ConvertJobDependenciesEntityToDTO(entityConfig.DependsOn)
+	jobParams := converter.ConvertJobParametersEntityToDTO(entityConfig.JobParameters)
+
+	log.Printf("Job parameters: %+v", jobParams)
 
 	dto := outputdto.ConfigDTO{
 		ID:              string(entityConfig.ID),
@@ -67,10 +74,13 @@ func (uc *CreateConfigUseCase) Execute(input inputdto.ConfigDTO) (outputdto.Conf
 		Source:          entityConfig.Source,
 		Provider:        entityConfig.Provider,
 		DependsOn:       dtoDependsOn,
+		JobParameters:   jobParams,
 		ConfigVersionID: string(entityConfig.ConfigVersionID),
 		CreatedAt:       entityConfig.CreatedAt,
 		UpdatedAt:       entityConfig.UpdatedAt,
 	}
+
+	log.Printf("Configuration DTO created successfully: %+v", dto)
 
 	return dto, nil
 }

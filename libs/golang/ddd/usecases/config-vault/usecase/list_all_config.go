@@ -4,6 +4,7 @@ import (
 	"libs/golang/ddd/domain/entities/config-vault/entity"
 	outputdto "libs/golang/ddd/dtos/config-vault/output"
 	"libs/golang/ddd/shared/type-tools/custom-types-converter/config-vault/converter"
+	"log"
 )
 
 // ListAllConfigUseCase is the use case for listing all configurations.
@@ -41,6 +42,8 @@ func (uc *ListAllConfigUseCase) Execute() ([]outputdto.ConfigDTO, error) {
 
 	configDTOs := make([]outputdto.ConfigDTO, 0, len(configs))
 	for _, config := range configs {
+		log.Printf("Converting Config entity to DTO: %+v", config)
+		log.Printf("JobParameters: %+v", config.JobParameters)
 
 		configDTOs = append(configDTOs, outputdto.ConfigDTO{
 			ID:              string(config.ID),
@@ -49,6 +52,7 @@ func (uc *ListAllConfigUseCase) Execute() ([]outputdto.ConfigDTO, error) {
 			Source:          config.Source,
 			Provider:        config.Provider,
 			ConfigVersionID: string(config.ConfigVersionID),
+			JobParameters:   converter.ConvertJobParametersEntityToDTO(config.JobParameters),
 			DependsOn:       converter.ConvertJobDependenciesEntityToDTO(config.DependsOn),
 			CreatedAt:       config.CreatedAt,
 			UpdatedAt:       config.UpdatedAt,
