@@ -1,6 +1,9 @@
 import os
 from dataclasses import dataclass
 from typing import Dict, Optional
+from pylog.log import setup_logging
+
+logger = setup_logging(__name__)
 
 
 class UnrecoverableError(Exception):
@@ -32,8 +35,10 @@ class ServiceVars:
     """Class to hold service variable constants."""
     RABBITMQ: str = "RABBITMQ"
     MINIO: str = "MINIO"
+    MONGODB: str = "MONGODB"
     SERVICES_RABBITMQ_EXCHANGE: str = "services"
     CONFIG_VAULT: str = "CONFIG_VAULT"
+    SCHEMA_VAULT: str = "SCHEMA_VAULT"
 
 
 class ServiceDiscovery:
@@ -106,13 +111,17 @@ class ServiceDiscovery:
 
     @property
     def services_config_vault_endpoint(self) -> str:
-        endpoint = self._get_endpoint("CONFIG_VAULT_PORT_8080_TCP", self._service_vars.CONFIG_VAULT)
-        return self._modify_localhost_port(endpoint, "8000", "8001")
+        logger.info(f"services_config_vault_endpoint: {self._service_vars.CONFIG_VAULT}")
+        endpoint = self._get_endpoint("CONFIG_VAULT_PORT_8000_TCP", self._service_vars.CONFIG_VAULT)
+        logger.info(f"services_config_vault_endpoint: {endpoint}")
+        mod_endpoint = self._modify_localhost_port(endpoint, "8001", "8000")
+        logger.info(f"services_config_vault_endpoint: {mod_endpoint}")
+        return mod_endpoint
 
     @property
     def services_schema_vault_endpoint(self) -> str:
-        endpoint = self._get_endpoint("CONFIG_VAULT_PORT_8080_TCP", self._service_vars.CONFIG_VAULT)
-        return self._modify_localhost_port(endpoint, "8000", "8002")
+        endpoint = self._get_endpoint("SCHEMA_VAULT_PORT_8000_TCP", self._service_vars.SCHEMA_VAULT)
+        return self._modify_localhost_port(endpoint, "8002", "8000")
 
     @property
     def rabbitmq_endpoint(self) -> str:
@@ -163,6 +172,16 @@ class ServiceDiscovery:
             Optional[str]: The Minio secret key.
         """
         return os.getenv("MINIO_SECRET_KEY")
+
+    @property
+    def mongodb_endpoint(self) -> str:
+        """
+        Gets the MongoDB endpoint.
+
+        Returns:
+            str: The MongoDB endpoint.
+        """
+        return self._get_endpoint("MONGODB_PORT_27017_TCP", self._service_vars.MONGODB)
 
 
 def new_from_env() -> ServiceDiscovery:
