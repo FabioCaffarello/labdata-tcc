@@ -29,6 +29,9 @@ func main() {
         Service:  "exampleService",
         Source:   "exampleSource",
         Provider: "exampleProvider",
+        JobParameters: map[string]interface{}{
+			"parser_module": "test_parser_module",
+		},
         DependsOn: []map[string]interface{}{
             {"service": "dependencyService", "source": "dependencySource"},
         },
@@ -62,6 +65,9 @@ func main() {
         Service:  "exampleService",
         Source:   "exampleSource",
         Provider: "exampleProvider",
+        JobParameters: map[string]interface{}{
+			"parser_module": "test_parser_module",
+		},
         DependsOn: []map[string]interface{}{
             {"service": "dependencyService", "source": "dependencySource"},
         },
@@ -101,6 +107,9 @@ func main() {
         Service:  "exampleService",
         Source:   "exampleSource",
         Provider: "exampleProvider",
+        JobParameters: map[string]interface{}{
+			"parser_module": "test_parser_module",
+		},
         DependsOn: []map[string]interface{}{
             {"service": "dependencyService", "source": "dependencySource"},
         },
