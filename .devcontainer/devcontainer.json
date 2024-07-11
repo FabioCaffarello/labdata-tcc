@@ -43,7 +43,8 @@
                 "shd101wyy.markdown-preview-enhanced",
                 "Gruntfuggly.todo-tree",
                 "humao.rest-client",
-                "ms-python.vscode-pylance"
+                "ms-python.vscode-pylance",
+                "ms-python.isort"
             ],
             "settings": {
                 "terminal.integrated.defaultProfile.linux": "zsh",
