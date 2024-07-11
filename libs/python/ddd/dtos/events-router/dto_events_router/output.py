@@ -15,7 +15,7 @@ class ErrMsgDTO:
 @dataclass
 class ProcessOrderDTO:
     # ID represents the unique identifier of the order.
-    id: str = field(metadata={"json": "_id"})
+    order_id: str = field(metadata={"json": "_id"})
     # ProcessingID represents the unique identifier of the order processing.
     processing_id: str = field(metadata={"json": "processing_id"})
     # Service represents the name of the service for which the order is processed.
