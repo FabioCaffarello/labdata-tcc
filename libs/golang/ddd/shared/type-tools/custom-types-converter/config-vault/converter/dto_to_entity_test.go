@@ -130,3 +130,31 @@ func (suite *ConfigConverterDTOToEntitySuite) TestConvertJobDependenciesDTOToMap
 	assert.Equal(suite.T(), len(expected), len(entityMap))
 	assert.Equal(suite.T(), expected, entityMap)
 }
+
+func TestConvertJobParametersDTOToMap(t *testing.T) {
+	params := shareddto.JobParametersDTO{
+		ParserModule: "parserModule",
+	}
+
+	expected := map[string]interface{}{
+		"parser_module": "parserModule",
+	}
+
+	entityParams := ConvertJobParametersDTOToMap(params)
+
+	assert.Equal(t, expected, entityParams)
+}
+
+func TestConvertJobParametersDTOToEntity(t *testing.T) {
+	params := shareddto.JobParametersDTO{
+		ParserModule: "parserModule",
+	}
+
+	expected := entity.JobParameters{
+		ParserModule: "parserModule",
+	}
+
+	entityParams := ConvertJobParametersDTOToEntity(params)
+
+	assert.Equal(t, expected, entityParams)
+}

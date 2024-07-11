@@ -46,3 +46,35 @@ func ConvertJobDependenciesDTOToMap(dependsOnDTO []shareddto.JobDependenciesDTO)
 	}
 	return entityDeps
 }
+
+// ConvertJobParametersDTOToEntity converts a JobParametersDTO to a JobParameters entity.
+// This function maps the fields of the JobParametersDTO to the corresponding fields of the JobParameters entity.
+//
+// Parameters:
+//
+//	parmas: A shareddto.JobParametersDTO to be converted.
+//
+// Returns:
+//
+//	An entity.JobParameters containing the converted data.
+func ConvertJobParametersDTOToEntity(params shareddto.JobParametersDTO) entity.JobParameters {
+	return entity.JobParameters{
+		ParserModule: params.ParserModule,
+	}
+}
+
+// ConvertJobParametersDTOToMap converts a JobParametersDTO to a map of JobParameters entities.
+// This function maps the fields of the JobParametersDTO to the corresponding fields of the JobParameters entity.
+//
+// Parameters:
+//
+//	parmas: A shareddto.JobParametersDTO to be converted.
+//
+// Returns:
+//
+//	A map of entity.JobParameters containing the converted data.
+func ConvertJobParametersDTOToMap(params shareddto.JobParametersDTO) map[string]interface{} {
+	entityParams := make(map[string]interface{})
+	entityParams["parser_module"] = params.ParserModule
+	return entityParams
+}
