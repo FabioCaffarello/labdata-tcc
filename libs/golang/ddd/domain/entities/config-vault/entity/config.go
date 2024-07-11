@@ -5,7 +5,7 @@ import (
 	regularTypesConversion "libs/golang/ddd/shared/type-tools/regular-types-converter/conversion"
 	md5id "libs/golang/shared/id/go-md5"
 	uuid "libs/golang/shared/id/go-uuid"
-	"reflect"
+	"log"
 	"time"
 )
 
@@ -38,6 +38,11 @@ type JobDependencies struct {
 	Source  string `json:"source"`
 }
 
+// JobParameters represents the parameters of a job.
+type JobParameters struct {
+	ParserModule string `json:"parser_module"`
+}
+
 // Config represents a configuration entity with various attributes such as service, source, provider, and dependencies.
 type Config struct {
 	ID              md5id.ID          `bson:"_id"`
@@ -46,6 +51,7 @@ type Config struct {
 	Source          string            `bson:"source"`
 	Provider        string            `bson:"provider"`
 	DependsOn       []JobDependencies `bson:"depends_on"`
+	JobParameters   JobParameters     `bson:"job_parameters"`
 	ConfigVersionID uuid.ID           `bson:"config_version_id"`
 	CreatedAt       string            `bson:"created_at"`
 	UpdatedAt       string            `bson:"updated_at"`
@@ -53,11 +59,12 @@ type Config struct {
 
 // ConfigProps represents the properties needed to create a new Config entity.
 type ConfigProps struct {
-	Active    bool
-	Service   string
-	Source    string
-	Provider  string
-	DependsOn []map[string]interface{}
+	Active        bool
+	Service       string
+	Source        string
+	Provider      string
+	DependsOn     []map[string]interface{}
+	JobParameters map[string]interface{}
 }
 
 // getIDData constructs a map with the service, source, and provider information.
@@ -89,6 +96,21 @@ func transformDependsOn(dependsOn []map[string]interface{}) ([]JobDependencies, 
 	return dependsOnResult, nil
 }
 
+// transformJobParameters converts a map representation of job parameters to a JobParameters.
+func transformJobParameters(jobParameters map[string]interface{}) (JobParameters, error) {
+	log.Printf("jobParameters: %v", jobParameters)
+	parserModule, ok := jobParameters["parser_module"].(string)
+	log.Printf("parserModule: %v", parserModule)
+	log.Printf("ok: %v", ok)
+	log.Printf("Parser Module Type: %T", parserModule)
+	if !ok {
+		return JobParameters{}, errors.New("invalid parser_module in job_parameters")
+	}
+	return JobParameters{
+		ParserModule: parserModule,
+	}, nil
+}
+
 // NewConfig creates a new Config entity based on the provided ConfigProps. It validates the
 // properties and generates necessary IDs.
 func NewConfig(configProps ConfigProps) (*Config, error) {
@@ -99,15 +121,21 @@ func NewConfig(configProps ConfigProps) (*Config, error) {
 		return nil, err
 	}
 
+	jobParameters, err := transformJobParameters(configProps.JobParameters)
+	if err != nil {
+		return nil, err
+	}
+
 	config := &Config{
-		ID:        md5id.NewID(idData),
-		Active:    configProps.Active,
-		Service:   configProps.Service,
-		Source:    configProps.Source,
-		Provider:  configProps.Provider,
-		DependsOn: dependsOn,
-		UpdatedAt: time.Now().Format(dateLayout),
-		CreatedAt: time.Now().Format(dateLayout),
+		ID:            md5id.NewID(idData),
+		Active:        configProps.Active,
+		Service:       configProps.Service,
+		Source:        configProps.Source,
+		Provider:      configProps.Provider,
+		DependsOn:     dependsOn,
+		JobParameters: jobParameters,
+		UpdatedAt:     time.Now().Format(dateLayout),
+		CreatedAt:     time.Now().Format(dateLayout),
 	}
 
 	versionID, err := uuid.GenerateUUIDFromMap(config.GetVersionIDData())
@@ -131,11 +159,12 @@ func (c *Config) SetDependsOn(dependsOn []JobDependencies) {
 // GetVersionIDData returns a map with the version ID data for the Config entity.
 func (c *Config) GetVersionIDData() map[string]interface{} {
 	return map[string]interface{}{
-		"service":    c.Service,
-		"source":     c.Source,
-		"provider":   c.Provider,
-		"active":     c.Active,
-		"depends_on": c.DependsOn,
+		"service":        c.Service,
+		"source":         c.Source,
+		"provider":       c.Provider,
+		"active":         c.Active,
+		"depends_on":     c.DependsOn,
+		"job_parameters": c.JobParameters,
 	}
 }
 
@@ -221,13 +250,40 @@ func (c *Config) MapToEntity(doc map[string]interface{}) (*Config, error) {
 	}
 	doc["depends_on"] = jobDeps
 
-	configEntity, err := regularTypesConversion.ConvertFromMapStringToEntity(reflect.TypeOf(Config{}), doc)
+	jobParametersMap, ok := doc["job_parameters"].(map[string]interface{})
+	if !ok {
+		return nil, errors.New("field job_parameters has invalid type")
+	}
+
+	for key, value := range jobParametersMap {
+		if key == "ParserModule" {
+			jobParametersMap["parser_module"] = value
+			delete(jobParametersMap, "ParserModule")
+		}
+	}
+
+	jobParameters, err := transformJobParameters(jobParametersMap)
 	if err != nil {
 		return nil, err
 	}
+	doc["job_parameters"] = jobParameters
 
-	config := configEntity.(*Config)
-	config.DependsOn = jobDeps
+	config := &Config{
+		ID:              doc["_id"].(md5id.ID),
+		Active:          doc["active"].(bool),
+		Service:         doc["service"].(string),
+		Source:          doc["source"].(string),
+		Provider:        doc["provider"].(string),
+		DependsOn:       jobDeps,
+		JobParameters:   jobParameters,
+		ConfigVersionID: doc["config_version_id"].(uuid.ID),
+		CreatedAt:       doc["created_at"].(string),
+		UpdatedAt:       doc["updated_at"].(string),
+	}
+
+	if err := config.isValid(); err != nil {
+		return nil, err
+	}
 
 	return config, nil
 }
