@@ -219,6 +219,8 @@ npx nx test libs-golang-ddd-usecases-schema-vault
 - **ListAllByServiceAndSourceSchemaUseCase**: List all schemas by service and source.
 - **ListAllByServiceAndSourceAndProviderSchemaUseCase**: List all schemas by service, source, and provider.
 - **ListAllBySourceSchemaUseCase**: List all schemas by source.
+- **ListOneByServiceAndSourceAndProviderAndSchemaTypeSchemaUseCase**: List one schema by service, source, provider and schema type.
+- **ValidateJsonSchema**: Valids a data structure with a registered schema.
 
 ## Errors
 
