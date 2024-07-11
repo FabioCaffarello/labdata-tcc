@@ -29,9 +29,9 @@ class TestAsyncPyConfigHandlerClient(unittest.IsolatedAsyncioTestCase):
         endpoint = f"{self.client.client.base_url}{self.client.configs_endpoint}"
         respx.post(endpoint).mock(return_value=self.mock_response(data))
 
-        result = await self.client.create_config(data)
+        result = await self.client.create(data)
         self.assertIsInstance(result, ConfigDTO)
-        self.assertEqual(result.id, data["_id"])
+        self.assertEqual(result.config_id, data["_id"])
 
     @respx.mock
     async def test_update_config(self):
@@ -41,7 +41,7 @@ class TestAsyncPyConfigHandlerClient(unittest.IsolatedAsyncioTestCase):
 
         result = await self.client.update_config(data)
         self.assertIsInstance(result, ConfigDTO)
-        self.assertEqual(result.id, data["_id"])
+        self.assertEqual(result.config_id, data["_id"])
 
     @respx.mock
     async def test_list_all_configs(self):
@@ -62,7 +62,7 @@ class TestAsyncPyConfigHandlerClient(unittest.IsolatedAsyncioTestCase):
 
         result = await self.client.get_config_by_id(config_id)
         self.assertIsInstance(result, ConfigDTO)
-        self.assertEqual(result.id, config_data["_id"])
+        self.assertEqual(result.config_id, config_data["_id"])
 
     @respx.mock
     async def test_delete_config(self):

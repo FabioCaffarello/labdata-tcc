@@ -4,6 +4,10 @@ from dto_config_vault.output import ConfigDTO
 from pyrequest.async_factory import RateLimitedAsyncHttpClient
 from pysd.sd import new_from_env
 from pyserializer.serializer import serialize_to_dataclass
+from pylog.log import setup_logging
+
+
+logger = setup_logging(__name__, log_level="DEBUG")
 
 
 class AsyncPyConfigVaultClient:
@@ -23,9 +27,9 @@ class AsyncPyConfigVaultClient:
         self.max_calls = 100
         self.period = 60
         self.client = RateLimitedAsyncHttpClient(base_url, self.max_calls, self.period)
-        self.configs_endpoint = "/configs"
+        self.configs_endpoint = "/config"
 
-    async def create_config(self, data: Dict[str, Any]) -> ConfigDTO:
+    async def create(self, data: Dict[str, Any]) -> ConfigDTO:
         """
         Create a new configuration using the provided data.
 

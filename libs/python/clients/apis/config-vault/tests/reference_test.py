@@ -16,7 +16,10 @@ def get_config(
         "active": active,
         "service": service,
         "source": source,
-        "provider":     provider,
+        "provider": provider,
+        "job_parameters": {
+            "parser_module": "test_parser",
+        },
         "depends_on": [{
             "service": dep_service,
             "source": dep_source

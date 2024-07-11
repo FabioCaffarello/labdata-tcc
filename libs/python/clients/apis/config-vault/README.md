@@ -51,7 +51,7 @@ data = {
 }
 
 async def create_config():
-    config = await client.create_config(data)
+    config = await client.create(data)
     print(config)
 
 asyncio.run(create_config())
@@ -206,5 +206,5 @@ npx nx test python-clients-apis-config-vault
 Make sure you have the development dependencies installed:
 
 ```sh
-npx nx install python-clients-apis-schema-vault --with dev
+npx nx install python-clients-apis-config-vault --with dev
 ```
