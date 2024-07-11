@@ -72,7 +72,7 @@ func (suite *ListOneByServiceAndSourceAndProviderAndSchemaTypeSchemaUseCaseSuite
 		},
 	}
 
-	suite.repoMock.On("FindOneByServiceAndSourceAndProviderAndSchemaType", "provider", "service1", "source1", "input").Return(entitySchemas[0], nil)
+	suite.repoMock.On("FindOneByServiceAndSourceAndProviderAndSchemaType", "service1", "source1", "provider", "input").Return(entitySchemas[0], nil)
 
 	expectedOutput := outputdto.SchemaDTO{
 		ID:         "1",
@@ -96,7 +96,7 @@ func (suite *ListOneByServiceAndSourceAndProviderAndSchemaTypeSchemaUseCaseSuite
 		UpdatedAt: "2023-06-01T00:00:00Z",
 	}
 
-	output, err := suite.useCase.Execute("provider", "service1", "source1", "input")
+	output, err := suite.useCase.Execute("service1", "source1", "provider", "input")
 
 	assert.Nil(suite.T(), err)
 	assert.Equal(suite.T(), expectedOutput, output)

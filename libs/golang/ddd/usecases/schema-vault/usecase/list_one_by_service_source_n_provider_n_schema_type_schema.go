@@ -4,6 +4,7 @@ import (
 	"libs/golang/ddd/domain/entities/schema-vault/entity"
 	outputdto "libs/golang/ddd/dtos/schema-vault/output"
 	"libs/golang/ddd/shared/type-tools/custom-types-converter/schema-vault/converter"
+	"log"
 )
 
 // ListOneByServiceAndSourceAndProviderAndSchemaTypeSchemaUseCase is the use case for listing a schema by service, source, provider and schema type.
@@ -41,10 +42,12 @@ func NewListOneByServiceAndSourceAndProviderAndSchemaTypeSchemaUseCase(
 //
 //	An output DTO containing the schema data, and an error if any occurred during the process.
 func (uc *ListOneByServiceAndSourceAndProviderAndSchemaTypeSchemaUseCase) Execute(provider, service, source, schemaType string) (outputdto.SchemaDTO, error) {
-	schema, err := uc.SchemaRepository.FindOneByServiceAndSourceAndProviderAndSchemaType(provider, service, source, schemaType)
+	schema, err := uc.SchemaRepository.FindOneByServiceAndSourceAndProviderAndSchemaType(service, source, provider, schemaType)
 	if err != nil {
 		return outputdto.SchemaDTO{}, err
 	}
+
+	log.Printf("Schema found: %v", schema.ID)
 
 	dto := outputdto.SchemaDTO{
 		ID:              string(schema.ID),

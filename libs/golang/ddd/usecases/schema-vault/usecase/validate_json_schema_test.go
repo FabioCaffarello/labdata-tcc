@@ -62,8 +62,9 @@ func (suite *ValidateSchemaUseCaseSuite) TestExecuteWhenSuccess() {
 		},
 	}
 
-	err := suite.useCase.Execute(dto)
+	valid, err := suite.useCase.Execute(dto)
 	assert.NoError(suite.T(), err)
+	assert.True(suite.T(), valid.Valid)
 }
 
 func (suite *ValidateSchemaUseCaseSuite) TestExecuteWhenSchemaNotFound() {
@@ -80,9 +81,10 @@ func (suite *ValidateSchemaUseCaseSuite) TestExecuteWhenSchemaNotFound() {
 		},
 	}
 
-	err := suite.useCase.Execute(dto)
+	_, err := suite.useCase.Execute(dto)
 	assert.Error(suite.T(), err)
-	assert.Equal(suite.T(), "schema not found", err.Error())
+	assert.Equal(suite.T(), "failed to find schema: schema not found", err.Error())
+
 }
 
 func (suite *ValidateSchemaUseCaseSuite) TestExecuteWhenValidationFails() {
@@ -117,7 +119,7 @@ func (suite *ValidateSchemaUseCaseSuite) TestExecuteWhenValidationFails() {
 		},
 	}
 
-	err := suite.useCase.Execute(dto)
+	_, err := suite.useCase.Execute(dto)
 	assert.Error(suite.T(), err)
-	assert.Contains(suite.T(), err.Error(), "data validation against schema failed")
+	assert.Contains(suite.T(), err.Error(), "failed to validate JSON data:")
 }
