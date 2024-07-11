@@ -1,5 +1,5 @@
 import json
-from typing import Dict, Type
+from typing import Dict, Type, Any
 from dataclasses import dataclass, fields, is_dataclass
 
 
@@ -56,30 +56,38 @@ def serialize_to_dict(obj: dataclass) -> Dict[str, any]:
     return _get_serialized_object(obj)
 
 
-def serialize_to_dataclass(data: Dict[str, any], cls: Type) -> dataclass:
+def serialize_to_dataclass(data: Dict[str, Any], cls: Type) -> Any:
     """
-    Deserializes data from a dictionary into a dataclass object.
+    Deserializes a dictionary to a dataclass object.
 
     Args:
-        data (Dict[str, any]): A dictionary containing data to be deserialized.
-        cls (Type): The dataclass type to which the data should be deserialized.
+        data (Dict[str, Any]): A dictionary containing the data to be deserialized.
+        cls (Type): The dataclass type to which the dictionary will be deserialized.
 
     Returns:
-        dataclass: An instance of the specified dataclass type with data deserialized from the input dictionary.
+        Any: A dataclass object containing the deserialized data.
     """
+    if not is_dataclass(cls):
+        raise TypeError('must be called with a dataclass type or instance')
+
     args = {}
     for field_obj in fields(cls):
         field_name = field_obj.name
         json_name = field_obj.metadata.get("json", field_name)
 
         if json_name in data:
-            if is_dataclass(field_obj.type):
-                args[field_name] = serialize_to_dataclass(data[json_name], field_obj.type)
-            elif isinstance(data[json_name], list) and field_obj.type.__origin__ == list:
+            field_type = field_obj.type
+            field_value = data[json_name]
+
+            if is_dataclass(field_type):
+                args[field_name] = serialize_to_dataclass(field_value, field_type)
+            elif isinstance(field_value, list) and hasattr(field_type, '__origin__') and field_type.__origin__ == list:
                 args[field_name] = [
-                    serialize_to_dataclass(item, field_obj.type.__args__[0]) for item in data[json_name]
+                    serialize_to_dataclass(item, field_type.__args__[0])
+                    if is_dataclass(field_type.__args__[0]) else item
+                    for item in field_value
                 ]
             else:
-                args[field_name] = data[json_name]
+                args[field_name] = field_value
 
     return cls(**args)
