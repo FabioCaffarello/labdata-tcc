@@ -87,3 +87,6 @@ GET http://localhost:8002/schema/provider/br/source/channel 1 HTTP/1.1
 
 ###
 GET http://localhost:8002/schema/provider/br/service/file-downloader/source/channel 1 HTTP/1.1
+
+### 
+GET http://localhost:8002/schema/provider/kids/service/video-downloader/source/pinkfong/schema-type/input HTTP/1.1

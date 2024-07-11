@@ -5,8 +5,11 @@ Content-Type: application/json
 {
     "active": true,
     "service": "file-downloader",
-    "source": "channel 1",
-    "provider": "br",
+    "source": "channel",
+    "provider": "kids",
+    "job_parameters": {
+        "parser_module": "file_parser"
+    },
     "depends_on": [{
         "service": "file-downloader",
         "source": "channel 2"
@@ -22,6 +25,9 @@ Content-Type: application/json
     "service": "file-parser",
     "source": "channel 2",
     "provider": "br",
+    "job_parameters": {
+        "parser_module": "file_parser"
+    },
     "depends_on": [{
         "service": "file-downloader",
         "source": "channel 1"
@@ -37,6 +43,9 @@ Content-Type: application/json
     "service": "file-downloader",
     "source": "channel 1",
     "provider": "br",
+    "job_parameters": {
+        "parser_module": "file_parser"
+    },
     "depends_on": [{
         "service": "file-downloader",
         "source": "channel 2"
@@ -47,13 +56,13 @@ Content-Type: application/json
 GET http://localhost:8001/config HTTP/1.1
 
 ###
-GET http://localhost:8001/config/c79214e6e49296430a7f66af00675f7e HTTP/1.1
+GET http://localhost:8001/config/7836934878b3e586125e7163e292a623 HTTP/1.1
 
 ###
-DELETE http://localhost:8001/config/c79214e6e49296430a7f66af00675f7e HTTP/1.1
+DELETE http://localhost:8001/config/4ab56452c72ba1ef3cfec25a33fffd79 HTTP/1.1
 
 ###
-GET http://localhost:8001/config/provider/br/service/file-parser HTTP/1.1
+GET http://localhost:8001/config/provider/kids/service/video-downloader HTTP/1.1
 
 ###
 GET http://localhost:8001/config/provider/br/source/channel 2 HTTP/1.1
@@ -66,3 +75,9 @@ GET http://localhost:8001/config/provider/br/service/file-parser/source/channel 
 
 ###
 GET http://localhost:8001/config/provider/br/dependencies/service/file-downloader/source/channel 1 HTTP/1.1
+
+
+
+
+###
+GET http://localhost:8001/config/provider/kids/service/file-downloader HTTP/1.1
