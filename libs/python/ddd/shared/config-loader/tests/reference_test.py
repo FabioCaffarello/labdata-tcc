@@ -1,6 +1,6 @@
 from typing import List
 from dto_config_vault.output import ConfigDTO
-from dto_config_vault.shared import JobDependenciesDTO
+from dto_config_vault.shared import JobDependenciesDTO, JobParametersDTO
 
 
 def get_config(
@@ -14,11 +14,14 @@ def get_config(
     dep_source="dep-source"
 ) -> ConfigDTO:
     return ConfigDTO(
-        id=config_id,
+        config_id=config_id,
         active=active,
         service=service,
         source=source,
         provider=provider,
+        job_parameters=JobParametersDTO(
+            parser_module="test_parser",
+        ),
         depends_on=[
             JobDependenciesDTO(
                 service=dep_service,

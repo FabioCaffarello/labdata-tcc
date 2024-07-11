@@ -20,7 +20,7 @@ class ConfigLoader:
         self.mapping_config: Dict[str, ConfigDTO] = {}
         self.__config_vault_api_client = async_py_config_vault_client()
 
-    async def fetch_configs_for_service(self, service_name: str, provider: str) -> Dict[str, Dict[str, ConfigDTO]]:
+    async def fetch_configs_for_service(self, service_name: str, provider: str) -> Dict[str, ConfigDTO]:
         """
         Fetch configurations for a specific service and context environment.
 
@@ -38,10 +38,10 @@ class ConfigLoader:
         )
         for config in configs:
             self.register_config(
-                config.id,
+                config.config_id,
                 config
             )
-            logger.info(f"Registered config: {config.id} for provider: {config.provider}")
+            logger.info(f"Registered config: {config.config_id} for provider: {config.provider}")
         return self.mapping_config
 
     def register_config(self, config_id: str, config: ConfigDTO) -> None:
@@ -62,7 +62,7 @@ class ConfigLoader:
         self.mapping_config[config_id] = config
 
 
-async def fetch_configs(service: str, provider: str) -> Dict[str, Dict[str, ConfigDTO]]:
+async def fetch_configs(service: str, provider: str) -> Dict[str, ConfigDTO]:
     """
     Fetch configurations for a given service and context environment.
 

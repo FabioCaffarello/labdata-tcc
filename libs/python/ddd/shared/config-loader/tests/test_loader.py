@@ -13,7 +13,7 @@ logger = setup_logging(__name__)
 
 class TestConfigLoader(unittest.IsolatedAsyncioTestCase):
 
-    @patch.dict(os.environ, {"CONFIG_VAULT_PORT_8080_TCP": "http://localhost:8001"})
+    @patch.dict(os.environ, {"CONFIG_VAULT_PORT_8000_TCP": "http://localhost:8001"})
     def setUp(self):
         self.service_name = "test-service-2"
         self.provider = "provider"
@@ -32,7 +32,7 @@ class TestConfigLoader(unittest.IsolatedAsyncioTestCase):
 
         # Mock the actual HTTP call made by the client
         respx.get(
-            f"http://localhost:8001/configs/provider/{self.provider}/service/{self.service_name}" # noqa
+            f"http://localhost:8000/config/provider/{self.provider}/service/{self.service_name}" # noqa
         ).mock(
             return_value=Response(200, json=mock_configs_dicts)
         )
@@ -41,7 +41,7 @@ class TestConfigLoader(unittest.IsolatedAsyncioTestCase):
         print(result)
 
         expected = {
-            config.id: config for config in mock_configs
+            config.config_id: config for config in mock_configs
         }
         self.assertEqual(result, expected)
 
@@ -62,7 +62,7 @@ class TestConfigLoader(unittest.IsolatedAsyncioTestCase):
             self.config_loader.register_config("test_id", config)
 
 
-@patch.dict(os.environ, {"CONFIG_VAULT_PORT_8080_TCP": "http://localhost:8001"})
+@patch.dict(os.environ, {"CONFIG_VAULT_PORT_8000_TCP": "http://localhost:8001"})
 class TestFetchConfigs(unittest.IsolatedAsyncioTestCase):
 
     @patch('config_loader.loader.ConfigLoader.fetch_configs_for_service')
