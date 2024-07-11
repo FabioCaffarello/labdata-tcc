@@ -2,37 +2,36 @@ from typing import Dict
 import httpx
 import asyncio
 import time
+from pylog.log import setup_logging
+
+logger = setup_logging(__name__, log_level="DEBUG")
 
 
 class RateLimitedAsyncHttpClient:
     """
-    An asynchronous HTTP client with rate limiting.
-
-    This class allows you to make HTTP requests with rate limiting to prevent
-    exceeding a maximum number of requests within a specified time period.
-
-    Args:
-        base_url (str): The base URL for the HTTP requests.
-        max_calls (int): The maximum number of allowed calls within the specified period.
-        period (int): The time period (in seconds) during which the maximum calls are allowed.
+    A rate-limited asynchronous HTTP client.
 
     Attributes:
-        base_url (str): The base URL for the HTTP requests.
-        max_calls (int): The maximum number of allowed calls within the specified period.
-        period (int): The time period (in seconds) during which the maximum calls are allowed.
-        semaphore (asyncio.Semaphore): An asyncio semaphore used for rate limiting.
-        lock (asyncio.Lock): An asyncio lock used to synchronize access to the rate limiting logic.
-        last_reset (float): The last time the rate limit period was reset.
-        call_count (int): The number of calls made in the current period.
+        base_url (str): The base URL for the HTTP client.
+        max_calls (int): The maximum number of calls allowed in the specified period.
+        period (int): The period in seconds for rate limiting.
+        semaphore (asyncio.Semaphore): A semaphore to limit concurrent requests.
+        lock (asyncio.Lock): A lock to synchronize access to the rate limiting mechanism.
+        last_reset (float): The time when the rate limit was last reset.
+        call_count (int): The current count of calls in the current period.
+        timeout (int): The timeout for HTTP requests.
+        retries (int): The number of retries for failed requests.
+        logger: A logger instance for logging debug information.
     """
+
     def __init__(self, base_url: str, max_calls: int, period: int) -> None:
         """
-        Initialize the RateLimitedAsyncHttpClient with the specified parameters.
+        Initialize the RateLimitedAsyncHttpClient.
 
         Args:
-            base_url (str): The base URL for the HTTP requests.
-            max_calls (int): The maximum number of allowed calls within the specified period.
-            period (int): The time period (in seconds) during which the maximum calls are allowed.
+            base_url (str): The base URL for the HTTP client.
+            max_calls (int): The maximum number of calls allowed in the specified period.
+            period (int): The period in seconds for rate limiting.
         """
         self.base_url = base_url
         self.max_calls = max_calls
@@ -41,14 +40,15 @@ class RateLimitedAsyncHttpClient:
         self.lock = asyncio.Lock()
         self.last_reset = time.time()
         self.call_count = 0
+        self.timeout = 10  # Increase timeout
+        self.retries = 5  # Increase retries
+        self.logger = logger
 
-    async def _acquire(self):
+    async def _acquire(self) -> None:
         """
-        Acquire a semaphore for making a request, respecting the rate limit.
+        Acquire a permit for making an HTTP request, respecting the rate limit.
 
-        This method ensures that the number of requests does not exceed the maximum
-        allowed calls within the specified time period. If the limit is reached, it waits
-        for the period to elapse before allowing more requests.
+        This method blocks if the rate limit has been reached and waits until a new period starts.
         """
         async with self.lock:
             current_time = time.time()
@@ -63,34 +63,37 @@ class RateLimitedAsyncHttpClient:
                 self.call_count = 1
 
     async def make_request(
-            self, method: str,
-            endpoint: str,
-            data: Dict[str, any] = None,
-            params: Dict[str, any] = None
+        self, method: str, endpoint: str, data: Dict[str, any] = None, params: Dict[str, any] = None
     ) -> Dict[str, any]:
         """
-        Make an asynchronous HTTP request with rate limiting.
-
-        This method sends an HTTP request using the specified method, endpoint, data, and parameters.
-        Rate limiting is enforced to prevent exceeding the maximum number of calls within the specified period.
+        Make an HTTP request to the specified endpoint with rate limiting.
 
         Args:
-            method (str): The HTTP request method (e.g., 'GET', 'POST').
-            endpoint (str): The endpoint to request, relative to the base URL.
-            data (dict, optional): A dictionary of data to send in the request body (as JSON).
-            params (dict, optional): A dictionary of query parameters to include in the request.
+            method (str): The HTTP method to use for the request (e.g., 'GET', 'POST').
+            endpoint (str): The endpoint to send the request to.
+            data (Dict[str, any], optional): The JSON data to send in the request body.
+            params (Dict[str, any], optional): The query parameters to include in the request.
 
         Returns:
-            dict: A dictionary representing the JSON response from the HTTP request.
+            Dict[str, any]: The JSON response from the server.
 
         Raises:
-            httpx.HTTPStatusError: If the HTTP request results in an error response.
+            httpx.RequestError: If the request fails after the specified number of retries.
+            httpx.HTTPStatusError: If the server returns an error response.
         """
         url = self.base_url + endpoint
         await self._acquire()
-        async with httpx.AsyncClient() as client:
-            response = await client.request(method, url, json=data, params=params)
-            response.raise_for_status()
-            if response.status_code == httpx.codes.NO_CONTENT:
-                return {}
-            return response.json()
+        for attempt in range(self.retries):
+            try:
+                self.logger.info(f"Making request to {url}")
+                async with httpx.AsyncClient(timeout=self.timeout) as client:
+                    response = await client.request(method, url, json=data, params=params)
+                    response.raise_for_status()
+                    if response.status_code == httpx.codes.NO_CONTENT:
+                        return {}
+                    return response.json()
+            except (httpx.HTTPStatusError, httpx.RequestError) as e:
+                self.logger.error(f"Attempt {attempt + 1}/{self.retries} - Request failed: {e}")
+                if attempt + 1 == self.retries:
+                    raise
+                await asyncio.sleep(2 ** attempt)  # Exponential backoff
