@@ -325,6 +325,9 @@ python-versions = "^3.10"
 files = []
 develop = true
 
+[package.dependencies]
+shared-py-log = {path = "../shared/py-log", develop = true}
+
 [package.source]
 type = "directory"
 url = "../../../service-discovery"
