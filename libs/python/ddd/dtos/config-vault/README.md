@@ -24,11 +24,16 @@ npx nx run <PROJECT>:add --name python-ddd-dtos-config-vault --local
 `ConfigDTO` is a data class that represents configuration data. It includes fields for active status, service, source, provider, dependencies, version ID, and timestamps.
 
 ```python
-from dto_config_vault.output import ConfigDTO, JobDependenciesDTO
+from dto_config_vault.output import ConfigDTO
+from dto_config_vault.shared import JobDependenciesDTO, JobParametersDTO
 
 dependencies = [
     JobDependenciesDTO(service="dep-service", source="dep-source")
 ]
+
+job_parameters = JobParametersDTO(
+    parser_module="paser"
+)
 
 config = ConfigDTO(
     id="123",
@@ -37,6 +42,7 @@ config = ConfigDTO(
     source="test-source",
     provider="provider",
     depends_on=dependencies,
+    job_parameters=job_parameters,
     config_version_id="xyz123",
     created_at="2024-02-01 00:00:00",
     updated_at="2024-02-01 00:00:00"
@@ -58,4 +64,16 @@ dependency = JobDependenciesDTO(
 )
 
 print(dependency)
+```
+
+### 
+
+```python
+from dto_config_vault.shared import JobParametersDTO
+
+job_parameters = JobParametersDTO(
+    parser_module="paser"
+)
+
+print(job_parameters)
 ```
