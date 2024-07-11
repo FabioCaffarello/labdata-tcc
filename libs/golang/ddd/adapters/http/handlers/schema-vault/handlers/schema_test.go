@@ -12,6 +12,7 @@ import (
 	shareddto "libs/golang/ddd/dtos/schema-vault/shared"
 	"net/http"
 	"net/http/httptest"
+	"strings"
 	"testing"
 
 	"github.com/go-chi/chi/v5"
@@ -898,7 +899,7 @@ func (suite *WebSchemaHandlerSuite) TestValidateSchemaWhenSuccess() {
 	suite.handler.ValidateSchema(rr, req)
 
 	assert.Equal(suite.T(), http.StatusOK, rr.Code)
-	assert.Equal(suite.T(), "Schema is valid", rr.Body.String())
+	assert.Equal(suite.T(), `{"valid":true}`, strings.TrimSpace(rr.Body.String()))
 	suite.repoMock.AssertExpectations(suite.T())
 }
 
@@ -978,6 +979,6 @@ func (suite *WebSchemaHandlerSuite) TestValidateSchemaWhenValidationFails() {
 	suite.handler.ValidateSchema(rr, req)
 
 	assert.Equal(suite.T(), http.StatusInternalServerError, rr.Code)
-	assert.Contains(suite.T(), rr.Body.String(), "data validation against schema failed")
+	assert.Contains(suite.T(), rr.Body.String(), "failed to validate JSON data:")
 	suite.repoMock.AssertExpectations(suite.T())
 }

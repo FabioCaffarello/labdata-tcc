@@ -339,12 +339,15 @@ func (h *WebSchemaHandler) ValidateSchema(w http.ResponseWriter, r *http.Request
 	}
 
 	validateSchemaUseCase := usecase.NewValidateSchemaUseCase(h.SchemaRepository)
-	err = validateSchemaUseCase.Execute(dto)
+	valid, err := validateSchemaUseCase.Execute(dto)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(`Schema is valid`))
+	err = json.NewEncoder(w).Encode(valid)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 }
