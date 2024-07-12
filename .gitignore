@@ -5,6 +5,7 @@ reports
 __pycache__
 .cache
 .coverage
+**/tests/debug
 
 # docs
 docs/dependency-graph

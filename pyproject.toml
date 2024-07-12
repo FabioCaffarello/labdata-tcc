@@ -69,6 +69,46 @@ package-mode = false
     path = "libs/python/ddd/shared/config-loader"
     develop = true
 
+    [tool.poetry.dependencies.python-server-amqp-listener]
+    path = "libs/python/server/amqp-listener"
+    develop = true
+
+    [tool.poetry.dependencies.python-server-event-controller]
+    path = "libs/python/server/event-controller"
+    develop = true
+
+    [tool.poetry.dependencies.python-ddd-usecases-shared-job-handler]
+    path = "libs/python/ddd/usecases/shared/job-handler"
+    develop = true
+
+    [tool.poetry.dependencies.python-ddd-usecases-shared-parsers-py-youtube]
+    path = "libs/python/ddd/usecases/shared/parsers/py-youtube"
+    develop = true
+
+    [tool.poetry.dependencies.python-ddd-usecases-youtube-downloader]
+    path = "libs/python/ddd/usecases/youtube-downloader"
+    develop = true
+
+    [tool.poetry.dependencies.services-crawlers-video-downloader]
+    path = "./services/crawlers/video-downloader"
+    develop = true
+
+    [tool.poetry.dependencies.python-shared-testlib-subprocessd]
+    path = "libs/python/shared/testlib/subprocessd"
+    develop = true
+
+    [tool.poetry.dependencies.python-shared-testlib-fixtures-base-fixture]
+    path = "libs/python/shared/testlib/fixtures/base-fixture"
+    develop = true
+
+    [tool.poetry.dependencies.python-clients-resources-py-mongo]
+    path = "libs/python/clients/resources/py-mongo"
+    develop = true
+
+    [tool.poetry.dependencies.python-shared-testlib-fixtures-service-fixture]
+    path = "libs/python/shared/testlib/fixtures/service-fixture"
+    develop = true
+
 [tool.poetry.group.docs.dependencies]
 mkdocs = "^1.6.0"
 mkdocs-material = "^9.5.23"
