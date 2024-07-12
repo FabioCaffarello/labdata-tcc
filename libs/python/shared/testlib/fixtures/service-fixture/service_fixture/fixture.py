@@ -19,7 +19,7 @@ class ServiceTestsFixture(base_fixtures.BaseTestsFixture):
     async def asyncSetUp(self):
         """
         Asynchronously sets up the test environment.
-        
+
         Returns:
             None
         """
@@ -28,7 +28,7 @@ class ServiceTestsFixture(base_fixtures.BaseTestsFixture):
     async def asyncTearDown(self):
         """
         Asynchronously tears down the test environment.
-        
+
         Returns:
             None
         """
