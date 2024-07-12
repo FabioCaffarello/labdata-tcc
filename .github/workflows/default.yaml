@@ -31,4 +31,30 @@ jobs:
         with:
           go-version: 1.22
 
-      - run: npx nx affected -t lint test
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - run: git fetch origin main
+
+      - name: Install Poetry
+        uses: Gr1N/setup-poetry@v8
+        with:
+          poetry-version: 1.8.3
+
+      - name: Load cached venv
+        id: cached-poetry-dependencies
+        uses: actions/cache@v2
+        with:
+          path: .venv
+          key: venv-${{ hashFiles('**/poetry.lock') }}
+
+      - name: Poetry Install Dependencies
+        run: poetry install
+
+      - name: Run Linter
+        run: npx nx affected -t lint
+      
+      - name: Run Tests 
+        run: npx nx affected -t test
