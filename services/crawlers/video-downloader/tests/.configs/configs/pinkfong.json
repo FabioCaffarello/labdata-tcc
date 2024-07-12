@@ -1,0 +1,13 @@
+{
+    "active": true,
+    "service": "video-downloader",
+    "source": "pinkfong",
+    "provider": "kids",
+    "job_parameters": {
+        "parser_module": "youtube_downloader"
+    },
+    "depends_on": [{
+        "service": "file-downloader",
+        "source": "pinkfong"
+    }]
+}

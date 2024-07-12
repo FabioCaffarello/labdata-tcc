@@ -1,0 +1,141 @@
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: user
+      MONGO_INITDB_ROOT_PASSWORD: password
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 2s
+      retries: 5
+    networks:
+      - video-downloader-network
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+      RABBITMQ_DEFAULT_VHOST: /
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks:
+      - video-downloader-network
+
+  minio:
+    image: minio/minio
+    ports:
+      - 9000:9000
+      - 9001:9001
+    environment:
+      MINIO_ROOT_USER: test-root-user
+      MINIO_ROOT_PASSWORD: test-root-password
+      MINIO_DOMAIN: storage
+      MINIO_REGION_NAME: us-east-1
+      MINIO_REGION: us-east-1
+    command: server /data --console-address ":9001"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://minio:9000/minio/health/live"]
+      interval: 10s
+      timeout: 1s
+      retries: 10
+    networks:
+      - video-downloader-network
+
+  config-vault:
+    image: fabiocaffarello/config-vault:latest
+    container_name: config-vault
+    ports:
+      - 8001:8000
+    environment:
+      - MONGODB_USER=user
+      - MONGODB_PASSWORD=password
+      - MONGODB_HOST=mongo
+      - MONGODB_PORT=27017
+      - MONGODB_DBNAME=config-vault
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://config-vault:8000/healthz"]
+      interval: 10s
+      timeout: 1s
+      retries: 5
+    networks:
+      - video-downloader-network
+
+  schema-vault:
+    image: fabiocaffarello/schema-vault:latest
+    container_name: schema-vault
+    ports:
+      - 8002:8000
+    environment:
+      - MONGODB_USER=user
+      - MONGODB_PASSWORD=password
+      - MONGODB_HOST=mongo
+      - MONGODB_PORT=27017
+      - MONGODB_DBNAME=schema-vault
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://schema-vault:8000/healthz"]
+      interval: 10s
+      timeout: 1s
+      retries: 5
+    networks:
+      - video-downloader-network
+
+  video-downloader:
+    image: fabiocaffarello/video-downloader:latest
+    container_name: video-downloader
+    environment:
+      - SERVICE_NAME=video-downloader
+      - PROVIDER=kids
+      - DB_CONFIG_VAULT_NAME=config-vault
+      - DB_SCHEMA_VAULT_NAME=schema-vault
+      - CONFIG_VAULT_PORT_8000_TCP=tcp://config-vault:8000
+      - SCHEMA_VAULT_PORT_8000_TCP=tcp://schema-vault:8000
+      - MONGODB_PORT_27017_TCP=mongodb://user:password@mongo:27017
+      - RABBITMQ_PORT_6572_TCP=tcp://guest:guest@rabbitmq:5672
+      - MINIO_PORT_9000_TCP=minio:9000
+      - MINIO_ACCESS_KEY=test-root-user
+      - MINIO_SECRET_KEY=test-root-password
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    volumes:
+      - ./tests/debug:/app/tests/debug
+    networks:
+      - video-downloader-network
+
+  rockmongo:
+    image: mongo-express
+    container_name: rockmongo
+    ports:
+      - 8082:8081
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongo
+      ME_CONFIG_MONGODB_PORT: 27017
+      ME_CONFIG_MONGODB_ENABLE_ADMIN: "true"
+      ME_CONFIG_MONGODB_ADMINUSERNAME: user
+      ME_CONFIG_MONGODB_ADMINPASSWORD: password
+    depends_on:
+      - mongo
+    networks:
+      - video-downloader-network
+
+volumes:
+  mongo-data:
+
+networks:
+  video-downloader-network:
+    name: video-downloader-network
+    driver: bridge
