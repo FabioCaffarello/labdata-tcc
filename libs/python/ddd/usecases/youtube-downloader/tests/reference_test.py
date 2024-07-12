@@ -54,6 +54,7 @@ def get_metadata(
             schema_version_id="schema_version_id",
             processing_order_id="processing_order_id",
         ),
+        config_version_id="config_version_id",
         output_metadata=OutputMetadataDTO(
             schema_version_id="schema_version_id_2",
         )

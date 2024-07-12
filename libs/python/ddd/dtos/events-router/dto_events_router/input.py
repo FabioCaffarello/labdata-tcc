@@ -21,6 +21,7 @@ class MetadataDTO:
     source: str = field(metadata={"json": "source"})
     processing_id: str = field(metadata={"json": "processing_id"})
     config_id: str = field(metadata={"json": "config_id"})
+    config_version_id: str = field(metadata={"json": "config_version_id"})
     input_metadata: InputMetadataDTO = field(metadata={"json": "input_metadata"})
     output_metadata: OutputMetadataDTO = field(metadata={"json": "output_metadata"})
 

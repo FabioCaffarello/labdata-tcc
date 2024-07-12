@@ -103,6 +103,16 @@ class Controller:
             str: Source.
         """
         return self.config.source
+    
+    @property
+    def config_version_id(self):
+        """
+        Gets the configuration version ID.
+
+        Returns:
+            str: Configuration version ID.
+        """
+        return self.config.config_version_id
 
     def get_json_schema(self, schema: SchemaDTO):
         """
@@ -263,6 +273,7 @@ class Controller:
                 schema_version_id=schema_version_input,
                 processing_order_id=event_order.order_id
             ),
+            config_version_id=self.config_version_id,
             output_metadata=OutputMetadataDTO(
                 schema_version_id=schema_version_output,
             )
