@@ -53,6 +53,9 @@ jobs:
       - name: Poetry Install Dependencies
         run: poetry install
 
+      - name: Nx Poetry Install Dev Dependencies
+        run: make install
+
       - name: Run Linter
         run: npx nx affected -t lint
       
