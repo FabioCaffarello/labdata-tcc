@@ -65,7 +65,6 @@ jobs:
       - name: Activate Virtual Environment and Run Linter
         run: |
           source $(poetry env info --path)/bin/activate
-          flake8 .
           npx nx affected -t lint
 
       - name: Run Tests
