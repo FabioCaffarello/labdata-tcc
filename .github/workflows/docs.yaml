@@ -44,9 +44,6 @@ jobs:
         with:
           poetry-version: 1.8.3
 
-      - name: Poetry Install Dependencies
-        run: poetry install --with dev
-
       - name: Load cached venv
         id: cached-poetry-dependencies
         uses: actions/cache@v2
@@ -54,6 +51,8 @@ jobs:
           path: .venv
           key: venv-${{ hashFiles('**/poetry.lock') }}
 
+      - name: Poetry Install Dependencies
+        run: poetry install
 
       - name: Build Requirements for doc deploy
         run: make build-docs
