@@ -40,6 +40,10 @@ readme = "README.md"
     path = "../../../dtos/events-router"
     develop = true
 
+
+[tool.poetry.group.dev.dependencies]
+pytest-asyncio = "^0.23.7"
+
 [build-system]
 requires = [ "poetry-core" ]
 build-backend = "poetry.core.masonry.api"

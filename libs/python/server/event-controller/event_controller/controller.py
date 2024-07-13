@@ -103,7 +103,7 @@ class Controller:
             str: Source.
         """
         return self.config.source
-    
+
     @property
     def config_version_id(self):
         """
