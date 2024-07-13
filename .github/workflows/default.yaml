@@ -62,8 +62,13 @@ jobs:
       - name: Install Development Dependencies
         run: make install
 
-      - name: Run Linter
-        run: npx nx affected -t lint
+      - name: Activate Virtual Environment and Run Linter
+        run: |
+          source $(poetry env info --path)/bin/activate
+          flake8 .
+          npx nx affected -t lint
 
       - name: Run Tests
-        run: npx nx affected -t test
+        run: |
+          source $(poetry env info --path)/bin/activate
+          npx nx affected -t test
