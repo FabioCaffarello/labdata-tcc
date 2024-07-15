@@ -72,3 +72,17 @@ func (suite *ConfigConverterEntityToDTOSuite) TestConvertJobDependenciesEntityTo
 	suite.Equal(len(expected), len(dtoDeps))
 	suite.Equal(expected, dtoDeps)
 }
+
+func (suite *ConfigConverterEntityToDTOSuite) TestConvertJobParametersEntityToDTO() {
+	entityParams := entity.JobParameters{
+		ParserModule: "test_parser_module",
+	}
+
+	expected := shareddto.JobParametersDTO{
+		ParserModule: "test_parser_module",
+	}
+
+	dtoParams := ConvertJobParametersEntityToDTO(entityParams)
+
+	suite.Equal(expected, dtoParams)
+}

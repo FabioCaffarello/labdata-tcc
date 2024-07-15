@@ -7,14 +7,19 @@ import (
 	inputdto "libs/golang/ddd/dtos/input-broker/output"
 
 	"encoding/json"
+	usecaseActions "libs/golang/ddd/usecases/events-router/usecase/actions"
 	events "libs/golang/shared/go-events/amqp_events"
 	"log"
 )
 
 var (
-	errorQueue     = "error.created.pre-processing"
-	baseRoutingKey = "input.pre-processed"
-	processStage   = "pre-processed"
+	errorQueue      = "error.created.pre-processing"
+	baseRoutingKey  = "input.pre-processed"
+	processStage    = "pre-processed"
+	inputSchemaType = "input"
+
+	invalidSchemaStatus = 401
+	invalidSchemaDetail = "invalid schema"
 )
 
 // PreProcessingUseCase handles the pre-processing of input messages, including
@@ -102,6 +107,7 @@ func (uc *PreProcessingUseCase) execute(msgDTO inputdto.InputDTO) error {
 		Service:      msgDTO.Metadata.Service,
 		Source:       msgDTO.Metadata.Source,
 		Provider:     msgDTO.Metadata.Provider,
+		InputID:      msgDTO.ID,
 		ProcessingID: msgDTO.Metadata.ProcessingID,
 		Stage:        processStage,
 		Data:         msgDTO.Data,
@@ -127,7 +133,6 @@ func (uc *PreProcessingUseCase) execute(msgDTO inputdto.InputDTO) error {
 		Data:         eventOrder.Data,
 	}
 
-	// TODO: create pre-processing methods
 	err = uc.prepareInputToProcess(dto)
 	if err != nil {
 		return err
@@ -142,5 +147,27 @@ func (uc *PreProcessingUseCase) execute(msgDTO inputdto.InputDTO) error {
 
 func (uc *PreProcessingUseCase) prepareInputToProcess(inputMsg outputdto.ProcessOrderDTO) error {
 	log.Printf("Preparing input to process: %v", inputMsg)
+	// TODO: create pre-processing methods
+	// 1. Validate input
+	validateSchemaAction := usecaseActions.NewValidateSchemaAction()
+	err := validateSchemaAction.Execute(inputMsg, inputSchemaType)
+	if err != nil {
+		updateInputStatusAction := usecaseActions.NewUpdateInputStatusAction()
+		err := updateInputStatusAction.Execute(inputMsg, invalidSchemaStatus, invalidSchemaDetail)
+		return err
+	}
+
+	// 2. List Configs by dependencies
+	dependenciesAction := usecaseActions.NewListAllByDependenciesAction()
+	dependencie, err := dependenciesAction.Execute(inputMsg.Provider, inputMsg.Service, inputMsg.Source)
+	if err != nil {
+		return err
+	}
+
+	for _, dep := range dependencie {
+		log.Printf("Dependency: %v", dep)
+	}
+	// 3. Create processing staging
+	// 4. Create processing lineage ??
 	return nil
 }

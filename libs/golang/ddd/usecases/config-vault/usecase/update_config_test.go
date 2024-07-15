@@ -35,16 +35,20 @@ func (suite *UpdateConfigUseCaseSuite) SetupTest() {
 		Service:  "test_service",
 		Source:   "test_source",
 		Provider: "test_provider",
+		JobParameters: shareddto.JobParametersDTO{
+			ParserModule: "test_parser_module",
+		},
 		DependsOn: []shareddto.JobDependenciesDTO{
 			{Service: "dep_service", Source: "dep_source"},
 		},
 	}
 	suite.configProps = entity.ConfigProps{
-		Active:    suite.inputDTO.Active,
-		Service:   suite.inputDTO.Service,
-		Source:    suite.inputDTO.Source,
-		Provider:  suite.inputDTO.Provider,
-		DependsOn: converter.ConvertJobDependenciesDTOToMap(suite.inputDTO.DependsOn),
+		Active:        suite.inputDTO.Active,
+		Service:       suite.inputDTO.Service,
+		Source:        suite.inputDTO.Source,
+		Provider:      suite.inputDTO.Provider,
+		JobParameters: converter.ConvertJobParametersDTOToMap(suite.inputDTO.JobParameters),
+		DependsOn:     converter.ConvertJobDependenciesDTOToMap(suite.inputDTO.DependsOn),
 	}
 }
 
@@ -61,6 +65,7 @@ func (suite *UpdateConfigUseCaseSuite) TestExecuteWhenSuccess() {
 	assert.Equal(suite.T(), suite.inputDTO.Provider, output.Provider)
 	assert.Equal(suite.T(), suite.inputDTO.DependsOn[0].Service, output.DependsOn[0].Service)
 	assert.Equal(suite.T(), suite.inputDTO.DependsOn[0].Source, output.DependsOn[0].Source)
+	assert.Equal(suite.T(), suite.inputDTO.JobParameters.ParserModule, output.JobParameters.ParserModule)
 
 	suite.repoMock.AssertExpectations(suite.T())
 }

@@ -1,5 +1,5 @@
 
-POST http://localhost:8001/schema HTTP/1.1
+POST http://localhost:8002/schema HTTP/1.1
 Content-Type: application/json
 
 {
@@ -22,7 +22,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:8001/schema HTTP/1.1
+POST http://localhost:8002/schema HTTP/1.1
 Content-Type: application/json
 
 {
@@ -45,7 +45,7 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:8001/schema HTTP/1.1
+PUT http://localhost:8002/schema HTTP/1.1
 Content-Type: application/json
 
 {
@@ -71,19 +71,22 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:8001/schema HTTP/1.1
+GET http://localhost:8002/schema HTTP/1.1
 
 ###
-GET http://localhost:8001/schema/c8192d967443fd7fd19d97e3bc8d8db9 HTTP/1.1
+GET http://localhost:8002/schema/c8192d967443fd7fd19d97e3bc8d8db9 HTTP/1.1
 
 ###
-DELETE http://localhost:8001/schema/c8192d967443fd7fd19d97e3bc8d8db9 HTTP/1.1
+DELETE http://localhost:8002/schema/c8192d967443fd7fd19d97e3bc8d8db9 HTTP/1.1
 
 ###
-GET http://localhost:8001/schema/provider/br/service/file-downloader HTTP/1.1
+GET http://localhost:8002/schema/provider/br/service/file-downloader HTTP/1.1
 
 ###
-GET http://localhost:8001/schema/provider/br/source/channel 1 HTTP/1.1
+GET http://localhost:8002/schema/provider/br/source/channel 1 HTTP/1.1
 
 ###
-GET http://localhost:8001/schema/provider/br/service/file-downloader/source/channel 1 HTTP/1.1
+GET http://localhost:8002/schema/provider/br/service/file-downloader/source/channel 1 HTTP/1.1
+
+### 
+GET http://localhost:8002/schema/provider/kids/service/video-downloader/source/pinkfong/schema-type/input HTTP/1.1

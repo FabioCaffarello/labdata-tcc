@@ -1,6 +1,7 @@
 package entity
 
 import (
+	"log"
 	"testing"
 	"time"
 
@@ -25,6 +26,9 @@ func (suite *ConfigVaultConfigSuite) TestNewConfig() {
 		Service:  "test_service",
 		Source:   "test_source",
 		Provider: "test_provider",
+		JobParameters: map[string]interface{}{
+			"parser_module": "test_parser_module",
+		},
 		DependsOn: []map[string]interface{}{
 			{"service": "dep_service1", "source": "dep_source1"},
 			{"service": "dep_service2", "source": "dep_source2"},
@@ -53,6 +57,9 @@ func (suite *ConfigVaultConfigSuite) TestInvalidConfig() {
 		Service:  "",
 		Source:   "test_source",
 		Provider: "test_provider",
+		JobParameters: map[string]interface{}{
+			"parser_module": "test_parser_module",
+		},
 	}
 
 	_, err := NewConfig(configProps)
@@ -80,6 +87,9 @@ func (suite *ConfigVaultConfigSuite) TestToMap() {
 		Service:  "test_service",
 		Source:   "test_source",
 		Provider: "test_provider",
+		JobParameters: map[string]interface{}{
+			"parser_module": "test_parser_module",
+		},
 		DependsOn: []map[string]interface{}{
 			{"service": "dep_service1", "source": "dep_source1"},
 		},
@@ -140,6 +150,9 @@ func (suite *ConfigVaultConfigSuite) TestMapToEntity() {
 		Service:  "test_service",
 		Source:   "test_source",
 		Provider: "test_provider",
+		JobParameters: map[string]interface{}{
+			"parser_module": "test_parser_module",
+		},
 		DependsOn: []map[string]interface{}{
 			{"service": "dep_service1", "source": "dep_source1"},
 			{"service": "dep_service2", "source": "dep_source2"},
@@ -157,8 +170,7 @@ func (suite *ConfigVaultConfigSuite) TestMapToEntity() {
 	assert.NotNil(suite.T(), doc)
 
 	// Convert map back to config entity
-	newConfig := &Config{}
-	newConfig, err = newConfig.MapToEntity(doc)
+	newConfig, err := config.MapToEntity(doc)
 	assert.Nil(suite.T(), err)
 	assert.NotNil(suite.T(), newConfig)
 
@@ -172,4 +184,6 @@ func (suite *ConfigVaultConfigSuite) TestMapToEntity() {
 	assert.Equal(suite.T(), config.CreatedAt, newConfig.CreatedAt)
 	assert.Equal(suite.T(), config.UpdatedAt, newConfig.UpdatedAt)
 	assert.Equal(suite.T(), config.DependsOn, newConfig.DependsOn)
+	log.Printf("config.JobParameters: %v", config.JobParameters)
+	assert.Equal(suite.T(), config.JobParameters, newConfig.JobParameters)
 }

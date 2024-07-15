@@ -7,28 +7,67 @@ on:
   pull_request:
 
 permissions:
-  actions: read
-  contents: read
-
+  actions: write
+  contents: write
 
 jobs:
   main:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: 20
           cache: 'npm'
-      - run: npm ci
 
-      - uses: nrwl/nx-set-shas@v4
+      - name: Install Node.js Dependencies
+        run: npm ci
 
-      - name: Install Go
+      - name: Set SHAs for Nx
+        uses: nrwl/nx-set-shas@v4
+
+      - name: Setup Go
         uses: actions/setup-go@v2
         with:
           go-version: 1.22
 
-      - run: npx nx affected -t lint test
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Fetch Main Branch
+        run: git fetch origin main
+
+      - name: Install Poetry
+        uses: Gr1N/setup-poetry@v8
+        with:
+          poetry-version: 1.8.3
+
+      - name: Load Cached Virtual Environment
+        id: cached-poetry-dependencies
+        uses: actions/cache@v2
+        with:
+          path: .venv
+          key: venv-${{ hashFiles('**/poetry.lock') }}
+
+      - name: Install Python Dependencies
+        run: poetry install --with dev
+
+      - name: Install Development Dependencies
+        run: make install
+
+      - name: Activate Virtual Environment and Run Linter
+        run: |
+          source $(poetry env info --path)/bin/activate
+          npx nx affected -t lint
+
+      - name: Run Tests
+        run: |
+          source $(poetry env info --path)/bin/activate
+          npx nx affected -t test

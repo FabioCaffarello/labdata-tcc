@@ -37,6 +37,9 @@ func (suite *ListAllByServiceAndProviderConfigUseCaseSuite) TestExecuteWhenSucce
 			Source:          "source1",
 			Provider:        "provider1",
 			ConfigVersionID: "v1",
+			JobParameters: entity.JobParameters{
+				ParserModule: "parser_module1",
+			},
 			DependsOn: []entity.JobDependencies{
 				{Service: "dep_service1", Source: "dep_source1"},
 			},
@@ -55,6 +58,9 @@ func (suite *ListAllByServiceAndProviderConfigUseCaseSuite) TestExecuteWhenSucce
 			Source:          "source1",
 			Provider:        "provider1",
 			ConfigVersionID: "v1",
+			JobParameters: shareddto.JobParametersDTO{
+				ParserModule: "parser_module1",
+			},
 			DependsOn: []shareddto.JobDependenciesDTO{
 				{Service: "dep_service1", Source: "dep_source1"},
 			},

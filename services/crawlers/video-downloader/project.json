@@ -1,0 +1,89 @@
+{
+  "name": "services-crawlers-video-downloader",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "./services/crawlers/video-downloader/downloader",
+  "targets": {
+    "lock": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "poetry lock --no-update",
+        "cwd": "./services/crawlers/video-downloader"
+      }
+    },
+    "add": {
+      "executor": "@nxlv/python:add",
+      "options": {}
+    },
+    "update": {
+      "executor": "@nxlv/python:update",
+      "options": {}
+    },
+    "remove": {
+      "executor": "@nxlv/python:remove",
+      "options": {}
+    },
+    "build": {
+      "executor": "@nxlv/python:build",
+      "outputs": [
+        "{projectRoot}/dist"
+      ],
+      "options": {
+        "outputPath": "./services/crawlers/video-downloader/dist",
+        "publish": false,
+        "lockedVersions": true,
+        "bundleLocalDependencies": true
+      }
+    },
+    "install": {
+      "executor": "@nxlv/python:install",
+      "options": {
+        "silent": false,
+        "args": "",
+        "cacheDir": ".cache/pypoetry",
+        "verbose": false,
+        "debug": false
+      }
+    },
+    "lint": {
+      "executor": "@nxlv/python:flake8",
+      "outputs": [
+        "{workspaceRoot}/reports/./services/crawlers/video-downloader/pylint.txt"
+      ],
+      "options": {
+        "outputFile": "reports/./services/crawlers/video-downloader/pylint.txt"
+      }
+    },
+    "image": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "docker build -t fabiocaffarello/video-downloader:latest -f ./Dockerfile .",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "start": {
+      "dependsOn": [
+        "image"
+      ],
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "docker-compose up -d",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "check-integration": {
+      "executor": "nx:run-commands",
+      "dependsOn": [
+        "start"
+      ],
+      "options": {
+        "command": "docker-compose run --rm --entrypoint '/app/hack/check-integration.sh {args.user_id} {args.group_id}' video-downloader",
+        "cwd": "{projectRoot}"
+      }
+    }
+  },
+  "tags": [
+    "lang:python",
+    "scope:service"
+  ]
+}

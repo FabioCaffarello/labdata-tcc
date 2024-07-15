@@ -2,12 +2,112 @@
 name = "labdata-tcc"
 version = "0.1.0"
 description = ""
-authors = ["Fabio Caffarello <fabio.caffarello@gmail.com>"]
+authors = [ "Fabio Caffarello <fabio.caffarello@gmail.com>" ]
 readme = "README.md"
 package-mode = false
 
-[tool.poetry.dependencies]
-python = "^3.10"
+  [tool.poetry.dependencies]
+  python = "^3.10"
+
+    [tool.poetry.dependencies.shared-py-request]
+    path = "libs/python/shared/py-request"
+    develop = true
+
+    [tool.poetry.dependencies.shared-py-log]
+    path = "libs/python/shared/py-log"
+    develop = true
+
+    [tool.poetry.dependencies.shared-py-serializer]
+    path = "libs/python/shared/py-serializer"
+    develop = true
+
+    [tool.poetry.dependencies.shared-py-warlock]
+    path = "libs/python/shared/py-warlock"
+    develop = true
+
+    [tool.poetry.dependencies.python-clients-resources-py-rabbitmq]
+    path = "libs/python/clients/resources/py-rabbitmq"
+    develop = true
+
+    [tool.poetry.dependencies.python-service-discovery]
+    path = "libs/python/service-discovery"
+    develop = true
+
+    [tool.poetry.dependencies.python-clients-resources-py-minio]
+    path = "libs/python/clients/resources/py-minio"
+    develop = true
+
+    [tool.poetry.dependencies.python-ddd-dtos-events-router]
+    path = "libs/python/ddd/dtos/events-router"
+    develop = true
+
+    [tool.poetry.dependencies.python-ddd-dtos-schema-vault]
+    path = "libs/python/ddd/dtos/schema-vault"
+    develop = true
+
+    [tool.poetry.dependencies.python-ddd-dtos-config-vault]
+    path = "libs/python/ddd/dtos/config-vault"
+    develop = true
+
+    [tool.poetry.dependencies.python-clients-apis-config-vault]
+    path = "libs/python/clients/apis/config-vault"
+    develop = true
+
+    [tool.poetry.dependencies.python-clients-apis-schema-vault]
+    path = "libs/python/clients/apis/schema-vault"
+    develop = true
+
+    [tool.poetry.dependencies.python-shared-py-debug]
+    path = "libs/python/shared/py-debug"
+    develop = true
+
+    [tool.poetry.dependencies.python-shared-py-argparse]
+    path = "libs/python/shared/py-argparse"
+    develop = true
+
+    [tool.poetry.dependencies.python-ddd-shared-config-loader]
+    path = "libs/python/ddd/shared/config-loader"
+    develop = true
+
+    [tool.poetry.dependencies.python-server-amqp-listener]
+    path = "libs/python/server/amqp-listener"
+    develop = true
+
+    [tool.poetry.dependencies.python-server-event-controller]
+    path = "libs/python/server/event-controller"
+    develop = true
+
+    [tool.poetry.dependencies.python-ddd-usecases-shared-job-handler]
+    path = "libs/python/ddd/usecases/shared/job-handler"
+    develop = true
+
+    [tool.poetry.dependencies.python-ddd-usecases-shared-parsers-py-youtube]
+    path = "libs/python/ddd/usecases/shared/parsers/py-youtube"
+    develop = true
+
+    [tool.poetry.dependencies.python-ddd-usecases-youtube-downloader]
+    path = "libs/python/ddd/usecases/youtube-downloader"
+    develop = true
+
+    [tool.poetry.dependencies.services-crawlers-video-downloader]
+    path = "./services/crawlers/video-downloader"
+    develop = true
+
+    [tool.poetry.dependencies.python-shared-testlib-subprocessd]
+    path = "libs/python/shared/testlib/subprocessd"
+    develop = true
+
+    [tool.poetry.dependencies.python-shared-testlib-fixtures-base-fixture]
+    path = "libs/python/shared/testlib/fixtures/base-fixture"
+    develop = true
+
+    [tool.poetry.dependencies.python-clients-resources-py-mongo]
+    path = "libs/python/clients/resources/py-mongo"
+    develop = true
+
+    [tool.poetry.dependencies.python-shared-testlib-fixtures-service-fixture]
+    path = "libs/python/shared/testlib/fixtures/service-fixture"
+    develop = true
 
 [tool.poetry.group.docs.dependencies]
 mkdocs = "^1.6.0"
@@ -22,7 +122,16 @@ mkdocs-include-markdown-plugin = "^6.0.6"
 mkdocs-swagger-ui-tag = "^0.6.10"
 plantuml-markdown = "^3.9.7"
 
+[tool.poetry.group.dev.dependencies]
+flake8 = "6.0.0"
+autopep8 = "2.0.2"
+pytest = "7.3.1"
+pytest-sugar = "0.9.7"
+pytest-cov = "4.1.0"
+pytest-html = "3.2.0"
+pytest-asyncio = "^0.23.7"
+respx = "^0.21.1"
 
 [build-system]
-requires = ["poetry-core"]
+requires = [ "poetry-core" ]
 build-backend = "poetry.core.masonry.api"

@@ -36,6 +36,7 @@ type EventOrder struct {
 	Provider     string                 `bson:"provider"`
 	Stage        string                 `bson:"stage"`
 	ProcessingID uuid.ID                `bson:"processing_id"`
+	InputID      string                 `bson:"input_id"`
 	Data         map[string]interface{} `bson:"data"`
 }
 
@@ -45,6 +46,7 @@ type EventOrderProps struct {
 	Source       string
 	Provider     string
 	ProcessingID string
+	InputID      string
 	Stage        string
 	Data         map[string]interface{}
 }
@@ -76,6 +78,7 @@ func NewEventOrder(props EventOrderProps) (*EventOrder, error) {
 		Provider:     props.Provider,
 		Stage:        props.Stage,
 		ProcessingID: uuid.ID(props.ProcessingID),
+		InputID:      props.InputID,
 		Data:         props.Data,
 	}
 

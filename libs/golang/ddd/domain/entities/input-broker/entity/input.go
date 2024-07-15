@@ -49,8 +49,8 @@ var (
 	// StatusDetailIdle represents the idle status detail.
 	StatusDetailIdle = "Idle"
 
-	// dateLayout defines the layout for parsing and formatting dates.
-	dateLayout = "2006-01-02 15:04:05"
+	// DateLayout defines the layout for parsing and formatting dates.
+	DateLayout = "2006-01-02 15:04:05"
 )
 
 type Status struct {
@@ -106,7 +106,7 @@ func NewInput(props InputProps) (*Input, error) {
 		Data: props.Data,
 		Metadata: Metadata{
 			ProcessingID:        processingID,
-			ProcessingTimestamp: time.Now().Format(dateLayout),
+			ProcessingTimestamp: time.Now().Format(DateLayout),
 			Service:             props.Service,
 			Source:              props.Source,
 			Provider:            props.Provider,
@@ -115,8 +115,8 @@ func NewInput(props InputProps) (*Input, error) {
 			Code:   StatusCodeIdle,
 			Detail: StatusDetailIdle,
 		},
-		CreatedAt: time.Now().Format(dateLayout),
-		UpdatedAt: time.Now().Format(dateLayout),
+		CreatedAt: time.Now().Format(DateLayout),
+		UpdatedAt: time.Now().Format(DateLayout),
 	}
 
 	if err := input.isValid(); err != nil {
@@ -139,12 +139,17 @@ func (i *Input) SetStatus(code int, detail string) {
 
 // SetProcessingTimestamp sets the processing timestamp of the Input entity.
 func (i *Input) SetProcessingTimestamp(timestamp time.Time) {
-	i.Metadata.ProcessingTimestamp = timestamp.Format(dateLayout)
+	i.Metadata.ProcessingTimestamp = timestamp.Format(DateLayout)
 }
 
 // SetCreatedAt sets the created at timestamp of the Input entity.
 func (i *Input) SetCreatedAt(createdAt string) {
 	i.CreatedAt = createdAt
+}
+
+// SetUpdatedAt sets the updated at timestamp of the Input entity.
+func (i *Input) SetUpdatedAt(updatedAt string) {
+	i.UpdatedAt = updatedAt
 }
 
 // ToMap converts the Input entity to a map.

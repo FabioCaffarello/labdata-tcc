@@ -51,7 +51,7 @@ func (suite *ListAllByStatusAndSourceAndProviderInputUseCaseSuite) TestExecuteWh
 		},
 	}
 
-	suite.repoMock.On("FindAllByStatusAndSourceAndProvider", "test_provider", "test_source", 0).Return(entityInputs, nil)
+	suite.repoMock.On("FindAllByStatusAndSourceAndProvider", "test_source", "test_provider", 0).Return(entityInputs, nil)
 
 	expectedOutput := []outputdto.InputDTO{
 		{
@@ -81,7 +81,7 @@ func (suite *ListAllByStatusAndSourceAndProviderInputUseCaseSuite) TestExecuteWh
 }
 
 func (suite *ListAllByStatusAndSourceAndProviderInputUseCaseSuite) TestExecuteWhenError() {
-	suite.repoMock.On("FindAllByStatusAndSourceAndProvider", "test_provider", "test_source", 0).Return(nil, fmt.Errorf("error"))
+	suite.repoMock.On("FindAllByStatusAndSourceAndProvider", "test_source", "test_provider", 0).Return(nil, fmt.Errorf("error"))
 
 	output, err := suite.useCase.Execute("test_provider", "test_source", 0)
 

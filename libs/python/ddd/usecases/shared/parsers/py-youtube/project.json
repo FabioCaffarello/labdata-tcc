@@ -1,0 +1,73 @@
+{
+  "name": "python-ddd-usecases-shared-parsers-py-youtube",
+  "$schema": "../../../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/python/ddd/usecases/shared/parsers/py-youtube/pyyoutube",
+  "targets": {
+    "lock": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "poetry lock --no-update",
+        "cwd": "libs/python/ddd/usecases/shared/parsers/py-youtube"
+      }
+    },
+    "add": {
+      "executor": "@nxlv/python:add",
+      "options": {}
+    },
+    "update": {
+      "executor": "@nxlv/python:update",
+      "options": {}
+    },
+    "remove": {
+      "executor": "@nxlv/python:remove",
+      "options": {}
+    },
+    "build": {
+      "executor": "@nxlv/python:build",
+      "outputs": [
+        "{projectRoot}/dist"
+      ],
+      "options": {
+        "outputPath": "libs/python/ddd/usecases/shared/parsers/py-youtube/dist",
+        "publish": false,
+        "lockedVersions": true,
+        "bundleLocalDependencies": true
+      }
+    },
+    "install": {
+      "executor": "@nxlv/python:install",
+      "options": {
+        "silent": false,
+        "args": "",
+        "cacheDir": ".cache/pypoetry",
+        "verbose": false,
+        "debug": false
+      }
+    },
+    "lint": {
+      "executor": "@nxlv/python:flake8",
+      "outputs": [
+        "{workspaceRoot}/reports/libs/python/ddd/usecases/shared/parsers/py-youtube/pylint.txt"
+      ],
+      "options": {
+        "outputFile": "reports/libs/python/ddd/usecases/shared/parsers/py-youtube/pylint.txt"
+      }
+    },
+    "test": {
+      "executor": "@nxlv/python:run-commands",
+      "outputs": [
+        "{workspaceRoot}/reports/libs/python/ddd/usecases/shared/parsers/py-youtube/unittests",
+        "{workspaceRoot}/coverage/libs/python/ddd/usecases/shared/parsers/py-youtube"
+      ],
+      "options": {
+        "command": "poetry run pytest tests/",
+        "cwd": "libs/python/ddd/usecases/shared/parsers/py-youtube"
+      }
+    }
+  },
+  "tags": [
+    "lang:python",
+    "scope:parser"
+  ]
+}

@@ -88,7 +88,7 @@ func (r *EventOrderRepository) Create(eventOrder *entity.EventOrder) error {
 		return err
 	}
 
-	r.log.Printf("Config saved with ID: %s\n", entityID)
+	r.log.Printf("Event Order saved with ID: %s\n", entityID)
 	return nil
 }
 

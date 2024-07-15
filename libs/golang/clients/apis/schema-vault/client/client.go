@@ -228,3 +228,54 @@ func (c *Client) ListSchemasByServiceAndSourceAndProvider(service, source, provi
 
 	return schemaList, nil
 }
+
+// ListSchemaByServiceAndSourceAndProviderAndSchemaType sends a request to retrieve schemas by service, source, provider, and schema type.
+//
+// Parameters:
+//   - provider: The provider name.
+//   - service: The service name.
+//   - source: The source name.
+//   - schemaType: The schema type.
+//
+// Returns:
+//   - outputdto.SchemaDTO: A slice of schema data transfer objects.
+//   - error: An error if the request fails.
+func (c *Client) ListSchemaByServiceAndSourceAndProviderAndSchemaType(provider, service, source, schemaType string) (outputdto.SchemaDTO, error) {
+	pathParams := []string{"schema", "provider", provider, "service", service, "source", source, "schema-type", schemaType}
+
+	req, err := requests.CreateRequest(c.ctx, c.baseURL, pathParams, nil, nil, defaultHeaders, http.MethodGet)
+	if err != nil {
+		return outputdto.SchemaDTO{}, err
+	}
+
+	var schema outputdto.SchemaDTO
+	err = requests.SendRequest(c.ctx, req, requests.DefaultHTTPClient, &schema, c.timeout)
+	if err != nil {
+		return outputdto.SchemaDTO{}, err
+	}
+
+	return schema, nil
+}
+
+// ValidateSchema sends a request to validate a schema data transfer object.
+//
+// Parameters:
+//   - schemaData: The schema data transfer object.
+//
+// Returns:
+//   - error: An error if the request fails.
+func (c *Client) ValidateSchema(schemaData inputdto.SchemaDataDTO) error {
+	pathParams := []string{"schema", "validate"}
+
+	req, err := requests.CreateRequest(c.ctx, c.baseURL, pathParams, nil, schemaData, defaultHeaders, http.MethodPost)
+	if err != nil {
+		return err
+	}
+
+	err = requests.SendRequest(c.ctx, req, requests.DefaultHTTPClient, nil, c.timeout)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}

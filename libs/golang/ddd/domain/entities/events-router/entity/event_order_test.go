@@ -24,6 +24,7 @@ func (suite *EventsRouterEventOrderSuite) TestNewEventOrderWhenSuccess() {
 		Provider:     "test_provider",
 		ProcessingID: "xyz789",
 		Stage:        "test_stage",
+		InputID:      "input-id",
 		Data:         map[string]interface{}{"key": "value"},
 	}
 
@@ -44,6 +45,7 @@ func (suite *EventsRouterEventOrderSuite) TestNewEventOrderWhenInvalidService() 
 		Provider:     "test_provider",
 		ProcessingID: "xyz789",
 		Stage:        "test_stage",
+		InputID:      "input-id",
 		Data:         map[string]interface{}{"key": "value"},
 	}
 
@@ -60,6 +62,7 @@ func (suite *EventsRouterEventOrderSuite) TestNewEventOrderWhenInvalidSource() {
 		Provider:     "test_provider",
 		ProcessingID: "xyz789",
 		Stage:        "test_stage",
+		InputID:      "input-id",
 		Data:         map[string]interface{}{"key": "value"},
 	}
 
@@ -76,6 +79,7 @@ func (suite *EventsRouterEventOrderSuite) TestNewEventOrderWhenInvalidProvider()
 		Provider:     "",
 		ProcessingID: "xyz789",
 		Stage:        "test_stage",
+		InputID:      "input-id",
 		Data:         map[string]interface{}{"key": "value"},
 	}
 
@@ -92,6 +96,7 @@ func (suite *EventsRouterEventOrderSuite) TestNewEventOrderWhenInvalidProcessing
 		Provider:     "test_provider",
 		ProcessingID: "",
 		Stage:        "test_stage",
+		InputID:      "input-id",
 		Data:         map[string]interface{}{"key": "value"},
 	}
 
@@ -108,6 +113,7 @@ func (suite *EventsRouterEventOrderSuite) TestNewEventOrderWhenInvalidStage() {
 		Provider:     "test_provider",
 		ProcessingID: "xyz789",
 		Stage:        "",
+		InputID:      "input-id",
 		Data:         map[string]interface{}{"key": "value"},
 	}
 
@@ -124,6 +130,7 @@ func (suite *EventsRouterEventOrderSuite) TestGetEntityID() {
 		Provider:     "test_provider",
 		ProcessingID: "xyz789",
 		Stage:        "test_stage",
+		InputID:      "input-id",
 		Data:         map[string]interface{}{"key": "value"},
 	}
 
@@ -140,6 +147,7 @@ func (suite *EventsRouterEventOrderSuite) TestToMap() {
 		Provider:     "test_provider",
 		ProcessingID: "xyz789",
 		Stage:        "test_stage",
+		InputID:      "input-id",
 		Data:         map[string]interface{}{"key": "value"},
 	}
 	eventOrder, err := NewEventOrder(props)
@@ -167,6 +175,7 @@ func (suite *EventsRouterEventOrderSuite) TestMapToEntity() {
 		Provider:     "test_provider",
 		ProcessingID: "xyz789",
 		Stage:        "test_stage",
+		InputID:      "input-id",
 		Data:         map[string]interface{}{"key": "value"},
 	}
 

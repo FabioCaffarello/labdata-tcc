@@ -857,3 +857,131 @@ func (suite *WebSchemaHandlerSuite) TestListSchemasByServiceAndSourceAndProvider
 	assert.Contains(suite.T(), rr.Body.String(), "repository error")
 	suite.repoMock.AssertExpectations(suite.T())
 }
+
+func (suite *WebSchemaHandlerSuite) TestValidateSchemaWhenSuccess() {
+	schema := &entity.Schema{
+		ID:         "1",
+		Service:    "service1",
+		Source:     "source1",
+		Provider:   "provider",
+		SchemaType: "input",
+		JsonSchema: entity.JsonSchema{
+			Required: []string{"field1"},
+			Properties: map[string]interface{}{
+				"field1": map[string]interface{}{
+					"type": "string",
+				},
+			},
+			JsonType: "object",
+		},
+		CreatedAt: "2023-06-01T00:00:00Z",
+		UpdatedAt: "2023-06-01T00:00:00Z",
+	}
+
+	suite.repoMock.On("FindOneByServiceAndSourceAndProviderAndSchemaType", "service1", "source1", "provider", "input").Return(schema, nil)
+
+	dto := inputdto.SchemaDataDTO{
+		Service:    "service1",
+		Source:     "source1",
+		Provider:   "provider",
+		SchemaType: "input",
+		Data: map[string]interface{}{
+			"field1": "value1",
+		},
+	}
+
+	jsonBody, _ := json.Marshal(dto)
+	req := httptest.NewRequest(http.MethodPost, "/schemas/validate", bytes.NewBuffer(jsonBody))
+	req.Header.Set("Content-Type", "application/json")
+	rr := httptest.NewRecorder()
+
+	suite.handler.ValidateSchema(rr, req)
+
+	assert.Equal(suite.T(), http.StatusOK, rr.Code)
+	var actualOutput outputdto.SchemaValidationDTO
+	err := json.NewDecoder(rr.Body).Decode(&actualOutput)
+	assert.NoError(suite.T(), err)
+
+	assert.True(suite.T(), actualOutput.Valid)
+	suite.repoMock.AssertExpectations(suite.T())
+}
+
+func (suite *WebSchemaHandlerSuite) TestValidateSchemaWhenDecodingFails() {
+	req := httptest.NewRequest(http.MethodPost, "/schemas/validate", bytes.NewBuffer([]byte("invalid json")))
+	req.Header.Set("Content-Type", "application/json")
+	rr := httptest.NewRecorder()
+
+	suite.handler.ValidateSchema(rr, req)
+
+	assert.Equal(suite.T(), http.StatusBadRequest, rr.Code)
+	assert.Contains(suite.T(), rr.Body.String(), "invalid character")
+}
+
+func (suite *WebSchemaHandlerSuite) TestValidateSchemaWhenSchemaNotFound() {
+	suite.repoMock.On("FindOneByServiceAndSourceAndProviderAndSchemaType", "service1", "source1", "provider", "input").Return(nil, errors.New("schema not found"))
+
+	dto := inputdto.SchemaDataDTO{
+		Service:    "service1",
+		Source:     "source1",
+		Provider:   "provider",
+		SchemaType: "input",
+		Data: map[string]interface{}{
+			"field1": "value1",
+		},
+	}
+
+	jsonBody, _ := json.Marshal(dto)
+	req := httptest.NewRequest(http.MethodPost, "/schemas/validate", bytes.NewBuffer(jsonBody))
+	req.Header.Set("Content-Type", "application/json")
+	rr := httptest.NewRecorder()
+
+	suite.handler.ValidateSchema(rr, req)
+
+	assert.Equal(suite.T(), http.StatusInternalServerError, rr.Code)
+	assert.Contains(suite.T(), rr.Body.String(), "schema not found")
+	suite.repoMock.AssertExpectations(suite.T())
+}
+
+func (suite *WebSchemaHandlerSuite) TestValidateSchemaWhenValidationFails() {
+	schema := &entity.Schema{
+		ID:         "1",
+		Service:    "service1",
+		Source:     "source1",
+		Provider:   "provider",
+		SchemaType: "input",
+		JsonSchema: entity.JsonSchema{
+			Required: []string{"field1"},
+			Properties: map[string]interface{}{
+				"field1": map[string]interface{}{
+					"type": "string",
+				},
+			},
+			JsonType: "object",
+		},
+		CreatedAt: "2023-06-01T00:00:00Z",
+		UpdatedAt: "2023-06-01T00:00:00Z",
+	}
+
+	suite.repoMock.On("FindOneByServiceAndSourceAndProviderAndSchemaType", "service1", "source1", "provider", "input").Return(schema, nil)
+
+	dto := inputdto.SchemaDataDTO{
+		Service:    "service1",
+		Source:     "source1",
+		Provider:   "provider",
+		SchemaType: "input",
+		Data: map[string]interface{}{
+			"field1": 123, // Invalid type, should be a string
+		},
+	}
+
+	jsonBody, _ := json.Marshal(dto)
+	req := httptest.NewRequest(http.MethodPost, "/schemas/validate", bytes.NewBuffer(jsonBody))
+	req.Header.Set("Content-Type", "application/json")
+	rr := httptest.NewRecorder()
+
+	suite.handler.ValidateSchema(rr, req)
+
+	assert.Equal(suite.T(), http.StatusInternalServerError, rr.Code)
+	assert.Contains(suite.T(), rr.Body.String(), "failed to validate JSON data:")
+	suite.repoMock.AssertExpectations(suite.T())
+}

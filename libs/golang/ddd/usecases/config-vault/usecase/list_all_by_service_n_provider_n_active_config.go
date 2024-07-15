@@ -54,6 +54,7 @@ func (uc *ListAllByServiceAndProviderAndActiveConfigUseCase) Execute(service, pr
 			Source:          config.Source,
 			Provider:        config.Provider,
 			ConfigVersionID: string(config.ConfigVersionID),
+			JobParameters:   converter.ConvertJobParametersEntityToDTO(config.JobParameters),
 			DependsOn:       converter.ConvertJobDependenciesEntityToDTO(config.DependsOn),
 			CreatedAt:       config.CreatedAt,
 			UpdatedAt:       config.UpdatedAt,

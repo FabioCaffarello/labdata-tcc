@@ -51,7 +51,7 @@ func (suite *ListAllByStatusAndServiceAndSourceAndProviderInputUseCaseSuiteSuite
 		},
 	}
 
-	suite.repoMock.On("FindAllByStatusAndServiceAndSourceAndProvider", "test_provider", "test_service", "test_source", 0).Return(entityInputs, nil)
+	suite.repoMock.On("FindAllByStatusAndServiceAndSourceAndProvider", "test_service", "test_source", "test_provider", 0).Return(entityInputs, nil)
 
 	expectedInput := []outputdto.InputDTO{
 		{
@@ -83,7 +83,7 @@ func (suite *ListAllByStatusAndServiceAndSourceAndProviderInputUseCaseSuiteSuite
 }
 
 func (suite *ListAllByStatusAndServiceAndSourceAndProviderInputUseCaseSuiteSuite) TestExecuteWhenError() {
-	suite.repoMock.On("FindAllByStatusAndServiceAndSourceAndProvider", "test_provider", "test_service", "test_source", 0).Return(nil, fmt.Errorf("No inputs found for provider: %s and service: %s", "test_provider", "test_service"))
+	suite.repoMock.On("FindAllByStatusAndServiceAndSourceAndProvider", "test_service", "test_source", "test_provider", 0).Return(nil, fmt.Errorf("No inputs found for provider: %s and service: %s", "test_provider", "test_service"))
 
 	output, err := suite.useCase.Execute("test_provider", "test_service", "test_source", 0)
 

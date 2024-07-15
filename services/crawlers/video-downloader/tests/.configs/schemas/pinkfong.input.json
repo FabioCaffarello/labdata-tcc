@@ -1,0 +1,15 @@
+{
+    "service": "video-downloader",
+    "source": "pinkfong",
+    "provider": "kids",
+    "schema_type": "input",
+    "json_schema": {
+        "type": "object",
+        "properties": {
+            "videoId": {
+                "type": "string"
+            }
+        },
+        "required": ["videoId"]
+    }
+}

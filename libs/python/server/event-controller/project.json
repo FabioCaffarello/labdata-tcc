@@ -1,0 +1,73 @@
+{
+  "name": "python-server-event-controller",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/python/server/event-controller/event_controller",
+  "targets": {
+    "lock": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "poetry lock --no-update",
+        "cwd": "libs/python/server/event-controller"
+      }
+    },
+    "add": {
+      "executor": "@nxlv/python:add",
+      "options": {}
+    },
+    "update": {
+      "executor": "@nxlv/python:update",
+      "options": {}
+    },
+    "remove": {
+      "executor": "@nxlv/python:remove",
+      "options": {}
+    },
+    "build": {
+      "executor": "@nxlv/python:build",
+      "outputs": [
+        "{projectRoot}/dist"
+      ],
+      "options": {
+        "outputPath": "libs/python/server/event-controller/dist",
+        "publish": false,
+        "lockedVersions": true,
+        "bundleLocalDependencies": true
+      }
+    },
+    "install": {
+      "executor": "@nxlv/python:install",
+      "options": {
+        "silent": false,
+        "args": "",
+        "cacheDir": ".cache/pypoetry",
+        "verbose": false,
+        "debug": false
+      }
+    },
+    "lint": {
+      "executor": "@nxlv/python:flake8",
+      "outputs": [
+        "{workspaceRoot}/reports/libs/python/server/event-controller/pylint.txt"
+      ],
+      "options": {
+        "outputFile": "reports/libs/python/server/event-controller/pylint.txt"
+      }
+    },
+    "test": {
+      "executor": "@nxlv/python:run-commands",
+      "outputs": [
+        "{workspaceRoot}/reports/libs/python/server/event-controller/unittests",
+        "{workspaceRoot}/coverage/libs/python/server/event-controller"
+      ],
+      "options": {
+        "command": "poetry run pytest tests/",
+        "cwd": "libs/python/server/event-controller"
+      }
+    }
+  },
+  "tags": [
+    "lang:python",
+    "scope:server"
+  ]
+}

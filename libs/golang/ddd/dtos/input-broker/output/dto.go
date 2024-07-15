@@ -6,7 +6,7 @@ import (
 
 // InputDTO represents the input data transfer object.
 type InputDTO struct {
-	ID        string                 `json:"id"`         // ID represents the unique identifier of the input data.
+	ID        string                 `json:"_id"`        // ID represents the unique identifier of the input data.
 	Data      map[string]interface{} `json:"data"`       // Data represents the input data.
 	Metadata  shareddto.MetadataDTO  `json:"metadata"`   // Metadata represents the metadata of the input data.
 	Status    shareddto.StatusDTO    `json:"status"`     // Status represents the status of the input data.

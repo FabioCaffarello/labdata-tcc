@@ -48,6 +48,9 @@ func (suite *ConfigVaultMongoDBRepositorySuite) SetupTest() {
 		Service:  "test_service",
 		Source:   "test_source",
 		Provider: "test_provider",
+		JobParameters: map[string]interface{}{
+			"parser_module": "test_parser_module",
+		},
 		DependsOn: []map[string]interface{}{
 			{"service": "dep_service1", "source": "dep_source1"},
 			{"service": "dep_service2", "source": "dep_source2"},

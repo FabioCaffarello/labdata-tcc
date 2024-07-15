@@ -305,3 +305,49 @@ func (h *WebSchemaHandler) ListSchemasByServiceAndSourceAndProvider(w http.Respo
 		return
 	}
 }
+
+func (h *WebSchemaHandler) ListSchemasByServiceAndSourceAndProviderAndSchemaType(w http.ResponseWriter, r *http.Request) {
+	provider := chi.URLParam(r, "provider")
+	service := chi.URLParam(r, "service")
+	source := chi.URLParam(r, "source")
+	schemaType := chi.URLParam(r, "schemaType")
+	if service == "" || source == "" || provider == "" || schemaType == "" {
+		http.Error(w, "Service, source, provider and schema type are required", http.StatusBadRequest)
+		return
+	}
+
+	listAllByServiceAndSourceAndProviderAndSchemaTypeSchemaUseCase := usecase.NewListOneByServiceAndSourceAndProviderAndSchemaTypeSchemaUseCase(h.SchemaRepository)
+	schemas, err := listAllByServiceAndSourceAndProviderAndSchemaTypeSchemaUseCase.Execute(provider, service, source, schemaType)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	err = json.NewEncoder(w).Encode(schemas)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+}
+
+func (h *WebSchemaHandler) ValidateSchema(w http.ResponseWriter, r *http.Request) {
+	var dto inputdto.SchemaDataDTO
+	err := json.NewDecoder(r.Body).Decode(&dto)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	validateSchemaUseCase := usecase.NewValidateSchemaUseCase(h.SchemaRepository)
+	valid, err := validateSchemaUseCase.Execute(dto)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	err = json.NewEncoder(w).Encode(valid)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+}

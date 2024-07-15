@@ -201,6 +201,15 @@ func (s *Schema) ToMap() (map[string]interface{}, error) {
 	return doc, nil
 }
 
+// ToMap converts the JsonSchema to a map[string]interface{}.
+func (js JsonSchema) ToMap() (map[string]interface{}, error) {
+	result := make(map[string]interface{})
+	result["required"] = js.Required
+	result["properties"] = js.Properties
+	result["type"] = js.JsonType
+	return result, nil
+}
+
 // MapToEntity converts a map to a Schema entity.
 func (s *Schema) MapToEntity(doc map[string]interface{}) (*Schema, error) {
 	if id, ok := doc["_id"].(string); ok {

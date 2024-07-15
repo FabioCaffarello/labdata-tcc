@@ -26,8 +26,21 @@ check: guard-project cleanup
 check-all: cleanup
 	npx nx run-many --target=test --all
 
-image:
-	npx nx run-many --target=image --all
+go-image:
+	npx nx run-many --target=image --projects=tag:lang:golang
+
+py-image:
+	npx nx run-many --target=build --projects=tag:lang:python --devDependencies
+	npx nx run-many --target=image --projects=tag:lang:python
+
+image: go-image py-image
+	echo "Images built"
+
+chech-integration-all:
+	npx nx run-many --target=check-integration --all
+
+chech-integration: guard-project
+	npx nx check-integration $(project)
 
 run:
 	docker-compose up -d
@@ -35,9 +48,21 @@ run:
 purge-images:
 	@docker images --filter "dangling=true" -q | xargs -r docker rmi
 
+install:
+	npx nx run-many --target=install --with dev --all
+
 cleanup:
-	@npx nx reset;
-	@containers=$$(docker ps -q -a); \
+	@max_retries=3; \
+	attempt=0; \
+	until [ $$attempt -ge $$max_retries ]; do \
+		npx nx reset && break; \
+		attempt=$$((attempt+1)); \
+		echo "Retry $$attempt/$$max_retries..."; \
+	done; \
+	if [ $$attempt -ge $$max_retries ]; then \
+		echo "Command failed after $$max_retries attempts."; \
+	fi; \
+	containers=$$(docker ps -q -a); \
 	if [ -n "$$containers" ]; then \
 		docker rm -f $$containers; \
 	else \

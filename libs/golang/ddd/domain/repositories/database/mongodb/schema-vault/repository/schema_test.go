@@ -387,3 +387,44 @@ func (suite *SchemaRepositoryTestSuite) TestFindAllByServiceAndSourceAndProvider
 	assert.NotNil(suite.T(), schemas)
 	assert.Equal(suite.T(), 1, len(schemas))
 }
+
+func (suite *SchemaRepositoryTestSuite) TestFindOneByServiceAndSourceAndProviderAndSchemaType() {
+	repository := NewSchemaRepository(suite.client, databaseName)
+	err := repository.Create(suite.schema)
+	assert.Nil(suite.T(), err)
+
+	// Insert another schema with different values
+	secDoc := entity.SchemaProps{
+		Service:    "different-service",
+		Source:     "different-source",
+		Provider:   "different-provider",
+		SchemaType: "different-schema-type",
+		JsonSchema: map[string]interface{}{
+			"type": "object",
+			"properties": map[string]interface{}{
+				"field1": map[string]interface{}{
+					"type": "string",
+				},
+				"field2": map[string]interface{}{
+					"type": "string",
+				},
+			},
+			"required": []interface{}{
+				"field1",
+			},
+		},
+	}
+	secSchema, err := entity.NewSchema(secDoc)
+	assert.Nil(suite.T(), err)
+	err = repository.Create(secSchema)
+	assert.Nil(suite.T(), err)
+
+	schema, err := repository.FindOneByServiceAndSourceAndProviderAndSchemaType(suite.schema.Service, suite.schema.Source, suite.schema.Provider, suite.schema.SchemaType)
+	assert.Nil(suite.T(), err)
+	assert.NotNil(suite.T(), schema)
+	assert.Equal(suite.T(), suite.schema.Service, schema.Service)
+	assert.Equal(suite.T(), suite.schema.Source, schema.Source)
+	assert.Equal(suite.T(), suite.schema.Provider, schema.Provider)
+	assert.Equal(suite.T(), suite.schema.SchemaType, schema.SchemaType)
+	assert.Equal(suite.T(), suite.schema.JsonSchema, schema.JsonSchema)
+}

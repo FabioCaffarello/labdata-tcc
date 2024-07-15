@@ -50,6 +50,7 @@ func (uc *ListOneByIDConfigUseCase) Execute(id string) (outputdto.ConfigDTO, err
 		Source:          config.Source,
 		Provider:        config.Provider,
 		ConfigVersionID: string(config.ConfigVersionID),
+		JobParameters:   converter.ConvertJobParametersEntityToDTO(config.JobParameters),
 		DependsOn:       converter.ConvertJobDependenciesEntityToDTO(config.DependsOn),
 		CreatedAt:       config.CreatedAt,
 		UpdatedAt:       config.UpdatedAt,

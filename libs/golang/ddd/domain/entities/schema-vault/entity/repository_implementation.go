@@ -9,4 +9,5 @@ type SchemaRepositoryInterface interface {
 	FindAllByServiceAndProvider(provider, service string) ([]*Schema, error)
 	FindAllBySourceAndProvider(provider, source string) ([]*Schema, error)
 	FindAllByServiceAndSourceAndProvider(service, source, provider string) ([]*Schema, error)
+	FindOneByServiceAndSourceAndProviderAndSchemaType(provider, service, source, schemaType string) (*Schema, error)
 }
