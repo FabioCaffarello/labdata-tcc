@@ -1,3 +1,4 @@
+- [Getting Started](getting-started.md)
 - [Architecture](index.md)
 - [Services](reference/services/)
 - [Libraries](reference/libs/)

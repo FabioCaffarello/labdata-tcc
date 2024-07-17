@@ -39,7 +39,7 @@ image: go-image py-image
 chech-integration-all:
 	npx nx run-many --target=check-integration --all
 
-chech-integration: guard-project
+check-integration: guard-project
 	npx nx check-integration $(project)
 
 run:
